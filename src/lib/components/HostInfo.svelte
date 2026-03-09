@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { Globe, ChevronDown, Check, HardDrive, Clock, Wifi, WifiOff, Route, UndoDot, Icon, Loader } from 'lucide-svelte';
+	import { Globe, ChevronDown, Check, HardDrive, Clock, Wifi, WifiOff, Route, UndoDot, Icon, Loader } from '@lucide/svelte';
 	import { whale } from '@lucide/lab';
 	import { currentEnvironment, environments, type Environment } from '$lib/stores/environment';
 	import { sseConnected } from '$lib/stores/events';

@@ -3,7 +3,7 @@
 	import { Button } from '$lib/components/ui/button';
 	import { Badge } from '$lib/components/ui/badge';
 	import { Checkbox } from '$lib/components/ui/checkbox';
-	import { Import, Loader2, Play, Info } from 'lucide-svelte';
+	import { Import, Loader2, Play, Info } from '@lucide/svelte';
 	import FilesystemBrowser, { type FileEntry } from './FilesystemBrowser.svelte';
 	import CodeEditor from '$lib/components/CodeEditor.svelte';
 	import yaml from 'js-yaml';

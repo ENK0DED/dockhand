@@ -42,7 +42,7 @@
 	import { Input } from '$lib/components/ui/input';
 	import { Button } from '$lib/components/ui/button';
 	import { TogglePill } from '$lib/components/ui/toggle-pill';
-	import { Plus, Trash2, Network, Settings, Tag, Layers, MonitorSmartphone, Share2, Cpu, Server, CircleOff, Globe, TriangleAlert } from 'lucide-svelte';
+	import { Plus, Trash2, Network, Settings, Tag, Layers, MonitorSmartphone, Share2, Cpu, Server, CircleOff, Globe, TriangleAlert } from '@lucide/svelte';
 	import * as Alert from '$lib/components/ui/alert';
 	import { currentEnvironment, appendEnvParam } from '$lib/stores/environment';
 	import { focusFirstInput } from '$lib/utils';

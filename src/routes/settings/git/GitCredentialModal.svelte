@@ -5,7 +5,7 @@
 	import { Label } from '$lib/components/ui/label';
 	import { Input } from '$lib/components/ui/input';
 	import { ToggleGroup } from '$lib/components/ui/toggle-pill';
-	import { Key, KeyRound, Lock } from 'lucide-svelte';
+	import { Key, KeyRound, Lock } from '@lucide/svelte';
 	import { focusFirstInput } from '$lib/utils';
 
 	// Auth type options with icons

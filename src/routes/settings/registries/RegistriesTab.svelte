@@ -5,7 +5,7 @@
 	import { Button } from '$lib/components/ui/button';
 	import * as Card from '$lib/components/ui/card';
 	import { Badge } from '$lib/components/ui/badge';
-	import { Plus, Trash2, Pencil, Star, Key, Download, Icon } from 'lucide-svelte';
+	import { Plus, Trash2, Pencil, Star, Key, Download, Icon } from '@lucide/svelte';
 	import { whale } from '@lucide/lab';
 	import ConfirmPopover from '$lib/components/ConfirmPopover.svelte';
 	import { canAccess } from '$lib/stores/auth';

@@ -4,7 +4,7 @@
 	import CronEditor from '$lib/components/cron-editor.svelte';
 	import VulnerabilityCriteriaSelector, { type VulnerabilityCriteria } from '$lib/components/VulnerabilityCriteriaSelector.svelte';
 	import { currentEnvironment } from '$lib/stores/environment';
-	import { Ship, Cable, ExternalLink, AlertTriangle, Info } from 'lucide-svelte';
+	import { Ship, Cable, ExternalLink, AlertTriangle, Info } from '@lucide/svelte';
 	import type { SystemContainerType } from '$lib/types';
 
 	interface Props {

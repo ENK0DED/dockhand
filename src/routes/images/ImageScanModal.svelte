@@ -2,7 +2,7 @@
 	import * as Dialog from '$lib/components/ui/dialog';
 	import { Button } from '$lib/components/ui/button';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
-	import { Download, CheckCircle2, XCircle, ShieldCheck, ShieldAlert, ShieldX, FileText, FileSpreadsheet } from 'lucide-svelte';
+	import { Download, CheckCircle2, XCircle, ShieldCheck, ShieldAlert, ShieldX, FileText, FileSpreadsheet } from '@lucide/svelte';
 	import { currentEnvironment } from '$lib/stores/environment';
 	import ScanTab from '$lib/components/ScanTab.svelte';
 	import type { ScanResult } from '$lib/components/ScanTab.svelte';

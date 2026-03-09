@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { tick, onMount } from 'svelte';
-	import { CheckCircle2, XCircle, Loader2, AlertCircle, Terminal, Sun, Moon, Upload } from 'lucide-svelte';
+	import { CheckCircle2, XCircle, Loader2, AlertCircle, Terminal, Sun, Moon, Upload } from '@lucide/svelte';
 	import { appendEnvParam } from '$lib/stores/environment';
 	import { watchJob } from '$lib/utils/sse-fetch';
 

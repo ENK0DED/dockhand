@@ -23,7 +23,7 @@
 		ClipboardList,
 		Activity,
 		Timer
-	} from 'lucide-svelte';
+	} from '@lucide/svelte';
 	import { licenseStore } from '$lib/stores/license';
 	import { authStore, hasAnyAccess } from '$lib/stores/auth';
 	import * as Avatar from '$lib/components/ui/avatar';

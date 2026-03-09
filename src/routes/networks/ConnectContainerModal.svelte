@@ -5,7 +5,7 @@
 	import { Label } from '$lib/components/ui/label';
 	import * as Select from '$lib/components/ui/select';
 	import { appendEnvParam } from '$lib/stores/environment';
-	import { Link, Loader2, Box } from 'lucide-svelte';
+	import { Link, Loader2, Box } from '@lucide/svelte';
 	import { focusFirstInput } from '$lib/utils';
 	import type { NetworkInfo } from '$lib/types';
 

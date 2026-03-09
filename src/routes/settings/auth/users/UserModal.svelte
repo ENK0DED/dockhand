@@ -6,7 +6,7 @@
 	import { Input } from '$lib/components/ui/input';
 	import { Checkbox } from '$lib/components/ui/checkbox';
 	import { Badge } from '$lib/components/ui/badge';
-	import { User, UserPlus, Pencil, KeyRound, Crown, ShieldCheck, RefreshCw, Check, Globe, TriangleAlert, Shield, Eye, Wrench, Tag, Smartphone } from 'lucide-svelte';
+	import { User, UserPlus, Pencil, KeyRound, Crown, ShieldCheck, RefreshCw, Check, Globe, TriangleAlert, Shield, Eye, Wrench, Tag, Smartphone } from '@lucide/svelte';
 	import { TogglePill } from '$lib/components/ui/toggle-pill';
 	import * as Alert from '$lib/components/ui/alert';
 	import { focusFirstInput } from '$lib/utils';

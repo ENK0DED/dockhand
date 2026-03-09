@@ -3,7 +3,7 @@
 	import * as Dialog from '$lib/components/ui/dialog';
 	import { Label } from '$lib/components/ui/label';
 	import { Input } from '$lib/components/ui/input';
-	import { QrCode, RefreshCw, ShieldCheck, TriangleAlert, Copy, Download, Check, XCircle } from 'lucide-svelte';
+	import { QrCode, RefreshCw, ShieldCheck, TriangleAlert, Copy, Download, Check, XCircle } from '@lucide/svelte';
 	import * as Tooltip from '$lib/components/ui/tooltip';
 	import { copyToClipboard } from '$lib/utils/clipboard';
 	import * as Alert from '$lib/components/ui/alert';

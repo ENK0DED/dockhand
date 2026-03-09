@@ -36,7 +36,7 @@
 		ArrowDown,
 		Shield,
 		TextCursorInput
-	} from 'lucide-svelte';
+	} from '@lucide/svelte';
 	import { toast } from 'svelte-sonner';
 	import { formatDateTime, appSettings } from '$lib/stores/settings';
 

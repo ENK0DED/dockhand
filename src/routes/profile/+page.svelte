@@ -23,7 +23,7 @@
 		Trash2,
 		TriangleAlert,
 		Palette
-	} from 'lucide-svelte';
+	} from '@lucide/svelte';
 	import { authStore } from '$lib/stores/auth';
 	import { formatDateTime } from '$lib/stores/settings';
 	import * as Alert from '$lib/components/ui/alert';

@@ -1171,7 +1171,7 @@ export default defineConfig({
 		__APP_VERSION__: JSON.stringify(getGitTag())
 	},
 	optimizeDeps: {
-		include: ['lucide-svelte', '@xterm/xterm', '@xterm/addon-fit']
+		include: ['@lucide/svelte', '@xterm/xterm', '@xterm/addon-fit']
 	},
 	resolve: {
 		dedupe: [

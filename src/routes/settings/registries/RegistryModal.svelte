@@ -3,7 +3,7 @@
 	import * as Dialog from '$lib/components/ui/dialog';
 	import { Label } from '$lib/components/ui/label';
 	import { Input } from '$lib/components/ui/input';
-	import { Plus, Check, RefreshCw } from 'lucide-svelte';
+	import { Plus, Check, RefreshCw } from '@lucide/svelte';
 	import { focusFirstInput } from '$lib/utils';
 
 	export interface Registry {

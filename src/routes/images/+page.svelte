@@ -11,7 +11,7 @@
 	import { Label } from '$lib/components/ui/label';
 	import * as Dialog from '$lib/components/ui/dialog';
 	import * as Select from '$lib/components/ui/select';
-	import { Trash2, Upload, RefreshCw, Play, Search, Layers, ShieldCheck, CheckSquare, Square, Tag, Check, XCircle, Icon, Images, Download, ChevronRight, ChevronDown, Loader2, ArrowUp, ArrowDown, ArrowUpDown, CircleDashed, CircleDot, Circle, Filter, BrushCleaning } from 'lucide-svelte';
+	import { Trash2, Upload, RefreshCw, Play, Search, Layers, ShieldCheck, CheckSquare, Square, Tag, Check, XCircle, Icon, Images, Download, ChevronRight, ChevronDown, Loader2, ArrowUp, ArrowDown, ArrowUpDown, CircleDashed, CircleDot, Circle, Filter, BrushCleaning } from '@lucide/svelte';
 	import { copyToClipboard } from '$lib/utils/clipboard';
 	import ConfirmPopover from '$lib/components/ConfirmPopover.svelte';
 	import BatchOperationModal from '$lib/components/modals/BatchOperationModal.svelte';

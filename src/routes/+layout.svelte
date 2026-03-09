@@ -18,7 +18,7 @@
 	import { themeStore, applyTheme } from '$lib/stores/theme';
 	import { gridPreferencesStore } from '$lib/stores/grid-preferences';
 	import { shouldShowWhatsNew } from '$lib/utils/version';
-	import { AlertTriangle, Search } from 'lucide-svelte';
+	import { AlertTriangle, Search } from '@lucide/svelte';
 
 	// Check if current route is login page (no sidebar needed)
 	const isLoginPage = $derived($page.url.pathname === '/login');

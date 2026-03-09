@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Cropper from 'svelte-easy-crop';
 	import { Button } from '$lib/components/ui/button';
-	import { ZoomIn, ZoomOut, X, Check } from 'lucide-svelte';
+	import { ZoomIn, ZoomOut, X, Check } from '@lucide/svelte';
 
 	interface Props {
 		show: boolean;

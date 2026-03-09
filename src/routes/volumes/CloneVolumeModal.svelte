@@ -3,7 +3,7 @@
 	import { Button } from '$lib/components/ui/button';
 	import { Input } from '$lib/components/ui/input';
 	import { Label } from '$lib/components/ui/label';
-	import { Copy, Loader2 } from 'lucide-svelte';
+	import { Copy, Loader2 } from '@lucide/svelte';
 	import { toast } from 'svelte-sonner';
 	import { appendEnvParam } from '$lib/stores/environment';
 	import { focusFirstInput } from '$lib/utils';

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as Dialog from '$lib/components/ui/dialog';
 	import { Button } from '$lib/components/ui/button';
-	import { Sparkles, Bug, Zap, CheckCircle, ScrollText } from 'lucide-svelte';
+	import { Sparkles, Bug, Zap, CheckCircle, ScrollText } from '@lucide/svelte';
 	import { compareVersions } from '$lib/utils/version';
 
 	interface ChangelogEntry {

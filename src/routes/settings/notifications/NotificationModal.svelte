@@ -7,7 +7,7 @@
 	import { Badge } from '$lib/components/ui/badge';
 	import { TogglePill } from '$lib/components/ui/toggle-pill';
 	import { Checkbox } from '$lib/components/ui/checkbox';
-	import { Plus, Check, RefreshCw, Mail, Zap, Info, Send, CheckCircle2, XCircle, Key, ChevronDown, HelpCircle } from 'lucide-svelte';
+	import { Plus, Check, RefreshCw, Mail, Zap, Info, Send, CheckCircle2, XCircle, Key, ChevronDown, HelpCircle } from '@lucide/svelte';
 	import * as Tooltip from '$lib/components/ui/tooltip';
 	import { toast } from 'svelte-sonner';
 	import { focusFirstInput } from '$lib/utils';

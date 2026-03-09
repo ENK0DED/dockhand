@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as Dialog from '$lib/components/ui/dialog';
 	import { Button } from '$lib/components/ui/button';
-	import { Layers } from 'lucide-svelte';
+	import { Layers } from '@lucide/svelte';
 	import ImageLayersView from './ImageLayersView.svelte';
 
 	interface Props {

@@ -7,7 +7,7 @@
 		AlertTriangle,
 		ArrowUpCircle,
 		Loader2
-	} from 'lucide-svelte';
+	} from '@lucide/svelte';
 
 	interface ContainerCounts {
 		running: number;

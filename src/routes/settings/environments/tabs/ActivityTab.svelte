@@ -3,7 +3,7 @@
 	import { Label } from '$lib/components/ui/label';
 	import { TogglePill } from '$lib/components/ui/toggle-pill';
 	import * as Select from '$lib/components/ui/select';
-	import { Percent, HardDrive } from 'lucide-svelte';
+	import { Percent, HardDrive } from '@lucide/svelte';
 
 	interface Props {
 		collectActivity: boolean;

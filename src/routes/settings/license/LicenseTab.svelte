@@ -5,7 +5,7 @@
 	import * as Card from '$lib/components/ui/card';
 	import { Label } from '$lib/components/ui/label';
 	import { Input } from '$lib/components/ui/input';
-	import { Crown, Building2, Key, RefreshCw, ShieldCheck, XCircle } from 'lucide-svelte';
+	import { Crown, Building2, Key, RefreshCw, ShieldCheck, XCircle } from '@lucide/svelte';
 	import { canAccess } from '$lib/stores/auth';
 	import { licenseStore } from '$lib/stores/license';
 	import { formatDate } from '$lib/stores/settings';

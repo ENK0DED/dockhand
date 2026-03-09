@@ -5,7 +5,7 @@
 	import { Label } from '$lib/components/ui/label';
 	import { Input } from '$lib/components/ui/input';
 	import { ToggleGroup } from '$lib/components/ui/toggle-pill';
-	import { Plus, Check, RefreshCw, Trash2 } from 'lucide-svelte';
+	import { Plus, Check, RefreshCw, Trash2 } from '@lucide/svelte';
 	import { focusFirstInput } from '$lib/utils';
 
 	// Protocol options for ports

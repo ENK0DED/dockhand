@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as Select from '$lib/components/ui/select';
 	import { Input } from '$lib/components/ui/input';
-	import { Calendar, CalendarDays, Clock } from 'lucide-svelte';
+	import { Calendar, CalendarDays, Clock } from '@lucide/svelte';
 	import { appSettings } from '$lib/stores/settings';
 	import cronstrue from 'cronstrue';
 

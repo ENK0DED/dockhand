@@ -25,7 +25,7 @@
     CircleFadingArrowUp,
     Clock,
     BrushCleaning
-  } from 'lucide-svelte';
+  } from '@lucide/svelte';
   import { whale } from '@lucide/lab';
   import ConfirmPopover from '$lib/components/ConfirmPopover.svelte';
   import { canAccess } from '$lib/stores/auth';

@@ -3,7 +3,7 @@
 	import { Button } from '$lib/components/ui/button';
 	import { Badge } from '$lib/components/ui/badge';
 	import { Progress } from '$lib/components/ui/progress';
-	import { CircleArrowUp, CheckCircle2, XCircle, Loader2, Circle, Ship, Sparkles, Bug, Wrench, RotateCcw, AlertCircle } from 'lucide-svelte';
+	import { CircleArrowUp, CheckCircle2, XCircle, Loader2, Circle, Ship, Sparkles, Bug, Wrench, RotateCcw, AlertCircle } from '@lucide/svelte';
 
 	declare const __APP_VERSION__: string | null;
 

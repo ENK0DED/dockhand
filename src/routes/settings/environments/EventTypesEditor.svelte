@@ -1,6 +1,6 @@
 <script lang="ts">
   import { TogglePill } from '$lib/components/ui/toggle-pill';
-  import { Box, RefreshCw, GitBranch, Layers, Shield, HardDrive, ChevronDown, ChevronRight } from 'lucide-svelte';
+  import { Box, RefreshCw, GitBranch, Layers, Shield, HardDrive, ChevronDown, ChevronRight } from '@lucide/svelte';
 
   interface EventType {
     id: string;

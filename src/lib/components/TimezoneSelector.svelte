@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ChevronsUpDown, Check, Globe } from 'lucide-svelte';
+	import { ChevronsUpDown, Check, Globe } from '@lucide/svelte';
 	import * as Command from '$lib/components/ui/command';
 	import * as Popover from '$lib/components/ui/popover';
 	import { Button } from '$lib/components/ui/button';

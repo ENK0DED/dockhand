@@ -2,7 +2,7 @@
 	import { themeStore, type FontSize } from '$lib/stores/theme';
 	import { sseConnected } from '$lib/stores/events';
 	import { Badge } from '$lib/components/ui/badge';
-	import { Wifi } from 'lucide-svelte';
+	import { Wifi } from '@lucide/svelte';
 	import type { Component } from 'svelte';
 
 	interface Props {

@@ -12,7 +12,7 @@
 	import { Input } from '$lib/components/ui/input';
 	import * as Tooltip from '$lib/components/ui/tooltip';
 	import MultiSelectFilter from '$lib/components/MultiSelectFilter.svelte';
-	import { Play, Square, Trash2, Plus, ArrowBigDown, Search, Pencil, ExternalLink, GitBranch, RefreshCw, Loader2, FileCode, FileText, FileOutput, Box, RotateCcw, ScrollText, Terminal, Eye, Network, HardDrive, Heart, HeartPulse, HeartOff, ChevronsUpDown, ChevronsDownUp, Rocket, AlertTriangle, X, Layers, Pause, CircleDashed, Skull, FolderOpen, Variable, Clock, RotateCw, Import, Ship, Cable, LayoutPanelLeft, Rows3, GripVertical } from 'lucide-svelte';
+	import { Play, Square, Trash2, Plus, ArrowBigDown, Search, Pencil, ExternalLink, GitBranch, RefreshCw, Loader2, FileCode, FileText, FileOutput, Box, RotateCcw, ScrollText, Terminal, Eye, Network, HardDrive, Heart, HeartPulse, HeartOff, ChevronsUpDown, ChevronsDownUp, Rocket, AlertTriangle, X, Layers, Pause, CircleDashed, Skull, FolderOpen, Variable, Clock, RotateCw, Import, Ship, Cable, LayoutPanelLeft, Rows3, GripVertical } from '@lucide/svelte';
 	import ConfirmPopover from '$lib/components/ConfirmPopover.svelte';
 	import BatchOperationModal from '$lib/components/modals/BatchOperationModal.svelte';
 	import type { ComposeStackInfo, ContainerStats } from '$lib/types';

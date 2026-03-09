@@ -2,7 +2,7 @@
 	import { tick } from 'svelte';
 	import { Badge } from '$lib/components/ui/badge';
 	import { Button } from '$lib/components/ui/button';
-	import { Loader2, AlertCircle, Terminal, Sun, Moon, ShieldCheck, ShieldAlert, ShieldX, Shield } from 'lucide-svelte';
+	import { Loader2, AlertCircle, Terminal, Sun, Moon, ShieldCheck, ShieldAlert, ShieldX, Shield } from '@lucide/svelte';
 	import { onMount } from 'svelte';
 	import { appendEnvParam } from '$lib/stores/environment';
 	import { watchJob } from '$lib/utils/sse-fetch';

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { onMount, onDestroy } from 'svelte';
-	import { Terminal as TerminalIcon } from 'lucide-svelte';
+	import { Terminal as TerminalIcon } from '@lucide/svelte';
 
 	// Dynamic imports for browser-only xterm
 	let Terminal: any;

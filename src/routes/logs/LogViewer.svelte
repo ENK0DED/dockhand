@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { RefreshCw, Copy, Download, WrapText, ArrowDownToLine, Search, ChevronUp, ChevronDown, X, Type } from 'lucide-svelte';
+	import { RefreshCw, Copy, Download, WrapText, ArrowDownToLine, Search, ChevronUp, ChevronDown, X, Type } from '@lucide/svelte';
 	import { copyToClipboard } from '$lib/utils/clipboard';
 	import * as Select from '$lib/components/ui/select';
 	import { themeStore } from '$lib/stores/theme';

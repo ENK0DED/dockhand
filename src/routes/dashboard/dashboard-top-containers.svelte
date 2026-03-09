@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Box, Cpu, MemoryStick, Loader2 } from 'lucide-svelte';
+	import { Box, Cpu, MemoryStick, Loader2 } from '@lucide/svelte';
 
 	interface Container {
 		name: string;

@@ -10,7 +10,7 @@ import {
 	Activity, BarChart3, ChartLine, ChartPie, TrendingUp, Gauge, Timer,
 	Mail, MessageSquare, Phone, Video, Camera, Music, Headphones, Volume2,
 	MapPin, Map, Compass, Navigation, Flag, Bookmark, Target
-} from 'lucide-svelte';
+} from '@lucide/svelte';
 import type { ComponentType } from 'svelte';
 
 // Icon mapping for rendering

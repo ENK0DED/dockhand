@@ -3,7 +3,7 @@
 	import * as Dialog from '$lib/components/ui/dialog';
 	import { Label } from '$lib/components/ui/label';
 	import { Input } from '$lib/components/ui/input';
-	import { Key, RefreshCw, Check, TriangleAlert } from 'lucide-svelte';
+	import { Key, RefreshCw, Check, TriangleAlert } from '@lucide/svelte';
 	import * as Alert from '$lib/components/ui/alert';
 	import { focusFirstInput } from '$lib/utils';
 	import PasswordStrengthIndicator from '$lib/components/PasswordStrengthIndicator.svelte';

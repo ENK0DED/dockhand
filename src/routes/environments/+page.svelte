@@ -18,7 +18,7 @@
 		WifiOff,
 		Lock,
 		Unlock
-	} from 'lucide-svelte';
+	} from '@lucide/svelte';
 	import PageHeader from '$lib/components/PageHeader.svelte';
 
 	interface Environment {

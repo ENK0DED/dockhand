@@ -9,7 +9,7 @@
 	import { Button } from '$lib/components/ui/button';
 	import { Input } from '$lib/components/ui/input';
 	import MultiSelectFilter from '$lib/components/MultiSelectFilter.svelte';
-	import { Trash2, Search, Plus, Eye, Check, XCircle, RefreshCw, Icon, AlertTriangle, X, Network, Link, Copy, CopyPlus, Share2, Server, Globe, MonitorSmartphone, Cpu, CircleOff, BrushCleaning } from 'lucide-svelte';
+	import { Trash2, Search, Plus, Eye, Check, XCircle, RefreshCw, Icon, AlertTriangle, X, Network, Link, Copy, CopyPlus, Share2, Server, Globe, MonitorSmartphone, Cpu, CircleOff, BrushCleaning } from '@lucide/svelte';
 	import { copyToClipboard } from '$lib/utils/clipboard';
 	import ConfirmPopover from '$lib/components/ConfirmPopover.svelte';
 	import BatchOperationModal from '$lib/components/modals/BatchOperationModal.svelte';

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button';
-	import { ChevronDown, ChevronRight, CheckCircle2, XCircle, Loader2 } from 'lucide-svelte';
+	import { ChevronDown, ChevronRight, CheckCircle2, XCircle, Loader2 } from '@lucide/svelte';
 	import type { StepType } from '$lib/utils/update-steps';
 	import { getStepIcon, getStepLabel, getStepColor } from '$lib/utils/update-steps';
 	import ScannerSeverityPills from '$lib/components/ScannerSeverityPills.svelte';

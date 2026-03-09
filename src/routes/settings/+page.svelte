@@ -3,7 +3,7 @@
 </svelte:head>
 
 <script lang="ts">
-  import { Settings, Globe, Download, Layers, Bell, Crown, Users, Info, GitBranch } from 'lucide-svelte';
+  import { Settings, Globe, Download, Layers, Bell, Crown, Users, Info, GitBranch } from '@lucide/svelte';
 
   import { goto } from '$app/navigation';
   import { page } from '$app/state';

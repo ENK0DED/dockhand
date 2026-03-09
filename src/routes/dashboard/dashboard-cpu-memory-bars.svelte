@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Cpu, MemoryStick, Loader2 } from 'lucide-svelte';
+	import { Cpu, MemoryStick, Loader2 } from '@lucide/svelte';
 
 	interface Metrics {
 		cpuPercent?: number;

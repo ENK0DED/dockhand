@@ -42,7 +42,7 @@
 		Container,
 		ClipboardList,
 		Timer
-	} from 'lucide-svelte';
+	} from '@lucide/svelte';
 	import ConfirmPopover from '$lib/components/ConfirmPopover.svelte';
 	import { canAccess } from '$lib/stores/auth';
 	import { licenseStore } from '$lib/stores/license';

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ArrowRight } from 'lucide-svelte';
+	import { ArrowRight } from '@lucide/svelte';
 	import { formatFieldName, type AuditDiff, type FieldChange } from '$lib/utils/diff';
 
 	interface Props {

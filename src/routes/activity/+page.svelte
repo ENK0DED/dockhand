@@ -33,7 +33,7 @@
 		Search,
 		Wifi,
 		Radio
-	} from 'lucide-svelte';
+	} from '@lucide/svelte';
 	import PageHeader from '$lib/components/PageHeader.svelte';
 	import { currentEnvironment, environments as environmentsStore } from '$lib/stores/environment';
 	import { getIconComponent } from '$lib/utils/icons';

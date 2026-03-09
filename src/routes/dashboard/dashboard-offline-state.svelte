@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { WifiOff } from 'lucide-svelte';
+	import { WifiOff } from '@lucide/svelte';
 
 	interface Props {
 		error?: string;

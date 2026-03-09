@@ -3,7 +3,7 @@
 		AlertTriangle,
 		RefreshCw,
 		CircleCheck
-	} from 'lucide-svelte';
+	} from '@lucide/svelte';
 
 	interface Props {
 		unhealthy: number;

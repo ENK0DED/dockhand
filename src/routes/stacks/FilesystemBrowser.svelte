@@ -2,7 +2,7 @@
 	import * as Dialog from '$lib/components/ui/dialog';
 	import { Button } from '$lib/components/ui/button';
 	import { Badge } from '$lib/components/ui/badge';
-	import { Loader2, FolderOpen, File, FileText, ChevronRight, ArrowUp, AlertCircle, FolderPlus, Search, Import } from 'lucide-svelte';
+	import { Loader2, FolderOpen, File, FileText, ChevronRight, ArrowUp, AlertCircle, FolderPlus, Search, Import } from '@lucide/svelte';
 	import type { Component } from 'svelte';
 	import RecentLocationsPanel from './RecentLocationsPanel.svelte';
 

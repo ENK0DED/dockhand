@@ -45,7 +45,7 @@
     CircleAlert,
     CircleCheck,
     LoaderCircle
-	} from 'lucide-svelte';
+	} from '@lucide/svelte';
 	import * as Tooltip from '$lib/components/ui/tooltip';
 	import * as Popover from '$lib/components/ui/popover';
 	import IconPicker from '$lib/components/icon-picker.svelte';

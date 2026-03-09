@@ -13,7 +13,7 @@
 		CircleArrowUp,
 		CircleFadingArrowUp,
 		Loader2
-	} from 'lucide-svelte';
+	} from '@lucide/svelte';
 	import { whale } from '@lucide/lab';
 	import { getIconComponent } from '$lib/utils/icons';
 	import { goto } from '$app/navigation';

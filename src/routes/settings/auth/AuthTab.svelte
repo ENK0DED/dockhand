@@ -15,7 +15,7 @@
 		LogIn,
 		RefreshCw,
 		Save
-	} from 'lucide-svelte';
+	} from '@lucide/svelte';
 	import { TogglePill } from '$lib/components/ui/toggle-pill';
 	import { canAccess, authStore } from '$lib/stores/auth';
 	import { licenseStore } from '$lib/stores/license';

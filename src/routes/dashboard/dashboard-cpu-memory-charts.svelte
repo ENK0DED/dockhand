@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Cpu } from 'lucide-svelte';
+	import { Cpu } from '@lucide/svelte';
 	import { Chart, Svg, Area } from 'layerchart';
 	import { scaleTime } from 'd3-scale';
 

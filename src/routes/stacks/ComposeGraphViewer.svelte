@@ -8,7 +8,7 @@
 		ChevronDown, Sun, Moon, Save, LayoutGrid, GitBranch,
 		Circle, Target, Sparkles, Lightbulb,
 		Share2, Server, Globe, MonitorSmartphone, Cpu, CircleOff
-	} from 'lucide-svelte';
+	} from '@lucide/svelte';
 	import * as Select from '$lib/components/ui/select';
 	import { Button } from '$lib/components/ui/button';
 	import { Input } from '$lib/components/ui/input';

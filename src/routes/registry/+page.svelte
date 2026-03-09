@@ -7,7 +7,7 @@
 	import { Button } from '$lib/components/ui/button';
 	import { Input } from '$lib/components/ui/input';
 	import * as Select from '$lib/components/ui/select';
-	import { Search, Download, Star, RefreshCw, Settings2, List, Play, Copy, Server, Icon, ChevronRight, ChevronDown, Loader2, Tag, Trash2 } from 'lucide-svelte';
+	import { Search, Download, Star, RefreshCw, Settings2, List, Play, Copy, Server, Icon, ChevronRight, ChevronDown, Loader2, Tag, Trash2 } from '@lucide/svelte';
 	import ConfirmPopover from '$lib/components/ConfirmPopover.svelte';
 	import { toast } from 'svelte-sonner';
 	import { whale } from '@lucide/lab';

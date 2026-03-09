@@ -9,7 +9,7 @@
 	import { Input } from '$lib/components/ui/input';
 	import { Label } from '$lib/components/ui/label';
 	import * as Select from '$lib/components/ui/select';
-	import { Search, ChevronDown, Terminal as TerminalIcon, Unplug, RefreshCw, Trash2, Copy, Shell, User, Loader2, AlertCircle } from 'lucide-svelte';
+	import { Search, ChevronDown, Terminal as TerminalIcon, Unplug, RefreshCw, Trash2, Copy, Shell, User, Loader2, AlertCircle } from '@lucide/svelte';
 	import PageHeader from '$lib/components/PageHeader.svelte';
 	import type { ContainerInfo } from '$lib/types';
 	import { currentEnvironment, environments, appendEnvParam } from '$lib/stores/environment';

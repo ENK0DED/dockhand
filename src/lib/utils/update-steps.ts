@@ -21,7 +21,7 @@ import {
 	ShieldCheck,
 	ShieldOff,
 	ShieldX
-} from 'lucide-svelte';
+} from '@lucide/svelte';
 import type { ComponentType } from 'svelte';
 import type { VulnerabilityCriteria } from '$lib/server/db';
 

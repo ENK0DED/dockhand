@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { FolderGit2, Key } from 'lucide-svelte';
+	import { FolderGit2, Key } from '@lucide/svelte';
 	import GitCredentialsTab from './GitCredentialsTab.svelte';
 	import GitRepositoriesTab from './GitRepositoriesTab.svelte';
 

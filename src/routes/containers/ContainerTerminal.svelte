@@ -4,7 +4,7 @@
 	import * as Select from '$lib/components/ui/select';
 	import { Button } from '$lib/components/ui/button';
 	import { Label } from '$lib/components/ui/label';
-	import { Terminal as TerminalIcon, X, ExternalLink, Shell, User, Loader2, AlertCircle } from 'lucide-svelte';
+	import { Terminal as TerminalIcon, X, ExternalLink, Shell, User, Loader2, AlertCircle } from '@lucide/svelte';
 	import { detectShells, getBestShell, hasAvailableShell, USER_OPTIONS, type ShellDetectionResult } from '$lib/utils/shell-detection';
 
 	// Dynamic imports for browser-only xterm

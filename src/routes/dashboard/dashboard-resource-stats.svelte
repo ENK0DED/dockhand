@@ -5,7 +5,7 @@
 		Network,
 		Layers,
 		Loader2
-	} from 'lucide-svelte';
+	} from '@lucide/svelte';
 	import type { LoadingStates } from '../api/dashboard/stats/+server';
 
 	interface Props {

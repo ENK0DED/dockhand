@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Badge } from '$lib/components/ui/badge';
-	import { CheckCircle2, ExternalLink, ArrowUpDown, ArrowUp, ArrowDown } from 'lucide-svelte';
+	import { CheckCircle2, ExternalLink, ArrowUpDown, ArrowUp, ArrowDown } from '@lucide/svelte';
 
 	interface ScanResult {
 		scanner: 'grype' | 'trivy';

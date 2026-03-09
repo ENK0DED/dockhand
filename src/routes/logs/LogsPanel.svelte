@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount, onDestroy, tick } from 'svelte';
-	import { X, GripHorizontal, RefreshCw, Copy, Download, WrapText, ArrowDownToLine, Search, ChevronUp, ChevronDown, Sun, Moon, Wifi, WifiOff, Pause, Play } from 'lucide-svelte';
+	import { X, GripHorizontal, RefreshCw, Copy, Download, WrapText, ArrowDownToLine, Search, ChevronUp, ChevronDown, Sun, Moon, Wifi, WifiOff, Pause, Play } from '@lucide/svelte';
 	import { copyToClipboard } from '$lib/utils/clipboard';
 	import * as Select from '$lib/components/ui/select';
 	import { appSettings } from '$lib/stores/settings';

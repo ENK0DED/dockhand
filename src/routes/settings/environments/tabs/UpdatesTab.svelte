@@ -5,7 +5,7 @@
 	import CronEditor from '$lib/components/cron-editor.svelte';
 	import TimezoneSelector from '$lib/components/TimezoneSelector.svelte';
 	import VulnerabilityCriteriaSelector, { type VulnerabilityCriteria } from '$lib/components/VulnerabilityCriteriaSelector.svelte';
-	import { CircleFadingArrowUp, CircleArrowUp, RefreshCw, Info, Trash2 } from 'lucide-svelte';
+	import { CircleFadingArrowUp, CircleArrowUp, RefreshCw, Info, Trash2 } from '@lucide/svelte';
 	import { formatDateTime } from '$lib/stores/settings';
 	import { formatBytes } from '$lib/utils/new';
 

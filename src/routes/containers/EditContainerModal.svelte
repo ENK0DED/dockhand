@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as Dialog from '$lib/components/ui/dialog';
 	import { Button } from '$lib/components/ui/button';
-	import { Pencil, Check, Loader2, X, Layers } from 'lucide-svelte';
+	import { Pencil, Check, Loader2, X, Layers } from '@lucide/svelte';
 	import { currentEnvironment, appendEnvParam } from '$lib/stores/environment';
 	import { focusFirstInput } from '$lib/utils';
 	import ContainerSettingsTab from './ContainerSettingsTab.svelte';

@@ -26,7 +26,7 @@
 		ArrowUpDown,
 		ArrowUp,
 		ArrowDown
-	} from 'lucide-svelte';
+	} from '@lucide/svelte';
 	import ConfirmPopover from '$lib/components/ConfirmPopover.svelte';
 	import { EmptyState } from '$lib/components/ui/empty-state';
 	import { canAccess } from '$lib/stores/auth';

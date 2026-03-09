@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Badge } from '$lib/components/ui/badge';
-	import { Loader2, Layers, ChevronDown, ChevronRight } from 'lucide-svelte';
+	import { Loader2, Layers, ChevronDown, ChevronRight } from '@lucide/svelte';
 	import { currentEnvironment, appendEnvParam } from '$lib/stores/environment';
 	import { formatDateTime } from '$lib/stores/settings';
 

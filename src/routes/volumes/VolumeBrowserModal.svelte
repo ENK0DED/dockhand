@@ -1,6 +1,6 @@
 <script lang="ts">
 	import * as Dialog from '$lib/components/ui/dialog';
-	import { HardDrive, Lock, Container } from 'lucide-svelte';
+	import { HardDrive, Lock, Container } from '@lucide/svelte';
 	import { Badge } from '$lib/components/ui/badge';
 	import FileBrowserPanel from '../containers/FileBrowserPanel.svelte';
 

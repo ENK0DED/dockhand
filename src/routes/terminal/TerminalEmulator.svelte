@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount, onDestroy } from 'svelte';
-	import { RefreshCw, Copy, Trash2, Type } from 'lucide-svelte';
+	import { RefreshCw, Copy, Trash2, Type } from '@lucide/svelte';
 	import { copyToClipboard } from '$lib/utils/clipboard';
 	import * as Select from '$lib/components/ui/select';
 

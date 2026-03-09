@@ -4,7 +4,7 @@
 	import { Badge } from '$lib/components/ui/badge';
 	import { Progress } from '$lib/components/ui/progress';
 	import * as Tooltip from '$lib/components/ui/tooltip';
-	import { CircleArrowUp, Loader2, AlertCircle, CheckCircle2, XCircle, ChevronDown, ChevronRight, ExternalLink } from 'lucide-svelte';
+	import { CircleArrowUp, Loader2, AlertCircle, CheckCircle2, XCircle, ChevronDown, ChevronRight, ExternalLink } from '@lucide/svelte';
 	import { appendEnvParam } from '$lib/stores/environment';
 	import type { VulnerabilityCriteria } from '$lib/server/db';
 	import type { StepType } from '$lib/utils/update-steps';

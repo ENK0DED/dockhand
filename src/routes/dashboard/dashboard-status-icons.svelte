@@ -5,7 +5,7 @@
 		WifiOff,
 		CircleArrowUp,
 		CircleFadingArrowUp
-	} from 'lucide-svelte';
+	} from '@lucide/svelte';
 
 	interface Props {
 		online: boolean;

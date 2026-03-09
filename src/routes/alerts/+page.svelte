@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Bell } from 'lucide-svelte';
+	import { Bell } from '@lucide/svelte';
 	import PageHeader from '$lib/components/PageHeader.svelte';
 </script>
 

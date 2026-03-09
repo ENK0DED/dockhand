@@ -9,7 +9,7 @@
 	import { Input } from '$lib/components/ui/input';
 	import { Button } from '$lib/components/ui/button';
 	import { TogglePill } from '$lib/components/ui/toggle-pill';
-	import { Plus, Trash2, HardDrive, Database, Server, ChevronDown } from 'lucide-svelte';
+	import { Plus, Trash2, HardDrive, Database, Server, ChevronDown } from '@lucide/svelte';
 
 	const VOLUME_DRIVERS = [
 		{ value: 'local', label: 'Local', description: 'Default local driver', icon: HardDrive },

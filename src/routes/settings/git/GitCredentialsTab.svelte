@@ -4,7 +4,7 @@
 	import { Button } from '$lib/components/ui/button';
 	import * as Card from '$lib/components/ui/card';
 	import { Badge } from '$lib/components/ui/badge';
-	import { Plus, Trash2, Pencil, Key, KeyRound, Lock } from 'lucide-svelte';
+	import { Plus, Trash2, Pencil, Key, KeyRound, Lock } from '@lucide/svelte';
 	import ConfirmPopover from '$lib/components/ConfirmPopover.svelte';
 	import { canAccess } from '$lib/stores/auth';
 	import GitCredentialModal from './GitCredentialModal.svelte';

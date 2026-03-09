@@ -18,7 +18,7 @@
 		Check,
 		Database,
 		KeyRound
-	} from 'lucide-svelte';
+	} from '@lucide/svelte';
 	import type { Snippet } from 'svelte';
 	import { appSettings } from '$lib/stores/settings';
 	import { watchJob } from '$lib/utils/sse-fetch';

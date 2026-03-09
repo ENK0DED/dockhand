@@ -6,7 +6,7 @@
 	import { Label } from '$lib/components/ui/label';
 	import { Input } from '$lib/components/ui/input';
 	import { TogglePill } from '$lib/components/ui/toggle-pill';
-	import { Loader2, GitBranch, RefreshCw, Webhook, Rocket, RefreshCcw, Copy, Check, XCircle, FolderGit2, Github, Key, KeyRound, Lock, FileText, HelpCircle, GripVertical, X, Download } from 'lucide-svelte';
+	import { Loader2, GitBranch, RefreshCw, Webhook, Rocket, RefreshCcw, Copy, Check, XCircle, FolderGit2, Github, Key, KeyRound, Lock, FileText, HelpCircle, GripVertical, X, Download } from '@lucide/svelte';
 	import * as Tooltip from '$lib/components/ui/tooltip';
 	import { copyToClipboard } from '$lib/utils/clipboard';
 	import CronEditor from '$lib/components/cron-editor.svelte';

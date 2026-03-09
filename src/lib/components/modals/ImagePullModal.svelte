@@ -5,7 +5,7 @@
 	import { Label } from '$lib/components/ui/label';
 	import { Badge } from '$lib/components/ui/badge';
 	import * as Select from '$lib/components/ui/select';
-	import { CheckCircle2, XCircle, Download, ShieldCheck, ShieldAlert, ShieldX, ArrowBigRight, Settings2, Server, Trash2, Loader2, Icon } from 'lucide-svelte';
+	import { CheckCircle2, XCircle, Download, ShieldCheck, ShieldAlert, ShieldX, ArrowBigRight, Settings2, Server, Trash2, Loader2, Icon } from '@lucide/svelte';
 	import { whale } from '@lucide/lab';
 	import { currentEnvironment } from '$lib/stores/environment';
 	import PullTab from '$lib/components/PullTab.svelte';

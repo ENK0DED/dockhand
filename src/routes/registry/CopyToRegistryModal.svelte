@@ -5,7 +5,7 @@
 	import { Label } from '$lib/components/ui/label';
 	import { Badge } from '$lib/components/ui/badge';
 	import * as Select from '$lib/components/ui/select';
-	import { CheckCircle2, XCircle, Download, Upload, Server, Settings2, Copy, Check, Clipboard, Icon, ShieldCheck, ShieldAlert, ShieldX, ArrowBigRight } from 'lucide-svelte';
+	import { CheckCircle2, XCircle, Download, Upload, Server, Settings2, Copy, Check, Clipboard, Icon, ShieldCheck, ShieldAlert, ShieldX, ArrowBigRight } from '@lucide/svelte';
 	import { whale } from '@lucide/lab';
 	import * as Tooltip from '$lib/components/ui/tooltip';
 	import { copyToClipboard } from '$lib/utils/clipboard';

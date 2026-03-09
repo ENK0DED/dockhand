@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount, onDestroy } from 'svelte';
-	import { X, GripHorizontal, RefreshCw, Copy, Trash2 } from 'lucide-svelte';
+	import { X, GripHorizontal, RefreshCw, Copy, Trash2 } from '@lucide/svelte';
 	import * as Select from '$lib/components/ui/select';
 	import Terminal from './Terminal.svelte';
 

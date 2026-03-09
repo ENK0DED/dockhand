@@ -5,7 +5,7 @@
 	import { Input } from '$lib/components/ui/input';
 	import { Label } from '$lib/components/ui/label';
 	import { Progress } from '$lib/components/ui/progress';
-	import { CheckCircle2, XCircle, Loader2, AlertCircle, Terminal, Sun, Moon, Download } from 'lucide-svelte';
+	import { CheckCircle2, XCircle, Loader2, AlertCircle, Terminal, Sun, Moon, Download } from '@lucide/svelte';
 	import { onMount } from 'svelte';
 	import { appendEnvParam } from '$lib/stores/environment';
 	import { watchJob } from '$lib/utils/sse-fetch';

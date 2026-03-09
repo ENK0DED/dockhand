@@ -2,7 +2,7 @@
 	import * as Dialog from '$lib/components/ui/dialog';
 	import { Button } from '$lib/components/ui/button';
 	import { Progress } from '$lib/components/ui/progress';
-	import { Check, X, Loader2, Circle, Ban } from 'lucide-svelte';
+	import { Check, X, Loader2, Circle, Ban } from '@lucide/svelte';
 	import { onDestroy } from 'svelte';
 	import { formatBytes } from '$lib/utils/new';
 

@@ -8,7 +8,7 @@
 	import { TogglePill, ToggleSwitch } from '$lib/components/ui/toggle-pill';
 	import CronEditor from '$lib/components/cron-editor.svelte';
 	import TimezoneSelector from '$lib/components/TimezoneSelector.svelte';
-	import { Eye, Bell, Database, Calendar, ShieldCheck, FileText, AlertTriangle, HelpCircle, Globe, Activity, Clock } from 'lucide-svelte';
+	import { Eye, Bell, Database, Calendar, ShieldCheck, FileText, AlertTriangle, HelpCircle, Globe, Activity, Clock } from '@lucide/svelte';
 	import { appSettings, type DateFormat, type DownloadFormat, type EventCollectionMode } from '$lib/stores/settings';
 	import { canAccess, authStore } from '$lib/stores/auth';
 	import { toast } from 'svelte-sonner';

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Box } from 'lucide-svelte';
+	import { Box } from '@lucide/svelte';
 
 	interface Props {
 		containerId: string;

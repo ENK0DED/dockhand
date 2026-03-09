@@ -4,7 +4,7 @@
 	import * as Tabs from '$lib/components/ui/tabs';
 	import { Button } from '$lib/components/ui/button';
 	import { Badge } from '$lib/components/ui/badge';
-	import { Loader2, Box, Info, Cpu, MemoryStick, HardDrive, Network, Settings2, Code, Copy, Check, XCircle, Wifi, Pencil, RefreshCw, X, Moon, ExternalLink, Gpu } from 'lucide-svelte';
+	import { Loader2, Box, Info, Cpu, MemoryStick, HardDrive, Network, Settings2, Code, Copy, Check, XCircle, Wifi, Pencil, RefreshCw, X, Moon, ExternalLink, Gpu } from '@lucide/svelte';
 	import * as Tooltip from '$lib/components/ui/tooltip';
 	import { copyToClipboard } from '$lib/utils/clipboard';
 	import { currentEnvironment, appendEnvParam, environments } from '$lib/stores/environment';

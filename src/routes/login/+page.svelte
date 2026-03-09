@@ -6,7 +6,7 @@
 	import { Input } from '$lib/components/ui/input';
 	import { Label } from '$lib/components/ui/label';
 	import * as Card from '$lib/components/ui/card';
-	import { Loader2, LogIn, Shield, AlertCircle, Network, User, KeyRound, TriangleAlert } from 'lucide-svelte';
+	import { Loader2, LogIn, Shield, AlertCircle, Network, User, KeyRound, TriangleAlert } from '@lucide/svelte';
 	import { authStore } from '$lib/stores/auth';
 	import { environments } from '$lib/stores/environment';
 	import * as Alert from '$lib/components/ui/alert';

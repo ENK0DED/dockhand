@@ -2,7 +2,7 @@
 	import { Button } from '$lib/components/ui/button';
 	import { Input } from '$lib/components/ui/input';
 	import * as Tooltip from '$lib/components/ui/tooltip';
-	import { Plus, Trash2, Key, AlertCircle, CheckCircle2, FileText, Pencil, CircleDot, Undo2 } from 'lucide-svelte';
+	import { Plus, Trash2, Key, AlertCircle, CheckCircle2, FileText, Pencil, CircleDot, Undo2 } from '@lucide/svelte';
 
 	export interface EnvVar {
 		key: string;

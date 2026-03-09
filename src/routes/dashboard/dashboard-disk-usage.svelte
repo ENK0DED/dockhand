@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { HardDrive, Image, Database, Box, Hammer, Loader2 } from 'lucide-svelte';
+	import { HardDrive, Image, Database, Box, Hammer, Loader2 } from '@lucide/svelte';
 	import { Chart, Svg, Pie, Arc } from 'layerchart';
 	import { formatBytes } from '$lib/utils/new';
 

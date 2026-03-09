@@ -1,6 +1,6 @@
 <script lang="ts">
 	import * as Card from '$lib/components/ui/card';
-	import { Wifi, WifiOff, ShieldCheck, Activity, Cpu, Settings, Unplug, Icon, Route, UndoDot, CircleArrowUp, CircleFadingArrowUp, Loader2 } from 'lucide-svelte';
+	import { Wifi, WifiOff, ShieldCheck, Activity, Cpu, Settings, Unplug, Icon, Route, UndoDot, CircleArrowUp, CircleFadingArrowUp, Loader2 } from '@lucide/svelte';
 	import { whale } from '@lucide/lab';
 	import { getIconComponent } from '$lib/utils/icons';
 	import { goto } from '$app/navigation';

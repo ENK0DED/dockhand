@@ -13,7 +13,7 @@
 		Pencil,
 		AlertTriangle,
 		Heart
-	} from 'lucide-svelte';
+	} from '@lucide/svelte';
 	import type { Component } from 'svelte';
 	import { formatDateTime } from '$lib/stores/settings';
 

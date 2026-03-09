@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { CheckCircle2, ShieldAlert, XCircle, Search } from 'lucide-svelte';
+	import { CheckCircle2, ShieldAlert, XCircle, Search } from '@lucide/svelte';
 
 	interface Props {
 		checked?: number;

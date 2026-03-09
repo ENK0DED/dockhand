@@ -8,7 +8,7 @@
 	import { Badge } from '$lib/components/ui/badge';
 	import { Button } from '$lib/components/ui/button';
 	import { Input } from '$lib/components/ui/input';
-	import { BrushCleaning, Trash2, Search, Plus, Eye, Check, XCircle, RefreshCw, Icon, AlertTriangle, X, HardDrive, Stamp, FolderOpen, Download, Database, Server, CircleDot, Circle } from 'lucide-svelte';
+	import { BrushCleaning, Trash2, Search, Plus, Eye, Check, XCircle, RefreshCw, Icon, AlertTriangle, X, HardDrive, Stamp, FolderOpen, Download, Database, Server, CircleDot, Circle } from '@lucide/svelte';
 	import ConfirmPopover from '$lib/components/ConfirmPopover.svelte';
 	import BatchOperationModal from '$lib/components/modals/BatchOperationModal.svelte';
 	import CreateVolumeModal from './CreateVolumeModal.svelte';

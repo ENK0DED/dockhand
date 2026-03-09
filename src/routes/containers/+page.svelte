@@ -50,7 +50,7 @@
 		Loader2,
 		AlertCircle,
     BrushCleaning
-	} from 'lucide-svelte';
+	} from '@lucide/svelte';
 	import { copyToClipboard } from '$lib/utils/clipboard';
 	import CreateContainerModal from './CreateContainerModal.svelte';
 	import EditContainerModal from './EditContainerModal.svelte';

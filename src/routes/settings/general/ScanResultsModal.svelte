@@ -5,7 +5,7 @@
 	import { Badge } from '$lib/components/ui/badge';
 	import { Checkbox } from '$lib/components/ui/checkbox';
 	import { Label } from '$lib/components/ui/label';
-	import { Search, FolderOpen, CheckCircle2, SkipForward, AlertCircle, FileText, Import, Loader2, Play, HelpCircle } from 'lucide-svelte';
+	import { Search, FolderOpen, CheckCircle2, SkipForward, AlertCircle, FileText, Import, Loader2, Play, HelpCircle } from '@lucide/svelte';
 	import * as Tooltip from '$lib/components/ui/tooltip';
 	import { toast } from 'svelte-sonner';
 	import { onMount } from 'svelte';

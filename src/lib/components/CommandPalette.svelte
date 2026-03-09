@@ -27,7 +27,7 @@
 		Moon,
 		Type,
 		Check
-	} from 'lucide-svelte';
+	} from '@lucide/svelte';
 	import { licenseStore } from '$lib/stores/license';
 	import { authStore, canAccess } from '$lib/stores/auth';
 	import { currentEnvironment } from '$lib/stores/environment';

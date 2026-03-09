@@ -1,6 +1,6 @@
 <script lang="ts">
 	import * as Dialog from '$lib/components/ui/dialog';
-	import { FolderOpen } from 'lucide-svelte';
+	import { FolderOpen } from '@lucide/svelte';
 	import FileBrowserPanel from './FileBrowserPanel.svelte';
 	import { canAccess } from '$lib/stores/auth';
 

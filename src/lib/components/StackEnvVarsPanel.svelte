@@ -4,7 +4,7 @@
 	import StackEnvVarsEditor, { type EnvVar, type ValidationResult } from '$lib/components/StackEnvVarsEditor.svelte';
 	import CodeEditor from '$lib/components/CodeEditor.svelte';
 	import ConfirmPopover from '$lib/components/ConfirmPopover.svelte';
-	import { Plus, Upload, Trash2, List, FileText, AlertTriangle, ShieldAlert, HelpCircle, Info } from 'lucide-svelte';
+	import { Plus, Upload, Trash2, List, FileText, AlertTriangle, ShieldAlert, HelpCircle, Info } from '@lucide/svelte';
 	import * as Tooltip from '$lib/components/ui/tooltip';
 
 	interface Props {

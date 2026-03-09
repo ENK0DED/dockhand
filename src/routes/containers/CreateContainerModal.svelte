@@ -2,7 +2,7 @@
 	import { tick } from 'svelte';
 	import * as Dialog from '$lib/components/ui/dialog';
 	import { Button } from '$lib/components/ui/button';
-	import { ArrowBigRight, Settings2, Shield, Loader2, Download, CheckCircle2, XCircle, ShieldCheck, ShieldAlert, ShieldX, AlertTriangle, X, Play } from 'lucide-svelte';
+	import { ArrowBigRight, Settings2, Shield, Loader2, Download, CheckCircle2, XCircle, ShieldCheck, ShieldAlert, ShieldX, AlertTriangle, X, Play } from '@lucide/svelte';
 	import { toast } from 'svelte-sonner';
 	import { currentEnvironment } from '$lib/stores/environment';
 	import { focusFirstInput } from '$lib/utils';

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { Sun, Moon, Type, AArrowUp, Table, Terminal, CodeXml } from 'lucide-svelte';
+	import { Sun, Moon, Type, AArrowUp, Table, Terminal, CodeXml } from '@lucide/svelte';
 	import * as Select from '$lib/components/ui/select';
 	import { Label } from '$lib/components/ui/label';
 	import { lightThemes, darkThemes, fonts, monospaceFonts } from '$lib/themes';

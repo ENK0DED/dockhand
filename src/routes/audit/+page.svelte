@@ -49,7 +49,7 @@
 		Loader2,
 		Wifi,
 		FileX
-	} from 'lucide-svelte';
+	} from '@lucide/svelte';
 	import { licenseStore } from '$lib/stores/license';
 	import { getIconComponent } from '$lib/utils/icons';
 	import {

@@ -2,7 +2,7 @@
 	import * as Dialog from '$lib/components/ui/dialog';
 	import { Button } from '$lib/components/ui/button';
 	import { Badge } from '$lib/components/ui/badge';
-	import { Loader2, HardDrive } from 'lucide-svelte';
+	import { Loader2, HardDrive } from '@lucide/svelte';
 	import { currentEnvironment, appendEnvParam } from '$lib/stores/environment';
 	import { formatDateTime } from '$lib/stores/settings';
 

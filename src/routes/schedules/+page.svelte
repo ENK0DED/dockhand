@@ -36,7 +36,7 @@
 		Trash2,
 		Bug,
 		ShieldX
-	} from 'lucide-svelte';
+	} from '@lucide/svelte';
 	import PageHeader from '$lib/components/PageHeader.svelte';
 	import { DataGrid } from '$lib/components/data-grid';
 	import type { DataGridRowState } from '$lib/components/data-grid';

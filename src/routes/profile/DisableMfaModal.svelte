@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button';
 	import * as Dialog from '$lib/components/ui/dialog';
-	import { AlertTriangle, RefreshCw, Shield } from 'lucide-svelte';
+	import { AlertTriangle, RefreshCw, Shield } from '@lucide/svelte';
 	import { focusFirstInput } from '$lib/utils';
 
 	interface Props {

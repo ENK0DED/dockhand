@@ -2,7 +2,7 @@
 	import * as Popover from '$lib/components/ui/popover';
 	import { Button } from '$lib/components/ui/button';
 	import { Badge } from '$lib/components/ui/badge';
-	import { Download, CheckCircle2, XCircle, Loader2, AlertCircle, Shield } from 'lucide-svelte';
+	import { Download, CheckCircle2, XCircle, Loader2, AlertCircle, Shield } from '@lucide/svelte';
 	import type { Snippet } from 'svelte';
 	import { Progress } from '$lib/components/ui/progress';
 	import { tick } from 'svelte';

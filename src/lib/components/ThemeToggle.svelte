@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button';
-	import { Sun, Moon } from 'lucide-svelte';
+	import { Sun, Moon } from '@lucide/svelte';
 	import { onMount } from 'svelte';
 	import { onDarkModeChange } from '$lib/stores/theme';
 

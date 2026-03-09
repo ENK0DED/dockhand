@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Settings2, RotateCcw, ChevronUp, ChevronDown } from 'lucide-svelte';
+	import { Settings2, RotateCcw, ChevronUp, ChevronDown } from '@lucide/svelte';
 	import { Button } from '$lib/components/ui/button';
 	import * as Popover from '$lib/components/ui/popover';
 	import { Checkbox } from '$lib/components/ui/checkbox';

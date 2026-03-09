@@ -5,7 +5,7 @@
 	import * as Select from '$lib/components/ui/select';
 	import { Label } from '$lib/components/ui/label';
 	import { Input } from '$lib/components/ui/input';
-	import { Loader2, GitBranch, KeyRound, Lock, Key, Globe, Play, CheckCircle2 } from 'lucide-svelte';
+	import { Loader2, GitBranch, KeyRound, Lock, Key, Globe, Play, CheckCircle2 } from '@lucide/svelte';
 	import { focusFirstInput } from '$lib/utils';
 
 	interface GitCredential {

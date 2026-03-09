@@ -10,7 +10,7 @@
 	import * as Select from '$lib/components/ui/select';
 	import { Checkbox } from '$lib/components/ui/checkbox';
 	import { ToggleGroup } from '$lib/components/ui/toggle-pill';
-	import { RefreshCw, Search, ChevronDown, ChevronUp, Unplug, Copy, Download, WrapText, ArrowDownToLine, X, Sun, Moon, LayoutList, Square, Box, Wifi, WifiOff, Pause, Play, ScrollText, Star, GripVertical, Layers, Check, FolderHeart, Save, Trash2, MoreHorizontal } from 'lucide-svelte';
+	import { RefreshCw, Search, ChevronDown, ChevronUp, Unplug, Copy, Download, WrapText, ArrowDownToLine, X, Sun, Moon, LayoutList, Square, Box, Wifi, WifiOff, Pause, Play, ScrollText, Star, GripVertical, Layers, Check, FolderHeart, Save, Trash2, MoreHorizontal } from '@lucide/svelte';
 	import { copyToClipboard } from '$lib/utils/clipboard';
 	import PageHeader from '$lib/components/PageHeader.svelte';
 import type { FavoriteGroup } from '../api/preferences/favorite-groups/+server';

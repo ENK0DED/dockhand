@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Copy, Check, XCircle, FolderOpen, FolderSync } from 'lucide-svelte';
+	import { Copy, Check, XCircle, FolderOpen, FolderSync } from '@lucide/svelte';
 	import * as Tooltip from '$lib/components/ui/tooltip';
 
 	interface Props {

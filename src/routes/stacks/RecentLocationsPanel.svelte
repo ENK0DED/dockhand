@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { FolderOpen, X, Home } from 'lucide-svelte';
+	import { FolderOpen, X, Home } from '@lucide/svelte';
 
 	interface Props {
 		currentPath?: string | null;

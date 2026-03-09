@@ -6,7 +6,7 @@
 	import { Input } from '$lib/components/ui/input';
 	import { Checkbox } from '$lib/components/ui/checkbox';
 	import * as Select from '$lib/components/ui/select';
-	import { Network, Pencil, Plus, Check, RefreshCw, TriangleAlert, Trash2, Star } from 'lucide-svelte';
+	import { Network, Pencil, Plus, Check, RefreshCw, TriangleAlert, Trash2, Star } from '@lucide/svelte';
 	import * as Alert from '$lib/components/ui/alert';
 	import { focusFirstInput } from '$lib/utils';
 
