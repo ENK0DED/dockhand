@@ -178,7 +178,7 @@
 	<Card.Root>
 		<Card.Content class="py-12">
 			<div class="flex justify-center">
-				<RefreshCw class="w-6 h-6 animate-spin text-muted-foreground" />
+				<RefreshCw class="size-6 animate-spin text-muted-foreground" />
 			</div>
 		</Card.Content>
 	</Card.Root>
@@ -187,14 +187,14 @@
 		<Card.Content class="py-12">
 			<div class="text-center">
 				<h3 class="text-lg font-medium mb-2 flex items-center justify-center gap-2">
-					<Crown class="w-5 h-5 text-amber-500" />
+					<Crown class="size-5 text-amber-500" />
 					Enterprise feature
 				</h3>
 				<p class="text-sm text-muted-foreground mb-4 max-w-md mx-auto">
 					LDAP / Active Directory integration is available with an enterprise license. Connect to your organization's directory services for centralized authentication.
 				</p>
 				<Button onclick={() => onTabChange('license')}>
-					<Key class="w-4 h-4" />
+					<Key class="size-4" />
 					Activate license
 				</Button>
 			</div>
@@ -207,14 +207,14 @@
 				<div class="flex items-center justify-between">
 					<div>
 						<Card.Title class="text-sm font-medium flex items-center gap-2">
-							<Network class="w-4 h-4" />
+							<Network class="size-4" />
 							LDAP configurations
 						</Card.Title>
 						<p class="text-xs text-muted-foreground mt-1">Connect to LDAP or Active Directory servers for centralized user authentication.</p>
 					</div>
 					{#if $canAccess('settings', 'edit')}
 						<Button size="sm" onclick={() => openLdapModal(null)}>
-							<Plus class="w-4 h-4" />
+							<Plus class="size-4" />
 							Add LDAP
 						</Button>
 					{/if}
@@ -223,7 +223,7 @@
 			<Card.Content>
 				{#if ldapLoading}
 					<div class="flex justify-center py-8">
-						<RefreshCw class="w-6 h-6 animate-spin text-muted-foreground" />
+						<RefreshCw class="size-6 animate-spin text-muted-foreground" />
 					</div>
 				{:else if ldapConfigs.length === 0}
 					<EmptyState
@@ -237,7 +237,7 @@
 						{#each ldapConfigs as config}
 							<div class="flex items-center justify-between p-3 border rounded-lg">
 								<div class="flex items-center gap-3">
-									<Network class="w-5 h-5 text-muted-foreground" />
+									<Network class="size-5 text-muted-foreground" />
 									<div>
 										<div class="flex items-center gap-2">
 											<span class="font-medium">{config.name}</span>
@@ -258,7 +258,7 @@
 										disabled={ldapTesting === config.id}
 									>
 										{#if ldapTesting === config.id}
-											<RefreshCw class="w-4 h-4 animate-spin" />
+											<RefreshCw class="size-4 animate-spin" />
 										{:else}
 											Test
 										{/if}
@@ -276,7 +276,7 @@
 											size="sm"
 											onclick={() => openLdapModal(config)}
 										>
-											<Pencil class="w-4 h-4" />
+											<Pencil class="size-4" />
 										</Button>
 										<ConfirmPopover
 											open={confirmDeleteLdapId === config.id}
@@ -287,7 +287,7 @@
 											onOpenChange={(open) => confirmDeleteLdapId = open ? config.id : null}
 										>
 											{#snippet children({ open })}
-												<Trash2 class="w-4 h-4 {open ? 'text-destructive' : 'text-muted-foreground hover:text-destructive'}" />
+												<Trash2 class="size-4 {open ? 'text-destructive' : 'text-muted-foreground hover:text-destructive'}" />
 											{/snippet}
 										</ConfirmPopover>
 									{/if}

@@ -231,7 +231,7 @@
 		<Dialog.Header class={isAdoptMode ? 'px-6 py-4 border-b shrink-0' : ''}>
 			<Dialog.Title class="flex items-center gap-2">
 				{#if icon}
-					<svelte:component this={icon} class="w-5 h-5" />
+					<svelte:component this={icon} class="size-5" />
 				{/if}
 				{title}
 			</Dialog.Title>
@@ -259,7 +259,7 @@
 						onclick={handleGoUp}
 						title="Go up"
 					>
-						<ArrowUp class="w-4 h-4" />
+						<ArrowUp class="size-4" />
 					</button>
 					<code class="text-xs bg-muted px-2 py-1 rounded truncate flex-1">{currentPath || '/'}</code>
 					{#if isAdoptMode}
@@ -270,10 +270,10 @@
 							disabled={scanning || !currentPath}
 						>
 							{#if scanning}
-								<Loader2 class="w-4 h-4 animate-spin" />
+								<Loader2 class="size-4 animate-spin" />
 								Scanning...
 							{:else}
-								<Search class="w-4 h-4" />
+								<Search class="size-4" />
 								Scan this folder
 							{/if}
 						</Button>
@@ -284,12 +284,12 @@
 				<div class="flex-1 overflow-auto">
 				{#if loading}
 					<div class="flex items-center justify-center py-12">
-						<Loader2 class="w-6 h-6 animate-spin text-muted-foreground" />
+						<Loader2 class="size-6 animate-spin text-muted-foreground" />
 					</div>
 				{:else if error}
 					<div class="flex flex-col items-center justify-center py-12 px-4 text-center">
-						<div class="w-16 h-16 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center mb-4">
-							<AlertCircle class="w-8 h-8 text-red-500" />
+						<div class="size-16 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center mb-4">
+							<AlertCircle class="size-8 text-red-500" />
 						</div>
 						<p class="text-red-600 dark:text-red-400 font-medium">Unable to browse files</p>
 						<p class="text-sm text-muted-foreground mt-1">{error}</p>
@@ -299,7 +299,7 @@
 					</div>
 				{:else if filteredEntries.length === 0}
 					<div class="flex flex-col items-center justify-center py-12 text-muted-foreground">
-						<FolderOpen class="w-12 h-12 mb-3 opacity-50" />
+						<FolderOpen class="size-12 mb-3 opacity-50" />
 						<p>{selectMode === 'directory' ? 'No subdirectories' : 'Directory is empty'}</p>
 					</div>
 				{:else}
@@ -317,11 +317,11 @@
 								disabled={entry.type !== 'directory' && !selectable && !highlighted}
 							>
 								{#if entry.type === 'directory'}
-									<FolderOpen class="w-4 h-4 text-blue-500 shrink-0" />
+									<FolderOpen class="size-4 text-blue-500 shrink-0" />
 								{:else if highlighted}
-									<FileText class="w-4 h-4 text-green-500 shrink-0" />
+									<FileText class="size-4 text-green-500 shrink-0" />
 								{:else}
-									<File class="w-4 h-4 text-zinc-400 shrink-0 {selectable ? 'text-green-500' : ''}" />
+									<File class="size-4 text-zinc-400 shrink-0 {selectable ? 'text-green-500' : ''}" />
 								{/if}
 								<span class="flex-1 truncate {isAdoptMode ? 'text-xs' : 'text-sm'} {(selectable || highlighted) && entry.type !== 'directory' ? 'text-green-600 dark:text-green-400 font-medium' : ''}">
 									{entry.name}
@@ -332,7 +332,7 @@
 									<span class="text-xs text-muted-foreground">{formatSize(entry.size)}</span>
 								{/if}
 								{#if entry.type === 'directory'}
-									<ChevronRight class="w-4 h-4 text-muted-foreground" />
+									<ChevronRight class="size-4 text-muted-foreground" />
 								{/if}
 							</button>
 						{/each}
@@ -373,7 +373,7 @@
 				</Button>
 				{#if selectMode === 'directory'}
 					<Button onclick={handleConfirm}>
-						<FolderPlus class="w-4 h-4" />
+						<FolderPlus class="size-4" />
 						Select
 					</Button>
 				{:else if selectMode === 'file_or_directory'}

@@ -11,12 +11,12 @@
 
 {#if compact}
 	<div class="flex items-center gap-2 text-muted-foreground py-1">
-		<WifiOff class="w-4 h-4 opacity-50" />
+		<WifiOff class="size-4 opacity-50" />
 		<span class="text-xs">Offline</span>
 	</div>
 {:else}
 	<div class="flex flex-col items-center justify-center py-8 text-muted-foreground">
-		<WifiOff class="w-8 h-8 mb-2 opacity-50" />
+		<WifiOff class="size-8 mb-2 opacity-50" />
 		<span class="text-sm">Environment offline</span>
 		{#if error}
 			<span class="text-xs mt-1 text-red-500/70">{error}</span>

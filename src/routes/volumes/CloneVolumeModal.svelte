@@ -73,7 +73,7 @@
 	<Dialog.Content class="max-w-2xl">
 		<Dialog.Header>
 			<Dialog.Title class="flex items-center gap-2">
-				<Copy class="w-5 h-5" />
+				<Copy class="size-5" />
 				Clone volume
 			</Dialog.Title>
 			<Dialog.Description>
@@ -108,9 +108,9 @@
 			</Button>
 			<Button onclick={handleClone} disabled={cloning || !newName.trim()}>
 				{#if cloning}
-					<Loader2 class="w-4 h-4 animate-spin" />
+					<Loader2 class="size-4 animate-spin" />
 				{:else}
-					<Copy class="w-4 h-4" />
+					<Copy class="size-4" />
 				{/if}
 				Clone
 			</Button>

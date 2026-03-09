@@ -7,7 +7,6 @@
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
 	import { toast } from 'svelte-sonner';
-	import * as Dialog from '$lib/components/ui/dialog';
 	import * as Popover from '$lib/components/ui/popover';
 	import * as Select from '$lib/components/ui/select';
 	import * as Tooltip from '$lib/components/ui/tooltip';
@@ -16,7 +15,6 @@
 	import PageHeader from '$lib/components/PageHeader.svelte';
 	import { Badge } from '$lib/components/ui/badge';
 	import { Button } from '$lib/components/ui/button';
-	import { Switch } from '$lib/components/ui/switch';
 	import { Label } from '$lib/components/ui/label';
 	import { Input } from '$lib/components/ui/input';
 	import {
@@ -31,9 +29,6 @@
 		CircleArrowUp,
 		X,
 		Terminal,
-		ArrowUpDown,
-		ArrowUp,
-		ArrowDown,
 		Search,
 		ExternalLink,
 		LayoutPanelLeft,
@@ -44,26 +39,18 @@
 		Eye,
 		Shell,
 		User,
-		CheckSquare,
-		Square as SquareIcon,
 		Check,
 		XCircle,
 		Icon,
 		AlertTriangle,
 		FolderOpen,
-		ShieldOff,
-		ShieldAlert,
-		ShieldX,
-		Shield,
-		ShieldCheck,
 		Box,
 		Ship,
 		Cable,
-		Copy,
 		Loader2,
-		AlertCircle
+		AlertCircle,
+    BrushCleaning
 	} from 'lucide-svelte';
-	import { broom } from '@lucide/lab';
 	import { copyToClipboard } from '$lib/utils/clipboard';
 	import CreateContainerModal from './CreateContainerModal.svelte';
 	import EditContainerModal from './EditContainerModal.svelte';
@@ -72,10 +59,10 @@
 	import ContainerInspectModal from './ContainerInspectModal.svelte';
 	import FileBrowserModal from './FileBrowserModal.svelte';
 	import BatchUpdateModal from './BatchUpdateModal.svelte';
-	import BatchOperationModal from '$lib/components/BatchOperationModal.svelte';
+	import BatchOperationModal from '$lib/components/modals/BatchOperationModal.svelte';
 	import type { ContainerInfo } from '$lib/types';
 	import { EmptyState, NoEnvironment } from '$lib/components/ui/empty-state';
-	import { currentEnvironment, environments, appendEnvParam, clearStaleEnvironment } from '$lib/stores/environment';
+	import { currentEnvironment, environments, appendEnvParam } from '$lib/stores/environment';
 	import { containerStore } from '$lib/stores/containers';
 	import { onDockerEvent, isContainerListChange } from '$lib/stores/events';
 	import { appSettings } from '$lib/stores/settings';
@@ -85,8 +72,6 @@
 	import { formatHostPortUrl } from '$lib/utils/url';
 	import { detectShells, getBestShell, hasAvailableShell, USER_OPTIONS, type ShellDetectionResult } from '$lib/utils/shell-detection';
 	import { DataGrid } from '$lib/components/data-grid';
-	import type { ColumnConfig } from '$lib/types';
-	import type { DataGridRowState } from '$lib/components/data-grid/types';
 
 	// Track change detection for stat highlighting (UI-only, stays in component)
 	let changedFields = $state<Map<string, Set<string>>>(new Map());
@@ -1343,7 +1328,7 @@
 		<PageHeader icon={Box} title="Containers" count={containers.length} />
 		<div class="flex flex-wrap items-center gap-2">
 			<div class="relative">
-				<Search class="absolute left-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
+				<Search class="absolute left-2 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
 				<Input
 					type="text"
 					placeholder="Search containers..."
@@ -1364,7 +1349,7 @@
 			<div class="flex gap-2">
 				{#if $canAccess('containers', 'create')}
 				<Button size="sm" variant="secondary" onclick={() => (showCreateModal = true)}>
-					<Plus class="w-3.5 h-3.5" />
+					<Plus class="size-4" />
 					Create
 				</Button>
 				{/if}
@@ -1376,13 +1361,13 @@
 					title="Check for available updates"
 				>
 					{#if updateCheckStatus === 'checking'}
-						<CircleArrowUp class="w-3.5 h-3.5 mr-1 animate-spin" />
+						<CircleArrowUp class="size-4 mr-1 animate-spin" />
 					{:else if updateCheckStatus === 'none' || updateCheckStatus === 'found'}
-						<Check class="w-3.5 h-3.5 mr-1 text-green-600" />
+						<Check class="size-4 mr-1 text-green-600" />
 					{:else if updateCheckStatus === 'error'}
-						<XCircle class="w-3.5 h-3.5 mr-1 text-destructive" />
+						<XCircle class="size-4 mr-1 text-destructive" />
 					{:else}
-						<CircleArrowUp class="w-3.5 h-3.5" />
+						<CircleArrowUp class="size-4" />
 					{/if}
 					Check for updates
 				</Button>
@@ -1394,7 +1379,7 @@
 					class="border-amber-500/40 text-amber-600 hover:bg-amber-500/10 hover:border-amber-500"
 					title="Update all containers with available updates"
 				>
-					<CircleArrowUp class="w-3.5 h-3.5" />
+					<CircleArrowUp class="size-4" />
 					Update all ({updatableContainersCount})
 				</Button>
 				{/if}
@@ -1412,13 +1397,13 @@
 					{#snippet children({ open })}
 						<Button size="sm" variant="outline" disabled={pruneStatus === 'pruning'}>
 							{#if pruneStatus === 'pruning'}
-								<RefreshCw class="w-3.5 h-3.5 mr-1 animate-spin" />
+								<RefreshCw class="size-4 animate-spin" />
 							{:else if pruneStatus === 'success'}
-								<Check class="w-3.5 h-3.5 mr-1 text-green-600" />
+								<Check class="size-4 text-green-600" />
 							{:else if pruneStatus === 'error'}
-								<XCircle class="w-3.5 h-3.5 mr-1 text-destructive" />
+								<XCircle class="size-4 text-destructive" />
 							{:else}
-								<Icon iconNode={broom} class="w-3.5 h-3.5" />
+								<BrushCleaning class="size-4" />
 							{/if}
 							Prune
 						</Button>
@@ -1430,13 +1415,13 @@
 					size="sm"
 					variant="outline"
 					onclick={toggleLayoutMode}
-					class="h-8 w-8 p-0"
+					class="size-8 p-0"
 					title={layoutMode === 'horizontal' ? 'Switch to vertical layout (logs/terminal on side)' : 'Switch to horizontal layout (logs/terminal below)'}
 				>
 					{#if layoutMode === 'horizontal'}
-						<LayoutPanelLeft class="w-4 h-4" />
+						<LayoutPanelLeft class="size-4" />
 					{:else}
-						<Rows3 class="w-4 h-4" />
+						<Rows3 class="size-4" />
 					{/if}
 				</Button>
 			</div>
@@ -1469,7 +1454,7 @@
 				>
 					{#snippet children({ open })}
 						<span class="inline-flex items-center gap-1 px-1.5 py-0 rounded border border-border hover:text-green-600 hover:border-green-500/40 hover:shadow transition-all cursor-pointer {bulkActionInProgress ? 'opacity-50' : ''}">
-							<Play class="w-3 h-3" />
+							<Play class="size-3" />
 							Start
 						</span>
 					{/snippet}
@@ -1487,7 +1472,7 @@
 				>
 					{#snippet children({ open })}
 						<span class="inline-flex items-center gap-1 px-1.5 py-0 rounded border border-border hover:text-red-600 hover:border-red-500/40 hover:shadow transition-all cursor-pointer {bulkActionInProgress ? 'opacity-50' : ''}">
-							<Square class="w-3 h-3" />
+							<Square class="size-3" />
 							Stop
 						</span>
 					{/snippet}
@@ -1504,7 +1489,7 @@
 				>
 					{#snippet children({ open })}
 						<span class="inline-flex items-center gap-1 px-1.5 py-0 rounded border border-border hover:text-yellow-600 hover:border-yellow-500/40 hover:shadow transition-all cursor-pointer {bulkActionInProgress ? 'opacity-50' : ''}">
-							<Pause class="w-3 h-3" />
+							<Pause class="size-3" />
 							Pause
 						</span>
 					{/snippet}
@@ -1523,7 +1508,7 @@
 				>
 					{#snippet children({ open })}
 						<span class="inline-flex items-center gap-1 px-1.5 py-0 rounded border border-border hover:text-blue-600 hover:border-blue-500/40 hover:shadow transition-all cursor-pointer {bulkActionInProgress ? 'opacity-50' : ''}">
-							<Play class="w-3 h-3" />
+							<Play class="size-3" />
 							Unpause
 						</span>
 					{/snippet}
@@ -1542,7 +1527,7 @@
 			>
 				{#snippet children({ open })}
 					<span class="inline-flex items-center gap-1 px-1.5 py-0 rounded border border-border hover:border-foreground/30 hover:shadow transition-all cursor-pointer {bulkActionInProgress ? 'opacity-50' : ''}">
-						<RotateCw class="w-3 h-3" />
+						<RotateCw class="size-3" />
 						Restart
 					</span>
 				{/snippet}
@@ -1560,7 +1545,7 @@
 			>
 				{#snippet children({ open })}
 					<span class="inline-flex items-center gap-1 px-1.5 py-0 rounded border border-border hover:text-destructive hover:border-destructive/40 hover:shadow transition-all cursor-pointer {bulkActionInProgress ? 'opacity-50' : ''}">
-						<Trash2 class="w-3 h-3" />
+						<Trash2 class="size-3" />
 						Remove
 					</span>
 				{/snippet}
@@ -1574,12 +1559,12 @@
 				disabled={bulkActionInProgress}
 				title="Update selected containers to latest image"
 			>
-				<CircleArrowUp class="w-3 h-3" />
+				<CircleArrowUp class="size-3" />
 				Update {selectedWithUpdatesCount}
 			</button>
 			{/if}
 			{#if bulkActionInProgress}
-				<CircleArrowUp class="w-3 h-3 animate-spin ml-1" />
+				<CircleArrowUp class="size-3 animate-spin ml-1" />
 			{/if}
 			</div>
 		{/if}
@@ -1641,13 +1626,13 @@
 									<Tooltip.Trigger>
 										<Badge variant="secondary" class="text-2xs py-0 px-1 shrink-0 {hasUpdate ? 'bg-amber-500/10 text-amber-600 dark:text-amber-400 hover:bg-amber-500/20' : 'bg-blue-500/10 text-blue-600 dark:text-blue-400 hover:bg-blue-500/20'} cursor-help flex items-center gap-0.5">
 											{#if container.systemContainer === 'dockhand'}
-												<Ship class="w-2.5 h-2.5" />
+												<Ship class="size-3" />
 											{:else}
-												<Cable class="w-2.5 h-2.5" />
+												<Cable class="size-3" />
 											{/if}
 											{container.systemContainer === 'dockhand' ? 'Dockhand' : 'Hawser'}
 											{#if hasUpdate}
-												<CircleArrowUp class="w-2.5 h-2.5" />
+												<CircleArrowUp class="size-3" />
 											{/if}
 										</Badge>
 									</Tooltip.Trigger>
@@ -1656,7 +1641,7 @@
 											{#if hasUpdate}
 												<div class="space-y-2">
 													<p class="font-medium text-sm flex items-center gap-1.5 whitespace-nowrap">
-														<CircleArrowUp class="w-4 h-4 text-amber-500" />
+														<CircleArrowUp class="size-4 text-amber-500" />
 														Update available
 													</p>
 													<a
@@ -1674,7 +1659,7 @@
 											{#if hasUpdate}
 												<div class="space-y-2">
 													<p class="font-medium text-sm flex items-center gap-1.5 whitespace-nowrap">
-														<CircleArrowUp class="w-4 h-4 text-amber-500" />
+														<CircleArrowUp class="size-4 text-amber-500" />
 														Update available
 													</p>
 													<p class="text-muted-foreground text-xs whitespace-nowrap">Update on the remote host where Hawser runs.</p>
@@ -1685,7 +1670,7 @@
 														class="text-primary hover:underline text-xs flex items-center gap-1 whitespace-nowrap"
 														onclick={(e) => e.stopPropagation()}
 													>
-														<ExternalLink class="w-3 h-3" />
+														<ExternalLink class="size-3" />
 														Update instructions on GitHub
 													</a>
 												</div>
@@ -1701,7 +1686,7 @@
 						<div class="flex items-center gap-1.5 {$appSettings.highlightUpdates && containersWithUpdatesSet.has(container.id) ? 'update-border' : ''}">
 							{#if containersWithUpdatesSet.has(container.id)}
 								<span title="Update available">
-									<CircleArrowUp class="w-3 h-3 text-amber-500 {$appSettings.highlightUpdates ? 'glow-amber' : ''} shrink-0" />
+									<CircleArrowUp class="size-3 text-amber-500 {$appSettings.highlightUpdates ? 'glow-amber' : ''} shrink-0" />
 								</span>
 							{/if}
 							<span class="text-xs text-muted-foreground truncate" title={container.image}>{container.image}</span>
@@ -1716,11 +1701,11 @@
 						{#if container.health}
 							<div class="flex items-center justify-center" title={container.health}>
 								{#if container.health === 'healthy'}
-									<span class="h-2.5 w-2.5 rounded-full bg-green-500 animate-pulse"></span>
+									<span class="size-3 rounded-full bg-green-500 animate-pulse"></span>
 								{:else if container.health === 'unhealthy'}
-									<span class="h-2.5 w-2.5 rounded-full bg-red-500"></span>
+									<span class="size-3 rounded-full bg-red-500"></span>
 								{:else}
-									<span class="h-2.5 w-2.5 rounded-full bg-yellow-500 animate-pulse"></span>
+									<span class="size-3 rounded-full bg-yellow-500 animate-pulse"></span>
 								{/if}
 							</div>
 						{:else}
@@ -1804,7 +1789,7 @@
 											title="Open {url} in new tab"
 										>
 											<code>{port.display}</code>
-											<ExternalLink class="w-2.5 h-2.5 text-muted-foreground" />
+											<ExternalLink class="size-3 text-muted-foreground" />
 										</a>
 									{:else}
 										<code class="text-xs bg-muted px-1 py-0.5 rounded">{port.display}</code>
@@ -1861,7 +1846,7 @@
 									title="Update available - click to update"
 									class="p-0.5 rounded hover:bg-muted transition-colors cursor-pointer"
 								>
-									<CircleArrowUp class="w-3 h-3 text-amber-500 {$appSettings.highlightUpdates ? 'glow-amber' : ''}" />
+									<CircleArrowUp class="size-3 text-amber-500 {$appSettings.highlightUpdates ? 'glow-amber' : ''}" />
 								</button>
 							{/if}
 							{#if !container.systemContainer}
@@ -1877,7 +1862,7 @@
 									onOpenChange={(open) => confirmStopId = open ? container.id : null}
 								>
 									{#snippet children({ open })}
-										<Square class="w-3 h-3 {open ? 'text-destructive' : 'text-muted-foreground hover:text-destructive'} {stoppingId === container.id ? 'animate-pulse text-destructive' : ''}" />
+										<Square class="size-3 {open ? 'text-destructive' : 'text-muted-foreground hover:text-destructive'} {stoppingId === container.id ? 'animate-pulse text-destructive' : ''}" />
 									{/snippet}
 								</ConfirmPopover>
 								{#if container.state === 'running'}
@@ -1887,7 +1872,7 @@
 									title="Pause"
 									class="p-0.5 rounded hover:bg-muted transition-colors opacity-70 hover:opacity-100 cursor-pointer"
 								>
-									<Pause class="w-3 h-3 text-muted-foreground hover:text-yellow-500" />
+									<Pause class="size-3 text-muted-foreground hover:text-yellow-500" />
 								</button>
 								{/if}
 								{/if}
@@ -1899,7 +1884,7 @@
 									title="Unpause"
 									class="p-0.5 rounded hover:bg-muted transition-colors opacity-70 hover:opacity-100 cursor-pointer"
 								>
-									<Play class="w-3 h-3 text-muted-foreground hover:text-green-500" />
+									<Play class="size-3 text-muted-foreground hover:text-green-500" />
 								</button>
 								{/if}
 							{:else}
@@ -1910,7 +1895,7 @@
 									title="Start"
 									class="p-0.5 rounded hover:bg-muted transition-colors opacity-70 hover:opacity-100 cursor-pointer"
 								>
-									<Play class="w-3 h-3 text-muted-foreground hover:text-green-500" />
+									<Play class="size-3 text-muted-foreground hover:text-green-500" />
 								</button>
 								{/if}
 							{/if}
@@ -1926,7 +1911,7 @@
 								onOpenChange={(open) => confirmRestartId = open ? container.id : null}
 							>
 								{#snippet children({ open })}
-									<RotateCw class="w-3 h-3 {open ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'} {restartingId === container.id ? 'animate-spin text-foreground' : ''}" />
+									<RotateCw class="size-3 {open ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'} {restartingId === container.id ? 'animate-spin text-foreground' : ''}" />
 								{/snippet}
 							</ConfirmPopover>
 							{/if}
@@ -1937,7 +1922,7 @@
 								title="View details"
 								class="p-0.5 rounded hover:bg-muted transition-colors opacity-70 hover:opacity-100 cursor-pointer"
 							>
-								<Eye class="w-3 h-3 text-muted-foreground hover:text-foreground" />
+								<Eye class="size-3 text-muted-foreground hover:text-foreground" />
 							</button>
 							{#if container.state === 'running' && $canAccess('containers', 'exec')}
 							<button
@@ -1946,7 +1931,7 @@
 								title="Browse files"
 								class="p-0.5 rounded hover:bg-muted transition-colors opacity-70 hover:opacity-100 cursor-pointer"
 							>
-								<FolderOpen class="w-3 h-3 text-muted-foreground hover:text-foreground" />
+								<FolderOpen class="size-3 text-muted-foreground hover:text-foreground" />
 							</button>
 							{/if}
 							{#if $canAccess('containers', 'create')}
@@ -1956,7 +1941,7 @@
 								title="Edit"
 								class="p-0.5 rounded hover:bg-muted transition-colors opacity-70 hover:opacity-100 cursor-pointer"
 							>
-								<Pencil class="w-3 h-3 text-muted-foreground hover:text-foreground" />
+								<Pencil class="size-3 text-muted-foreground hover:text-foreground" />
 							</button>
 							{/if}
 							{#if $canAccess('containers', 'logs')}
@@ -1967,7 +1952,7 @@
 									title="Show logs"
 									class="p-0.5 rounded hover:bg-muted transition-colors opacity-70 hover:opacity-100 cursor-pointer"
 								>
-									<FileText class="w-4 h-4 text-blue-400" style="filter: drop-shadow(0 0 4px rgba(96,165,250,0.9)) drop-shadow(0 0 8px rgba(96,165,250,0.6));" strokeWidth={2.5} />
+									<FileText class="size-4 text-blue-400" style="filter: drop-shadow(0 0 4px rgba(96,165,250,0.9)) drop-shadow(0 0 8px rgba(96,165,250,0.6));" strokeWidth={2.5} />
 								</button>
 							{:else}
 								<button
@@ -1976,7 +1961,7 @@
 									title="Open logs"
 									class="p-0.5 rounded hover:bg-muted transition-colors opacity-70 hover:opacity-100 cursor-pointer"
 								>
-									<FileText class="w-3 h-3 text-muted-foreground hover:text-foreground" />
+									<FileText class="size-3 text-muted-foreground hover:text-foreground" />
 								</button>
 							{/if}
 							{/if}
@@ -1988,7 +1973,7 @@
 									title="Show terminal"
 									class="p-0.5 rounded hover:bg-muted transition-colors opacity-70 hover:opacity-100 cursor-pointer"
 								>
-									<Terminal class="w-4 h-4 text-green-400" style="filter: drop-shadow(0 0 4px rgba(74,222,128,0.9)) drop-shadow(0 0 8px rgba(74,222,128,0.6));" strokeWidth={2.5} />
+									<Terminal class="size-4 text-green-400" style="filter: drop-shadow(0 0 4px rgba(74,222,128,0.9)) drop-shadow(0 0 8px rgba(74,222,128,0.6));" strokeWidth={2.5} />
 								</button>
 							{:else}
 								<Popover.Root open={terminalPopoverStates[container.id] ?? false} onOpenChange={(open) => {
@@ -1999,23 +1984,23 @@
 										onclick={(e: MouseEvent) => e.stopPropagation()}
 										class="p-0.5 rounded hover:bg-muted transition-colors opacity-70 hover:opacity-100 cursor-pointer"
 									>
-										<Terminal class="w-3 h-3 text-muted-foreground hover:text-foreground" />
+										<Terminal class="size-3 text-muted-foreground hover:text-foreground" />
 									</Popover.Trigger>
 									<Popover.Content class="w-56 p-0" align="end" sideOffset={5}>
 										<div class="px-3 py-2 border-b bg-muted/50">
 											<div class="flex items-center gap-2">
-												<Terminal class="w-3.5 h-3.5 text-muted-foreground" />
+												<Terminal class="size-4 text-muted-foreground" />
 												<span class="text-xs font-medium truncate" title={container.name}>{container.name}</span>
 											</div>
 										</div>
 										{#if detectingShellsFor === container.id}
 											<div class="p-4 text-center">
-												<Loader2 class="w-5 h-5 mx-auto mb-2 text-muted-foreground animate-spin" />
+												<Loader2 class="size-5 mx-auto mb-2 text-muted-foreground animate-spin" />
 												<p class="text-xs text-muted-foreground">Detecting shells...</p>
 											</div>
 										{:else if !anyShellAvailableFor(container.id)}
 											<div class="p-4 text-center">
-												<AlertCircle class="w-5 h-5 mx-auto mb-2 text-amber-500" />
+												<AlertCircle class="size-5 mx-auto mb-2 text-amber-500" />
 												<p class="text-xs font-medium text-amber-500">No shell available</p>
 												<p class="text-xs text-muted-foreground mt-1">This container has no shell installed.</p>
 											</div>
@@ -2025,14 +2010,14 @@
 													<Label class="text-xs">Shell</Label>
 													<Select.Root type="single" bind:value={terminalShell}>
 														<Select.Trigger class="w-full h-8 text-xs">
-															<Shell class="w-3 h-3 mr-1.5 text-muted-foreground" />
+															<Shell class="size-3 mr-1.5 text-muted-foreground" />
 															<span>{shellDetectionCache[container.id]?.allShells.find(o => o.path === terminalShell)?.label || 'Select'}</span>
 														</Select.Trigger>
 														<Select.Content>
 															{#if shellDetectionCache[container.id]}
 																{#each shellDetectionCache[container.id].allShells as option}
 																	<Select.Item value={option.path} label={option.label} disabled={!option.available}>
-																		<Shell class="w-3 h-3 mr-1.5 {option.available ? 'text-green-500' : 'text-muted-foreground/40'}" />
+																		<Shell class="size-3 mr-1.5 {option.available ? 'text-green-500' : 'text-muted-foreground/40'}" />
 																		<span class={option.available ? 'text-foreground' : 'text-muted-foreground/60'}>
 																			{option.label}
 																			{#if !option.available}
@@ -2049,13 +2034,13 @@
 													<Label class="text-xs">User</Label>
 													<Select.Root type="single" bind:value={terminalUser}>
 														<Select.Trigger class="w-full h-8 text-xs">
-															<User class="w-3 h-3 mr-1.5 text-muted-foreground" />
+															<User class="size-3 mr-1.5 text-muted-foreground" />
 															<span>{userOptions.find(o => o.value === terminalUser)?.label || 'Select'}</span>
 														</Select.Trigger>
 														<Select.Content>
 															{#each userOptions as option}
 																<Select.Item value={option.value} label={option.label}>
-																	<User class="w-3 h-3 mr-1.5 text-muted-foreground" />
+																	<User class="size-3 mr-1.5 text-muted-foreground" />
 																	{option.label}
 																</Select.Item>
 															{/each}
@@ -2063,7 +2048,7 @@
 													</Select.Root>
 												</div>
 												<Button size="sm" class="w-full h-7 text-xs" onclick={() => startTerminal(container)}>
-													<Terminal class="w-3 h-3" />
+													<Terminal class="size-3" />
 													Connect
 												</Button>
 											</div>
@@ -2083,16 +2068,16 @@
 								onOpenChange={(open) => confirmDeleteId = open ? container.id : null}
 							>
 								{#snippet children({ open })}
-									<Trash2 class="w-3 h-3 {open ? 'text-destructive' : 'text-muted-foreground hover:text-destructive'}" />
+									<Trash2 class="size-3 {open ? 'text-destructive' : 'text-muted-foreground hover:text-destructive'}" />
 								{/snippet}
 							</ConfirmPopover>
 							{/if}
 							{#if operationError?.id === container.id}
 								<div class="absolute bottom-full right-0 mb-1 z-50 bg-destructive text-destructive-foreground rounded-md shadow-lg p-2 text-xs whitespace-nowrap flex items-center gap-2 max-w-xs">
-									<AlertTriangle class="w-3 h-3 flex-shrink-0" />
+									<AlertTriangle class="size-3 flex-shrink-0" />
 									<span class="truncate">{operationError.message}</span>
 									<button onclick={() => operationError = null} class="flex-shrink-0 hover:bg-white/20 rounded p-0.5">
-										<X class="w-3 h-3" />
+										<X class="size-3" />
 									</button>
 								</div>
 							{/if}

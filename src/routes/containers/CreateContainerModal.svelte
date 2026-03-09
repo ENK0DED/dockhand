@@ -608,7 +608,7 @@
 				disabled={loading || isPulling || isScanning}
 				class="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-30"
 			>
-				<X class="h-4 w-4" />
+				<X class="size-4" />
 				<span class="sr-only">Close</span>
 			</button>
 		</Dialog.Header>
@@ -621,46 +621,46 @@
 				class="px-4 py-2.5 text-sm font-medium border-b-2 transition-colors cursor-pointer flex items-center gap-2 {activeTab === 'pull' ? 'border-primary text-foreground' : 'border-transparent text-muted-foreground hover:text-foreground'}"
 				onclick={() => activeTab = 'pull'}
 			>
-				<Download class="w-4 h-4" />
+				<Download class="size-4" />
 				Pull
 				{#if pullStatus === 'complete'}
-					<CheckCircle2 class="w-3.5 h-3.5 text-green-500" />
+					<CheckCircle2 class="size-4 text-green-500" />
 				{:else if pullStatus === 'pulling'}
-					<Loader2 class="w-3.5 h-3.5 animate-spin" />
+					<Loader2 class="size-4 animate-spin" />
 				{:else if pullStatus === 'error'}
-					<XCircle class="w-3.5 h-3.5 text-red-500" />
+					<XCircle class="size-4 text-red-500" />
 				{/if}
 			</button>
 			{#if envHasScanning}
-				<ArrowBigRight class="w-3.5 h-3.5 text-muted-foreground/50 shrink-0" />
+				<ArrowBigRight class="size-4 text-muted-foreground/50 shrink-0" />
 				<!-- Scan Tab -->
 				<button
 					class="px-4 py-2.5 text-sm font-medium border-b-2 transition-colors cursor-pointer flex items-center gap-2 {activeTab === 'scan' ? 'border-primary text-foreground' : 'border-transparent text-muted-foreground hover:text-foreground'}"
 					onclick={() => activeTab = 'scan'}
 					disabled={pullStatus === 'idle' || pullStatus === 'pulling'}
 				>
-					<Shield class="w-4 h-4" />
+					<Shield class="size-4" />
 					Scan
 					{#if scanStatus === 'complete' && scanResults.length > 0}
 						{#if hasCriticalOrHigh}
-							<ShieldX class="w-3.5 h-3.5 text-red-500" />
+							<ShieldX class="size-4 text-red-500" />
 						{:else if totalVulnerabilities > 0}
-							<ShieldAlert class="w-3.5 h-3.5 text-yellow-500" />
+							<ShieldAlert class="size-4 text-yellow-500" />
 						{:else}
-							<ShieldCheck class="w-3.5 h-3.5 text-green-500" />
+							<ShieldCheck class="size-4 text-green-500" />
 						{/if}
 					{:else if scanStatus === 'scanning'}
-						<Loader2 class="w-3.5 h-3.5 animate-spin" />
+						<Loader2 class="size-4 animate-spin" />
 					{/if}
 				</button>
 			{/if}
-			<ArrowBigRight class="w-3.5 h-3.5 text-muted-foreground/50 shrink-0" />
+			<ArrowBigRight class="size-4 text-muted-foreground/50 shrink-0" />
 			<!-- Container Tab -->
 			<button
 				class="px-4 py-2.5 text-sm font-medium border-b-2 transition-colors cursor-pointer flex items-center gap-2 {activeTab === 'container' ? 'border-primary text-foreground' : 'border-transparent text-muted-foreground hover:text-foreground'}"
 				onclick={() => activeTab = 'container'}
 			>
-				<Settings2 class="w-4 h-4" />
+				<Settings2 class="size-4" />
 				Container
 			</button>
 		</div>
@@ -698,7 +698,7 @@
 				<!-- Scanning disabled -->
 				<div class="flex-1 flex items-center justify-center">
 					<div class="text-center">
-						<Shield class="w-12 h-12 text-muted-foreground/50 mx-auto mb-2" />
+						<Shield class="size-12 text-muted-foreground/50 mx-auto mb-2" />
 						<p class="text-sm text-muted-foreground">Vulnerability scanning is disabled for this environment.</p>
 						<p class="text-xs text-muted-foreground mt-1">Enable it in Settings -> Environments to scan images.</p>
 					</div>
@@ -773,7 +773,7 @@
 			<div>
 				{#if activeTab === 'container' && hasCriticalOrHigh}
 					<div class="flex items-center gap-2 text-amber-600 text-xs">
-						<AlertTriangle class="w-4 h-4" />
+						<AlertTriangle class="size-4" />
 						<span>Critical/high vulnerabilities found in image</span>
 					</div>
 				{/if}
@@ -784,10 +784,10 @@
 				</Button>
 				<Button type="button" disabled={loading || isPulling || isScanning || activeTab !== 'container'} onclick={handleSubmit}>
 					{#if loading}
-						<Loader2 class="w-4 h-4 animate-spin" />
+						<Loader2 class="size-4 animate-spin" />
 						Creating...
 					{:else}
-						<Play class="w-4 h-4" />
+						<Play class="size-4" />
 						Create container
 					{/if}
 				</Button>

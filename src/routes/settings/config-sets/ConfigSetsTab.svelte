@@ -78,7 +78,7 @@
 	<Card.Root class="border-dashed">
 		<Card.Content class="pt-4">
 			<div class="flex items-start gap-3">
-				<Layers class="w-5 h-5 text-muted-foreground mt-0.5" />
+				<Layers class="size-5 text-muted-foreground mt-0.5" />
 				<div>
 					<p class="text-sm font-medium">What are config sets?</p>
 					<p class="text-xs text-muted-foreground mt-1">
@@ -96,7 +96,7 @@
 		<div class="flex gap-2">
 			{#if $canAccess('configsets', 'create')}
 				<Button size="sm" onclick={() => openCfgModal()}>
-					<Plus class="w-4 h-4" />
+					<Plus class="size-4" />
 					Add config set
 				</Button>
 			{/if}
@@ -120,7 +120,7 @@
 					<Card.Header class="pb-2">
 						<div class="flex items-start justify-between">
 							<div class="flex items-center gap-2">
-								<Layers class="w-5 h-5 text-muted-foreground" />
+								<Layers class="size-5 text-muted-foreground" />
 								<Card.Title class="text-base">{cfg.name}</Card.Title>
 							</div>
 						</div>
@@ -158,7 +158,7 @@
 									size="sm"
 									onclick={() => openCfgModal(cfg)}
 								>
-									<Pencil class="w-3 h-3" />
+									<Pencil class="size-3" />
 									Edit
 								</Button>
 							{/if}
@@ -174,7 +174,7 @@
 									onOpenChange={(open) => confirmDeleteConfigSetId = open ? cfg.id : null}
 								>
 									{#snippet children({ open })}
-										<Trash2 class="w-3 h-3 {open ? 'text-destructive' : 'text-muted-foreground hover:text-destructive'}" />
+										<Trash2 class="size-3 {open ? 'text-destructive' : 'text-muted-foreground hover:text-destructive'}" />
 									{/snippet}
 								</ConfirmPopover>
 							{/if}

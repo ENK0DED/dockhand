@@ -43,6 +43,7 @@
 	import { formatDateTime, appSettings } from '$lib/stores/settings';
 	import { NoEnvironment } from '$lib/components/ui/empty-state';
 	import { DataGrid } from '$lib/components/data-grid';
+  import { fetchEnvironments } from '$lib/utils/new';
 
 	interface ContainerEvent {
 		id: number;
@@ -359,17 +360,6 @@
 		}
 	}
 
-	async function fetchEnvironments() {
-		try {
-			const response = await fetch('/api/environments');
-			if (response.ok) {
-				environments = await response.json();
-			}
-		} catch (error) {
-			console.error('Failed to fetch environments:', error);
-		}
-	}
-
 	function clearFilters() {
 		filterContainerName = '';
 		filterActions = [];
@@ -604,7 +594,9 @@
 		}
 
 		// Initialize in order - set initialized=true AFTER data is fetched
-		fetchEnvironments().then(() => {
+		fetchEnvironments().then((fetchedEnvironments) => {
+      environments = fetchedEnvironments;
+
 			// Validate filterEnvironmentId - reset if it doesn't exist
 			if (filterEnvironmentId !== null) {
 				const envExists = environments.some(e => e.id === filterEnvironmentId);
@@ -647,10 +639,10 @@
 			<PageHeader icon={Activity} title="Activity" count={visibleEnd > 0 ? `${visibleStart}-${visibleEnd}` : undefined} total={total > 0 ? total : undefined} countClass="min-w-32" />
 			<Badge variant="outline" class="gap-1.5 {($appSettings.eventCollectionMode || 'stream') === 'stream' ? 'text-green-500 border-green-500/50' : 'text-amber-500 border-amber-500/50'}">
 				{#if ($appSettings.eventCollectionMode || 'stream') === 'stream'}
-					<Wifi class="w-3 h-3" />
+					<Wifi class="size-3" />
 					<span>Stream</span>
 				{:else if ($appSettings.eventCollectionMode || 'stream') === 'poll'}
-					<Radio class="w-3 h-3" />
+					<Radio class="size-3" />
 					<span>Poll</span><span class="text-[10px] opacity-70">({($appSettings.eventPollInterval || 60000) / 1000}s)</span>
 				{:else}
 					<span class="text-muted-foreground">Off</span>
@@ -660,7 +652,7 @@
 		<div class="flex flex-wrap items-center gap-2">
 			<!-- Container name search -->
 			<div class="relative">
-				<Search class="absolute left-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
+				<Search class="absolute left-2 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
 				<Input
 					type="text"
 					placeholder="Container..."
@@ -690,7 +682,7 @@
 					onValueChange={(v) => filterEnvironmentId = v ? parseInt(v) : null}
 				>
 					<Select.Trigger size="sm" class="w-44 text-sm">
-						<SelectedEnvIcon class="w-3.5 h-3.5 mr-1.5 text-muted-foreground shrink-0" />
+						<SelectedEnvIcon class="size-4 mr-1.5 text-muted-foreground shrink-0" />
 						<span class="truncate">
 							{#if filterEnvironmentId === null}
 								Environment
@@ -701,13 +693,13 @@
 					</Select.Trigger>
 					<Select.Content>
 						<Select.Item value="">
-							<Server class="w-4 h-4 mr-2 text-muted-foreground" />
+							<Server class="size-4 mr-2 text-muted-foreground" />
 							All environments
 						</Select.Item>
 						{#each environments as env}
 							{@const EnvIcon = getIconComponent(env.icon || 'globe')}
 							<Select.Item value={String(env.id)}>
-								<EnvIcon class="w-4 h-4 mr-2 text-muted-foreground" />
+								<EnvIcon class="size-4 mr-2 text-muted-foreground" />
 								{env.name}
 							</Select.Item>
 						{/each}
@@ -727,7 +719,7 @@
 				}}
 			>
 				<Select.Trigger size="sm" class="w-32 text-sm">
-					<Calendar class="w-3.5 h-3.5 mr-1.5 text-muted-foreground shrink-0" />
+					<Calendar class="size-4 mr-1.5 text-muted-foreground shrink-0" />
 					<span class="truncate">
 						{#if selectedDatePreset === 'custom'}
 							Custom
@@ -762,11 +754,11 @@
 				disabled={!hasActiveFilters}
 				title="Clear all filters"
 			>
-				<X class="w-3.5 h-3.5" />
+				<X class="size-4" />
 			</Button>
 
 			<Button variant="outline" size="sm" onclick={() => { hasMore = true; fetchEvents(false); }} disabled={loading}>
-				<RefreshCw class="w-3.5 h-3.5 {loading ? 'animate-spin' : ''}" />
+				<RefreshCw class="size-4 {loading ? 'animate-spin' : ''}" />
 			</Button>
 
 			{#if $canAccess('activity', 'delete')}
@@ -784,7 +776,7 @@
 				>
 					{#snippet children({ open })}
 						<Button variant="outline" size="sm" disabled={clearingActivity || total === 0}>
-							<Trash2 class="w-3.5 h-3.5" />
+							<Trash2 class="size-4" />
 						</Button>
 					{/snippet}
 				</ConfirmPopover>
@@ -816,7 +808,7 @@
 					{#if event.environmentName}
 						{@const EventEnvIcon = getIconComponent(event.environmentIcon || 'globe')}
 						<div class="flex items-center gap-1 text-xs">
-							<EventEnvIcon class="w-3 h-3 text-muted-foreground shrink-0" />
+							<EventEnvIcon class="size-3 text-muted-foreground shrink-0" />
 							<span class="truncate">{event.environmentName}</span>
 						</div>
 					{:else}
@@ -825,12 +817,12 @@
 				{:else if column.id === 'action'}
 					<div class="flex justify-center">
 						<Badge class="{getActionColor(event.action)} py-0.5 px-1" title={event.action.charAt(0).toUpperCase() + event.action.slice(1)}>
-							<svelte:component this={getActionIcon(event.action)} class="w-3 h-3" />
+							<svelte:component this={getActionIcon(event.action)} class="size-3" />
 						</Badge>
 					</div>
 				{:else if column.id === 'container'}
 					<div class="flex items-center gap-1 truncate text-xs">
-						<Box class="w-3 h-3 text-muted-foreground shrink-0" />
+						<Box class="size-3 text-muted-foreground shrink-0" />
 						<span class="truncate" title={event.containerName || event.containerId || 'Unknown'}>
 							{event.containerName || (event.containerId ? event.containerId.slice(0, 12) : 'Unknown')}
 						</span>
@@ -850,8 +842,8 @@
 					{/if}
 				{:else if column.id === 'actions'}
 					<div class="flex items-center justify-end">
-						<Button variant="ghost" size="icon" class="h-6 w-6" onclick={(e) => { e.stopPropagation(); showDetails(event); }}>
-							<Eye class="w-3.5 h-3.5" />
+						<Button variant="ghost" size="icon" class="size-6" onclick={(e) => { e.stopPropagation(); showDetails(event); }}>
+							<Eye class="size-4" />
 						</Button>
 					</div>
 				{/if}
@@ -859,7 +851,7 @@
 
 			{#snippet emptyState()}
 				<div class="flex flex-col items-center justify-center py-16 text-muted-foreground">
-					<FileX class="w-10 h-10 mb-3 opacity-40" />
+					<FileX class="size-10 mb-3 opacity-40" />
 					<p>No container events found</p>
 					<p class="text-xs mt-1">Events will appear here as containers start, stop, etc.</p>
 				</div>
@@ -867,14 +859,14 @@
 
 			{#snippet loadingState()}
 				<div class="flex items-center justify-center py-16 text-muted-foreground">
-					<RefreshCw class="w-5 h-5 animate-spin mr-2" />
+					<RefreshCw class="size-5 animate-spin mr-2" />
 					Loading...
 				</div>
 			{/snippet}
 			{#snippet footer()}
 				{#if loadingMore}
 					<div class="flex items-center justify-center py-2 text-muted-foreground">
-						<Loader2 class="w-4 h-4 animate-spin mr-2" />
+						<Loader2 class="size-4 animate-spin mr-2" />
 						Loading more...
 					</div>
 				{:else if !hasMore && events.length > 0}
@@ -904,7 +896,7 @@
 						<label class="text-sm font-medium text-muted-foreground">Action</label>
 						<p>
 							<Badge class="{getActionColor(selectedEvent.action)} gap-1">
-								<svelte:component this={getActionIcon(selectedEvent.action)} class="w-3 h-3" />
+								<svelte:component this={getActionIcon(selectedEvent.action)} class="size-3" />
 								{selectedEvent.action}
 							</Badge>
 						</p>
@@ -912,7 +904,7 @@
 					<div>
 						<label class="text-sm font-medium text-muted-foreground">Container name</label>
 						<p class="flex items-center gap-1">
-							<Box class="w-4 h-4 text-muted-foreground" />
+							<Box class="size-4 text-muted-foreground" />
 							{selectedEvent.containerName || '-'}
 						</p>
 					</div>

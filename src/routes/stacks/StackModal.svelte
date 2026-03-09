@@ -1352,7 +1352,7 @@ services:
 				<div class="flex items-center gap-3">
 					<div class="flex items-center gap-2">
 						<div class="p-1.5 rounded-md bg-zinc-200 dark:bg-zinc-700">
-							<Layers class="w-4 h-4 text-zinc-600 dark:text-zinc-300" />
+							<Layers class="size-4 text-zinc-600 dark:text-zinc-300" />
 						</div>
 						<div>
 							<Dialog.Title class="text-sm font-semibold text-zinc-800 dark:text-zinc-100">
@@ -1380,14 +1380,14 @@ services:
 							class="flex items-center gap-1.5 px-2.5 py-1 rounded text-xs transition-colors {activeTab === 'editor' ? 'bg-white dark:bg-zinc-900 text-zinc-800 dark:text-zinc-100 shadow-sm' : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200'}"
 							onclick={() => activeTab = 'editor'}
 						>
-							<Code class="w-3.5 h-3.5" />
+							<Code class="size-4" />
 							Editor
 						</button>
 						<button
 							class="flex items-center gap-1.5 px-2.5 py-1 rounded text-xs transition-colors {activeTab === 'graph' ? 'bg-white dark:bg-zinc-900 text-zinc-800 dark:text-zinc-100 shadow-sm' : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200'}"
 							onclick={() => activeTab = 'graph'}
 						>
-							<GitGraph class="w-3.5 h-3.5" />
+							<GitGraph class="size-4" />
 							Graph
 						</button>
 					</div>
@@ -1400,9 +1400,9 @@ services:
 							title={editorTheme === 'light' ? 'Switch to dark theme' : 'Switch to light theme'}
 						>
 							{#if editorTheme === 'light'}
-								<Moon class="w-4 h-4" />
+								<Moon class="size-4" />
 							{:else}
-								<Sun class="w-4 h-4" />
+								<Sun class="size-4" />
 							{/if}
 						</button>
 					{/if}
@@ -1412,7 +1412,7 @@ services:
 						onclick={tryClose}
 						class="p-1.5 rounded-md text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors"
 					>
-						<X class="w-4 h-4" />
+						<X class="size-4" />
 					</button>
 				</div>
 			</div>
@@ -1421,7 +1421,7 @@ services:
 		<div class="flex-1 overflow-hidden flex flex-col min-h-0">
 			{#if errors.compose}
 				<Alert.Root variant="destructive" class="mx-6 mt-4">
-					<TriangleAlert class="h-4 w-4" />
+					<TriangleAlert class="size-4" />
 					<Alert.Description>{errors.compose}</Alert.Description>
 				</Alert.Root>
 			{/if}
@@ -1429,7 +1429,7 @@ services:
 			{#if mode === 'edit' && loading}
 				<div class="flex-1 flex items-center justify-center">
 					<div class="flex items-center gap-3 text-zinc-400 dark:text-zinc-500">
-						<Loader2 class="w-5 h-5 animate-spin" />
+						<Loader2 class="size-5 animate-spin" />
 						<span>Loading compose file...</span>
 					</div>
 				</div>
@@ -1459,7 +1459,7 @@ services:
 				{#if mode === 'edit' && needsFileLocation}
 					<div class="px-4 py-3 border-b border-zinc-200 dark:border-zinc-700 bg-amber-50/50 dark:bg-amber-950/20">
 						<div class="flex items-start gap-3">
-							<AlertCircle class="w-4 h-4 shrink-0 text-amber-500 mt-0.5" />
+							<AlertCircle class="size-4 shrink-0 text-amber-500 mt-0.5" />
 							<div class="flex-1 min-w-0">
 								<p class="text-sm text-zinc-600 dark:text-zinc-400 mb-2">
 									<span class="font-medium text-amber-800 dark:text-amber-300">Untracked stack</span> — this stack is running in Docker but Dockhand doesn't know where its compose file is stored on disk. Browse to locate the file to start editing and managing it.
@@ -1470,7 +1470,7 @@ services:
 										<div class="mt-1.5 flex flex-wrap gap-1.5">
 											{#each stackContainers as container}
 												<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs {container.state === 'running' ? 'bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-300' : 'bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400'}">
-													<Box class="w-3 h-3" />
+													<Box class="size-3" />
 													{container.name}
 												</span>
 											{/each}
@@ -1533,18 +1533,18 @@ services:
 										{#if needsFileLocation && !composeContent}
 											<!-- Empty state for untracked stacks -->
 											<div class="h-full rounded-md border border-dashed border-zinc-300 dark:border-zinc-600 bg-zinc-50 dark:bg-zinc-800/30 flex flex-col items-center justify-center text-center px-8">
-												<FolderOpen class="w-12 h-12 text-zinc-300 dark:text-zinc-600 mb-4" />
+												<FolderOpen class="size-12 text-zinc-300 dark:text-zinc-600 mb-4" />
 												<h3 class="text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2">No compose file selected</h3>
 												<p class="text-xs text-zinc-500 dark:text-zinc-400 mb-4 max-w-sm">
 													Browse to locate the compose file for this stack. The editor will load the file contents once selected.
 												</p>
 												<Button variant="outline" size="sm" onclick={openComposeBrowser}>
-													<FolderOpen class="w-4 h-4" />
+													<FolderOpen class="size-4" />
 													Browse for compose file
 												</Button>
 												<!-- Info box explaining what happens -->
 												<div class="mt-6 max-w-md flex items-start gap-2.5 text-xs bg-zinc-100 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700 rounded-md px-3 py-2.5 text-left">
-													<Info class="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
+													<Info class="size-4 text-amber-500 shrink-0 mt-0.5" />
 													<span><span class="font-medium text-amber-600 dark:text-amber-400">What happens when you select a file:</span> <span class="text-zinc-600 dark:text-zinc-400">Dockhand will track this compose file, letting you edit, start, and stop the stack from the UI. Your files stay in their current location.</span></span>
 												</div>
 											</div>
@@ -1562,16 +1562,16 @@ services:
 														{#if composeContentCopied === 'error'}
 															<Tooltip.Root open>
 																<Tooltip.Trigger>
-																	<XCircle class="w-3 h-3 text-red-500" />
+																	<XCircle class="size-3 text-red-500" />
 																</Tooltip.Trigger>
 																<Tooltip.Content>Copy requires HTTPS</Tooltip.Content>
 															</Tooltip.Root>
 															Failed
 														{:else if composeContentCopied === 'ok'}
-															<Check class="w-3 h-3 text-green-500" />
+															<Check class="size-3 text-green-500" />
 															Copied
 														{:else}
-															<Copy class="w-3 h-3" />
+															<Copy class="size-3" />
 															Copy
 														{/if}
 													</Button>
@@ -1599,7 +1599,7 @@ services:
 								tabindex="0"
 							>
 								<div class="w-4 h-8 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity {isDraggingSplit ? 'opacity-100' : ''}">
-									<GripVertical class="w-3 h-3 text-white" />
+									<GripVertical class="size-3 text-white" />
 								</div>
 							</div>
 							<!-- Environment variables panel -->
@@ -1648,19 +1648,19 @@ services:
 					<!-- Create mode buttons -->
 					<Button variant="outline" onclick={() => handleCreate(false)} disabled={saving}>
 						{#if saving}
-							<Loader2 class="w-4 h-4 animate-spin" />
+							<Loader2 class="size-4 animate-spin" />
 							Creating...
 						{:else}
-							<Save class="w-4 h-4" />
+							<Save class="size-4" />
 							Create
 						{/if}
 					</Button>
 					<Button onclick={() => handleCreate(true)} disabled={saving}>
 						{#if saving}
-							<Loader2 class="w-4 h-4 animate-spin" />
+							<Loader2 class="size-4 animate-spin" />
 							Starting...
 						{:else}
-							<Play class="w-4 h-4" />
+							<Play class="size-4" />
 							Create & Start
 						{/if}
 					</Button>
@@ -1668,19 +1668,19 @@ services:
 					<!-- Edit mode buttons -->
 					<Button variant="outline" class="w-24" onclick={() => handleSave(false)} disabled={saving || loading || (needsFileLocation && !workingComposePath.trim())}>
 						{#if saving && !savingWithRestart}
-							<Loader2 class="w-4 h-4 animate-spin" />
+							<Loader2 class="size-4 animate-spin" />
 							Saving...
 						{:else}
-							<Save class="w-4 h-4" />
+							<Save class="size-4" />
 							Save
 						{/if}
 					</Button>
 					<Button class="w-36" onclick={() => handleSave(true)} disabled={saving || loading || (needsFileLocation && !workingComposePath.trim())}>
 						{#if saving && savingWithRestart}
-							<Loader2 class="w-4 h-4 animate-spin" />
+							<Loader2 class="size-4 animate-spin" />
 							Deploying...
 						{:else}
-							<Play class="w-4 h-4" />
+							<Play class="size-4" />
 							Save & redeploy
 						{/if}
 					</Button>
@@ -1722,7 +1722,7 @@ services:
 		{#if pathChangeOldDir}
 			<div class="my-3 text-sm">
 				<div class="flex items-center gap-2 text-muted-foreground font-mono text-xs bg-muted/50 px-2 py-1 rounded">
-					<FolderOpen class="w-3.5 h-3.5 shrink-0 text-amber-500" />
+					<FolderOpen class="size-4 shrink-0 text-amber-500" />
 					{pathChangeOldDir}
 				</div>
 			</div>
@@ -1738,7 +1738,7 @@ services:
 				Leave files
 			</Button>
 			<Button variant="default" size="sm" onclick={confirmPathChangeAndMove}>
-				<ArrowRight class="w-3.5 h-3.5" />
+				<ArrowRight class="size-4" />
 				Move files
 			</Button>
 		</div>
@@ -1762,7 +1762,7 @@ services:
 				</code>
 			</div>
 			<div class="flex items-start gap-2">
-				<ArrowRight class="w-3.5 h-3.5 text-amber-500 shrink-0 mt-0.5" />
+				<ArrowRight class="size-4 text-amber-500 shrink-0 mt-0.5" />
 				<span class="text-xs font-medium text-zinc-500 shrink-0 pt-0.5">New:</span>
 				<code class="text-xs font-mono bg-muted px-1.5 py-0.5 rounded break-all">
 					{pendingBrowsePath}
@@ -1785,7 +1785,7 @@ services:
 	<Dialog.Content class="max-w-lg">
 		<Dialog.Header>
 			<Dialog.Title class="flex items-center gap-2">
-				<FolderSync class="w-5 h-5" />
+				<FolderSync class="size-5" />
 				Relocate stack?
 			</Dialog.Title>
 			<Dialog.Description>
@@ -1800,7 +1800,7 @@ services:
 				</code>
 			</div>
 			<div class="flex justify-center py-3">
-				<ArrowDown class="w-4 h-4 text-amber-500" />
+				<ArrowDown class="size-4 text-amber-500" />
 			</div>
 			<div class="flex items-start gap-2">
 				<span class="text-xs font-medium text-zinc-500 shrink-0 w-10">To</span>
@@ -1815,10 +1815,10 @@ services:
 			</Button>
 			<Button variant="default" size="sm" onclick={confirmChangeLocation} disabled={movingLocation}>
 				{#if movingLocation}
-					<Loader2 class="w-3.5 h-3.5 animate-spin" />
+					<Loader2 class="size-4 animate-spin" />
 					Moving...
 				{:else}
-					<FolderSync class="w-3.5 h-3.5" />
+					<FolderSync class="size-4" />
 					Move files
 				{/if}
 			</Button>
@@ -1831,7 +1831,7 @@ services:
 	<Dialog.Content class="max-w-sm">
 		<Dialog.Header>
 			<Dialog.Title class="flex items-center gap-2">
-				<TriangleAlert class="w-5 h-5 text-amber-500" />
+				<TriangleAlert class="size-5 text-amber-500" />
 				Stack already exists
 			</Dialog.Title>
 			<Dialog.Description>

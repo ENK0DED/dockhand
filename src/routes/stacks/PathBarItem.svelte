@@ -63,7 +63,7 @@
 		class="p-1 rounded transition-colors shrink-0 hover:bg-zinc-200 dark:hover:bg-zinc-700"
 		title={`Browse for ${label.toLowerCase()}`}
 	>
-		<FolderOpen class="w-3.5 h-3.5" />
+		<FolderOpen class="size-4" />
 	</button>
 	{#if onChangeLocation}
 		<button
@@ -71,7 +71,7 @@
 			class="p-1 rounded transition-colors shrink-0 hover:bg-zinc-200 dark:hover:bg-zinc-700"
 			title="Change location"
 		>
-			<FolderSync class="w-3.5 h-3.5" />
+			<FolderSync class="size-4" />
 		</button>
 	{/if}
 	<button
@@ -83,14 +83,14 @@
 		{#if copied === 'error'}
 			<Tooltip.Root open>
 				<Tooltip.Trigger>
-					<XCircle class="w-3.5 h-3.5 text-red-500" />
+					<XCircle class="size-4 text-red-500" />
 				</Tooltip.Trigger>
 				<Tooltip.Content>Copy requires HTTPS</Tooltip.Content>
 			</Tooltip.Root>
 		{:else if copied === 'ok'}
-			<Check class="w-3.5 h-3.5 text-green-500" />
+			<Check class="size-4 text-green-500" />
 		{:else}
-			<Copy class="w-3.5 h-3.5" />
+			<Copy class="size-4" />
 		{/if}
 	</button>
 </div>

@@ -8,10 +8,9 @@
 	import { Badge } from '$lib/components/ui/badge';
 	import { Button } from '$lib/components/ui/button';
 	import { Input } from '$lib/components/ui/input';
-	import { Trash2, Search, Plus, Eye, Check, XCircle, RefreshCw, Icon, AlertTriangle, X, HardDrive, Stamp, FolderOpen, Download, Database, Server, CircleDot, Circle } from 'lucide-svelte';
-	import { broom } from '@lucide/lab';
+	import { BrushCleaning, Trash2, Search, Plus, Eye, Check, XCircle, RefreshCw, Icon, AlertTriangle, X, HardDrive, Stamp, FolderOpen, Download, Database, Server, CircleDot, Circle } from 'lucide-svelte';
 	import ConfirmPopover from '$lib/components/ConfirmPopover.svelte';
-	import BatchOperationModal from '$lib/components/BatchOperationModal.svelte';
+	import BatchOperationModal from '$lib/components/modals/BatchOperationModal.svelte';
 	import CreateVolumeModal from './CreateVolumeModal.svelte';
 	import VolumeInspectModal from './VolumeInspectModal.svelte';
 	import VolumeBrowserModal from './VolumeBrowserModal.svelte';
@@ -416,7 +415,7 @@
 		<PageHeader icon={HardDrive} title="Volumes" count={volumes.length} />
 		<div class="flex flex-wrap items-center gap-2">
 			<div class="relative">
-				<Search class="absolute left-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
+				<Search class="absolute left-2 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
 				<Input
 					type="text"
 					placeholder="Search volumes..."
@@ -455,13 +454,13 @@
 				{#snippet children({ open })}
 					<span class="inline-flex items-center gap-1.5 h-8 px-3 rounded-md text-sm bg-background shadow-xs border hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 {pruneStatus === 'pruning' ? 'opacity-50 pointer-events-none' : ''}">
 						{#if pruneStatus === 'pruning'}
-							<RefreshCw class="w-3.5 h-3.5 animate-spin" />
+							<RefreshCw class="size-4 animate-spin" />
 						{:else if pruneStatus === 'success'}
-							<Check class="w-3.5 h-3.5 text-green-600" />
+							<Check class="size-4 text-green-600" />
 						{:else if pruneStatus === 'error'}
-							<XCircle class="w-3.5 h-3.5 text-destructive" />
+							<XCircle class="size-4 text-destructive" />
 						{:else}
-							<Icon iconNode={broom} class="w-3.5 h-3.5" />
+							<BrushCleaning class="size-4" />
 						{/if}
 						Prune
 					</span>
@@ -471,7 +470,7 @@
 			<Button size="sm" variant="outline" onclick={fetchVolumes}>Refresh</Button>
 			{#if $canAccess('volumes', 'create')}
 			<Button size="sm" variant="secondary" onclick={() => showCreateModal = true}>
-				<Plus class="w-3.5 h-3.5" />
+				<Plus class="size-4" />
 				Create
 			</Button>
 			{/if}
@@ -502,7 +501,7 @@
 			>
 				{#snippet children({ open })}
 					<span class="inline-flex items-center gap-1 px-1.5 py-0 rounded border border-border hover:text-destructive hover:border-destructive/40 hover:shadow transition-all cursor-pointer">
-						<Trash2 class="w-3 h-3" />
+						<Trash2 class="size-3" />
 						Delete
 					</span>
 				{/snippet}
@@ -578,7 +577,7 @@
 							title="View details"
 							class="p-1 rounded hover:bg-muted transition-colors opacity-70 hover:opacity-100 cursor-pointer"
 						>
-							<Eye class="w-3 h-3 text-muted-foreground hover:text-foreground" />
+							<Eye class="size-3 text-muted-foreground hover:text-foreground" />
 						</button>
 						<button
 							type="button"
@@ -586,7 +585,7 @@
 							title="Browse files"
 							class="p-1 rounded hover:bg-muted transition-colors opacity-70 hover:opacity-100 cursor-pointer"
 						>
-							<FolderOpen class="w-3 h-3 text-muted-foreground hover:text-foreground" />
+							<FolderOpen class="size-3 text-muted-foreground hover:text-foreground" />
 						</button>
 						<button
 							type="button"
@@ -595,7 +594,7 @@
 							class="p-1 rounded hover:bg-muted transition-colors opacity-70 hover:opacity-100 cursor-pointer {exportingVolume === volume.name ? 'animate-pulse' : ''}"
 							disabled={exportingVolume === volume.name}
 						>
-							<Download class="w-3 h-3 text-muted-foreground hover:text-foreground" />
+							<Download class="size-3 text-muted-foreground hover:text-foreground" />
 						</button>
 						{/if}
 						{#if $canAccess('volumes', 'create')}
@@ -605,7 +604,7 @@
 							title="Clone volume"
 							class="p-1 rounded hover:bg-muted transition-colors opacity-70 hover:opacity-100 cursor-pointer"
 						>
-							<Stamp class="w-3 h-3 text-muted-foreground hover:text-foreground" />
+							<Stamp class="size-3 text-muted-foreground hover:text-foreground" />
 						</button>
 						{/if}
 						{#if $canAccess('volumes', 'remove')}
@@ -620,15 +619,15 @@
 								onOpenChange={(open) => confirmDeleteName = open ? volume.name : null}
 							>
 								{#snippet children({ open })}
-									<Trash2 class="w-3 h-3 {open ? 'text-destructive' : 'text-muted-foreground hover:text-destructive'}" />
+									<Trash2 class="size-3 {open ? 'text-destructive' : 'text-muted-foreground hover:text-destructive'}" />
 								{/snippet}
 							</ConfirmPopover>
 							{#if deleteError?.name === volume.name}
 								<div class="absolute bottom-full right-0 mb-1 z-50 bg-destructive text-destructive-foreground rounded-md shadow-lg p-2 text-xs flex items-start gap-2 max-w-lg w-max">
-									<AlertTriangle class="w-3 h-3 flex-shrink-0 mt-0.5" />
+									<AlertTriangle class="size-3 flex-shrink-0 mt-0.5" />
 									<span class="break-words">{deleteError.message}</span>
 									<button onclick={() => deleteError = null} class="flex-shrink-0 hover:bg-white/20 rounded p-0.5">
-										<X class="w-3 h-3" />
+										<X class="size-3" />
 									</button>
 								</div>
 							{/if}

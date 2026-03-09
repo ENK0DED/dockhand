@@ -708,12 +708,12 @@
 			{#if streamingEnabled}
 				{#if isConnected}
 					<div class="flex items-center gap-1.5 transition-opacity duration-300" title="Connected - Live streaming">
-						<Wifi class="w-3.5 h-3.5 text-green-500" />
+						<Wifi class="size-4 text-green-500" />
 						<span class="text-xs text-green-500 font-medium">Live</span>
 					</div>
 				{:else if loading}
 					<div class="flex items-center gap-1.5 transition-opacity duration-300" title="Connecting...">
-						<RefreshCw class="w-3.5 h-3.5 animate-spin {darkMode ? 'text-amber-500' : 'text-amber-600'}" />
+						<RefreshCw class="size-4 animate-spin {darkMode ? 'text-amber-500' : 'text-amber-600'}" />
 						<span class="text-xs {darkMode ? 'text-amber-500' : 'text-amber-600'}">Connecting...</span>
 					</div>
 				{:else if connectionError}
@@ -722,7 +722,7 @@
 						class="flex items-center gap-1.5 transition-opacity duration-300 hover:opacity-80"
 						title={connectionError}
 					>
-						<WifiOff class="w-3.5 h-3.5 {darkMode ? 'text-zinc-500' : 'text-gray-400'}" />
+						<WifiOff class="size-4 {darkMode ? 'text-zinc-500' : 'text-gray-400'}" />
 						<span class="text-xs {darkMode ? 'text-zinc-500' : 'text-gray-400'}">Disconnected</span>
 					</button>
 				{:else}
@@ -731,13 +731,13 @@
 						class="flex items-center gap-1.5 transition-opacity duration-300 hover:opacity-80"
 						title="Click to reconnect"
 					>
-						<WifiOff class="w-3.5 h-3.5 {darkMode ? 'text-zinc-500' : 'text-gray-400'}" />
+						<WifiOff class="size-4 {darkMode ? 'text-zinc-500' : 'text-gray-400'}" />
 						<span class="text-xs {darkMode ? 'text-zinc-500' : 'text-gray-400'}">Offline</span>
 					</button>
 				{/if}
 			{:else}
 				<div class="flex items-center gap-1.5 transition-opacity duration-300" title="Streaming paused">
-					<Pause class="w-3.5 h-3.5 {darkMode ? 'text-zinc-500' : 'text-gray-400'}" />
+					<Pause class="size-4 {darkMode ? 'text-zinc-500' : 'text-gray-400'}" />
 					<span class="text-xs {darkMode ? 'text-zinc-500' : 'text-gray-400'}">Paused</span>
 				</div>
 			{/if}
@@ -752,9 +752,9 @@
 				title={streamingEnabled ? 'Pause live streaming' : 'Resume live streaming'}
 			>
 				{#if streamingEnabled}
-					<Pause class="w-3 h-3" />
+					<Pause class="size-3" />
 				{:else}
-					<Play class="w-3 h-3" />
+					<Play class="size-3" />
 				{/if}
 			</button>
 			<!-- Auto-scroll button -->
@@ -763,7 +763,7 @@
 				class="flex items-center gap-1 px-1.5 py-0.5 rounded text-xs transition-colors {autoScroll ? (darkMode ? 'bg-amber-500/20 ring-1 ring-amber-500/50 text-amber-400' : 'bg-amber-500/30 ring-1 ring-amber-600/50 text-amber-700') : darkMode ? 'text-zinc-500 hover:text-zinc-300 hover:bg-zinc-800' : 'text-gray-500 hover:text-gray-700 hover:bg-gray-300'}"
 				title="Toggle auto-scroll"
 			>
-				<ArrowDownToLine class="w-3 h-3" />
+				<ArrowDownToLine class="size-3" />
 			</button>
 			<!-- Font size -->
 			<Select.Root type="single" value={String(fontSize)} onValueChange={(v) => updateFontSize(Number(v))}>
@@ -782,7 +782,7 @@
 				class="p-1 rounded transition-colors {wordWrap ? (darkMode ? 'bg-amber-500/20 ring-1 ring-amber-500/50' : 'bg-amber-500/30 ring-1 ring-amber-600/50') : ''} {darkMode ? 'hover:bg-zinc-800' : 'hover:bg-gray-300'}"
 				title="Toggle word wrap"
 			>
-				<WrapText class="w-3 h-3 transition-colors {wordWrap ? (darkMode ? 'text-amber-400' : 'text-amber-700') : darkMode ? 'text-zinc-500 hover:text-zinc-300' : 'text-gray-500 hover:text-gray-700'}" />
+				<WrapText class="size-3 transition-colors {wordWrap ? (darkMode ? 'text-amber-400' : 'text-amber-700') : darkMode ? 'text-zinc-500 hover:text-zinc-300' : 'text-gray-500 hover:text-gray-700'}" />
 			</button>
 			<!-- Theme toggle -->
 			<button
@@ -791,15 +791,15 @@
 				title={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
 			>
 				{#if darkMode}
-					<Sun class="w-3 h-3 {darkMode ? 'text-zinc-500 hover:text-zinc-300' : 'text-gray-500 hover:text-gray-700'}" />
+					<Sun class="size-3 {darkMode ? 'text-zinc-500 hover:text-zinc-300' : 'text-gray-500 hover:text-gray-700'}" />
 				{:else}
-					<Moon class="w-3 h-3 {darkMode ? 'text-zinc-500 hover:text-zinc-300' : 'text-gray-500 hover:text-gray-700'}" />
+					<Moon class="size-3 {darkMode ? 'text-zinc-500 hover:text-zinc-300' : 'text-gray-500 hover:text-gray-700'}" />
 				{/if}
 			</button>
 			<!-- Search -->
 			{#if logSearchActive}
 				<div class="flex items-center gap-1 rounded px-1.5 py-0.5 {darkMode ? 'bg-zinc-800' : 'bg-gray-200'}">
-					<Search class="w-3 h-3 text-amber-400" />
+					<Search class="size-3 text-amber-400" />
 					<input
 						bind:this={logSearchInputRef}
 						type="text"
@@ -814,13 +814,13 @@
 						<span class="text-xs {darkMode ? 'text-zinc-500' : 'text-gray-400'}">0/0</span>
 					{/if}
 					<button onclick={() => navigateMatch('prev')} class="p-0.5 rounded {darkMode ? 'hover:bg-zinc-700' : 'hover:bg-gray-300'}" title="Previous">
-						<ChevronUp class="w-3 h-3 {darkMode ? 'text-zinc-400' : 'text-gray-500'}" />
+						<ChevronUp class="size-3 {darkMode ? 'text-zinc-400' : 'text-gray-500'}" />
 					</button>
 					<button onclick={() => navigateMatch('next')} class="p-0.5 rounded {darkMode ? 'hover:bg-zinc-700' : 'hover:bg-gray-300'}" title="Next">
-						<ChevronDown class="w-3 h-3 {darkMode ? 'text-zinc-400' : 'text-gray-500'}" />
+						<ChevronDown class="size-3 {darkMode ? 'text-zinc-400' : 'text-gray-500'}" />
 					</button>
 					<button onclick={closeLogSearch} class="p-0.5 rounded {darkMode ? 'hover:bg-zinc-700' : 'hover:bg-gray-300'}" title="Close">
-						<X class="w-3 h-3 {darkMode ? 'text-zinc-400' : 'text-gray-500'}" />
+						<X class="size-3 {darkMode ? 'text-zinc-400' : 'text-gray-500'}" />
 					</button>
 				</div>
 			{:else}
@@ -829,7 +829,7 @@
 					class="p-1 rounded transition-colors {darkMode ? 'hover:bg-zinc-800' : 'hover:bg-gray-300'}"
 					title="Search logs"
 				>
-					<Search class="w-3 h-3 {darkMode ? 'text-zinc-500 hover:text-zinc-300' : 'text-gray-500 hover:text-gray-700'}" />
+					<Search class="size-3 {darkMode ? 'text-zinc-500 hover:text-zinc-300' : 'text-gray-500 hover:text-gray-700'}" />
 				</button>
 			{/if}
 			<!-- Copy -->
@@ -838,7 +838,7 @@
 				class="p-1 rounded transition-colors {darkMode ? 'hover:bg-zinc-800' : 'hover:bg-gray-300'}"
 				title="Copy logs"
 			>
-				<Copy class="w-3 h-3 {darkMode ? 'text-zinc-500 hover:text-zinc-300' : 'text-gray-500 hover:text-gray-700'}" />
+				<Copy class="size-3 {darkMode ? 'text-zinc-500 hover:text-zinc-300' : 'text-gray-500 hover:text-gray-700'}" />
 			</button>
 			<!-- Download -->
 			<button
@@ -846,7 +846,7 @@
 				class="p-1 rounded transition-colors {darkMode ? 'hover:bg-zinc-800' : 'hover:bg-gray-300'}"
 				title="Download logs"
 			>
-				<Download class="w-3 h-3 {darkMode ? 'text-zinc-500 hover:text-zinc-300' : 'text-gray-500 hover:text-gray-700'}" />
+				<Download class="size-3 {darkMode ? 'text-zinc-500 hover:text-zinc-300' : 'text-gray-500 hover:text-gray-700'}" />
 			</button>
 			<!-- Refresh -->
 			<button
@@ -854,7 +854,7 @@
 				class="p-1 rounded transition-colors {darkMode ? 'hover:bg-zinc-800' : 'hover:bg-gray-300'}"
 				title="Refresh logs"
 			>
-				<RefreshCw class="w-3 h-3 {darkMode ? 'text-zinc-500 hover:text-zinc-300' : 'text-gray-500 hover:text-gray-700'}" />
+				<RefreshCw class="size-3 {darkMode ? 'text-zinc-500 hover:text-zinc-300' : 'text-gray-500 hover:text-gray-700'}" />
 			</button>
 			<!-- Close -->
 			{#if showCloseButton}
@@ -863,7 +863,7 @@
 					class="p-1 rounded transition-colors {darkMode ? 'hover:bg-zinc-800' : 'hover:bg-gray-300'}"
 					title="Close logs"
 				>
-					<X class="w-3 h-3 {darkMode ? 'text-zinc-500 hover:text-zinc-300' : 'text-gray-500 hover:text-gray-700'}" />
+					<X class="size-3 {darkMode ? 'text-zinc-500 hover:text-zinc-300' : 'text-gray-500 hover:text-gray-700'}" />
 				</button>
 			{/if}
 		</div>

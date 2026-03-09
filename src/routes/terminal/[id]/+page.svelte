@@ -201,11 +201,11 @@
 	<!-- Header -->
 	<div class="flex items-center justify-between px-4 py-2 bg-zinc-900 border-b border-zinc-800 flex-shrink-0">
 		<div class="flex items-center gap-2">
-			<TerminalIcon class="w-4 h-4 text-zinc-400" />
+			<TerminalIcon class="size-4 text-zinc-400" />
 			<span class="text-sm text-zinc-200 font-medium">{containerName}</span>
 			{#if connected}
 				<span class="inline-flex items-center gap-1 text-xs text-green-500">
-					<span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+					<span class="size-2 rounded-full bg-green-500 animate-pulse"></span>
 					Connected
 				</span>
 			{:else if error}

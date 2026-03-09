@@ -247,7 +247,7 @@
 		<!-- Sticky Header -->
 		<div class="p-3 border-b shrink-0 space-y-2">
 			<div class="flex items-center gap-2 text-sm font-medium min-w-0">
-				<Download class="w-4 h-4 shrink-0" />
+				<Download class="size-4 shrink-0" />
 				<span class="truncate">{displayImageName}</span>
 			</div>
 
@@ -255,16 +255,16 @@
 			<div class="flex items-center justify-between">
 				<div class="flex items-center gap-2">
 					{#if overallStatus === 'idle'}
-						<Loader2 class="w-4 h-4 animate-spin text-muted-foreground" />
+						<Loader2 class="size-4 animate-spin text-muted-foreground" />
 						<span class="text-sm text-muted-foreground">Initializing...</span>
 					{:else if overallStatus === 'pulling'}
-						<Loader2 class="w-4 h-4 animate-spin text-blue-600" />
+						<Loader2 class="size-4 animate-spin text-blue-600" />
 						<span class="text-sm">Pulling...</span>
 					{:else if overallStatus === 'complete'}
-						<CheckCircle2 class="w-4 h-4 text-green-600" />
+						<CheckCircle2 class="size-4 text-green-600" />
 						<span class="text-sm text-green-600">Complete!</span>
 					{:else if overallStatus === 'error'}
-						<XCircle class="w-4 h-4 text-red-600" />
+						<XCircle class="size-4 text-red-600" />
 						<span class="text-sm text-red-600">Failed</span>
 					{/if}
 				</div>
@@ -285,7 +285,7 @@
 
 			{#if errorMessage}
 				<div class="flex items-start gap-2 text-xs text-red-600 dark:text-red-400">
-					<AlertCircle class="w-3 h-3 shrink-0 mt-0.5" />
+					<AlertCircle class="size-3 shrink-0 mt-0.5" />
 					<span class="break-all">{errorMessage}</span>
 				</div>
 			{/if}
@@ -303,7 +303,7 @@
 						{@const isExtracting = statusLower.includes('extracting')}
 						<div class="flex items-center gap-2 py-1 px-1 rounded text-xs hover:bg-muted/50">
 							<StatusIcon
-								class="w-3 h-3 shrink-0 {getStatusColor(layer.status)} {shouldSpin(layer.status) ? 'animate-spin' : ''}"
+								class="size-3 shrink-0 {getStatusColor(layer.status)} {shouldSpin(layer.status) ? 'animate-spin' : ''}"
 							/>
 							<code class="w-20 shrink-0 font-mono text-2xs">{layer.id.slice(0, 12)}</code>
 							<div class="flex-1 min-w-0">

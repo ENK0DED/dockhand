@@ -420,13 +420,13 @@
 		<Dialog.Header class="flex-shrink-0">
 			<Dialog.Title class="flex items-center gap-2">
 				{#if isEditing}
-					<Pencil class="w-5 h-5" />
+					<Pencil class="size-5" />
 					Edit role
 				{:else if isCopying}
-					<Copy class="w-5 h-5" />
+					<Copy class="size-5" />
 					Copy role
 				{:else}
-					<Shield class="w-5 h-5" />
+					<Shield class="size-5" />
 					Create role
 				{/if}
 			</Dialog.Title>
@@ -442,7 +442,7 @@
 		</Dialog.Header>
 		{#if formError}
 			<Alert.Root variant="destructive" class="flex-shrink-0">
-				<TriangleAlert class="h-4 w-4" />
+				<TriangleAlert class="size-4" />
 				<Alert.Description>{formError}</Alert.Description>
 			</Alert.Root>
 		{/if}
@@ -474,7 +474,7 @@
 			<div class="flex-shrink-0 border rounded-lg">
 				<div class="px-4 py-3 border-b bg-muted/30">
 					<div class="flex items-center gap-2">
-						<Building2 class="w-4 h-4" />
+						<Building2 class="size-4" />
 						<span class="font-medium text-sm">System permissions</span>
 						<span class="text-xs text-muted-foreground">(always global)</span>
 					</div>
@@ -485,7 +485,7 @@
 						<div class="relative border rounded-md pt-5 pb-3 px-3">
 							<!-- Category pill on border -->
 							<div class="absolute -top-2.5 left-3 inline-flex items-center gap-1.5 px-2 py-0.5 rounded border {categoryColorsSolid[category] || 'bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-gray-400 border-gray-300 dark:border-gray-700'}">
-								<IconComponent class="w-3.5 h-3.5" />
+								<IconComponent class="size-4" />
 								<span class="text-xs font-medium capitalize">{category}</span>
 							</div>
 							<!-- Select all / Clear links -->
@@ -515,7 +515,7 @@
 											onCheckedChange={() => togglePermission(category as keyof typeof formPermissions, permission.key)}
 										/>
 										{#if PermIcon}
-											<PermIcon class="w-3 h-3 text-muted-foreground" />
+											<PermIcon class="size-3 text-muted-foreground" />
 										{/if}
 										<span class="text-xs truncate">{permission.label}</span>
 									</label>
@@ -531,7 +531,7 @@
 				<div class="px-4 py-3 border-b bg-muted/30">
 					<div class="flex items-center justify-between">
 						<div class="flex items-center gap-2">
-							<Globe class="w-4 h-4" />
+							<Globe class="size-4" />
 							<span class="font-medium text-sm">Environment permissions</span>
 						</div>
 						{#if environments.length > 0}
@@ -552,7 +552,7 @@
 											checked={formEnvironmentIds.includes(env.id)}
 											onCheckedChange={() => toggleEnvironment(env.id)}
 										/>
-										<EnvIcon class="w-3.5 h-3.5 flex-shrink-0 text-muted-foreground" />
+										<EnvIcon class="size-4 flex-shrink-0 text-muted-foreground" />
 										<span class="truncate">{env.name}</span>
 									</label>
 								{/each}
@@ -573,7 +573,7 @@
 						<div class="relative border rounded-md pt-5 pb-3 px-3">
 							<!-- Category pill on border -->
 							<div class="absolute -top-2.5 left-3 inline-flex items-center gap-1.5 px-2 py-0.5 rounded border {categoryColorsSolid[category] || 'bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-gray-400 border-gray-300 dark:border-gray-700'}">
-								<IconComponent class="w-3.5 h-3.5" />
+								<IconComponent class="size-4" />
 								<span class="text-xs font-medium capitalize">{category}</span>
 							</div>
 							<!-- Select all / Clear links -->
@@ -603,7 +603,7 @@
 											onCheckedChange={() => togglePermission(category as keyof typeof formPermissions, permission.key)}
 										/>
 										{#if PermIcon}
-											<PermIcon class="w-3 h-3 text-muted-foreground" />
+											<PermIcon class="size-3 text-muted-foreground" />
 										{/if}
 										<span class="text-xs truncate">{permission.label}</span>
 									</label>
@@ -619,11 +619,11 @@
 			<Button variant="outline" onclick={handleClose}>Cancel</Button>
 			<Button onclick={save} disabled={formSaving}>
 				{#if formSaving}
-					<RefreshCw class="w-4 h-4 mr-1 animate-spin" />
+					<RefreshCw class="size-4 mr-1 animate-spin" />
 				{:else if isEditing}
-					<Check class="w-4 h-4" />
+					<Check class="size-4" />
 				{:else}
-					<Plus class="w-4 h-4" />
+					<Plus class="size-4" />
 				{/if}
 				{isEditing ? 'Save' : 'Create role'}
 			</Button>

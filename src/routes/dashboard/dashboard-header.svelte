@@ -88,17 +88,17 @@
 	<!-- Compact header for mini tiles -->
 	<div class="flex items-center gap-2 min-w-0 flex-1">
 		<div class="p-1.5 rounded-lg {online ? 'bg-primary/10' : 'bg-muted'}">
-			<EnvIcon class="w-4 h-4 {online ? 'text-primary' : 'text-muted-foreground'}" />
+			<EnvIcon class="size-4 {online ? 'text-primary' : 'text-muted-foreground'}" />
 		</div>
 		<div class="min-w-0 flex-1">
 			<div class="flex items-center gap-1.5">
 				<span class="font-medium text-sm truncate">{name}</span>
 				{#if showConnecting}
-					<Loader2 class="w-3 h-3 text-muted-foreground animate-spin shrink-0" />
+					<Loader2 class="size-3 text-muted-foreground animate-spin shrink-0" />
 				{:else if showOffline}
-					<WifiOff class="w-3 h-3 text-red-500 shrink-0" />
+					<WifiOff class="size-3 text-red-500 shrink-0" />
 				{:else}
-					<Wifi class="w-3 h-3 text-green-500 shrink-0" />
+					<Wifi class="size-3 text-green-500 shrink-0" />
 				{/if}
 			</div>
 			<span class="text-xs text-muted-foreground truncate block">{hostDisplay}</span>
@@ -109,34 +109,34 @@
 	<div class="flex items-center justify-between">
 		<div class="flex items-center gap-2 min-w-0 flex-1">
 			<div class="p-1.5 rounded-lg {online ? 'bg-primary/10' : 'bg-muted'}">
-				<EnvIcon class="w-4 h-4 {online ? 'text-primary' : 'text-muted-foreground'}" />
+				<EnvIcon class="size-4 {online ? 'text-primary' : 'text-muted-foreground'}" />
 			</div>
 			{#if connectionType === 'socket' || !connectionType}
 				<span title="Unix socket connection">
-					<Unplug class="w-4 h-4 text-cyan-500 glow-cyan" />
+					<Unplug class="size-4 text-cyan-500 glow-cyan" />
 				</span>
 			{:else if connectionType === 'direct'}
 				<span title="Direct Docker connection">
-					<Icon iconNode={whale} class="w-4 h-4 text-blue-500 glow-blue" />
+					<Icon iconNode={whale} class="size-4 text-blue-500 glow-blue" />
 				</span>
 			{:else if connectionType === 'hawser-standard'}
 				<span title="Hawser agent (standard mode)">
-					<Route class="w-4 h-4 text-purple-500 glow-purple" />
+					<Route class="size-4 text-purple-500 glow-purple" />
 				</span>
 			{:else if connectionType === 'hawser-edge'}
 				<span title="Hawser agent (edge mode)">
-					<UndoDot class="w-4 h-4 text-green-500 glow-green" />
+					<UndoDot class="size-4 text-green-500 glow-green" />
 				</span>
 			{/if}
 			<div class="min-w-0 flex-1">
 				<div class="flex items-center gap-1.5">
 					<span class="font-medium text-sm truncate">{name}</span>
 					{#if showConnecting}
-						<Loader2 class="w-3 h-3 text-muted-foreground animate-spin shrink-0" />
+						<Loader2 class="size-3 text-muted-foreground animate-spin shrink-0" />
 					{:else if showOffline}
-						<WifiOff class="w-3 h-3 text-red-500 shrink-0" />
+						<WifiOff class="size-3 text-red-500 shrink-0" />
 					{:else}
-						<Wifi class="w-3 h-3 text-green-500 shrink-0" />
+						<Wifi class="size-3 text-green-500 shrink-0" />
 					{/if}
 				</div>
 				<span class="text-xs text-muted-foreground truncate block">{hostDisplay}</span>
@@ -147,25 +147,25 @@
 			{#if updateCheckEnabled}
 				<span title={updateCheckAutoUpdate ? "Auto-update enabled" : "Update check enabled (notify only)"}>
 					{#if updateCheckAutoUpdate}
-						<CircleArrowUp class="w-4 h-4 text-green-500 glow-green" />
+						<CircleArrowUp class="size-4 text-green-500 glow-green" />
 					{:else}
-						<CircleFadingArrowUp class="w-4 h-4 text-green-500 glow-green" />
+						<CircleFadingArrowUp class="size-4 text-green-500 glow-green" />
 					{/if}
 				</span>
 			{/if}
 			{#if scannerEnabled}
 				<span title="Vulnerability scanning enabled">
-					<ShieldCheck class="w-4 h-4 text-green-500 glow-green" />
+					<ShieldCheck class="size-4 text-green-500 glow-green" />
 				</span>
 			{/if}
 			{#if collectActivity}
 				<span title="Activity collection enabled">
-					<Activity class="w-4 h-4 text-amber-500 glow-amber" />
+					<Activity class="size-4 text-amber-500 glow-amber" />
 				</span>
 			{/if}
 			{#if collectMetrics}
 				<span title="Metrics collection enabled">
-					<Cpu class="w-4 h-4 text-sky-400 glow-sky" />
+					<Cpu class="size-4 text-sky-400 glow-sky" />
 				</span>
 			{/if}
 			{#if canEdit}
@@ -175,7 +175,7 @@
 					class="p-0.5 rounded hover:bg-muted transition-colors"
 					title="Edit environment settings"
 				>
-					<Settings class="w-3.5 h-3.5 text-muted-foreground hover:text-foreground" />
+					<Settings class="size-4 text-muted-foreground hover:text-foreground" />
 				</button>
 			{/if}
 		</div>

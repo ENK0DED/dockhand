@@ -161,7 +161,7 @@
 <div class="space-y-4">
 	{#if loading && history.length === 0}
 		<div class="flex items-center justify-center py-8 flex-1">
-			<Loader2 class="w-6 h-6 animate-spin text-muted-foreground" />
+			<Loader2 class="size-6 animate-spin text-muted-foreground" />
 		</div>
 	{:else if error}
 		<div class="text-sm text-red-600 dark:text-red-400 p-3 bg-red-50 dark:bg-red-950 rounded">
@@ -184,7 +184,7 @@
 		<!-- Layer Stack with Expandable Details -->
 		<div class="space-y-1">
 			<h3 class="sticky top-0 z-10 bg-background text-sm font-semibold mb-2 pb-2 flex items-center gap-2">
-				<Layers class="w-4 h-4" />
+				<Layers class="size-4" />
 				Layer stack (bottom to top) - click to expand
 			</h3>
 			<div class="space-y-1">
@@ -203,9 +203,9 @@
 							<div class="flex items-center gap-2 flex-1">
 								<!-- Expand Icon -->
 								{#if isExpanded}
-									<ChevronDown class="w-3.5 h-3.5 text-muted-foreground shrink-0" />
+									<ChevronDown class="size-4 text-muted-foreground shrink-0" />
 								{:else}
-									<ChevronRight class="w-3.5 h-3.5 text-muted-foreground shrink-0" />
+									<ChevronRight class="size-4 text-muted-foreground shrink-0" />
 								{/if}
 
 								<!-- Layer Number -->

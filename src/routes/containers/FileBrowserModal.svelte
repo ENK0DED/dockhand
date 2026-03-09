@@ -25,7 +25,7 @@
 	<Dialog.Content class="max-w-4xl h-[90vh] sm:h-[80vh] flex flex-col">
 		<Dialog.Header>
 			<Dialog.Title class="flex items-center gap-2">
-				<FolderOpen class="w-5 h-5" />
+				<FolderOpen class="size-5" />
 				<span>Browse files - {containerName}</span>
 			</Dialog.Title>
 			<Dialog.Description>

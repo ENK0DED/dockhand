@@ -34,11 +34,11 @@
 	}
 </script>
 
-<Button variant="ghost" size="icon" onclick={toggleTheme} class="h-9 w-9">
+<Button variant="ghost" size="icon" onclick={toggleTheme} class="size-9">
 	{#if isDark}
-		<Sun class="h-4 w-4" />
+		<Sun class="size-4" />
 	{:else}
-		<Moon class="h-4 w-4" />
+		<Moon class="size-4" />
 	{/if}
 	<span class="sr-only">Toggle theme</span>
 </Button>

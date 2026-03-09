@@ -212,10 +212,10 @@
 		<Dialog.Header class="flex-shrink-0">
 			<Dialog.Title class="flex items-center gap-2">
 				{#if isEditing}
-					<Pencil class="w-5 h-5" />
+					<Pencil class="size-5" />
 					Edit OIDC provider
 				{:else}
-					<LogIn class="w-5 h-5" />
+					<LogIn class="size-5" />
 					Add OIDC provider
 				{/if}
 			</Dialog.Title>
@@ -225,7 +225,7 @@
 			<Tabs.List class="flex-shrink-0 grid w-full grid-cols-2">
 				<Tabs.Trigger value="general">General</Tabs.Trigger>
 				<Tabs.Trigger value="role-mapping" class="flex items-center gap-1.5">
-					<Crown class="w-3.5 h-3.5 text-amber-500" />
+					<Crown class="size-4 text-amber-500" />
 					Role mapping
 				</Tabs.Trigger>
 			</Tabs.List>
@@ -233,7 +233,7 @@
 			<Tabs.Content value="general" class="flex-1 overflow-y-auto space-y-4 py-2 mt-0">
 				{#if formError}
 					<Alert.Root variant="destructive">
-						<TriangleAlert class="h-4 w-4" />
+						<TriangleAlert class="size-4" />
 						<Alert.Description>{formError}</Alert.Description>
 					</Alert.Root>
 				{/if}
@@ -373,7 +373,7 @@
 					<div class="flex-1 flex items-center justify-center py-8">
 						<div class="text-center">
 							<h3 class="text-lg font-medium mb-2 flex items-center justify-center gap-2">
-								<Crown class="w-5 h-5 text-amber-500" />
+								<Crown class="size-5 text-amber-500" />
 								Enterprise feature
 							</h3>
 							<p class="text-sm text-muted-foreground mb-4 max-w-md mx-auto">
@@ -381,7 +381,7 @@
 							</p>
 							{#if onNavigateToLicense}
 								<Button onclick={() => { open = false; onNavigateToLicense?.(); }}>
-									<Key class="w-4 h-4" />
+									<Key class="size-4" />
 									Activate license
 								</Button>
 							{/if}
@@ -424,7 +424,7 @@
 								variant="outline"
 								onclick={addRoleMapping}
 							>
-								<Plus class="w-4 h-4" />
+								<Plus class="size-4" />
 								Add mapping
 							</Button>
 						</div>
@@ -468,7 +468,7 @@
 														{#each roles as role}
 															<Select.Item value={String(role.id)}>
 																<div class="flex items-center gap-2">
-																	<Shield class="w-3.5 h-3.5 text-muted-foreground" />
+																	<Shield class="size-4 text-muted-foreground" />
 																	{role.name}
 																</div>
 															</Select.Item>
@@ -480,10 +480,10 @@
 										<Button
 											size="sm"
 											variant="ghost"
-											class="text-destructive hover:text-destructive h-8 w-8 p-0"
+											class="text-destructive hover:text-destructive size-8 p-0"
 											onclick={() => removeRoleMapping(index)}
 										>
-											<Trash2 class="w-4 h-4" />
+											<Trash2 class="size-4" />
 										</Button>
 									</div>
 								{/each}
@@ -498,11 +498,11 @@
 			<Button variant="outline" onclick={handleClose}>Cancel</Button>
 			<Button onclick={save} disabled={formSaving}>
 				{#if formSaving}
-					<RefreshCw class="w-4 h-4 mr-1 animate-spin" />
+					<RefreshCw class="size-4 mr-1 animate-spin" />
 				{:else if isEditing}
-					<Check class="w-4 h-4" />
+					<Check class="size-4" />
 				{:else}
-					<Plus class="w-4 h-4" />
+					<Plus class="size-4" />
 				{/if}
 				{isEditing ? 'Save' : 'Add provider'}
 			</Button>

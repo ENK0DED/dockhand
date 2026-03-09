@@ -61,7 +61,7 @@
 						<span class="text-muted-foreground truncate" title={formatDisplayValue(change.oldValue)}>
 							{formatDisplayValue(change.oldValue)}
 						</span>
-						<ArrowRight class="w-3.5 h-3.5 text-muted-foreground shrink-0" />
+						<ArrowRight class="size-4 text-muted-foreground shrink-0" />
 						<span class="text-amber-600 dark:text-amber-400 font-medium truncate" title={formatDisplayValue(change.newValue)}>
 							{formatDisplayValue(change.newValue)}
 						</span>

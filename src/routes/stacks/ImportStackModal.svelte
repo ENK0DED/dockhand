@@ -327,10 +327,10 @@
 		<Dialog.Content class="max-w-4xl h-[80vh] flex flex-col p-0 gap-0">
 			<Dialog.Header class="px-6 py-4 border-b shrink-0">
 				<Dialog.Title class="flex items-center gap-2">
-					<Import class="w-5 h-5" />
+					<Import class="size-5" />
 					Select stacks to adopt
 					<span class="text-muted-foreground">·</span>
-					<EnvIconComponent class="w-4 h-4 text-muted-foreground" />
+					<EnvIconComponent class="size-4 text-muted-foreground" />
 					<span class="text-muted-foreground font-normal">{envName}</span>
 				</Dialog.Title>
 				<Dialog.Description>
@@ -363,7 +363,7 @@
 										{/if}
 										{#if stack.running}
 											<Badge variant="default" class="text-xs {countsMismatch ? 'bg-amber-600' : 'bg-green-600'}">
-												<Play class="w-3 h-3 mr-1" />
+												<Play class="size-3 mr-1" />
 												{stack.containerCount} running
 											</Badge>
 										{/if}
@@ -384,7 +384,7 @@
 				<!-- Adopt info -->
 				<div class="px-4 py-3 border-t shrink-0">
 					<div class="flex items-start gap-2.5 text-xs bg-zinc-100 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700 rounded-md px-3 py-2.5">
-						<Info class="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
+						<Info class="size-4 text-amber-500 shrink-0 mt-0.5" />
 						<span><span class="font-medium text-amber-600 dark:text-amber-400">What happens when you adopt:</span> <span class="text-zinc-600 dark:text-zinc-400">Dockhand will track these compose files, letting you edit, start, and stop the stacks from the UI. Your files stay in their current location.</span></span>
 					</div>
 				</div>
@@ -414,10 +414,10 @@
 						disabled={adopting || selectedCount === 0}
 					>
 						{#if adopting}
-							<Loader2 class="w-4 h-4 mr-2 animate-spin" />
+							<Loader2 class="size-4 mr-2 animate-spin" />
 							Adopting...
 						{:else}
-							<Import class="w-4 h-4" />
+							<Import class="size-4" />
 							Adopt {selectedCount} stack(s)
 						{/if}
 					</Button>
@@ -432,7 +432,7 @@
 	<Dialog.Content class="max-w-3xl h-[70vh] flex flex-col p-0 gap-0">
 		<Dialog.Header class="px-5 py-4 border-b shrink-0">
 			<Dialog.Title class="flex items-center gap-2">
-				<Import class="w-5 h-5" />
+				<Import class="size-5" />
 				Adopt this stack?
 			</Dialog.Title>
 			<Dialog.Description>
@@ -462,7 +462,7 @@
 				<div class="flex-1 min-h-0 p-3">
 					{#if loadingPreview}
 						<div class="flex items-center justify-center h-full">
-							<Loader2 class="w-6 h-6 animate-spin text-muted-foreground" />
+							<Loader2 class="size-6 animate-spin text-muted-foreground" />
 						</div>
 					{:else if previewContent}
 						<CodeEditor
@@ -478,7 +478,7 @@
 				<!-- Adopt info -->
 				<div class="px-5 py-3 border-t shrink-0">
 					<div class="flex items-start gap-2.5 text-xs bg-zinc-100 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700 rounded-md px-3 py-2.5">
-						<Info class="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
+						<Info class="size-4 text-amber-500 shrink-0 mt-0.5" />
 						<span><span class="font-medium text-amber-600 dark:text-amber-400">What happens when you adopt:</span> <span class="text-zinc-600 dark:text-zinc-400">Dockhand will track this compose file, letting you edit, start, and stop the stack from the UI. Your files stay in their current location.</span></span>
 					</div>
 				</div>
@@ -491,10 +491,10 @@
 			</Button>
 			<Button onclick={confirmAdoptFromPreview} disabled={adopting}>
 				{#if adopting}
-					<Loader2 class="w-4 h-4 mr-2 animate-spin" />
+					<Loader2 class="size-4 mr-2 animate-spin" />
 					Adopting...
 				{:else}
-					<Import class="w-4 h-4" />
+					<Import class="size-4" />
 					Adopt stack
 				{/if}
 			</Button>

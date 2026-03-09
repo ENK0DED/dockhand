@@ -602,7 +602,7 @@
 					<!-- Fixed start columns -->
 					{#each fixedStartCols as colId (colId)}
 						<td class="py-1.5 px-1 {colId === 'select' ? 'select-col' : ''} {colId === 'expand' ? 'expand-col' : ''}" style="width: {getDisplayWidth(colId)}px">
-							<Skeleton class="h-4 w-4" />
+							<Skeleton class="size-4" />
 						</td>
 					{/each}
 
@@ -644,11 +644,11 @@
 							title={allSelected ? 'Deselect all' : 'Select all'}
 						>
 							{#if allSelected}
-								<CheckSquare class="w-3.5 h-3.5 text-muted-foreground" />
+								<CheckSquare class="size-4 text-muted-foreground" />
 							{:else if someSelected}
-								<CheckSquare class="w-3.5 h-3.5 text-muted-foreground" />
+								<CheckSquare class="size-4 text-muted-foreground" />
 							{:else}
-								<SquareIcon class="w-3.5 h-3.5 text-muted-foreground" />
+								<SquareIcon class="size-4 text-muted-foreground" />
 							{/if}
 						</button>
 					{:else if colId === 'expand' && expandable}
@@ -680,12 +680,12 @@
 								{colConfig.label}
 								{#if sortState?.field === getSortField(colId)}
 									{#if sortState.direction === 'asc'}
-										<ArrowUp class="w-3 h-3" />
+										<ArrowUp class="size-3" />
 									{:else}
-										<ArrowDown class="w-3 h-3" />
+										<ArrowDown class="size-3" />
 									{/if}
 								{:else}
-									<ArrowUpDown class="w-3 h-3 opacity-30" />
+									<ArrowUpDown class="size-3 opacity-30" />
 								{/if}
 							</button>
 						{:else}
@@ -762,9 +762,9 @@
 									class="flex items-center justify-center w-full h-full min-h-[24px] transition-colors cursor-pointer {rowState.isSelected ? 'opacity-100' : 'opacity-0 group-hover:opacity-40 hover:!opacity-100'}"
 								>
 									{#if rowState.isSelected}
-										<CheckSquare class="w-3.5 h-3.5 text-muted-foreground" />
+										<CheckSquare class="size-4 text-muted-foreground" />
 									{:else}
-										<SquareIcon class="w-3.5 h-3.5 text-muted-foreground" />
+										<SquareIcon class="size-4 text-muted-foreground" />
 									{/if}
 								</button>
 							{/if}
@@ -779,9 +779,9 @@
 								title={rowState.isExpanded ? 'Collapse' : 'Expand'}
 							>
 								{#if rowState.isExpanded}
-									<ChevronDown class="w-4 h-4 text-muted-foreground" />
+									<ChevronDown class="size-4 text-muted-foreground" />
 								{:else}
-									<ChevronRight class="w-4 h-4 text-muted-foreground" />
+									<ChevronRight class="size-4 text-muted-foreground" />
 								{/if}
 							</button>
 						{:else if cell}
@@ -871,9 +871,9 @@
 											class="flex items-center justify-center w-full h-full min-h-[24px] transition-colors cursor-pointer {rowState.isSelected ? 'opacity-100' : 'opacity-0 group-hover:opacity-40 hover:!opacity-100'}"
 										>
 											{#if rowState.isSelected}
-												<CheckSquare class="w-3.5 h-3.5 text-muted-foreground" />
+												<CheckSquare class="size-4 text-muted-foreground" />
 											{:else}
-												<SquareIcon class="w-3.5 h-3.5 text-muted-foreground" />
+												<SquareIcon class="size-4 text-muted-foreground" />
 											{/if}
 										</button>
 									{/if}
@@ -885,9 +885,9 @@
 										title={rowState.isExpanded ? 'Collapse' : 'Expand'}
 									>
 										{#if rowState.isExpanded}
-											<ChevronDown class="w-4 h-4 text-muted-foreground" />
+											<ChevronDown class="size-4 text-muted-foreground" />
 										{:else}
-											<ChevronRight class="w-4 h-4 text-muted-foreground" />
+											<ChevronRight class="size-4 text-muted-foreground" />
 										{/if}
 									</button>
 								{:else if cell}

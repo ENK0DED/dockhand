@@ -186,7 +186,7 @@
 	<div class="flex items-center justify-between px-3 py-1.5 border-b border-zinc-800 bg-zinc-900/50 shrink-0">
 		<div class="flex items-center gap-2">
 			{#if loading}
-				<RefreshCw class="w-3 h-3 text-zinc-500 animate-spin" />
+				<RefreshCw class="size-3 text-zinc-500 animate-spin" />
 			{/if}
 		</div>
 		<div class="flex items-center gap-2">
@@ -196,7 +196,7 @@
 				class="flex items-center gap-1 px-1.5 py-0.5 rounded text-xs transition-colors {autoRefresh ? 'bg-amber-500/20 ring-1 ring-amber-500/50 text-amber-400' : 'text-zinc-500 hover:text-zinc-300 hover:bg-zinc-800'}"
 				title="Toggle auto-refresh"
 			>
-				<RefreshCw class="w-3 h-3" />
+				<RefreshCw class="size-3" />
 			</button>
 			<!-- Auto-scroll button -->
 			<button
@@ -204,18 +204,18 @@
 				class="flex items-center gap-1 px-1.5 py-0.5 rounded text-xs transition-colors {autoScroll ? 'bg-amber-500/20 ring-1 ring-amber-500/50 text-amber-400' : 'text-zinc-500 hover:text-zinc-300 hover:bg-zinc-800'}"
 				title="Toggle auto-scroll"
 			>
-				<ArrowDownToLine class="w-3 h-3" />
+				<ArrowDownToLine class="size-3" />
 			</button>
 			<!-- Font size -->
 			<Select.Root type="single" value={String(fontSize)} onValueChange={(v) => fontSize = Number(v)}>
 				<Select.Trigger class="h-6 w-16 bg-zinc-800 border-zinc-700 text-xs text-zinc-300 px-1.5">
-					<Type class="w-3 h-3 mr-1 text-zinc-400" />
+					<Type class="size-3 mr-1 text-zinc-400" />
 					<span>{fontSize}px</span>
 				</Select.Trigger>
 				<Select.Content>
 					{#each fontSizeOptions as size}
 						<Select.Item value={String(size)} label="{size}px">
-							<Type class="w-3 h-3 mr-1.5 text-muted-foreground" />
+							<Type class="size-3 mr-1.5 text-muted-foreground" />
 							{size}px
 						</Select.Item>
 					{/each}
@@ -227,12 +227,12 @@
 				class="p-1 rounded hover:bg-zinc-800 transition-colors {wordWrap ? 'bg-amber-500/20 ring-1 ring-amber-500/50' : ''}"
 				title="Toggle word wrap"
 			>
-				<WrapText class="w-3 h-3 transition-colors {wordWrap ? 'text-amber-400' : 'text-zinc-500 hover:text-zinc-300'}" />
+				<WrapText class="size-3 transition-colors {wordWrap ? 'text-amber-400' : 'text-zinc-500 hover:text-zinc-300'}" />
 			</button>
 			<!-- Search -->
 			{#if logSearchActive}
 				<div class="flex items-center gap-1 bg-zinc-800 rounded px-1.5 py-0.5">
-					<Search class="w-3 h-3 text-amber-400" />
+					<Search class="size-3 text-amber-400" />
 					<input
 						bind:this={logSearchInputRef}
 						type="text"
@@ -247,13 +247,13 @@
 						<span class="text-xs text-zinc-500">0/0</span>
 					{/if}
 					<button onclick={() => navigateMatch('prev')} class="p-0.5 rounded hover:bg-zinc-700" title="Previous">
-						<ChevronUp class="w-3 h-3 text-zinc-400" />
+						<ChevronUp class="size-3 text-zinc-400" />
 					</button>
 					<button onclick={() => navigateMatch('next')} class="p-0.5 rounded hover:bg-zinc-700" title="Next">
-						<ChevronDown class="w-3 h-3 text-zinc-400" />
+						<ChevronDown class="size-3 text-zinc-400" />
 					</button>
 					<button onclick={closeLogSearch} class="p-0.5 rounded hover:bg-zinc-700" title="Close">
-						<X class="w-3 h-3 text-zinc-400" />
+						<X class="size-3 text-zinc-400" />
 					</button>
 				</div>
 			{:else}
@@ -262,7 +262,7 @@
 					class="p-1 rounded hover:bg-zinc-800 transition-colors"
 					title="Search logs"
 				>
-					<Search class="w-3 h-3 text-zinc-500 hover:text-zinc-300" />
+					<Search class="size-3 text-zinc-500 hover:text-zinc-300" />
 				</button>
 			{/if}
 			<!-- Copy -->
@@ -271,7 +271,7 @@
 				class="p-1 rounded hover:bg-zinc-800 transition-colors"
 				title="Copy logs"
 			>
-				<Copy class="w-3 h-3 text-zinc-500 hover:text-zinc-300" />
+				<Copy class="size-3 text-zinc-500 hover:text-zinc-300" />
 			</button>
 			<!-- Download -->
 			<button
@@ -279,7 +279,7 @@
 				class="p-1 rounded hover:bg-zinc-800 transition-colors"
 				title="Download logs"
 			>
-				<Download class="w-3 h-3 text-zinc-500 hover:text-zinc-300" />
+				<Download class="size-3 text-zinc-500 hover:text-zinc-300" />
 			</button>
 			<!-- Refresh -->
 			<button
@@ -287,7 +287,7 @@
 				class="p-1 rounded hover:bg-zinc-800 transition-colors"
 				title="Refresh logs"
 			>
-				<RefreshCw class="w-3 h-3 text-zinc-500 hover:text-zinc-300" />
+				<RefreshCw class="size-3 text-zinc-500 hover:text-zinc-300" />
 			</button>
 		</div>
 	</div>
@@ -298,7 +298,7 @@
 			<pre class="text-zinc-50 {wordWrap ? 'whitespace-pre-wrap' : 'whitespace-pre'}" style="font-size: {fontSize}px; font-family: {terminalFontFamily()};">{@html highlightedLogs()}</pre>
 		{:else if loading}
 			<div class="flex items-center justify-center h-full text-muted-foreground">
-				<RefreshCw class="w-5 h-5 animate-spin mr-2" />
+				<RefreshCw class="size-5 animate-spin mr-2" />
 				Loading logs...
 			</div>
 		{:else}

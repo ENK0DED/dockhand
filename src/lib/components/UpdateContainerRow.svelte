@@ -50,7 +50,7 @@
 <div class="flex items-center gap-3 p-3">
 	<svelte:component
 		this={StepIcon}
-		class="w-4 h-4 shrink-0 {colorClass} {isActive ? 'animate-spin' : ''}"
+		class="size-4 shrink-0 {colorClass} {isActive ? 'animate-spin' : ''}"
 	/>
 	<div class="flex-1 min-w-0">
 		<div class="font-medium truncate">{name}</div>
@@ -70,12 +70,12 @@
 
 	<!-- Status/action icons -->
 	{#if status === 'done' || status === 'updated'}
-		<CheckCircle2 class="w-4 h-4 text-green-600 shrink-0" />
+		<CheckCircle2 class="size-4 text-green-600 shrink-0" />
 	{:else if status === 'failed'}
-		<XCircle class="w-4 h-4 text-red-600 shrink-0" />
+		<XCircle class="size-4 text-red-600 shrink-0" />
 	{:else if status === 'blocked' && onForceUpdate}
 		{#if isForceUpdating}
-			<Loader2 class="w-4 h-4 text-blue-500 shrink-0 animate-spin" />
+			<Loader2 class="size-4 text-blue-500 shrink-0 animate-spin" />
 		{:else}
 			<Button
 				variant="ghost"
@@ -97,9 +97,9 @@
 			title={showLogs ? 'Hide logs' : 'Show logs'}
 		>
 			{#if showLogs}
-				<ChevronDown class="w-4 h-4 text-muted-foreground" />
+				<ChevronDown class="size-4 text-muted-foreground" />
 			{:else}
-				<ChevronRight class="w-4 h-4 text-muted-foreground" />
+				<ChevronRight class="size-4 text-muted-foreground" />
 			{/if}
 		</button>
 	{/if}

@@ -53,11 +53,11 @@
 	<Dialog.Content class="max-w-4xl h-[90vh] sm:h-[80vh] flex flex-col">
 		<Dialog.Header>
 			<Dialog.Title class="flex items-center gap-2">
-				<HardDrive class="w-5 h-5" />
+				<HardDrive class="size-5" />
 				<span>Browse volume - {volumeName}</span>
 				{#if isInUse}
 					<Badge variant="secondary" class="flex items-center gap-1 ml-2">
-						<Lock class="w-3 h-3" />
+						<Lock class="size-3" />
 						<span>Read-only</span>
 					</Badge>
 				{/if}
@@ -65,11 +65,11 @@
 			<Dialog.Description>
 				{#if isInUse}
 					<span class="flex items-center gap-1.5 flex-wrap">
-						<Lock class="w-3.5 h-3.5 text-muted-foreground inline" />
+						<Lock class="size-4 text-muted-foreground inline" />
 						<span>Volume is in use by:</span>
 						{#each volumeUsage as container, i}
 							<span class="inline-flex items-center gap-1 text-foreground font-medium">
-								<Container class="w-3 h-3" />
+								<Container class="size-3" />
 								{container.containerName}
 								<span class="text-muted-foreground">({container.state})</span>{#if i < volumeUsage.length - 1}<span>,</span>{/if}
 							</span>

@@ -170,8 +170,8 @@
 			<span class="text-xs text-zinc-400">Terminal:</span>
 			<span class="text-xs text-zinc-200 font-medium">{containerName}</span>
 			{#if connected}
-				<span class="inline-flex items-center gap-1 text-xs text-green-500">
-					<span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+				<span class="inline-flex items-center gap-2 text-xs text-green-500">
+					<span class="size-2 rounded-full bg-green-500 animate-pulse"></span>
 					Connected
 				</span>
 			{:else}
@@ -196,7 +196,7 @@
 				class="p-1 rounded hover:bg-zinc-800 transition-colors"
 				title="Clear terminal (Ctrl+L)"
 			>
-				<Trash2 class="w-3 h-3 text-zinc-500 hover:text-zinc-300" />
+				<Trash2 class="size-3 text-zinc-500 hover:text-zinc-300" />
 			</button>
 			<!-- Copy -->
 			<button
@@ -204,7 +204,7 @@
 				class="p-1 rounded hover:bg-zinc-800 transition-colors"
 				title="Copy output"
 			>
-				<Copy class="w-3 h-3 text-zinc-500 hover:text-zinc-300" />
+				<Copy class="size-3 text-zinc-500 hover:text-zinc-300" />
 			</button>
 			<!-- Reconnect -->
 			{#if !connected}
@@ -213,7 +213,7 @@
 					class="flex items-center gap-1 px-1.5 py-0.5 rounded text-xs bg-amber-500/20 ring-1 ring-amber-500/50 text-amber-400 hover:bg-amber-500/30 transition-colors"
 					title="Reconnect"
 				>
-					<RefreshCw class="w-3 h-3" />
+					<RefreshCw class="size-3" />
 				</button>
 			{/if}
 			<!-- Close -->
@@ -222,7 +222,7 @@
 				class="p-1 rounded hover:bg-zinc-800 transition-colors"
 				title="Close terminal"
 			>
-				<X class="w-3 h-3 text-zinc-500 hover:text-zinc-300" />
+				<X class="size-3 text-zinc-500 hover:text-zinc-300" />
 			</button>
 		</div>
 	</div>

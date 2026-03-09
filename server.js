@@ -9,7 +9,6 @@
  */
 
 import { createServer, request as httpRequest } from 'node:http';
-import { request as httpsRequest } from 'node:https';
 import { createConnection } from 'node:net';
 import { connect as tlsConnect, rootCertificates } from 'node:tls';
 import { randomUUID } from 'node:crypto';

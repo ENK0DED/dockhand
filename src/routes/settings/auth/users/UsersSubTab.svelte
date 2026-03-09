@@ -254,14 +254,14 @@
 			<div class="flex items-center justify-between">
 				<div>
 					<Card.Title class="text-sm font-medium flex items-center gap-2">
-						<Users class="w-4 h-4" />
+						<Users class="size-4" />
 						Users
 					</Card.Title>
 					<p class="text-xs text-muted-foreground mt-1">Manage user accounts for local authentication, SSO, and LDAP.</p>
 				</div>
 				{#if $canAccess('users', 'create')}
 					<Button size="sm" onclick={() => openUserModal(null)}>
-						<UserPlus class="w-4 h-4" />
+						<UserPlus class="size-4" />
 						Add user
 					</Button>
 				{/if}
@@ -270,7 +270,7 @@
 		<Card.Content class="flex-1 flex flex-col min-h-0">
 			{#if usersLoading}
 				<div class="flex items-center justify-center py-4">
-					<RefreshCw class="w-6 h-6 animate-spin text-muted-foreground" />
+					<RefreshCw class="size-6 animate-spin text-muted-foreground" />
 				</div>
 			{:else if localUsers.length === 0}
 				<EmptyState
@@ -282,7 +282,7 @@
 				<!-- Filter bar -->
 				<div class="flex items-center gap-2 mb-3">
 					<div class="relative flex-1 max-w-xs">
-						<Search class="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
+						<Search class="absolute left-2.5 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
 						<Input
 							type="text"
 							placeholder="Search users..."
@@ -307,9 +307,9 @@
 									>
 										User
 										{#if sortField === 'username'}
-											{#if sortDirection === 'asc'}<ArrowUp class="w-3 h-3" />{:else}<ArrowDown class="w-3 h-3" />{/if}
+											{#if sortDirection === 'asc'}<ArrowUp class="size-3" />{:else}<ArrowDown class="size-3" />{/if}
 										{:else}
-											<ArrowUpDown class="w-3 h-3 opacity-30" />
+											<ArrowUpDown class="size-3 opacity-30" />
 										{/if}
 									</button>
 								</th>
@@ -321,9 +321,9 @@
 									>
 										Email
 										{#if sortField === 'email'}
-											{#if sortDirection === 'asc'}<ArrowUp class="w-3 h-3" />{:else}<ArrowDown class="w-3 h-3" />{/if}
+											{#if sortDirection === 'asc'}<ArrowUp class="size-3" />{:else}<ArrowDown class="size-3" />{/if}
 										{:else}
-											<ArrowUpDown class="w-3 h-3 opacity-30" />
+											<ArrowUpDown class="size-3 opacity-30" />
 										{/if}
 									</button>
 								</th>
@@ -339,9 +339,9 @@
 									>
 										Provider
 										{#if sortField === 'provider'}
-											{#if sortDirection === 'asc'}<ArrowUp class="w-3 h-3" />{:else}<ArrowDown class="w-3 h-3" />{/if}
+											{#if sortDirection === 'asc'}<ArrowUp class="size-3" />{:else}<ArrowDown class="size-3" />{/if}
 										{:else}
-											<ArrowUpDown class="w-3 h-3 opacity-30" />
+											<ArrowUpDown class="size-3 opacity-30" />
 										{/if}
 									</button>
 								</th>
@@ -358,8 +358,8 @@
 									<!-- User -->
 									<td class="py-2 px-3">
 										<div class="flex items-center gap-2">
-											<div class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-												<User class="w-3 h-3 text-primary" />
+											<div class="size-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+												<User class="size-3 text-primary" />
 											</div>
 											<div class="flex items-center gap-1.5">
 												<span class="font-medium">{user.username}</span>
@@ -377,7 +377,7 @@
 									<td class="py-2 px-3">
 										{#if user.mfaEnabled}
 											<Badge variant="outline" class="text-2xs px-1.5 py-0 h-4 gap-1 rounded-sm bg-green-500/10 text-green-600 dark:text-green-400 border-green-500/30">
-												<Shield class="w-2.5 h-2.5" />
+												<Shield class="size-3" />
 												Enabled
 											</Badge>
 										{:else}
@@ -392,7 +392,7 @@
 													{#each visibleRoles as role}
 														{@const RoleIcon = getRoleIcon(role.name)}
 														<Badge variant="outline" class="text-2xs px-1.5 py-0 h-4 gap-1 rounded-sm bg-violet-500/10 text-violet-600 dark:text-violet-400 border-violet-500/30">
-															<RoleIcon class="w-2.5 h-2.5" />
+															<RoleIcon class="size-3" />
 															{role.name}
 														</Badge>
 													{/each}
@@ -408,7 +408,7 @@
 									<!-- Provider -->
 									<td class="py-2 px-3">
 										<Badge variant="outline" class="text-2xs px-1.5 py-0 h-4 gap-1 rounded-sm {provider.class}">
-											<ProviderIcon class="w-2.5 h-2.5" />
+											<ProviderIcon class="size-3" />
 											{provider.label}
 										</Badge>
 									</td>
@@ -419,10 +419,10 @@
 												<Button
 													variant="ghost"
 													size="sm"
-													class="h-7 w-7 p-0"
+													class="size-7 p-0"
 													onclick={() => openUserModal(user)}
 												>
-													<Pencil class="w-3.5 h-3.5" />
+													<Pencil class="size-4" />
 												</Button>
 											{/if}
 											{#if $canAccess('users', 'delete')}
@@ -434,8 +434,8 @@
 													onConfirm={() => deleteLocalUser(user.id)}
 													onOpenChange={(open) => { if (!open) confirmDeleteUserId = null; else confirmDeleteUserId = user.id; }}
 												>
-													<span class="inline-flex items-center justify-center h-7 w-7 rounded-md hover:bg-accent hover:text-accent-foreground">
-														<Trash2 class="w-3.5 h-3.5 text-destructive" />
+													<span class="inline-flex items-center justify-center size-7 rounded-md hover:bg-accent hover:text-accent-foreground">
+														<Trash2 class="size-4 text-destructive" />
 													</span>
 												</ConfirmPopover>
 											{/if}
@@ -445,7 +445,7 @@
 							{:else}
 								<tr>
 									<td colspan={$licenseStore.isEnterprise ? 6 : 5} class="py-8 text-center text-muted-foreground">
-										<Search class="w-8 h-8 mx-auto mb-2 opacity-50" />
+										<Search class="size-8 mx-auto mb-2 opacity-50" />
 										<p>No users found matching "{searchQuery}"</p>
 									</td>
 								</tr>
@@ -472,7 +472,7 @@
 	<Dialog.Content class="max-w-md">
 		<Dialog.Header>
 			<Dialog.Title class="flex items-center gap-2 text-destructive">
-				<AlertTriangle class="w-5 h-5" />
+				<AlertTriangle class="size-5" />
 				Delete last admin?
 			</Dialog.Title>
 			<Dialog.Description class="text-left">
@@ -482,7 +482,7 @@
 		<Dialog.Footer>
 			<Button variant="outline" onclick={cancelLastAdminDelete}>Cancel</Button>
 			<Button variant="destructive" onclick={confirmLastAdminDelete}>
-				<Trash2 class="w-4 h-4" />
+				<Trash2 class="size-4" />
 				Delete and disable auth
 			</Button>
 		</Dialog.Footer>

@@ -223,24 +223,24 @@
 		<div class="flex items-center justify-between">
 			<div class="flex items-center gap-2">
 				{#if status === 'idle'}
-					<Shield class="w-4 h-4 text-muted-foreground" />
+					<Shield class="size-4 text-muted-foreground" />
 					<span class="text-sm text-muted-foreground">Ready to scan</span>
 				{:else if status === 'scanning'}
-					<Loader2 class="w-4 h-4 animate-spin text-blue-600" />
+					<Loader2 class="size-4 animate-spin text-blue-600" />
 					<span class="text-sm">Scanning for vulnerabilities...</span>
 				{:else if status === 'complete'}
 					{#if hasCriticalOrHigh}
-						<ShieldX class="w-4 h-4 text-red-500" />
+						<ShieldX class="size-4 text-red-500" />
 						<span class="text-sm text-red-500">Vulnerabilities found</span>
 					{:else if totalVulnerabilities > 0}
-						<ShieldAlert class="w-4 h-4 text-yellow-500" />
+						<ShieldAlert class="size-4 text-yellow-500" />
 						<span class="text-sm text-yellow-500">Some vulnerabilities found</span>
 					{:else}
-						<ShieldCheck class="w-4 h-4 text-green-600" />
+						<ShieldCheck class="size-4 text-green-600" />
 						<span class="text-sm text-green-600">No vulnerabilities!</span>
 					{/if}
 				{:else if status === 'error'}
-					<ShieldX class="w-4 h-4 text-red-600" />
+					<ShieldX class="size-4 text-red-600" />
 					<span class="text-sm text-red-600">Scan failed</span>
 				{/if}
 			</div>
@@ -265,7 +265,7 @@
 		{#if errorMessage}
 			<div class="p-3 rounded-lg bg-destructive/10 border border-destructive/30">
 				<div class="flex items-start gap-2">
-					<AlertCircle class="w-4 h-4 text-destructive mt-0.5 shrink-0" />
+					<AlertCircle class="size-4 text-destructive mt-0.5 shrink-0" />
 					<span class="text-sm text-destructive break-all">{errorMessage}</span>
 				</div>
 			</div>
@@ -275,10 +275,10 @@
 	<!-- Idle state with scan button -->
 	{#if status === 'idle'}
 		<div class="flex-1 flex flex-col items-center justify-center gap-4 text-muted-foreground">
-			<Shield class="w-12 h-12 opacity-50" />
+			<Shield class="size-12 opacity-50" />
 			<p class="text-sm">Scan <code class="bg-muted px-1.5 py-0.5 rounded">{imageName}</code> for vulnerabilities</p>
 			<Button onclick={startScan}>
-				<Shield class="w-4 h-4" />
+				<Shield class="size-4" />
 				Start scan
 			</Button>
 		</div>
@@ -293,7 +293,7 @@
 					class="px-3 py-1.5 text-xs font-medium border-b-2 transition-colors cursor-pointer {activeTab === 'output' ? 'border-primary text-foreground' : 'border-transparent text-muted-foreground hover:text-foreground'}"
 					onclick={() => activeTab = 'output'}
 				>
-					<Terminal class="w-3 h-3 inline mr-1" />
+					<Terminal class="size-3 inline mr-1" />
 					Output
 				</button>
 				<button
@@ -301,11 +301,11 @@
 					onclick={() => activeTab = 'results'}
 				>
 					{#if hasCriticalOrHigh}
-						<ShieldX class="w-3 h-3 inline mr-1 text-red-500" />
+						<ShieldX class="size-3 inline mr-1 text-red-500" />
 					{:else if totalVulnerabilities > 0}
-						<ShieldAlert class="w-3 h-3 inline mr-1 text-yellow-500" />
+						<ShieldAlert class="size-3 inline mr-1 text-yellow-500" />
 					{:else}
-						<ShieldCheck class="w-3 h-3 inline mr-1 text-green-500" />
+						<ShieldCheck class="size-3 inline mr-1 text-green-500" />
 					{/if}
 					Scan results
 					<Badge variant={hasCriticalOrHigh ? 'destructive' : 'secondary'} class="ml-1 text-2xs py-0">
@@ -321,14 +321,14 @@
 				<!-- Output Log -->
 				<div class="flex items-center justify-between text-xs text-muted-foreground mb-2 shrink-0">
 					<div class="flex items-center gap-2">
-						<Terminal class="w-3.5 h-3.5" />
+						<Terminal class="size-4" />
 						<span>Output ({outputLines.length} lines)</span>
 					</div>
 					<button type="button" onclick={toggleLogTheme} class="p-1 rounded hover:bg-muted transition-colors cursor-pointer" title="Toggle log theme">
 						{#if logDarkMode}
-							<Sun class="w-3.5 h-3.5" />
+							<Sun class="size-4" />
 						{:else}
-							<Moon class="w-3.5 h-3.5" />
+							<Moon class="size-4" />
 						{/if}
 					</button>
 				</div>

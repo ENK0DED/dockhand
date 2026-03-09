@@ -132,10 +132,10 @@
 				{id}
 			>
 				<span class="flex items-center gap-2 truncate">
-					<Globe class="h-4 w-4 shrink-0 text-muted-foreground" />
+					<Globe class="size-4 shrink-0 text-muted-foreground" />
 					<span class="truncate">{value ? formatTimezoneShort(value) : placeholder}</span>
 				</span>
-				<ChevronsUpDown class="ml-2 h-4 w-4 shrink-0 opacity-50" />
+				<ChevronsUpDown class="ml-2 size-4 shrink-0 opacity-50" />
 			</Button>
 		{/snippet}
 	</Popover.Trigger>
@@ -148,7 +148,7 @@
 					<Command.Group heading="Common">
 						{#each filteredCommon as tz}
 							<Command.Item value={tz} onSelect={() => selectTimezone(tz)}>
-								<Check class={cn('mr-2 h-4 w-4', value === tz ? 'opacity-100' : 'opacity-0')} />
+								<Check class={cn('mr-2 size-4', value === tz ? 'opacity-100' : 'opacity-0')} />
 								<span class="truncate">{formatTimezone(tz)}</span>
 							</Command.Item>
 						{/each}
@@ -158,7 +158,7 @@
 					<Command.Group heading="All timezones">
 						{#each filteredOther as tz}
 							<Command.Item value={tz} onSelect={() => selectTimezone(tz)}>
-								<Check class={cn('mr-2 h-4 w-4', value === tz ? 'opacity-100' : 'opacity-0')} />
+								<Check class={cn('mr-2 size-4', value === tz ? 'opacity-100' : 'opacity-0')} />
 								<span class="truncate">{formatTimezone(tz)}</span>
 							</Command.Item>
 						{/each}

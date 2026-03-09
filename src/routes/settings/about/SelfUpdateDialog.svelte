@@ -480,7 +480,7 @@
 	<Dialog.Content class="max-w-3xl h-[70vh] overflow-hidden flex flex-col" onInteractOutside={(e) => { if (!canClose) e.preventDefault(); }}>
 		<Dialog.Header class="shrink-0">
 			<Dialog.Title class="flex items-center gap-2">
-				<CircleArrowUp class="w-5 h-5 text-amber-500" />
+				<CircleArrowUp class="size-5 text-amber-500" />
 				{#if phase === 'confirm'}
 					Update Dockhand
 				{:else}
@@ -510,7 +510,7 @@
 					<div class="flex items-center justify-between text-sm">
 						<span class="text-muted-foreground">Container</span>
 						<span class="font-medium flex items-center gap-1.5">
-							<Ship class="w-3.5 h-3.5" />
+							<Ship class="size-4" />
 							{containerName}
 						</span>
 					</div>
@@ -543,7 +543,7 @@
 
 				{#if loadingNotes}
 					<div class="flex items-center gap-2 text-sm text-muted-foreground py-2">
-						<Loader2 class="w-4 h-4 animate-spin" />
+						<Loader2 class="size-4 animate-spin" />
 						Loading release notes...
 					</div>
 				{:else if releaseNotes.length > 0}
@@ -562,7 +562,7 @@
 										{#each entry.changes as change}
 											{@const ChangeIcon = getChangeIcon(change.type)}
 											<li class="flex items-start gap-1.5 text-xs">
-												<ChangeIcon class="w-3 h-3 mt-0.5 shrink-0 {getChangeColor(change.type)}" />
+												<ChangeIcon class="size-3 mt-0.5 shrink-0 {getChangeColor(change.type)}" />
 												<span class="text-muted-foreground">{change.text}</span>
 											</li>
 										{/each}
@@ -587,7 +587,7 @@
 					Cancel
 				</Button>
 				<Button onclick={startUpdate}>
-					<CircleArrowUp class="w-4 h-4 mr-2" />
+					<CircleArrowUp class="size-4 mr-2" />
 					Update now
 				</Button>
 			</Dialog.Footer>
@@ -613,14 +613,14 @@
 							<div class="text-sm">
 								<!-- Step header -->
 								<div class="flex items-center gap-3 p-3">
-									<StepIcon class="w-4 h-4 shrink-0 {getIconClass(step.status)}" />
+									<StepIcon class="size-4 shrink-0 {getIconClass(step.status)}" />
 									<div class="flex-1 min-w-0">
 										<div class="font-medium">{step.label}</div>
 									</div>
 									{#if step.status === 'completed'}
-										<CheckCircle2 class="w-4 h-4 text-green-600 dark:text-green-400 shrink-0" />
+										<CheckCircle2 class="size-4 text-green-600 dark:text-green-400 shrink-0" />
 									{:else if step.status === 'error'}
-										<XCircle class="w-4 h-4 text-red-600 shrink-0" />
+										<XCircle class="size-4 text-red-600 shrink-0" />
 									{/if}
 								</div>
 
@@ -640,7 +640,7 @@
 				<!-- Error message -->
 				{#if phase === 'error' && errorMessage}
 					<div class="flex items-start gap-2 text-sm text-red-600 dark:text-red-400 p-3 bg-red-50 dark:bg-red-950/30 rounded-lg overflow-hidden shrink-0">
-						<AlertCircle class="w-4 h-4 shrink-0 mt-0.5" />
+						<AlertCircle class="size-4 shrink-0 mt-0.5" />
 						<span class="break-all">{errorMessage}</span>
 					</div>
 				{/if}
@@ -649,7 +649,7 @@
 			<Dialog.Footer class="shrink-0">
 				{#if phase === 'completed'}
 					<Button onclick={() => window.location.reload()}>
-						<RotateCcw class="w-4 h-4 mr-2" />
+						<RotateCcw class="size-4 mr-2" />
 						Reload
 					</Button>
 				{:else if phase === 'error'}
@@ -658,7 +658,7 @@
 					</Button>
 				{:else}
 					<Button variant="outline" disabled>
-						<Loader2 class="w-4 h-4 mr-2 animate-spin" />
+						<Loader2 class="size-4 mr-2 animate-spin" />
 						Updating...
 					</Button>
 				{/if}

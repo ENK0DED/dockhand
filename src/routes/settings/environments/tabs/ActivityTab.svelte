@@ -63,10 +63,10 @@
 				<Select.Trigger class="w-48">
 					<div class="flex items-center gap-2">
 						{#if diskWarningMode === 'percentage'}
-							<Percent class="w-3.5 h-3.5" />
+							<Percent class="size-4" />
 							<span>Percentage</span>
 						{:else}
-							<HardDrive class="w-3.5 h-3.5" />
+							<HardDrive class="size-4" />
 							<span>Absolute (GB)</span>
 						{/if}
 					</div>
@@ -74,13 +74,13 @@
 				<Select.Content>
 					<Select.Item value="percentage">
 						<div class="flex items-center gap-2">
-							<Percent class="w-3.5 h-3.5" />
+							<Percent class="size-4" />
 							Percentage
 						</div>
 					</Select.Item>
 					<Select.Item value="absolute">
 						<div class="flex items-center gap-2">
-							<HardDrive class="w-3.5 h-3.5" />
+							<HardDrive class="size-4" />
 							Absolute (GB)
 						</div>
 					</Select.Item>

@@ -64,6 +64,7 @@
 	import { DataGrid } from '$lib/components/data-grid';
 	import DiffViewer from '$lib/components/DiffViewer.svelte';
 	import type { AuditDiff } from '$lib/utils/diff';
+  import { fetchEnvironments } from '$lib/utils/new';
 
 	interface AuditLogEntry {
 		id: number;
@@ -364,17 +365,6 @@
 		}
 	}
 
-	async function fetchEnvironments() {
-		try {
-			const response = await fetch('/api/environments');
-			if (response.ok) {
-				environments = await response.json();
-			}
-		} catch (error) {
-			console.error('Failed to fetch environments:', error);
-		}
-	}
-
 	function clearFilters() {
 		filterUsernames = [];
 		filterEntityTypes = [];
@@ -547,7 +537,7 @@
 
 	onMount(async () => {
 		loadFiltersFromStorage();
-		await fetchEnvironments();
+		environments = await fetchEnvironments();
 
 		const licenseState = await licenseStore.waitUntilLoaded();
 
@@ -602,7 +592,7 @@
 				<!-- User filter (multi-select) -->
 				<Select.Root type="multiple" bind:value={filterUsernames}>
 					<Select.Trigger size="sm" class="w-32 text-sm">
-						<User class="w-3.5 h-3.5 mr-1.5 text-muted-foreground shrink-0" />
+						<User class="size-4 mr-1.5 text-muted-foreground shrink-0" />
 						<span class="truncate">
 							{#if filterUsernames.length === 0}
 								User
@@ -625,7 +615,7 @@
 						{/if}
 						{#each users as user}
 							<Select.Item value={user}>
-								<User class="w-4 h-4 mr-2 text-muted-foreground" />
+								<User class="size-4 mr-2 text-muted-foreground" />
 								{user}
 							</Select.Item>
 						{/each}
@@ -635,7 +625,7 @@
 				<!-- Entity type filter (multi-select) -->
 				<Select.Root type="multiple" bind:value={filterEntityTypes}>
 					<Select.Trigger size="sm" class="w-32 text-sm">
-						<Box class="w-3.5 h-3.5 mr-1.5 text-muted-foreground shrink-0" />
+						<Box class="size-4 mr-1.5 text-muted-foreground shrink-0" />
 						<span class="truncate">
 							{#if filterEntityTypes.length === 0}
 								Entity
@@ -658,7 +648,7 @@
 						{/if}
 						{#each entityTypes as type}
 							<Select.Item value={type.value}>
-								<svelte:component this={getEntityIcon(type.value)} class="w-4 h-4 mr-2 text-muted-foreground" />
+								<svelte:component this={getEntityIcon(type.value)} class="size-4 mr-2 text-muted-foreground" />
 								{type.label}
 							</Select.Item>
 						{/each}
@@ -668,7 +658,7 @@
 				<!-- Action filter (multi-select) -->
 				<Select.Root type="multiple" bind:value={filterActions}>
 					<Select.Trigger size="sm" class="w-32 text-sm">
-						<Activity class="w-3.5 h-3.5 mr-1.5 text-muted-foreground shrink-0" />
+						<Activity class="size-4 mr-1.5 text-muted-foreground shrink-0" />
 						<span class="truncate">
 							{#if filterActions.length === 0}
 								Action
@@ -691,7 +681,7 @@
 						{/if}
 						{#each actionTypes as action}
 							<Select.Item value={action.value}>
-								<svelte:component this={getActionIcon(action.value)} class="w-4 h-4 mr-2 text-muted-foreground" />
+								<svelte:component this={getActionIcon(action.value)} class="size-4 mr-2 text-muted-foreground" />
 								{action.label}
 							</Select.Item>
 						{/each}
@@ -708,7 +698,7 @@
 						onValueChange={(v) => filterEnvironmentId = v ? parseInt(v) : null}
 					>
 						<Select.Trigger size="sm" class="w-40 text-sm">
-							<SelectedEnvIcon class="w-3.5 h-3.5 mr-1.5 text-muted-foreground shrink-0" />
+							<SelectedEnvIcon class="size-4 mr-1.5 text-muted-foreground shrink-0" />
 							<span class="truncate">
 								{#if filterEnvironmentId === null}
 									Environment
@@ -719,13 +709,13 @@
 						</Select.Trigger>
 						<Select.Content>
 							<Select.Item value="">
-								<Server class="w-4 h-4 mr-2 text-muted-foreground" />
+								<Server class="size-4 mr-2 text-muted-foreground" />
 								All environments
 							</Select.Item>
 							{#each environments as env}
 								{@const EnvIcon = getIconComponent(env.icon || 'globe')}
 								<Select.Item value={String(env.id)}>
-									<EnvIcon class="w-4 h-4 mr-2 text-muted-foreground" />
+									<EnvIcon class="size-4 mr-2 text-muted-foreground" />
 									{env.name}
 								</Select.Item>
 							{/each}
@@ -745,7 +735,7 @@
 					}}
 				>
 					<Select.Trigger size="sm" class="w-32 text-sm">
-						<Calendar class="w-3.5 h-3.5 mr-1.5 text-muted-foreground shrink-0" />
+						<Calendar class="size-4 mr-1.5 text-muted-foreground shrink-0" />
 						<span class="truncate">
 							{#if selectedDatePreset === 'custom'}
 								Custom
@@ -780,7 +770,7 @@
 					disabled={!hasActiveFilters}
 					title="Clear all filters"
 				>
-					<X class="w-3.5 h-3.5" />
+					<X class="size-4" />
 				</Button>
 
 				<!-- Live indicator -->
@@ -788,16 +778,16 @@
 					class="flex items-center gap-1.5 text-xs {$auditSseConnected ? 'text-emerald-500' : 'text-muted-foreground'}"
 					title={$auditSseConnected ? 'Live updates active' : 'Connecting...'}
 				>
-					<Wifi class="w-3.5 h-3.5" />
+					<Wifi class="size-4" />
 				</span>
 
 				<Button variant="outline" size="sm" onclick={() => { hasMore = true; fetchLogs(false); }} disabled={loading}>
-					<RefreshCw class="w-3.5 h-3.5 {loading ? 'animate-spin' : ''}" />
+					<RefreshCw class="size-4 {loading ? 'animate-spin' : ''}" />
 				</Button>
 
 				<div class="relative">
 					<Button variant="outline" size="sm" onclick={() => showExportMenu = !showExportMenu}>
-						<Download class="w-3.5 h-3.5" />
+						<Download class="size-4" />
 					</Button>
 					{#if showExportMenu}
 						<div class="absolute right-0 mt-1 w-40 bg-popover border rounded-md shadow-lg z-50">
@@ -806,7 +796,7 @@
 								class="flex items-center gap-2 w-full px-3 py-2 text-sm hover:bg-accent"
 								onclick={() => exportLogs('json')}
 							>
-								<FileJson class="w-4 h-4" />
+								<FileJson class="size-4" />
 								JSON
 							</button>
 							<button
@@ -814,7 +804,7 @@
 								class="flex items-center gap-2 w-full px-3 py-2 text-sm hover:bg-accent"
 								onclick={() => exportLogs('csv')}
 							>
-								<FileSpreadsheet class="w-4 h-4" />
+								<FileSpreadsheet class="size-4" />
 								CSV
 							</button>
 							<button
@@ -822,7 +812,7 @@
 								class="flex items-center gap-2 w-full px-3 py-2 text-sm hover:bg-accent"
 								onclick={() => exportLogs('md')}
 							>
-								<FileText class="w-4 h-4" />
+								<FileText class="size-4" />
 								Markdown
 							</button>
 						</div>
@@ -834,20 +824,20 @@
 
 	{#if $licenseStore.loading}
 		<div class="flex flex-col items-center justify-center py-16 text-center">
-			<Loader2 class="w-8 h-8 animate-spin text-muted-foreground mb-4" />
+			<Loader2 class="size-8 animate-spin text-muted-foreground mb-4" />
 			<p class="text-muted-foreground">Loading...</p>
 		</div>
 	{:else if !$licenseStore.isEnterprise}
 		<div class="flex flex-col items-center justify-center py-16 text-center">
-			<div class="w-16 h-16 rounded-full bg-amber-500/10 flex items-center justify-center mb-4">
-				<Crown class="w-8 h-8 text-amber-500" />
+			<div class="size-16 rounded-full bg-amber-500/10 flex items-center justify-center mb-4">
+				<Crown class="size-8 text-amber-500" />
 			</div>
 			<h2 class="text-xl font-semibold mb-2">Enterprise feature</h2>
 			<p class="text-muted-foreground max-w-md mb-6">
 				Audit logging is an enterprise feature that tracks all user actions for compliance and security monitoring.
 			</p>
 			<Button variant="outline" href="/settings?tab=license">
-				<Key class="w-4 h-4" />
+				<Key class="size-4" />
 				Activate license
 			</Button>
 		</div>
@@ -872,7 +862,7 @@
 					{#if log.environmentName}
 						{@const LogEnvIcon = getIconComponent(log.environmentIcon || 'globe')}
 						<div class="flex items-center gap-1 text-xs">
-							<LogEnvIcon class="w-3 h-3 text-muted-foreground shrink-0" />
+							<LogEnvIcon class="size-3 text-muted-foreground shrink-0" />
 							<span class="truncate">{log.environmentName}</span>
 						</div>
 					{:else}
@@ -880,18 +870,18 @@
 					{/if}
 				{:else if column.id === 'user'}
 					<div class="flex items-center gap-1 text-xs">
-						<User class="w-3 h-3 text-muted-foreground shrink-0" />
+						<User class="size-3 text-muted-foreground shrink-0" />
 						<span class="truncate">{log.username}</span>
 					</div>
 				{:else if column.id === 'action'}
 					<div class="flex justify-center">
 						<Badge class="{getActionColor(log.action)} py-0.5 px-1" title={log.action.charAt(0).toUpperCase() + log.action.slice(1)}>
-							<svelte:component this={getActionIcon(log.action)} class="w-3 h-3" />
+							<svelte:component this={getActionIcon(log.action)} class="size-3" />
 						</Badge>
 					</div>
 				{:else if column.id === 'entity'}
 					<div class="flex items-center gap-1 text-xs">
-						<svelte:component this={getEntityIcon(log.entityType)} class="w-3 h-3 text-muted-foreground shrink-0" />
+						<svelte:component this={getEntityIcon(log.entityType)} class="size-3 text-muted-foreground shrink-0" />
 						<span class="truncate">{log.entityType}</span>
 					</div>
 				{:else if column.id === 'name'}
@@ -904,8 +894,8 @@
 					</span>
 				{:else if column.id === 'actions'}
 					<div class="flex items-center justify-end">
-						<Button variant="ghost" size="icon" class="h-6 w-6" onclick={(e) => { e.stopPropagation(); showDetails(log); }}>
-							<Info class="w-3.5 h-3.5" />
+						<Button variant="ghost" size="icon" class="size-6" onclick={(e) => { e.stopPropagation(); showDetails(log); }}>
+							<Info class="size-4" />
 						</Button>
 					</div>
 				{/if}
@@ -913,14 +903,14 @@
 
 			{#snippet emptyState()}
 				<div class="flex flex-col items-center justify-center py-16 text-muted-foreground">
-					<FileX class="w-10 h-10 mb-3 opacity-40" />
+					<FileX class="size-10 mb-3 opacity-40" />
 					<p>No audit log entries found</p>
 				</div>
 			{/snippet}
 
 			{#snippet loadingState()}
 				<div class="flex items-center justify-center py-16 text-muted-foreground">
-					<RefreshCw class="w-5 h-5 animate-spin mr-2" />
+					<RefreshCw class="size-5 animate-spin mr-2" />
 					Loading...
 				</div>
 			{/snippet}
@@ -928,7 +918,7 @@
 			{#snippet footer()}
 				{#if loadingMore}
 					<div class="flex items-center justify-center py-2 text-muted-foreground">
-						<Loader2 class="w-4 h-4 animate-spin mr-2" />
+						<Loader2 class="size-4 animate-spin mr-2" />
 						Loading more...
 					</div>
 				{:else if !hasMore && logs.length > 0}
@@ -957,7 +947,7 @@
 					<div>
 						<label class="text-sm font-medium text-muted-foreground">User</label>
 						<p class="flex items-center gap-1">
-							<User class="w-4 h-4 text-muted-foreground" />
+							<User class="size-4 text-muted-foreground" />
 							{selectedLog.username}
 						</p>
 					</div>
@@ -965,7 +955,7 @@
 						<label class="text-sm font-medium text-muted-foreground">Action</label>
 						<p>
 							<Badge class="{getActionColor(selectedLog.action)} gap-1">
-								<svelte:component this={getActionIcon(selectedLog.action)} class="w-3 h-3" />
+								<svelte:component this={getActionIcon(selectedLog.action)} class="size-3" />
 								{selectedLog.action}
 							</Badge>
 						</p>
@@ -973,7 +963,7 @@
 					<div>
 						<label class="text-sm font-medium text-muted-foreground">Entity type</label>
 						<p class="flex items-center gap-1">
-							<svelte:component this={getEntityIcon(selectedLog.entityType)} class="w-4 h-4 text-muted-foreground" />
+							<svelte:component this={getEntityIcon(selectedLog.entityType)} class="size-4 text-muted-foreground" />
 							{selectedLog.entityType}
 						</p>
 					</div>

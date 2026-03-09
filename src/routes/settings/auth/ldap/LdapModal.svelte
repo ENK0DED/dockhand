@@ -227,10 +227,10 @@
 		<Dialog.Header class="flex-shrink-0">
 			<Dialog.Title class="flex items-center gap-2">
 				{#if isEditing}
-					<Pencil class="w-5 h-5" />
+					<Pencil class="size-5" />
 					Edit LDAP configuration
 				{:else}
-					<Network class="w-5 h-5" />
+					<Network class="size-5" />
 					Add LDAP configuration
 				{/if}
 			</Dialog.Title>
@@ -238,7 +238,7 @@
 		<div class="flex-1 overflow-y-auto py-2">
 			{#if formError}
 				<Alert.Root variant="destructive" class="mb-4">
-					<TriangleAlert class="h-4 w-4" />
+					<TriangleAlert class="size-4" />
 					<Alert.Description>{formError}</Alert.Description>
 				</Alert.Root>
 			{/if}
@@ -436,7 +436,7 @@
 						<div class="space-y-4">
 							<div class="flex items-center gap-2">
 								<h4 class="text-sm font-medium text-muted-foreground">Group to role mappings</h4>
-								<Star class="w-3.5 h-3.5 text-amber-500" />
+								<Star class="size-4 text-amber-500" />
 							</div>
 							<p class="text-xs text-muted-foreground">Map LDAP groups to Dockhand roles. Users in these groups will be assigned the corresponding role.</p>
 
@@ -472,10 +472,10 @@
 											<Button
 												variant="ghost"
 												size="icon"
-												class="h-9 w-9 text-muted-foreground hover:text-destructive"
+												class="size-9 text-muted-foreground hover:text-destructive"
 												onclick={() => removeRoleMapping(index)}
 											>
-												<Trash2 class="w-4 h-4" />
+												<Trash2 class="size-4" />
 											</Button>
 										</div>
 									{/each}
@@ -483,7 +483,7 @@
 							{/if}
 
 							<Button variant="outline" size="sm" onclick={addRoleMapping}>
-								<Plus class="w-4 h-4" />
+								<Plus class="size-4" />
 								Add mapping
 							</Button>
 						</div>
@@ -495,11 +495,11 @@
 			<Button variant="outline" onclick={handleClose}>Cancel</Button>
 			<Button onclick={save} disabled={formSaving}>
 				{#if formSaving}
-					<RefreshCw class="w-4 h-4 mr-1 animate-spin" />
+					<RefreshCw class="size-4 mr-1 animate-spin" />
 				{:else if isEditing}
-					<Check class="w-4 h-4" />
+					<Check class="size-4" />
 				{:else}
-					<Plus class="w-4 h-4" />
+					<Plus class="size-4" />
 				{/if}
 				{isEditing ? 'Save' : 'Add configuration'}
 			</Button>

@@ -156,7 +156,7 @@
 	<Dialog.Content class="max-w-md">
 		<Dialog.Header>
 			<Dialog.Title class="flex items-center gap-2">
-				<Key class="w-5 h-5" />
+				<Key class="size-5" />
 				{isEditing ? 'Edit' : 'Add'} Git credential
 			</Dialog.Title>
 			<Dialog.Description>

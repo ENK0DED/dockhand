@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { HardDrive, Image, Database, Box, Hammer, Loader2 } from 'lucide-svelte';
 	import { Chart, Svg, Pie, Arc } from 'layerchart';
+	import { formatBytes } from '$lib/utils/new';
 
 	interface Props {
 		imagesSize: number;
@@ -34,14 +35,6 @@
 		].filter(d => d.value > 0)
 	);
 
-	function formatBytes(bytes: number): string {
-		if (bytes === 0) return '0 B';
-		const k = 1024;
-		const sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
-		const i = Math.floor(Math.log(bytes) / Math.log(k));
-		return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
-	}
-
 	function getPercentage(value: number): number {
 		if (totalSize === 0) return 0;
 		return (value / totalSize) * 100;
@@ -51,9 +44,9 @@
 {#if showSkeleton}
 	<div class="{withBorder ? 'pt-2 border-t border-border/50' : ''}">
 		<div class="flex items-center gap-1.5 text-xs text-muted-foreground mb-2">
-			<HardDrive class="w-3 h-3" />
+			<HardDrive class="size-3" />
 			<span class="font-medium">Disk usage</span>
-			<Loader2 class="w-3 h-3 animate-spin" />
+			<Loader2 class="size-3 animate-spin" />
 			<div class="skeleton w-12 h-3.5 rounded ml-auto"></div>
 		</div>
 		<div class="h-2 rounded-full overflow-hidden flex bg-muted mb-2">
@@ -63,14 +56,14 @@
 		</div>
 		<div class="grid grid-cols-2 gap-x-3 gap-y-1.5 text-xs">
 			<div class="flex items-center gap-1.5">
-				<div class="w-2 h-2 rounded-full bg-muted shrink-0"></div>
-				<Image class="w-3 h-3 text-muted-foreground/50 shrink-0" />
+				<div class="size-2 rounded-full bg-muted shrink-0"></div>
+				<Image class="size-3 text-muted-foreground/50 shrink-0" />
 				<span class="text-muted-foreground/50">Images</span>
 				<div class="skeleton w-10 h-3 rounded ml-auto"></div>
 			</div>
 			<div class="flex items-center gap-1.5">
-				<div class="w-2 h-2 rounded-full bg-muted shrink-0"></div>
-				<Database class="w-3 h-3 text-muted-foreground/50 shrink-0" />
+				<div class="size-2 rounded-full bg-muted shrink-0"></div>
+				<Database class="size-3 text-muted-foreground/50 shrink-0" />
 				<span class="text-muted-foreground/50">Volumes</span>
 				<div class="skeleton w-10 h-3 rounded ml-auto"></div>
 			</div>
@@ -79,7 +72,7 @@
 {:else if totalSize > 0}
 	<div class="{withBorder ? 'pt-2 border-t border-border/50' : ''}">
 		<div class="flex items-center gap-1.5 text-xs text-muted-foreground mb-2">
-			<HardDrive class="w-3 h-3" />
+			<HardDrive class="size-3" />
 			<span class="font-medium">Disk usage</span>
 			<span class="ml-auto font-medium text-foreground">{formatBytes(totalSize)}</span>
 		</div>
@@ -121,7 +114,7 @@
 				<div class="flex flex-col gap-1.5 text-xs flex-1">
 					{#each pieData as item}
 						<div class="flex items-center gap-1.5">
-							<div class="w-2 h-2 rounded-full shrink-0" style="background-color: {item.color}"></div>
+							<div class="size-2 rounded-full shrink-0" style="background-color: {item.color}"></div>
 							<span class="text-muted-foreground truncate">{item.label}</span>
 							<span class="ml-auto font-medium tabular-nums">{formatBytes(item.value)}</span>
 						</div>
@@ -165,32 +158,32 @@
 		<div class="grid {categoryCount > 2 ? 'grid-cols-2' : 'grid-cols-' + categoryCount} gap-x-3 gap-y-1.5 text-xs">
 			{#if imagesSize > 0}
 				<div class="flex items-center gap-1.5">
-					<div class="w-2 h-2 rounded-full bg-sky-500 shrink-0"></div>
-					<Image class="w-3 h-3 text-muted-foreground shrink-0" />
+					<div class="size-2 rounded-full bg-sky-500 shrink-0"></div>
+					<Image class="size-3 text-muted-foreground shrink-0" />
 					<span class="text-muted-foreground truncate">Images</span>
 					<span class="ml-auto font-medium tabular-nums">{formatBytes(imagesSize)}</span>
 				</div>
 			{/if}
 			{#if containersSize > 0}
 				<div class="flex items-center gap-1.5">
-					<div class="w-2 h-2 rounded-full bg-emerald-500 shrink-0"></div>
-					<Box class="w-3 h-3 text-muted-foreground shrink-0" />
+					<div class="size-2 rounded-full bg-emerald-500 shrink-0"></div>
+					<Box class="size-3 text-muted-foreground shrink-0" />
 					<span class="text-muted-foreground truncate">Containers</span>
 					<span class="ml-auto font-medium tabular-nums">{formatBytes(containersSize)}</span>
 				</div>
 			{/if}
 			{#if volumesSize > 0}
 				<div class="flex items-center gap-1.5">
-					<div class="w-2 h-2 rounded-full bg-amber-500 shrink-0"></div>
-					<Database class="w-3 h-3 text-muted-foreground shrink-0" />
+					<div class="size-2 rounded-full bg-amber-500 shrink-0"></div>
+					<Database class="size-3 text-muted-foreground shrink-0" />
 					<span class="text-muted-foreground truncate">Volumes</span>
 					<span class="ml-auto font-medium tabular-nums">{formatBytes(volumesSize)}</span>
 				</div>
 			{/if}
 			{#if buildCacheSize > 0}
 				<div class="flex items-center gap-1.5">
-					<div class="w-2 h-2 rounded-full bg-violet-500 shrink-0"></div>
-					<Hammer class="w-3 h-3 text-muted-foreground shrink-0" />
+					<div class="size-2 rounded-full bg-violet-500 shrink-0"></div>
+					<Hammer class="size-3 text-muted-foreground shrink-0" />
 					<span class="text-muted-foreground truncate">Build cache</span>
 					<span class="ml-auto font-medium tabular-nums">{formatBytes(buildCacheSize)}</span>
 				</div>

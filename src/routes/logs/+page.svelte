@@ -1540,7 +1540,7 @@ import type { FavoriteGroup } from '../api/preferences/favorite-groups/+server';
 			<div class="relative flex-1 max-w-md">
 				<!-- Search input - always visible, shows selected container name as placeholder -->
 				<div class="relative">
-					<Search class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+					<Search class="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
 					<Input
 						type="text"
 						placeholder={selectedContainer ? `${selectedContainer.name} (${selectedContainer.image})` : "Search containers..."}
@@ -1550,7 +1550,7 @@ import type { FavoriteGroup } from '../api/preferences/favorite-groups/+server';
 						onkeydown={handleInputKeydown}
 						class="pl-10 pr-10 h-9 {selectedContainer ? 'placeholder:text-foreground' : ''}"
 					/>
-					<ChevronDown class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+					<ChevronDown class="absolute right-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
 				</div>
 
 				<!-- Dropdown -->
@@ -1568,7 +1568,7 @@ import type { FavoriteGroup } from '../api/preferences/favorite-groups/+server';
 									onclick={() => selectContainer(container)}
 									class="w-full px-3 py-2 text-left text-sm hover:bg-muted transition-colors flex items-center gap-2 {isCurrentSelection ? 'bg-muted' : ''}"
 								>
-									<Box class="w-3.5 h-3.5 shrink-0 {container.state === 'running' ? 'text-green-500' : 'text-muted-foreground'}" />
+									<Box class="size-4 shrink-0 {container.state === 'running' ? 'text-green-500' : 'text-muted-foreground'}" />
 									<span class="font-medium truncate">{container.name}</span>
 									<span class="text-muted-foreground text-xs truncate">({container.image})</span>
 									{#if isCurrentSelection}
@@ -1596,7 +1596,7 @@ import type { FavoriteGroup } from '../api/preferences/favorite-groups/+server';
 			<div class="w-64 shrink-0 border rounded-lg overflow-hidden flex flex-col bg-background">
 				<div class="px-3 py-2 border-b bg-muted/30">
 					<div class="relative">
-						<Search class="absolute left-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
+						<Search class="absolute left-2 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
 						<Input
 							type="text"
 							placeholder="Filter containers..."
@@ -1632,7 +1632,7 @@ import type { FavoriteGroup } from '../api/preferences/favorite-groups/+server';
 							<!-- Saved groups section (grouped mode only) -->
 							<div class="border-b border-purple-500/30 bg-purple-500/5">
 								<div class="px-2 py-1 text-2xs font-medium text-purple-600 dark:text-purple-400 flex items-center gap-1">
-									<FolderHeart class="w-2.5 h-2.5" />
+									<FolderHeart class="size-3" />
 									Saved groups
 								</div>
 								{#each validFavoriteGroups as savedGroup, idx (savedGroup.name || `group-${idx}`)}
@@ -1643,7 +1643,7 @@ import type { FavoriteGroup } from '../api/preferences/favorite-groups/+server';
 										role="button"
 										tabindex="0"
 									>
-										<Layers class="w-3 h-3 shrink-0 text-purple-500" />
+										<Layers class="size-3 shrink-0 text-purple-500" />
 										<div class="flex-1 min-w-0">
 											<div class="font-medium truncate text-xs leading-tight">{savedGroup.name}</div>
 											<div class="text-2xs text-muted-foreground truncate leading-tight">{savedGroup.containers.length} container{savedGroup.containers.length !== 1 ? 's' : ''}</div>
@@ -1654,7 +1654,7 @@ import type { FavoriteGroup } from '../api/preferences/favorite-groups/+server';
 											class="p-0.5 rounded hover:bg-red-500/20 transition-colors opacity-0 [.saved-group-item:hover_&]:opacity-100"
 											title="Delete group"
 										>
-											<Trash2 class="w-2.5 h-2.5 text-muted-foreground hover:text-red-500" />
+											<Trash2 class="size-3 text-muted-foreground hover:text-red-500" />
 										</button>
 									</div>
 								{/each}
@@ -1670,7 +1670,7 @@ import type { FavoriteGroup } from '../api/preferences/favorite-groups/+server';
 						{#if layoutMode === 'multi' && favoriteContainers().length > 0}
 							<div class="border-b border-amber-500/30 bg-amber-500/5">
 								<div class="px-2 py-1 text-2xs font-medium text-amber-600 dark:text-amber-400 flex items-center gap-1">
-									<Star class="w-2.5 h-2.5 fill-current" />
+									<Star class="size-3 fill-current" />
 									Favorites
 								</div>
 								{#each favoriteContainers() as container}
@@ -1692,19 +1692,19 @@ import type { FavoriteGroup } from '../api/preferences/favorite-groups/+server';
 										<button
 											type="button"
 											onclick={(e) => toggleMultiModeSelection(container.id, e)}
-											class="w-4 h-4 shrink-0 flex items-center justify-center"
+											class="size-4 shrink-0 flex items-center justify-center"
 											title="Select for merge"
 										>
 											{#if isMultiSelected}
-												<div class="w-3.5 h-3.5 rounded border-2 flex items-center justify-center border-blue-500 bg-blue-500/20">
-													<Check class="w-2.5 h-2.5 text-blue-500" />
+												<div class="size-4 rounded border-2 flex items-center justify-center border-blue-500 bg-blue-500/20">
+													<Check class="size-3 text-blue-500" />
 												</div>
 											{:else}
-												<div class="w-3.5 h-3.5 rounded border-2 border-muted-foreground/30 opacity-30 group-hover:opacity-100"></div>
+												<div class="size-4 rounded border-2 border-muted-foreground/30 opacity-30 group-hover:opacity-100"></div>
 											{/if}
 										</button>
-										<GripVertical class="w-3 h-3 shrink-0 text-muted-foreground/50 cursor-grab active:cursor-grabbing" />
-										<Box class="w-3 h-3 shrink-0 {container.state === 'running' ? 'text-green-500' : 'text-muted-foreground'}" />
+										<GripVertical class="size-3 shrink-0 text-muted-foreground/50 cursor-grab active:cursor-grabbing" />
+										<Box class="size-3 shrink-0 {container.state === 'running' ? 'text-green-500' : 'text-muted-foreground'}" />
 										<div class="flex-1 min-w-0">
 											<div class="font-medium truncate text-xs leading-tight">{container.name}</div>
 											<div class="text-2xs text-muted-foreground truncate leading-tight">{container.image}</div>
@@ -1715,7 +1715,7 @@ import type { FavoriteGroup } from '../api/preferences/favorite-groups/+server';
 											class="p-0.5 rounded hover:bg-amber-500/20 transition-colors"
 											title="Remove from favorites"
 										>
-											<Star class="w-2.5 h-2.5 text-amber-500 fill-amber-500" />
+											<Star class="size-3 text-amber-500 fill-amber-500" />
 										</button>
 									</div>
 								{/each}
@@ -1725,7 +1725,7 @@ import type { FavoriteGroup } from '../api/preferences/favorite-groups/+server';
 						{#if layoutMode === 'grouped' && favoriteContainers().length > 0}
 							<div class="border-b border-amber-500/30 bg-amber-500/5">
 								<div class="px-2 py-1 text-2xs font-medium text-amber-600 dark:text-amber-400 flex items-center gap-1">
-									<Star class="w-2.5 h-2.5 fill-current" />
+									<Star class="size-3 fill-current" />
 									Favorites
 								</div>
 								{#each favoriteContainers() as container}
@@ -1738,16 +1738,16 @@ import type { FavoriteGroup } from '../api/preferences/favorite-groups/+server';
 										role="button"
 										tabindex="0"
 									>
-										<div class="w-4 h-4 shrink-0 flex items-center justify-center">
+										<div class="size-4 shrink-0 flex items-center justify-center">
 											{#if isSelected}
-												<div class="w-3.5 h-3.5 rounded border-2 flex items-center justify-center" style="border-color: {containerColor || '#60a5fa'}; background-color: {containerColor || '#60a5fa'}20">
-													<Check class="w-2.5 h-2.5" style="color: {containerColor || '#60a5fa'}" />
+												<div class="size-4 rounded border-2 flex items-center justify-center" style="border-color: {containerColor || '#60a5fa'}; background-color: {containerColor || '#60a5fa'}20">
+													<Check class="size-3" style="color: {containerColor || '#60a5fa'}" />
 												</div>
 											{:else}
-												<div class="w-3.5 h-3.5 rounded border-2 border-muted-foreground/30"></div>
+												<div class="size-4 rounded border-2 border-muted-foreground/30"></div>
 											{/if}
 										</div>
-										<Box class="w-3 h-3 shrink-0 {container.state === 'running' ? 'text-green-500' : 'text-muted-foreground'}" />
+										<Box class="size-3 shrink-0 {container.state === 'running' ? 'text-green-500' : 'text-muted-foreground'}" />
 										<div class="flex-1 min-w-0">
 											<div class="font-medium truncate text-xs leading-tight">{container.name}</div>
 											<div class="text-2xs text-muted-foreground truncate leading-tight">{container.image}</div>
@@ -1758,7 +1758,7 @@ import type { FavoriteGroup } from '../api/preferences/favorite-groups/+server';
 											class="p-0.5 rounded hover:bg-amber-500/20 transition-colors"
 											title="Remove from favorites"
 										>
-											<Star class="w-2.5 h-2.5 text-amber-500 fill-amber-500" />
+											<Star class="size-3 text-amber-500 fill-amber-500" />
 										</button>
 									</div>
 								{/each}
@@ -1783,13 +1783,13 @@ import type { FavoriteGroup } from '../api/preferences/favorite-groups/+server';
 									tabindex="0"
 								>
 									{#if layoutMode === 'grouped'}
-										<div class="w-4 h-4 shrink-0 flex items-center justify-center">
+										<div class="size-4 shrink-0 flex items-center justify-center">
 											{#if isSelected}
-												<div class="w-3.5 h-3.5 rounded border-2 flex items-center justify-center" style="border-color: {containerColor || '#60a5fa'}; background-color: {containerColor || '#60a5fa'}20">
-													<Check class="w-2.5 h-2.5" style="color: {containerColor || '#60a5fa'}" />
+												<div class="size-4 rounded border-2 flex items-center justify-center" style="border-color: {containerColor || '#60a5fa'}; background-color: {containerColor || '#60a5fa'}20">
+													<Check class="size-3" style="color: {containerColor || '#60a5fa'}" />
 												</div>
 											{:else}
-												<div class="w-3.5 h-3.5 rounded border-2 border-muted-foreground/30"></div>
+												<div class="size-4 rounded border-2 border-muted-foreground/30"></div>
 											{/if}
 										</div>
 									{:else if layoutMode === 'multi'}
@@ -1797,19 +1797,19 @@ import type { FavoriteGroup } from '../api/preferences/favorite-groups/+server';
 										<button
 											type="button"
 											onclick={(e) => toggleMultiModeSelection(container.id, e)}
-											class="w-4 h-4 shrink-0 flex items-center justify-center"
+											class="size-4 shrink-0 flex items-center justify-center"
 											title="Select for merge"
 										>
 											{#if isMultiSelected}
-												<div class="w-3.5 h-3.5 rounded border-2 flex items-center justify-center border-blue-500 bg-blue-500/20">
-													<Check class="w-2.5 h-2.5 text-blue-500" />
+												<div class="size-4 rounded border-2 flex items-center justify-center border-blue-500 bg-blue-500/20">
+													<Check class="size-3 text-blue-500" />
 												</div>
 											{:else}
-												<div class="w-3.5 h-3.5 rounded border-2 border-muted-foreground/30 opacity-30 group-hover:opacity-100"></div>
+												<div class="size-4 rounded border-2 border-muted-foreground/30 opacity-30 group-hover:opacity-100"></div>
 											{/if}
 										</button>
 									{/if}
-									<Box class="w-3 h-3 shrink-0 {container.state === 'running' ? 'text-green-500' : 'text-muted-foreground'}" />
+									<Box class="size-3 shrink-0 {container.state === 'running' ? 'text-green-500' : 'text-muted-foreground'}" />
 									<div class="flex-1 min-w-0">
 										<div class="font-medium truncate text-xs leading-tight">{container.name}</div>
 										<div class="text-2xs text-muted-foreground truncate leading-tight">{container.image}</div>
@@ -1821,7 +1821,7 @@ import type { FavoriteGroup } from '../api/preferences/favorite-groups/+server';
 											class="p-0.5 rounded hover:bg-amber-500/20 transition-colors opacity-30 group-hover:opacity-100"
 											title="Add to favorites"
 										>
-											<Star class="w-2.5 h-2.5 text-muted-foreground hover:text-amber-500" />
+											<Star class="size-3 text-muted-foreground hover:text-amber-500" />
 										</button>
 									{/if}
 								</div>
@@ -1852,23 +1852,23 @@ import type { FavoriteGroup } from '../api/preferences/favorite-groups/+server';
 										type="button"
 										onclick={saveCurrentGroup}
 										disabled={!newGroupName.trim()}
-										class="h-6 w-6 flex items-center justify-center rounded hover:bg-green-500/20 text-muted-foreground hover:text-green-500 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+										class="size-6 flex items-center justify-center rounded hover:bg-green-500/20 text-muted-foreground hover:text-green-500 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
 										title="Save"
 									>
-										<Check class="w-3.5 h-3.5" />
+										<Check class="size-4" />
 									</button>
 									<button
 										type="button"
 										onclick={() => { showSaveGroupInput = false; newGroupName = ''; }}
-										class="h-6 w-6 flex items-center justify-center rounded hover:bg-red-500/20 text-muted-foreground hover:text-red-500 transition-colors"
+										class="size-6 flex items-center justify-center rounded hover:bg-red-500/20 text-muted-foreground hover:text-red-500 transition-colors"
 										title="Cancel"
 									>
-										<X class="w-3.5 h-3.5" />
+										<X class="size-4" />
 									</button>
 								</div>
 							{:else}
 								<Button size="sm" variant="outline" onclick={() => showSaveGroupInput = true} class="w-full h-7 gap-1.5 text-xs">
-									<Save class="w-3 h-3" />
+									<Save class="size-3" />
 									Save group
 								</Button>
 							{/if}
@@ -1893,7 +1893,7 @@ import type { FavoriteGroup } from '../api/preferences/favorite-groups/+server';
 						</div>
 						{#if multiModeSelections.size >= 2}
 							<Button size="sm" variant="default" onclick={mergeSelectedContainers} class="w-full h-7 gap-1.5 text-xs">
-								<Layers class="w-3 h-3" />
+								<Layers class="size-3" />
 								Merge {multiModeSelections.size} containers
 							</Button>
 						{/if}
@@ -1916,23 +1916,23 @@ import type { FavoriteGroup } from '../api/preferences/favorite-groups/+server';
 							{#if streamingEnabled}
 								{#if isConnected}
 									<div class="flex items-center gap-1.5" title="Connected - Live streaming">
-										<Wifi class="w-3.5 h-3.5 text-green-500" />
+										<Wifi class="size-4 text-green-500" />
 										<span class="text-xs text-green-500 font-medium">Live</span>
 									</div>
 								{:else if loading}
 									<div class="flex items-center gap-1.5" title="Connecting...">
-										<RefreshCw class="w-3.5 h-3.5 animate-spin {darkMode ? 'text-amber-500' : 'text-amber-600'}" />
+										<RefreshCw class="size-4 animate-spin {darkMode ? 'text-amber-500' : 'text-amber-600'}" />
 										<span class="text-xs {darkMode ? 'text-amber-500' : 'text-amber-600'}">Connecting...</span>
 									</div>
 								{:else if connectionError}
 									<button onclick={retryConnection} class="flex items-center gap-1.5 hover:opacity-80" title={connectionError}>
-										<WifiOff class="w-3.5 h-3.5 {darkMode ? 'text-zinc-500' : 'text-gray-400'}" />
+										<WifiOff class="size-4 {darkMode ? 'text-zinc-500' : 'text-gray-400'}" />
 										<span class="text-xs {darkMode ? 'text-zinc-500' : 'text-gray-400'}">Disconnected</span>
 									</button>
 								{/if}
 							{:else}
 								<div class="flex items-center gap-1.5" title="Streaming paused">
-									<Pause class="w-3.5 h-3.5 {darkMode ? 'text-zinc-500' : 'text-gray-400'}" />
+									<Pause class="size-4 {darkMode ? 'text-zinc-500' : 'text-gray-400'}" />
 									<span class="text-xs {darkMode ? 'text-zinc-500' : 'text-gray-400'}">Paused</span>
 								</div>
 							{/if}
@@ -1943,14 +1943,14 @@ import type { FavoriteGroup } from '../api/preferences/favorite-groups/+server';
 								{:else if groupedContainerInfo.size === 1}
 									{@const singleContainer = Array.from(groupedContainerInfo.values())[0]}
 									<div class="flex items-center gap-1">
-										<div class="w-2 h-2 rounded-full" style="background-color: {singleContainer.color}"></div>
+										<div class="size-2 rounded-full" style="background-color: {singleContainer.color}"></div>
 										<span class="text-xs font-medium {darkMode ? 'text-zinc-300' : 'text-gray-700'}">{singleContainer.name}</span>
 									</div>
 								{/if}
 								{#if stackName || groupedContainerInfo.size > 1}
 									{#each Array.from(groupedContainerInfo.entries()) as [id, info]}
 										<div class="flex items-center gap-0.5" title={info.name}>
-											<div class="w-2 h-2 rounded-full" style="background-color: {info.color}"></div>
+											<div class="size-2 rounded-full" style="background-color: {info.color}"></div>
 										</div>
 									{/each}
 								{/if}
@@ -1963,10 +1963,10 @@ import type { FavoriteGroup } from '../api/preferences/favorite-groups/+server';
 								title={streamingEnabled ? 'Pause live streaming' : 'Resume live streaming'}
 							>
 								{#if streamingEnabled}
-									<Pause class="w-3 h-3" />
+									<Pause class="size-3" />
 									<span>Pause</span>
 								{:else}
-									<Play class="w-3 h-3" />
+									<Play class="size-3" />
 									<span>Stream</span>
 								{/if}
 							</button>
@@ -1975,7 +1975,7 @@ import type { FavoriteGroup } from '../api/preferences/favorite-groups/+server';
 								class="flex items-center gap-1.5 px-2 py-1 rounded text-xs transition-colors {autoScroll ? (darkMode ? 'bg-amber-500/20 ring-1 ring-amber-500/50 text-amber-400' : 'bg-amber-500/30 ring-1 ring-amber-600/50 text-amber-700') : darkMode ? 'text-zinc-500 hover:text-zinc-300 hover:bg-zinc-800' : 'text-gray-500 hover:text-gray-700 hover:bg-gray-200'}"
 								title="Toggle auto-scroll"
 							>
-								<ArrowDownToLine class="w-3 h-3" />
+								<ArrowDownToLine class="size-3" />
 								<span>Auto-scroll</span>
 							</button>
 							<Select.Root type="single" value={String(fontSize)} onValueChange={(v) => { fontSize = Number(v); saveState(); }}>
@@ -1993,19 +1993,19 @@ import type { FavoriteGroup } from '../api/preferences/favorite-groups/+server';
 								class="flex items-center gap-1.5 px-2 py-1 rounded text-xs transition-colors {wordWrap ? (darkMode ? 'bg-amber-500/20 ring-1 ring-amber-500/50 text-amber-400' : 'bg-amber-500/30 ring-1 ring-amber-600/50 text-amber-700') : darkMode ? 'text-zinc-500 hover:text-zinc-300 hover:bg-zinc-800' : 'text-gray-500 hover:text-gray-700 hover:bg-gray-200'}"
 								title="Toggle word wrap"
 							>
-								<WrapText class="w-3 h-3" />
+								<WrapText class="size-3" />
 								<span>Wrap</span>
 							</button>
 							<button onclick={toggleTheme} class="p-1 rounded transition-colors {darkMode ? 'hover:bg-zinc-800' : 'hover:bg-gray-200'}" title={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}>
 								{#if darkMode}
-									<Sun class="w-3 h-3 {darkMode ? 'text-zinc-500 hover:text-zinc-300' : 'text-gray-500 hover:text-gray-700'}" />
+									<Sun class="size-3 {darkMode ? 'text-zinc-500 hover:text-zinc-300' : 'text-gray-500 hover:text-gray-700'}" />
 								{:else}
-									<Moon class="w-3 h-3 {darkMode ? 'text-zinc-500 hover:text-zinc-300' : 'text-gray-500 hover:text-gray-700'}" />
+									<Moon class="size-3 {darkMode ? 'text-zinc-500 hover:text-zinc-300' : 'text-gray-500 hover:text-gray-700'}" />
 								{/if}
 							</button>
 							{#if logSearchActive}
 								<div class="flex items-center gap-1.5 rounded px-2 py-1 {darkMode ? 'bg-zinc-800' : 'bg-gray-200'}">
-									<Search class="w-3 h-3 text-amber-400" />
+									<Search class="size-3 text-amber-400" />
 									<input
 										bind:this={logSearchInputRef}
 										type="text"
@@ -2020,36 +2020,36 @@ import type { FavoriteGroup } from '../api/preferences/favorite-groups/+server';
 										<span class="text-xs {darkMode ? 'text-zinc-500' : 'text-gray-400'}">0/0</span>
 									{/if}
 									<button onclick={() => navigateMatch('prev')} class="p-0.5 rounded transition-colors {darkMode ? 'hover:bg-zinc-700' : 'hover:bg-gray-300'}" title="Previous match">
-										<ChevronUp class="w-3 h-3 {darkMode ? 'text-zinc-400' : 'text-gray-500'}" />
+										<ChevronUp class="size-3 {darkMode ? 'text-zinc-400' : 'text-gray-500'}" />
 									</button>
 									<button onclick={() => navigateMatch('next')} class="p-0.5 rounded transition-colors {darkMode ? 'hover:bg-zinc-700' : 'hover:bg-gray-300'}" title="Next match">
-										<ChevronDown class="w-3 h-3 {darkMode ? 'text-zinc-400' : 'text-gray-500'}" />
+										<ChevronDown class="size-3 {darkMode ? 'text-zinc-400' : 'text-gray-500'}" />
 									</button>
 									<button onclick={closeLogSearch} class="p-0.5 rounded transition-colors {darkMode ? 'hover:bg-zinc-700' : 'hover:bg-gray-300'}" title="Close search">
-										<X class="w-3 h-3 {darkMode ? 'text-zinc-400' : 'text-gray-500'}" />
+										<X class="size-3 {darkMode ? 'text-zinc-400' : 'text-gray-500'}" />
 									</button>
 								</div>
 							{:else}
 								<button onclick={toggleLogSearch} class="p-1 rounded transition-colors {darkMode ? 'hover:bg-zinc-800' : 'hover:bg-gray-200'}" title="Search logs">
-									<Search class="w-3 h-3 {darkMode ? 'text-zinc-500 hover:text-zinc-300' : 'text-gray-500 hover:text-gray-700'}" />
+									<Search class="size-3 {darkMode ? 'text-zinc-500 hover:text-zinc-300' : 'text-gray-500 hover:text-gray-700'}" />
 								</button>
 							{/if}
 							<button onclick={copyLogs} class="p-1 rounded transition-colors {darkMode ? 'hover:bg-zinc-800' : 'hover:bg-gray-200'}" title="Copy logs">
-								<Copy class="w-3 h-3 {darkMode ? 'text-zinc-500 hover:text-zinc-300' : 'text-gray-500 hover:text-gray-700'}" />
+								<Copy class="size-3 {darkMode ? 'text-zinc-500 hover:text-zinc-300' : 'text-gray-500 hover:text-gray-700'}" />
 							</button>
 							<button onclick={downloadLogs} class="p-1 rounded transition-colors {darkMode ? 'hover:bg-zinc-800' : 'hover:bg-gray-200'}" title="Download logs">
-								<Download class="w-3 h-3 {darkMode ? 'text-zinc-500 hover:text-zinc-300' : 'text-gray-500 hover:text-gray-700'}" />
+								<Download class="size-3 {darkMode ? 'text-zinc-500 hover:text-zinc-300' : 'text-gray-500 hover:text-gray-700'}" />
 							</button>
 						</div>
 					</div>
 					<div class="flex-1 overflow-auto p-4 relative" bind:this={logsRef}>
 						{#if loading && mergedLogs.length === 0}
 							<div class="absolute inset-0 flex items-center justify-center z-10">
-								<RefreshCw class="w-8 h-8 animate-spin {darkMode ? 'text-zinc-400' : 'text-gray-500'}" />
+								<RefreshCw class="size-8 animate-spin {darkMode ? 'text-zinc-400' : 'text-gray-500'}" />
 							</div>
 						{:else if loading}
 							<div class="absolute inset-0 flex items-center justify-center bg-black/30 z-10">
-								<RefreshCw class="w-8 h-8 animate-spin {darkMode ? 'text-zinc-400' : 'text-gray-500'}" />
+								<RefreshCw class="size-8 animate-spin {darkMode ? 'text-zinc-400' : 'text-gray-500'}" />
 							</div>
 						{/if}
 						<pre class="font-mono {wordWrap ? 'whitespace-pre-wrap' : 'whitespace-pre'} {darkMode ? 'text-zinc-50' : 'text-gray-900'}" style="font-size: {fontSize}px;">{@html formattedMergedHtml()}</pre>
@@ -2067,12 +2067,12 @@ import type { FavoriteGroup } from '../api/preferences/favorite-groups/+server';
 					{#if streamingEnabled}
 						{#if isConnected}
 							<div class="flex items-center gap-1.5 transition-opacity duration-300" title="Connected - Live streaming">
-								<Wifi class="w-3.5 h-3.5 text-green-500" />
+								<Wifi class="size-4 text-green-500" />
 								<span class="text-xs text-green-500 font-medium">Live</span>
 							</div>
 						{:else if loading}
 							<div class="flex items-center gap-1.5 transition-opacity duration-300" title="Connecting...">
-								<RefreshCw class="w-3.5 h-3.5 animate-spin {darkMode ? 'text-amber-500' : 'text-amber-600'}" />
+								<RefreshCw class="size-4 animate-spin {darkMode ? 'text-amber-500' : 'text-amber-600'}" />
 								<span class="text-xs {darkMode ? 'text-amber-500' : 'text-amber-600'}">Connecting...</span>
 							</div>
 						{:else if connectionError}
@@ -2081,18 +2081,18 @@ import type { FavoriteGroup } from '../api/preferences/favorite-groups/+server';
 								class="flex items-center gap-1.5 transition-opacity duration-300 hover:opacity-80"
 								title={connectionError}
 							>
-								<WifiOff class="w-3.5 h-3.5 {darkMode ? 'text-zinc-500' : 'text-gray-400'}" />
+								<WifiOff class="size-4 {darkMode ? 'text-zinc-500' : 'text-gray-400'}" />
 								<span class="text-xs {darkMode ? 'text-zinc-500' : 'text-gray-400'}">Disconnected</span>
 							</button>
 						{:else}
 							<div class="flex items-center gap-1.5 transition-opacity duration-300" title="Disconnected">
-								<WifiOff class="w-3.5 h-3.5 {darkMode ? 'text-zinc-500' : 'text-gray-400'}" />
+								<WifiOff class="size-4 {darkMode ? 'text-zinc-500' : 'text-gray-400'}" />
 								<span class="text-xs {darkMode ? 'text-zinc-500' : 'text-gray-400'}">Offline</span>
 							</div>
 						{/if}
 					{:else}
 						<div class="flex items-center gap-1.5 transition-opacity duration-300" title="Streaming paused">
-							<Pause class="w-3.5 h-3.5 {darkMode ? 'text-zinc-500' : 'text-gray-400'}" />
+							<Pause class="size-4 {darkMode ? 'text-zinc-500' : 'text-gray-400'}" />
 							<span class="text-xs {darkMode ? 'text-zinc-500' : 'text-gray-400'}">Paused</span>
 						</div>
 					{/if}
@@ -2111,10 +2111,10 @@ import type { FavoriteGroup } from '../api/preferences/favorite-groups/+server';
 						title={streamingEnabled ? 'Pause live streaming' : 'Resume live streaming'}
 					>
 						{#if streamingEnabled}
-							<Pause class="w-3 h-3" />
+							<Pause class="size-3" />
 							<span>Pause</span>
 						{:else}
-							<Play class="w-3 h-3" />
+							<Play class="size-3" />
 							<span>Stream</span>
 						{/if}
 					</button>
@@ -2123,7 +2123,7 @@ import type { FavoriteGroup } from '../api/preferences/favorite-groups/+server';
 						class="flex items-center gap-1.5 px-2 py-1 rounded text-xs transition-colors {autoScroll ? (darkMode ? 'bg-amber-500/20 ring-1 ring-amber-500/50 text-amber-400' : 'bg-amber-500/30 ring-1 ring-amber-600/50 text-amber-700') : darkMode ? 'text-zinc-500 hover:text-zinc-300 hover:bg-zinc-800' : 'text-gray-500 hover:text-gray-700 hover:bg-gray-200'}"
 						title="Toggle auto-scroll"
 					>
-						<ArrowDownToLine class="w-3 h-3" />
+						<ArrowDownToLine class="size-3" />
 						<span>Auto-scroll</span>
 					</button>
 					<Select.Root type="single" value={String(fontSize)} onValueChange={(v) => { fontSize = Number(v); saveState(); }}>
@@ -2141,7 +2141,7 @@ import type { FavoriteGroup } from '../api/preferences/favorite-groups/+server';
 						class="flex items-center gap-1.5 px-2 py-1 rounded text-xs transition-colors {wordWrap ? (darkMode ? 'bg-amber-500/20 ring-1 ring-amber-500/50 text-amber-400' : 'bg-amber-500/30 ring-1 ring-amber-600/50 text-amber-700') : darkMode ? 'text-zinc-500 hover:text-zinc-300 hover:bg-zinc-800' : 'text-gray-500 hover:text-gray-700 hover:bg-gray-200'}"
 						title="Toggle word wrap"
 					>
-						<WrapText class="w-3 h-3" />
+						<WrapText class="size-3" />
 						<span>Wrap</span>
 					</button>
 					<!-- Theme toggle -->
@@ -2151,14 +2151,14 @@ import type { FavoriteGroup } from '../api/preferences/favorite-groups/+server';
 						title={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
 					>
 						{#if darkMode}
-							<Sun class="w-3 h-3 {darkMode ? 'text-zinc-500 hover:text-zinc-300' : 'text-gray-500 hover:text-gray-700'}" />
+							<Sun class="size-3 {darkMode ? 'text-zinc-500 hover:text-zinc-300' : 'text-gray-500 hover:text-gray-700'}" />
 						{:else}
-							<Moon class="w-3 h-3 {darkMode ? 'text-zinc-500 hover:text-zinc-300' : 'text-gray-500 hover:text-gray-700'}" />
+							<Moon class="size-3 {darkMode ? 'text-zinc-500 hover:text-zinc-300' : 'text-gray-500 hover:text-gray-700'}" />
 						{/if}
 					</button>
 					{#if logSearchActive}
 						<div class="flex items-center gap-1.5 rounded px-2 py-1 {darkMode ? 'bg-zinc-800' : 'bg-gray-200'}">
-							<Search class="w-3 h-3 text-amber-400" />
+							<Search class="size-3 text-amber-400" />
 							<input
 								bind:this={logSearchInputRef}
 								type="text"
@@ -2177,21 +2177,21 @@ import type { FavoriteGroup } from '../api/preferences/favorite-groups/+server';
 								class="p-0.5 rounded transition-colors {darkMode ? 'hover:bg-zinc-700' : 'hover:bg-gray-300'}"
 								title="Previous match (Shift+Enter)"
 							>
-								<ChevronUp class="w-3 h-3 {darkMode ? 'text-zinc-400' : 'text-gray-500'}" />
+								<ChevronUp class="size-3 {darkMode ? 'text-zinc-400' : 'text-gray-500'}" />
 							</button>
 							<button
 								onclick={() => navigateMatch('next')}
 								class="p-0.5 rounded transition-colors {darkMode ? 'hover:bg-zinc-700' : 'hover:bg-gray-300'}"
 								title="Next match (Enter)"
 							>
-								<ChevronDown class="w-3 h-3 {darkMode ? 'text-zinc-400' : 'text-gray-500'}" />
+								<ChevronDown class="size-3 {darkMode ? 'text-zinc-400' : 'text-gray-500'}" />
 							</button>
 							<button
 								onclick={closeLogSearch}
 								class="p-0.5 rounded transition-colors {darkMode ? 'hover:bg-zinc-700' : 'hover:bg-gray-300'}"
 								title="Close search (Esc)"
 							>
-								<X class="w-3 h-3 {darkMode ? 'text-zinc-400' : 'text-gray-500'}" />
+								<X class="size-3 {darkMode ? 'text-zinc-400' : 'text-gray-500'}" />
 							</button>
 						</div>
 					{:else}
@@ -2200,7 +2200,7 @@ import type { FavoriteGroup } from '../api/preferences/favorite-groups/+server';
 							class="p-1 rounded transition-colors {darkMode ? 'hover:bg-zinc-800' : 'hover:bg-gray-200'}"
 							title="Search logs (Ctrl+F)"
 						>
-							<Search class="w-3 h-3 {darkMode ? 'text-zinc-500 hover:text-zinc-300' : 'text-gray-500 hover:text-gray-700'}" />
+							<Search class="size-3 {darkMode ? 'text-zinc-500 hover:text-zinc-300' : 'text-gray-500 hover:text-gray-700'}" />
 						</button>
 					{/if}
 					<button
@@ -2208,27 +2208,27 @@ import type { FavoriteGroup } from '../api/preferences/favorite-groups/+server';
 						class="p-1 rounded transition-colors {darkMode ? 'hover:bg-zinc-800' : 'hover:bg-gray-200'}"
 						title="Copy logs"
 					>
-						<Copy class="w-3 h-3 {darkMode ? 'text-zinc-500 hover:text-zinc-300' : 'text-gray-500 hover:text-gray-700'}" />
+						<Copy class="size-3 {darkMode ? 'text-zinc-500 hover:text-zinc-300' : 'text-gray-500 hover:text-gray-700'}" />
 					</button>
 					<button
 						onclick={downloadLogs}
 						class="p-1 rounded transition-colors {darkMode ? 'hover:bg-zinc-800' : 'hover:bg-gray-200'}"
 						title="Download logs"
 					>
-						<Download class="w-3 h-3 {darkMode ? 'text-zinc-500 hover:text-zinc-300' : 'text-gray-500 hover:text-gray-700'}" />
+						<Download class="size-3 {darkMode ? 'text-zinc-500 hover:text-zinc-300' : 'text-gray-500 hover:text-gray-700'}" />
 					</button>
 					<button
 						onclick={() => fetchLogs()}
 						class="p-1 rounded transition-colors {darkMode ? 'hover:bg-zinc-800' : 'hover:bg-gray-200'}"
 						title="Refresh logs"
 					>
-						<RefreshCw class="w-3 h-3 {darkMode ? 'text-zinc-500 hover:text-zinc-300' : 'text-gray-500 hover:text-gray-700'}" />
+						<RefreshCw class="size-3 {darkMode ? 'text-zinc-500 hover:text-zinc-300' : 'text-gray-500 hover:text-gray-700'}" />
 					</button>
 				</div>
 			</div>
 			{#if loading && !logs}
 				<div class="flex items-center justify-center flex-1 text-muted-foreground">
-					<RefreshCw class="w-5 h-5 animate-spin mr-2" />
+					<RefreshCw class="size-5 animate-spin mr-2" />
 					Loading logs...
 				</div>
 			{:else}

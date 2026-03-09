@@ -255,7 +255,7 @@
 	<Dialog.Content class="max-w-3xl max-h-[90vh] overflow-y-auto">
 		<Dialog.Header>
 			<Dialog.Title class="flex items-center gap-2">
-				<Network class="w-5 h-5" />
+				<Network class="size-5" />
 				Create network
 			</Dialog.Title>
 			<Dialog.Description>Configure a new Docker network with custom settings.</Dialog.Description>
@@ -264,16 +264,16 @@
 		<Tabs.Root value="basic" class="mt-4">
 			<Tabs.List class="grid w-full grid-cols-4">
 				<Tabs.Trigger value="basic" class="flex items-center gap-1.5 text-xs">
-					<Network class="w-3.5 h-3.5" />Basic
+					<Network class="size-4" />Basic
 				</Tabs.Trigger>
 				<Tabs.Trigger value="ipam" class="flex items-center gap-1.5 text-xs">
-					<Settings class="w-3.5 h-3.5" />IPAM
+					<Settings class="size-4" />IPAM
 				</Tabs.Trigger>
 				<Tabs.Trigger value="options" class="flex items-center gap-1.5 text-xs">
-					<Settings class="w-3.5 h-3.5" />Options
+					<Settings class="size-4" />Options
 				</Tabs.Trigger>
 				<Tabs.Trigger value="labels" class="flex items-center gap-1.5 text-xs">
-					<Tag class="w-3.5 h-3.5" />Labels
+					<Tag class="size-4" />Labels
 				</Tabs.Trigger>
 			</Tabs.List>
 
@@ -300,17 +300,17 @@
 						<Select.Trigger class="w-full h-9">
 							<span class="flex items-center">
 								{#if driver === 'bridge'}
-									<Share2 class="w-4 h-4 mr-2 text-emerald-500" />
+									<Share2 class="size-4 mr-2 text-emerald-500" />
 								{:else if driver === 'host'}
-									<Server class="w-4 h-4 mr-2 text-sky-500" />
+									<Server class="size-4 mr-2 text-sky-500" />
 								{:else if driver === 'overlay'}
-									<Globe class="w-4 h-4 mr-2 text-violet-500" />
+									<Globe class="size-4 mr-2 text-violet-500" />
 								{:else if driver === 'macvlan'}
-									<MonitorSmartphone class="w-4 h-4 mr-2 text-amber-500" />
+									<MonitorSmartphone class="size-4 mr-2 text-amber-500" />
 								{:else if driver === 'ipvlan'}
-									<Cpu class="w-4 h-4 mr-2 text-orange-500" />
+									<Cpu class="size-4 mr-2 text-orange-500" />
 								{:else}
-									<CircleOff class="w-4 h-4 mr-2 text-muted-foreground" />
+									<CircleOff class="size-4 mr-2 text-muted-foreground" />
 								{/if}
 								{NETWORK_DRIVERS.find(d => d.value === driver)?.label || 'Select driver'}
 							</span>
@@ -321,17 +321,17 @@
 									{#snippet children()}
 										<div class="flex items-center">
 											{#if d.value === 'bridge'}
-												<Share2 class="w-4 h-4 mr-2 text-emerald-500" />
+												<Share2 class="size-4 mr-2 text-emerald-500" />
 											{:else if d.value === 'host'}
-												<Server class="w-4 h-4 mr-2 text-sky-500" />
+												<Server class="size-4 mr-2 text-sky-500" />
 											{:else if d.value === 'overlay'}
-												<Globe class="w-4 h-4 mr-2 text-violet-500" />
+												<Globe class="size-4 mr-2 text-violet-500" />
 											{:else if d.value === 'macvlan'}
-												<MonitorSmartphone class="w-4 h-4 mr-2 text-amber-500" />
+												<MonitorSmartphone class="size-4 mr-2 text-amber-500" />
 											{:else if d.value === 'ipvlan'}
-												<Cpu class="w-4 h-4 mr-2 text-orange-500" />
+												<Cpu class="size-4 mr-2 text-orange-500" />
 											{:else}
-												<CircleOff class="w-4 h-4 mr-2 text-muted-foreground" />
+												<CircleOff class="size-4 mr-2 text-muted-foreground" />
 											{/if}
 											<div class="flex flex-col">
 												<span>{d.label}</span>
@@ -369,21 +369,21 @@
 									<Label for="macvlanMode" class="text-xs">Mode</Label>
 									<Select.Root type="single" bind:value={macvlanMode}>
 										<Select.Trigger class="h-8 text-xs">
-											<Layers class="w-3 h-3 mr-1.5 text-muted-foreground" />
+											<Layers class="size-3 mr-1.5 text-muted-foreground" />
 											<span>{macvlanMode === 'bridge' ? 'Bridge (default)' : macvlanMode === 'private' ? 'Private' : macvlanMode === 'vepa' ? 'VEPA' : 'Passthru'}</span>
 										</Select.Trigger>
 										<Select.Content>
 											<Select.Item value="bridge" label="Bridge (default)">
-												<Layers class="w-3 h-3 mr-1.5 text-muted-foreground" />Bridge (default)
+												<Layers class="size-3 mr-1.5 text-muted-foreground" />Bridge (default)
 											</Select.Item>
 											<Select.Item value="private" label="Private">
-												<Layers class="w-3 h-3 mr-1.5 text-muted-foreground" />Private
+												<Layers class="size-3 mr-1.5 text-muted-foreground" />Private
 											</Select.Item>
 											<Select.Item value="vepa" label="VEPA">
-												<Layers class="w-3 h-3 mr-1.5 text-muted-foreground" />VEPA
+												<Layers class="size-3 mr-1.5 text-muted-foreground" />VEPA
 											</Select.Item>
 											<Select.Item value="passthru" label="Passthru">
-												<Layers class="w-3 h-3 mr-1.5 text-muted-foreground" />Passthru
+												<Layers class="size-3 mr-1.5 text-muted-foreground" />Passthru
 											</Select.Item>
 										</Select.Content>
 									</Select.Root>
@@ -393,18 +393,18 @@
 									<Label for="ipvlanMode" class="text-xs">Mode</Label>
 									<Select.Root type="single" bind:value={ipvlanMode}>
 										<Select.Trigger class="h-8 text-xs">
-											<Share2 class="w-3 h-3 mr-1.5 text-muted-foreground" />
+											<Share2 class="size-3 mr-1.5 text-muted-foreground" />
 											<span>{ipvlanMode === 'l2' ? 'L2 (default)' : ipvlanMode === 'l3' ? 'L3' : 'L3S'}</span>
 										</Select.Trigger>
 										<Select.Content>
 											<Select.Item value="l2" label="L2 (default)">
-												<Share2 class="w-3 h-3 mr-1.5 text-muted-foreground" />L2 (default)
+												<Share2 class="size-3 mr-1.5 text-muted-foreground" />L2 (default)
 											</Select.Item>
 											<Select.Item value="l3" label="L3">
-												<Share2 class="w-3 h-3 mr-1.5 text-muted-foreground" />L3
+												<Share2 class="size-3 mr-1.5 text-muted-foreground" />L3
 											</Select.Item>
 											<Select.Item value="l3s" label="L3S">
-												<Share2 class="w-3 h-3 mr-1.5 text-muted-foreground" />L3S
+												<Share2 class="size-3 mr-1.5 text-muted-foreground" />L3S
 											</Select.Item>
 										</Select.Content>
 									</Select.Root>
@@ -490,7 +490,7 @@
 					<div class="flex items-center justify-between">
 						<Label>Auxiliary addresses</Label>
 						<Button variant="outline" size="sm" onclick={() => auxAddresses = addItem(auxAddresses)}>
-							<Plus class="w-3 h-3" />Add
+							<Plus class="size-3" />Add
 						</Button>
 					</div>
 					<p class="text-xs text-muted-foreground">Reserve IP addresses for network devices (e.g., host=192.168.1.1)</p>
@@ -505,7 +505,7 @@
 								<Input bind:value={aux.value} class="h-9" />
 							</div>
 							<Button variant="ghost" size="sm" onclick={() => auxAddresses = removeItem(auxAddresses, i)}>
-								<Trash2 class="w-4 h-4 text-destructive" />
+								<Trash2 class="size-4 text-destructive" />
 							</Button>
 						</div>
 					{/each}
@@ -516,7 +516,7 @@
 					<div class="flex items-center justify-between">
 						<Label>IPAM options</Label>
 						<Button variant="outline" size="sm" onclick={() => ipamOptions = addItem(ipamOptions)}>
-							<Plus class="w-3 h-3" />Add
+							<Plus class="size-3" />Add
 						</Button>
 					</div>
 					{#each ipamOptions as opt, i}
@@ -530,7 +530,7 @@
 								<Input bind:value={opt.value} class="h-9" />
 							</div>
 							<Button variant="ghost" size="sm" onclick={() => ipamOptions = removeItem(ipamOptions, i)}>
-								<Trash2 class="w-4 h-4 text-destructive" />
+								<Trash2 class="size-4 text-destructive" />
 							</Button>
 						</div>
 					{/each}
@@ -543,7 +543,7 @@
 					<div class="flex items-center justify-between">
 						<Label>Driver options</Label>
 						<Button variant="outline" size="sm" onclick={() => driverOptions = addItem(driverOptions)}>
-							<Plus class="w-3 h-3" />Add
+							<Plus class="size-3" />Add
 						</Button>
 					</div>
 					<p class="text-xs text-muted-foreground">Set driver-specific options (-o key=value)</p>
@@ -568,7 +568,7 @@
 								<Input bind:value={opt.value} class="h-9" />
 							</div>
 							<Button variant="ghost" size="sm" onclick={() => driverOptions = removeItem(driverOptions, i)}>
-								<Trash2 class="w-4 h-4 text-destructive" />
+								<Trash2 class="size-4 text-destructive" />
 							</Button>
 						</div>
 					{/each}
@@ -581,7 +581,7 @@
 					<div class="flex items-center justify-between">
 						<Label>Labels</Label>
 						<Button variant="outline" size="sm" onclick={() => labels = addItem(labels)}>
-							<Plus class="w-3 h-3" />Add
+							<Plus class="size-3" />Add
 						</Button>
 					</div>
 					<p class="text-xs text-muted-foreground">Set metadata labels on the network</p>
@@ -597,7 +597,7 @@
 								<Input bind:value={label.value} class="h-9" />
 							</div>
 							<Button variant="ghost" size="sm" onclick={() => labels = removeItem(labels, i)}>
-								<Trash2 class="w-4 h-4 text-destructive" />
+								<Trash2 class="size-4 text-destructive" />
 							</Button>
 						</div>
 					{/each}
@@ -611,14 +611,14 @@
 
 		{#if error}
 			<Alert.Root variant="destructive" class="mt-4">
-				<TriangleAlert class="h-4 w-4" />
+				<TriangleAlert class="size-4" />
 				<Alert.Description>{error}</Alert.Description>
 			</Alert.Root>
 		{/if}
 
 		{#if errors.name || errors.parentInterface || errors.subnet}
 			<Alert.Root variant="destructive" class="mt-4">
-				<TriangleAlert class="h-4 w-4" />
+				<TriangleAlert class="size-4" />
 				<Alert.Description>Please fix the validation errors above</Alert.Description>
 			</Alert.Root>
 		{/if}

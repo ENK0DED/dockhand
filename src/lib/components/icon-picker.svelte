@@ -33,8 +33,8 @@
 
 <Popover.Root bind:open>
 	<Popover.Trigger>
-		<Button variant="outline" size="sm" class="h-9 w-9 p-0" type="button">
-			<CurrentIcon class="h-4 w-4" />
+		<Button variant="outline" size="sm" class="size-9 p-0" type="button">
+			<CurrentIcon class="size-4" />
 		</Button>
 	</Popover.Trigger>
 	<Popover.Content class="w-80 p-3 z-[200]" align="start">
@@ -53,7 +53,7 @@
 						class="p-2 rounded hover:bg-muted transition-colors {value === iconName ? 'bg-primary/10 ring-1 ring-primary' : ''}"
 						title={iconName}
 					>
-						<IconComponent class="h-4 w-4" />
+						<IconComponent class="size-4" />
 					</button>
 				{/each}
 			</div>

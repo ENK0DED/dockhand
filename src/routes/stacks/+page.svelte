@@ -14,7 +14,7 @@
 	import MultiSelectFilter from '$lib/components/MultiSelectFilter.svelte';
 	import { Play, Square, Trash2, Plus, ArrowBigDown, Search, Pencil, ExternalLink, GitBranch, RefreshCw, Loader2, FileCode, FileText, FileOutput, Box, RotateCcw, ScrollText, Terminal, Eye, Network, HardDrive, Heart, HeartPulse, HeartOff, ChevronsUpDown, ChevronsDownUp, Rocket, AlertTriangle, X, Layers, Pause, CircleDashed, Skull, FolderOpen, Variable, Clock, RotateCw, Import, Ship, Cable, LayoutPanelLeft, Rows3, GripVertical } from 'lucide-svelte';
 	import ConfirmPopover from '$lib/components/ConfirmPopover.svelte';
-	import BatchOperationModal from '$lib/components/BatchOperationModal.svelte';
+	import BatchOperationModal from '$lib/components/modals/BatchOperationModal.svelte';
 	import type { ComposeStackInfo, ContainerStats } from '$lib/types';
 	import StackModal from './StackModal.svelte';
 	import GitStackModal from './GitStackModal.svelte';
@@ -1251,10 +1251,10 @@
 					title={allExpanded ? 'Collapse all' : 'Expand all'}
 				>
 					{#if allExpanded}
-						<ChevronsDownUp class="w-3 h-3" />
+						<ChevronsDownUp class="size-3" />
 						Collapse
 					{:else}
-						<ChevronsUpDown class="w-3 h-3" />
+						<ChevronsUpDown class="size-3" />
 						Expand
 					{/if}
 				</button>
@@ -1262,7 +1262,7 @@
 		</PageHeader>
 		<div class="flex flex-wrap items-center gap-2">
 			<div class="relative">
-				<Search class="absolute left-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
+				<Search class="absolute left-2 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
 				<Input
 					type="text"
 					placeholder="Search stacks..."
@@ -1280,33 +1280,33 @@
 				defaultIcon={Layers}
 			/>
 			<Button size="sm" variant="outline" onclick={fetchStacks}>
-				<RefreshCw class="w-3.5 h-3.5" />
+				<RefreshCw class="size-4" />
 				Refresh
 			</Button>
 			<Button
 				size="sm"
 				variant="outline"
 				onclick={toggleLayoutMode}
-				class="h-8 w-8 p-0"
+				class="size-8 p-0"
 				title={layoutMode === 'horizontal' ? 'Switch to vertical layout (logs on side)' : 'Switch to horizontal layout (logs below)'}
 			>
 				{#if layoutMode === 'horizontal'}
-					<LayoutPanelLeft class="w-4 h-4" />
+					<LayoutPanelLeft class="size-4" />
 				{:else}
-					<Rows3 class="w-4 h-4" />
+					<Rows3 class="size-4" />
 				{/if}
 			</Button>
 			{#if $canAccess('stacks', 'create')}
 				<Button size="sm" variant="outline" onclick={() => openGitModal()}>
-					<GitBranch class="w-3.5 h-3.5" />
+					<GitBranch class="size-4" />
 					From Git
 				</Button>
 				<Button size="sm" variant="secondary" onclick={() => showCreateModal = true}>
-					<Plus class="w-3.5 h-3.5" />
+					<Plus class="size-4" />
 					Create
 				</Button>
 				<Button size="sm" variant="outline" onclick={() => showImportModal = true}>
-					<Import class="w-3.5 h-3.5" />
+					<Import class="size-4" />
 					Adopt
 				</Button>
 			{/if}
@@ -1339,7 +1339,7 @@
 				>
 					{#snippet children({ open })}
 						<span class="inline-flex items-center gap-1 px-1.5 py-0 rounded border border-border hover:text-green-600 hover:border-green-500/40 hover:shadow transition-all cursor-pointer">
-							<Play class="w-3 h-3" />
+							<Play class="size-3" />
 							Start
 						</span>
 					{/snippet}
@@ -1359,7 +1359,7 @@
 				>
 					{#snippet children({ open })}
 						<span class="inline-flex items-center gap-1 px-1.5 py-0 rounded border border-border hover:text-amber-600 hover:border-amber-500/40 hover:shadow transition-all cursor-pointer">
-							<RotateCcw class="w-3 h-3" />
+							<RotateCcw class="size-3" />
 							Restart
 						</span>
 					{/snippet}
@@ -1378,7 +1378,7 @@
 				>
 					{#snippet children({ open })}
 						<span class="inline-flex items-center gap-1 px-1.5 py-0 rounded border border-border hover:text-red-600 hover:border-red-500/40 hover:shadow transition-all cursor-pointer">
-							<Square class="w-3 h-3" />
+							<Square class="size-3" />
 							Stop
 						</span>
 					{/snippet}
@@ -1397,7 +1397,7 @@
 				>
 					{#snippet children({ open })}
 						<span class="inline-flex items-center gap-1 px-1.5 py-0 rounded border border-border hover:text-orange-600 hover:border-orange-500/40 hover:shadow transition-all cursor-pointer">
-							<ArrowBigDown class="w-3 h-3" />
+							<ArrowBigDown class="size-3" />
 							Down
 						</span>
 					{/snippet}
@@ -1416,7 +1416,7 @@
 			>
 				{#snippet children({ open })}
 					<span class="inline-flex items-center gap-1 px-1.5 py-0 rounded border border-border hover:text-destructive hover:border-destructive/40 hover:shadow transition-all cursor-pointer">
-						<Trash2 class="w-3 h-3" />
+						<Trash2 class="size-3" />
 						Remove
 					</span>
 				{/snippet}
@@ -1486,9 +1486,9 @@
 							<Tooltip.Trigger>
 								<Badge variant="secondary" class="text-2xs py-0 px-1 shrink-0 bg-blue-500/10 text-blue-600 dark:text-blue-400 hover:bg-blue-500/20 cursor-help flex items-center gap-0.5">
 									{#if systemType === 'dockhand'}
-										<Ship class="w-2.5 h-2.5" />
+										<Ship class="size-3" />
 									{:else}
-										<Cable class="w-2.5 h-2.5" />
+										<Cable class="size-3" />
 									{/if}
 									{systemType === 'dockhand' ? 'Dockhand' : 'Hawser'}
 								</Badge>
@@ -1502,7 +1502,7 @@
 						<Tooltip.Root>
 							<Tooltip.Trigger>
 								<span class="inline-flex items-center gap-0.5 ml-1.5 text-2xs px-1 py-0.5 rounded bg-cyan-100 text-cyan-700 dark:bg-cyan-900/50 dark:text-cyan-300">
-									<Variable class="w-2.5 h-2.5" />
+									<Variable class="size-3" />
 									{stackEnvVarCounts[stack.name]}
 								</span>
 							</Tooltip.Trigger>
@@ -1517,7 +1517,7 @@
 							class="inline-flex items-center justify-center gap-1 text-xs px-1.5 py-0.5 rounded-sm bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200 shadow-sm min-w-[5.5rem]"
 							title={source.repository ? `${source.repository.url} (${source.repository.branch})` : 'Deployed from Git repository'}
 						>
-							<GitBranch class="w-3 h-3" />
+							<GitBranch class="size-3" />
 							Git
 						</span>
 					{:else if source.sourceType === 'internal'}
@@ -1525,7 +1525,7 @@
 							class="inline-flex items-center justify-center gap-1 text-xs px-1.5 py-0.5 rounded-sm bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 shadow-sm min-w-[5.5rem]"
 							title="Managed by Dockhand"
 						>
-							<FileCode class="w-3 h-3" />
+							<FileCode class="size-3" />
 							Internal
 						</span>
 					{:else}
@@ -1534,7 +1534,7 @@
 								<span
 									class="inline-flex items-center justify-center gap-1 text-xs px-1.5 py-0.5 rounded-sm bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200 shadow-sm min-w-[5.5rem]"
 								>
-									<ExternalLink class="w-3 h-3" />
+									<ExternalLink class="size-3" />
 									Untracked
 								</span>
 							</Tooltip.Trigger>
@@ -1563,37 +1563,37 @@
 					<div class="flex items-center gap-1">
 						{#if getContainerStateCounts(stack).running}
 							<span class="inline-flex items-center gap-0.5 text-emerald-600 dark:text-emerald-400" title="Running">
-								<Play class="w-3.5 h-3.5" />
+								<Play class="size-4" />
 								<span class="text-xs font-medium">{getContainerStateCounts(stack).running}</span>
 							</span>
 						{/if}
 						{#if getContainerStateCounts(stack).exited}
 							<span class="inline-flex items-center gap-0.5 text-red-600 dark:text-red-400" title="Exited">
-								<Square class="w-3.5 h-3.5" />
+								<Square class="size-4" />
 								<span class="text-xs font-medium">{getContainerStateCounts(stack).exited}</span>
 							</span>
 						{/if}
 						{#if getContainerStateCounts(stack).paused}
 							<span class="inline-flex items-center gap-0.5 text-amber-600 dark:text-amber-400" title="Paused">
-								<Pause class="w-3.5 h-3.5" />
+								<Pause class="size-4" />
 								<span class="text-xs font-medium">{getContainerStateCounts(stack).paused}</span>
 							</span>
 						{/if}
 						{#if getContainerStateCounts(stack).restarting}
 							<span class="inline-flex items-center gap-0.5 text-blue-600 dark:text-blue-400" title="Restarting">
-								<span class="w-3.5 h-3.5 flex items-center justify-center"><RefreshCw class="w-3.5 h-3.5 animate-spin" /></span>
+								<span class="size-4 flex items-center justify-center"><RefreshCw class="size-4 animate-spin" /></span>
 								<span class="text-xs font-medium">{getContainerStateCounts(stack).restarting}</span>
 							</span>
 						{/if}
 						{#if getContainerStateCounts(stack).created}
 							<span class="inline-flex items-center gap-0.5 text-slate-500 dark:text-slate-400" title="Created">
-								<CircleDashed class="w-3.5 h-3.5" />
+								<CircleDashed class="size-4" />
 								<span class="text-xs font-medium">{getContainerStateCounts(stack).created}</span>
 							</span>
 						{/if}
 						{#if getContainerStateCounts(stack).dead}
 							<span class="inline-flex items-center gap-0.5 text-rose-700 dark:text-rose-400" title="Dead">
-								<Skull class="w-3.5 h-3.5" />
+								<Skull class="size-4" />
 								<span class="text-xs font-medium">{getContainerStateCounts(stack).dead}</span>
 							</span>
 						{/if}
@@ -1661,17 +1661,17 @@
 					{@const displayStatus = getDisplayStatus(stack)}
 					{@const StatusIcon = getStackStatusIcon(displayStatus)}
 					<span class={getStatusClasses(displayStatus)}>
-						<StatusIcon class="w-3 h-3" />
+						<StatusIcon class="size-3" />
 						{displayStatus}
 					</span>
 				{:else if column.id === 'actions'}
 					<div class="relative flex gap-1 justify-end">
 						{#if operationError?.id === stack.name && operationError?.message}
 							<div class="absolute bottom-full right-0 mb-1 z-50 bg-destructive text-destructive-foreground rounded-md shadow-lg p-2 text-xs flex items-start gap-2 max-w-lg w-max">
-								<AlertTriangle class="w-3 h-3 flex-shrink-0 mt-0.5" />
+								<AlertTriangle class="size-3 flex-shrink-0 mt-0.5" />
 								<span class="break-words">{operationError.message}</span>
 								<button onclick={() => operationError = null} class="flex-shrink-0 hover:bg-white/20 rounded p-0.5">
-									<X class="w-3 h-3" />
+									<X class="size-3" />
 								</button>
 							</div>
 						{/if}
@@ -1682,7 +1682,7 @@
 								title="Edit git stack"
 								class="p-1 rounded hover:bg-muted transition-colors opacity-70 hover:opacity-100 cursor-pointer"
 							>
-								<Pencil class="w-3 h-3 text-muted-foreground hover:text-purple-500" />
+								<Pencil class="size-3 text-muted-foreground hover:text-purple-500" />
 							</button>
 							<GitDeployProgressPopover
 								stackId={source.gitStack.id}
@@ -1695,7 +1695,7 @@
 										title="Deploy"
 										class="p-1 rounded hover:bg-muted transition-colors opacity-70 hover:opacity-100 cursor-pointer"
 									>
-										<Rocket class="w-3 h-3 text-muted-foreground hover:text-violet-500" />
+										<Rocket class="size-3 text-muted-foreground hover:text-violet-500" />
 									</button>
 								{/snippet}
 							</GitDeployProgressPopover>
@@ -1712,7 +1712,7 @@
 											title="Sync from Git"
 											class="p-1 rounded hover:bg-muted transition-colors opacity-70 hover:opacity-100 cursor-pointer"
 										>
-											<RefreshCw class="w-3 h-3 text-muted-foreground hover:text-purple-500" />
+											<RefreshCw class="size-3 text-muted-foreground hover:text-purple-500" />
 										</button>
 									{/snippet}
 								</GitDeployProgressPopover>
@@ -1725,7 +1725,7 @@
 										title="Edit git stack"
 										class="p-1 rounded hover:bg-muted transition-colors opacity-70 hover:opacity-100 cursor-pointer"
 									>
-										<Pencil class="w-3 h-3 text-muted-foreground hover:text-purple-500" />
+										<Pencil class="size-3 text-muted-foreground hover:text-purple-500" />
 									</button>
 								{:else}
 									<!-- Internal stacks (including those needing file location) -->
@@ -1735,7 +1735,7 @@
 										title="Edit"
 										class="p-1 rounded hover:bg-muted transition-colors opacity-70 hover:opacity-100 cursor-pointer"
 									>
-										<Pencil class="w-3 h-3 text-muted-foreground hover:text-blue-500" />
+										<Pencil class="size-3 text-muted-foreground hover:text-blue-500" />
 									</button>
 								{/if}
 							{/if}
@@ -1746,12 +1746,12 @@
 									title="View logs"
 									class="p-1 rounded hover:bg-muted transition-colors opacity-70 hover:opacity-100 cursor-pointer"
 								>
-									<ScrollText class="w-3 h-3 text-muted-foreground hover:text-blue-500" />
+									<ScrollText class="size-3 text-muted-foreground hover:text-blue-500" />
 								</button>
 							{/if}
 							{#if stackActionLoading === stack.name}
 								<div class="p-1">
-									<Loader2 class="w-3 h-3 animate-spin text-muted-foreground" />
+									<Loader2 class="size-3 animate-spin text-muted-foreground" />
 								</div>
 							{:else if stack.status === 'running' || stack.status === 'partial' || stack.status === 'restarting'}
 								{#if $canAccess('stacks', 'restart')}
@@ -1765,7 +1765,7 @@
 										onOpenChange={() => {}}
 									>
 										{#snippet children({ open })}
-											<RotateCcw class="w-3 h-3 {open ? 'text-amber-500' : 'text-muted-foreground hover:text-amber-500'}" />
+											<RotateCcw class="size-3 {open ? 'text-amber-500' : 'text-muted-foreground hover:text-amber-500'}" />
 										{/snippet}
 									</ConfirmPopover>
 								{/if}
@@ -1780,7 +1780,7 @@
 										onOpenChange={(open) => confirmStopName = open ? stack.name : null}
 									>
 										{#snippet children({ open })}
-											<Square class="w-3 h-3 {open ? 'text-destructive' : 'text-muted-foreground hover:text-destructive'}" />
+											<Square class="size-3 {open ? 'text-destructive' : 'text-muted-foreground hover:text-destructive'}" />
 										{/snippet}
 									</ConfirmPopover>
 								{/if}
@@ -1792,7 +1792,7 @@
 										title="Start"
 										class="p-1 rounded hover:bg-muted transition-colors opacity-70 hover:opacity-100 cursor-pointer"
 									>
-										<Play class="w-3 h-3 text-muted-foreground hover:text-green-500" />
+										<Play class="size-3 text-muted-foreground hover:text-green-500" />
 									</button>
 								{/if}
 							{/if}
@@ -1808,7 +1808,7 @@
 								onOpenChange={(open) => confirmDownName = open ? stack.name : null}
 							>
 								{#snippet children({ open })}
-									<ArrowBigDown class="w-3 h-3 {stackDownLoading === stack.name ? 'animate-bounce text-orange-500' : open ? 'text-orange-500' : 'text-muted-foreground hover:text-orange-500'}" />
+									<ArrowBigDown class="size-3 {stackDownLoading === stack.name ? 'animate-bounce text-orange-500' : open ? 'text-orange-500' : 'text-muted-foreground hover:text-orange-500'}" />
 								{/snippet}
 							</ConfirmPopover>
 						{/if}
@@ -1823,7 +1823,7 @@
 								onOpenChange={(open) => confirmDeleteName = open ? stack.name : null}
 							>
 								{#snippet children({ open })}
-									<Trash2 class="w-3 h-3 {open ? 'text-destructive' : 'text-muted-foreground hover:text-destructive'}" />
+									<Trash2 class="size-3 {open ? 'text-destructive' : 'text-muted-foreground hover:text-destructive'}" />
 								{/snippet}
 							</ConfirmPopover>
 						{/if}
@@ -1839,16 +1839,16 @@
 								{@const isLoading = containerActionLoading === container.id}
 								<div class="p-3 rounded-lg bg-background border text-xs">
 									<div class="flex items-center gap-2 mb-2">
-										<Box class="w-4 h-4 shrink-0 {container.state === 'running' ? 'text-emerald-500' : 'text-muted-foreground'}" />
+										<Box class="size-4 shrink-0 {container.state === 'running' ? 'text-emerald-500' : 'text-muted-foreground'}" />
 										<span class="font-medium truncate flex-1" title={container.name}>{container.service}</span>
 										{#if container.health}
 											<span title={container.health}>
 												{#if container.health === 'healthy'}
-													<HeartPulse class="w-3.5 h-3.5 {getHealthClasses(container.health)}" />
+													<HeartPulse class="size-4 {getHealthClasses(container.health)}" />
 												{:else if container.health === 'unhealthy'}
-													<HeartOff class="w-3.5 h-3.5 {getHealthClasses(container.health)}" />
+													<HeartOff class="size-4 {getHealthClasses(container.health)}" />
 												{:else}
-													<Heart class="w-3.5 h-3.5 {getHealthClasses(container.health)}" />
+													<Heart class="size-4 {getHealthClasses(container.health)}" />
 												{/if}
 											</span>
 										{/if}
@@ -1858,12 +1858,12 @@
 										<div class="truncate" title={container.image}>{container.image}</div>
 										<div class="flex items-center gap-2 text-2xs">
 											<span class="inline-flex items-center gap-1">
-												<Clock class="w-2.5 h-2.5" />
+												<Clock class="size-3" />
 												{formatUptime(container.status)}
 											</span>
 											{#if container.restartCount > 0}
 												<span class="inline-flex items-center gap-0.5 text-amber-600 dark:text-amber-400" title="{container.restartCount} restart{container.restartCount > 1 ? 's' : ''}">
-													<RotateCw class="w-2.5 h-2.5" />
+													<RotateCw class="size-3" />
 													{container.restartCount}
 												</span>
 											{/if}
@@ -1954,7 +1954,7 @@
 														title="Open {url} in new tab"
 													>
 														<code>:{port.publicPort}</code>
-														<ExternalLink class="w-2.5 h-2.5" />
+														<ExternalLink class="size-3" />
 													</a>
 												{:else}
 													<span class="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
@@ -1969,7 +1969,7 @@
 											<Tooltip.Root>
 												<Tooltip.Trigger>
 													<span class="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200">
-														<Network class="w-2.5 h-2.5" />
+														<Network class="size-3" />
 														{ip !== '-' ? ip : container.networks.length}
 													</span>
 												</Tooltip.Trigger>
@@ -1983,7 +1983,7 @@
 										<!-- Volumes -->
 										{#if container.volumeCount > 0}
 											<span class="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200" title="{container.volumeCount} volume{container.volumeCount > 1 ? 's' : ''} mounted">
-												<HardDrive class="w-2.5 h-2.5" />
+												<HardDrive class="size-3" />
 												{container.volumeCount}
 											</span>
 										{/if}
@@ -1996,7 +1996,7 @@
 												onclick={(e) => { e.stopPropagation(); showContainerLogs(container); }}
 												class="p-1 rounded hover:bg-muted transition-colors opacity-70 hover:opacity-100 cursor-pointer {currentLogsContainerId === container.id ? 'bg-muted text-blue-500' : ''}"
 											>
-												<FileText class="w-3.5 h-3.5 {currentLogsContainerId === container.id ? 'text-blue-500' : 'text-muted-foreground hover:text-foreground'}" />
+												<FileText class="size-4 {currentLogsContainerId === container.id ? 'text-blue-500' : 'text-muted-foreground hover:text-foreground'}" />
 											</button>
 											<button
 												type="button"
@@ -2004,7 +2004,7 @@
 												onclick={(e) => { e.stopPropagation(); goto(appendEnvParam(`/logs?container=${container.id}`, envId)); }}
 												class="p-1 rounded hover:bg-muted transition-colors opacity-70 hover:opacity-100 cursor-pointer"
 											>
-												<FileOutput class="w-3.5 h-3.5 text-muted-foreground hover:text-foreground" />
+												<FileOutput class="size-4 text-muted-foreground hover:text-foreground" />
 											</button>
 											{#if container.state === 'running' && $canAccess('containers', 'exec')}
 												<button
@@ -2013,7 +2013,7 @@
 													onclick={(e) => { e.stopPropagation(); goto(appendEnvParam(`/terminal?container=${container.id}`, envId)); }}
 													class="p-1 rounded hover:bg-muted transition-colors opacity-70 hover:opacity-100 cursor-pointer"
 												>
-													<Terminal class="w-3.5 h-3.5 text-muted-foreground hover:text-foreground" />
+													<Terminal class="size-4 text-muted-foreground hover:text-foreground" />
 												</button>
 											{/if}
 											{#if container.state === 'running' && $canAccess('containers', 'files')}
@@ -2023,7 +2023,7 @@
 													onclick={(e) => { e.stopPropagation(); browseFiles(container.id, container.name); }}
 													class="p-1 rounded hover:bg-muted transition-colors opacity-70 hover:opacity-100 cursor-pointer"
 												>
-													<FolderOpen class="w-3.5 h-3.5 text-muted-foreground hover:text-foreground" />
+													<FolderOpen class="size-4 text-muted-foreground hover:text-foreground" />
 												</button>
 											{/if}
 											<button
@@ -2032,21 +2032,21 @@
 												onclick={(e) => { e.stopPropagation(); inspectContainer(container.id, container.name); }}
 												class="p-1 rounded hover:bg-muted transition-colors opacity-70 hover:opacity-100 cursor-pointer"
 											>
-												<Eye class="w-3.5 h-3.5 text-muted-foreground hover:text-foreground" />
+												<Eye class="size-4 text-muted-foreground hover:text-foreground" />
 											</button>
 										</div>
 										<div class="relative flex gap-1">
 											{#if operationError?.id === container.id && operationError?.message}
 												<div class="absolute bottom-full right-0 mb-1 z-50 bg-destructive text-destructive-foreground rounded-md shadow-lg p-2 text-xs flex items-start gap-2 max-w-lg w-max">
-													<AlertTriangle class="w-3 h-3 flex-shrink-0 mt-0.5" />
+													<AlertTriangle class="size-3 flex-shrink-0 mt-0.5" />
 													<span class="break-words">{operationError.message}</span>
 													<button onclick={() => operationError = null} class="flex-shrink-0 hover:bg-white/20 rounded p-0.5">
-														<X class="w-3 h-3" />
+														<X class="size-3" />
 													</button>
 												</div>
 											{/if}
 											{#if isLoading}
-												<Loader2 class="w-3.5 h-3.5 animate-spin text-muted-foreground" />
+												<Loader2 class="size-4 animate-spin text-muted-foreground" />
 											{:else}
 												{#if container.state === 'running'}
 													{#if $canAccess('containers', 'restart')}
@@ -2060,7 +2060,7 @@
 															onOpenChange={(open) => confirmRestartContainerId = open ? container.id : null}
 														>
 															{#snippet children({ open })}
-																<RotateCcw class="w-3.5 h-3.5 {open ? 'text-amber-500' : 'text-muted-foreground hover:text-amber-500'}" />
+																<RotateCcw class="size-4 {open ? 'text-amber-500' : 'text-muted-foreground hover:text-amber-500'}" />
 															{/snippet}
 														</ConfirmPopover>
 													{/if}
@@ -2075,7 +2075,7 @@
 															onOpenChange={(open) => confirmPauseContainerId = open ? container.id : null}
 														>
 															{#snippet children({ open })}
-																<Pause class="w-3.5 h-3.5 {open ? 'text-amber-500' : 'text-muted-foreground hover:text-amber-500'}" />
+																<Pause class="size-4 {open ? 'text-amber-500' : 'text-muted-foreground hover:text-amber-500'}" />
 															{/snippet}
 														</ConfirmPopover>
 													{/if}
@@ -2090,7 +2090,7 @@
 															onOpenChange={(open) => confirmStopContainerId = open ? container.id : null}
 														>
 															{#snippet children({ open })}
-																<Square class="w-3.5 h-3.5 {open ? 'text-destructive' : 'text-muted-foreground hover:text-destructive'}" />
+																<Square class="size-4 {open ? 'text-destructive' : 'text-muted-foreground hover:text-destructive'}" />
 															{/snippet}
 														</ConfirmPopover>
 													{/if}
@@ -2102,7 +2102,7 @@
 															onclick={(e) => unpauseContainer(container.id, e)}
 															class="p-1 rounded hover:bg-muted transition-colors opacity-70 hover:opacity-100 cursor-pointer"
 														>
-															<Play class="w-3.5 h-3.5 text-muted-foreground hover:text-emerald-500" />
+															<Play class="size-4 text-muted-foreground hover:text-emerald-500" />
 														</button>
 													{/if}
 												{:else}
@@ -2113,7 +2113,7 @@
 															onclick={(e) => startContainer(container.id, e)}
 															class="p-1 rounded hover:bg-muted transition-colors opacity-70 hover:opacity-100 cursor-pointer"
 														>
-															<Play class="w-3.5 h-3.5 text-muted-foreground hover:text-emerald-500" />
+															<Play class="size-4 text-muted-foreground hover:text-emerald-500" />
 														</button>
 													{/if}
 												{/if}
@@ -2127,7 +2127,7 @@
 				{:else}
 					<div class="p-4 pl-12 shadow-inner bg-muted/30">
 						<div class="flex items-center justify-center gap-2 py-4 text-muted-foreground text-sm">
-							<Box class="w-4 h-4" />
+							<Box class="size-4" />
 							<span>No containers</span>
 						</div>
 					</div>

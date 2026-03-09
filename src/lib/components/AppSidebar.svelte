@@ -113,7 +113,7 @@
 				<img src="/logo-light.webp" alt="Dockhand Logo" class="h-[52px] w-auto object-contain mt-2 mb-1 dark:hidden" style="filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.3)) drop-shadow(-1px -1px 1px rgba(255,255,255,0.9));" />
 				<img src="/logo-dark.webp" alt="Dockhand Logo" class="h-[52px] w-auto object-contain mt-2 mb-1 hidden dark:block" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.6)) drop-shadow(-1px -1px 1px rgba(255,255,255,0.2));" />
 				{#if $licenseStore.isEnterprise}
-					<Crown class="w-4 h-4 absolute top-0 -right-[6px] text-amber-500 fill-amber-400 drop-shadow-sm rotate-[20deg]" />
+					<Crown class="size-4 absolute top-0 -right-[6px] text-amber-500 fill-amber-400 drop-shadow-sm rotate-[20deg]" />
 				{/if}
 			</a>
 			<button
@@ -123,7 +123,7 @@
 				title="Collapse sidebar"
 				aria-label="Collapse sidebar"
 			>
-				<PanelLeftClose class="w-4 h-4" aria-hidden="true" />
+				<PanelLeftClose class="size-4" aria-hidden="true" />
 			</button>
 		</div>
 		<!-- Collapsed state: expand button only -->
@@ -134,7 +134,7 @@
 			title="Expand sidebar"
 			aria-label="Expand sidebar"
 		>
-			<PanelLeft class="w-4 h-4" aria-hidden="true" />
+			<PanelLeft class="size-4" aria-hidden="true" />
 		</button>
 	</Sidebar.Header>
 
@@ -166,7 +166,7 @@
 						class="flex items-center gap-2 px-2 py-1.5 group-data-[state=collapsed]:px-1 group-data-[state=collapsed]:py-1 rounded-md hover:bg-sidebar-accent transition-colors group-data-[state=collapsed]:justify-center"
 						title="View profile"
 					>
-						<Avatar.Root class="w-8 h-8 group-data-[state=collapsed]:w-6 group-data-[state=collapsed]:h-6 shrink-0 transition-all">
+						<Avatar.Root class="size-8 group-data-[state=collapsed]:w-6 group-data-[state=collapsed]:h-6 shrink-0 transition-all">
 							<Avatar.Image src={$authStore.user.avatar} alt={$authStore.user.username} />
 							<Avatar.Fallback class="bg-primary/10 text-primary text-xs">
 								{($authStore.user.displayName || $authStore.user.username)?.slice(0, 2).toUpperCase()}
@@ -185,7 +185,7 @@
 						class="flex items-center gap-2 w-full px-2 py-1.5 group-data-[state=collapsed]:px-1 group-data-[state=collapsed]:py-1 text-sm text-muted-foreground hover:text-foreground hover:bg-sidebar-accent rounded-md transition-colors group-data-[state=collapsed]:justify-center"
 						title="Sign out"
 					>
-						<LogOut class="w-4 h-4 shrink-0 group-data-[state=collapsed]:w-3.5 group-data-[state=collapsed]:h-3.5" />
+						<LogOut class="size-4 shrink-0" />
 						<span class="group-data-[state=collapsed]:hidden">Sign out</span>
 					</button>
 				</Sidebar.MenuItem>

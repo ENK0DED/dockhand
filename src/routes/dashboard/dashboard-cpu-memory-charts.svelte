@@ -73,7 +73,7 @@
 {:else}
 	<div class="pt-2 border-t border-border/50">
 		<div class="flex items-center gap-1.5 text-xs text-muted-foreground mb-2">
-			<Cpu class="w-3 h-3" />
+			<Cpu class="size-3" />
 			<span class="font-medium">CPU & Memory history</span>
 		</div>
 

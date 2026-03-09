@@ -4,14 +4,7 @@
 	import { Progress } from '$lib/components/ui/progress';
 	import { Check, X, Loader2, Circle, Ban } from 'lucide-svelte';
 	import { onDestroy } from 'svelte';
-
-	function formatBytes(bytes: number): string {
-		if (bytes === 0) return '0 B';
-		const k = 1024;
-		const sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
-		const i = Math.floor(Math.log(bytes) / Math.log(k));
-		return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
-	}
+	import { formatBytes } from '$lib/utils/new';
 
 	const progressText: Record<string, string> = {
 		remove: 'removing',
@@ -245,17 +238,17 @@
 				<div class="px-3 py-2 border-b last:border-b-0 text-sm {item.status === 'error' ? 'bg-red-50 dark:bg-red-950/20' : ''} {item.status === 'cancelled' ? 'bg-amber-50 dark:bg-amber-950/20' : ''}">
 					<div class="flex items-center gap-2">
 						<!-- Status icon -->
-						<div class="w-5 h-5 flex items-center justify-center flex-shrink-0">
+						<div class="size-5 flex items-center justify-center flex-shrink-0">
 							{#if item.status === 'pending'}
-								<Circle class="w-4 h-4 text-muted-foreground" />
+								<Circle class="size-4 text-muted-foreground" />
 							{:else if item.status === 'processing'}
-								<Loader2 class="w-4 h-4 text-blue-500 animate-spin" />
+								<Loader2 class="size-4 text-blue-500 animate-spin" />
 							{:else if item.status === 'success'}
-								<Check class="w-4 h-4 text-green-500" />
+								<Check class="size-4 text-green-500" />
 							{:else if item.status === 'error'}
-								<X class="w-4 h-4 text-red-500" />
+								<X class="size-4 text-red-500" />
 							{:else if item.status === 'cancelled'}
-								<Ban class="w-4 h-4 text-amber-500" />
+								<Ban class="size-4 text-amber-500" />
 							{/if}
 						</div>
 
@@ -293,19 +286,19 @@
 		<div class="flex items-center justify-between pt-2">
 			<div class="flex items-center gap-3 text-sm">
 				<div class="flex items-center gap-1" title="Succeeded">
-					<Check class="w-4 h-4 text-green-500" />
+					<Check class="size-4 text-green-500" />
 					<span class="tabular-nums">{successCount}</span>
 				</div>
 				<div class="flex items-center gap-1" title="Failed">
-					<X class="w-4 h-4 text-red-500" />
+					<X class="size-4 text-red-500" />
 					<span class="tabular-nums">{failCount}</span>
 				</div>
 				<div class="flex items-center gap-1" title="Cancelled">
-					<Ban class="w-4 h-4 text-amber-500" />
+					<Ban class="size-4 text-amber-500" />
 					<span class="tabular-nums">{cancelledCount}</span>
 				</div>
 				<div class="flex items-center gap-1 text-muted-foreground" title="Pending">
-					<Circle class="w-4 h-4" />
+					<Circle class="size-4" />
 					<span class="tabular-nums">{items.length - successCount - failCount - cancelledCount}</span>
 				</div>
 			</div>

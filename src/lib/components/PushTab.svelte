@@ -206,13 +206,13 @@
 			<div class="flex items-center justify-between">
 				<div class="flex items-center gap-2">
 					{#if status === 'pushing'}
-						<Loader2 class="w-4 h-4 animate-spin text-blue-600" />
+						<Loader2 class="size-4 animate-spin text-blue-600" />
 						<span class="text-sm">{statusMessage}</span>
 					{:else if status === 'complete'}
-						<CheckCircle2 class="w-4 h-4 text-green-600" />
+						<CheckCircle2 class="size-4 text-green-600" />
 						<span class="text-sm text-green-600">Push complete!</span>
 					{:else if status === 'error'}
-						<XCircle class="w-4 h-4 text-red-600" />
+						<XCircle class="size-4 text-red-600" />
 						<span class="text-sm text-red-600">Push failed</span>
 					{/if}
 				</div>
@@ -224,7 +224,7 @@
 			{#if errorMessage}
 				<div class="p-3 rounded-lg bg-destructive/10 border border-destructive/30">
 					<div class="flex items-start gap-2">
-						<AlertCircle class="w-4 h-4 text-destructive mt-0.5 shrink-0" />
+						<AlertCircle class="size-4 text-destructive mt-0.5 shrink-0" />
 						<span class="text-sm text-destructive break-all">{errorMessage}</span>
 					</div>
 				</div>
@@ -236,14 +236,14 @@
 			<div class="flex-1 min-h-0 flex flex-col">
 				<div class="flex items-center justify-between text-xs text-muted-foreground mb-2 shrink-0">
 					<div class="flex items-center gap-2">
-						<Terminal class="w-3.5 h-3.5" />
+						<Terminal class="size-4" />
 						<span>Output ({outputLines.length} lines)</span>
 					</div>
 					<button type="button" onclick={toggleLogTheme} class="p-1 rounded hover:bg-muted transition-colors cursor-pointer" title="Toggle log theme">
 						{#if logDarkMode}
-							<Sun class="w-3.5 h-3.5" />
+							<Sun class="size-4" />
 						{:else}
-							<Moon class="w-3.5 h-3.5" />
+							<Moon class="size-4" />
 						{/if}
 					</button>
 				</div>
@@ -275,7 +275,7 @@
 	<!-- Idle state -->
 	{#if status === 'idle'}
 		<div class="flex-1 flex flex-col items-center justify-center gap-4 text-muted-foreground">
-			<Upload class="w-12 h-12 opacity-50" />
+			<Upload class="size-12 opacity-50" />
 			<p class="text-sm">Ready to push to <code class="bg-muted px-1.5 py-0.5 rounded">{registryName}</code></p>
 		</div>
 	{/if}

@@ -205,18 +205,18 @@
 			<Dialog.Title class="flex items-center gap-2">
 				{#if scanStatus === 'complete' && scanResults.length > 0}
 					{#if hasCriticalOrHigh}
-						<ShieldX class="w-5 h-5 text-red-500" />
+						<ShieldX class="size-5 text-red-500" />
 					{:else if totalVulnerabilities > 0}
-						<ShieldAlert class="w-5 h-5 text-yellow-500" />
+						<ShieldAlert class="size-5 text-yellow-500" />
 					{:else}
-						<ShieldCheck class="w-5 h-5 text-green-500" />
+						<ShieldCheck class="size-5 text-green-500" />
 					{/if}
 				{:else if scanStatus === 'complete'}
-					<CheckCircle2 class="w-5 h-5 text-green-500" />
+					<CheckCircle2 class="size-5 text-green-500" />
 				{:else if scanStatus === 'error'}
-					<XCircle class="w-5 h-5 text-red-500" />
+					<XCircle class="size-5 text-red-500" />
 				{:else}
-					<ShieldCheck class="w-5 h-5" />
+					<ShieldCheck class="size-5" />
 				{/if}
 				Vulnerability scan
 				<code class="text-sm font-normal bg-muted px-1.5 py-0.5 rounded ml-1">{imageName}</code>
@@ -247,22 +247,22 @@
 						<DropdownMenu.Trigger>
 							{#snippet child({ props })}
 								<Button variant="outline" {...props}>
-									<Download class="w-4 h-4" />
+									<Download class="size-4" />
 									Export
 								</Button>
 							{/snippet}
 						</DropdownMenu.Trigger>
 						<DropdownMenu.Content align="start">
 							<DropdownMenu.Item onclick={exportToMarkdown}>
-								<FileText class="w-4 h-4 mr-2 text-blue-500" />
+								<FileText class="size-4 mr-2 text-blue-500" />
 								Markdown report (.md)
 							</DropdownMenu.Item>
 							<DropdownMenu.Item onclick={exportToCSV}>
-								<FileSpreadsheet class="w-4 h-4 mr-2 text-green-500" />
+								<FileSpreadsheet class="size-4 mr-2 text-green-500" />
 								CSV spreadsheet (.csv)
 							</DropdownMenu.Item>
 							<DropdownMenu.Item onclick={exportToJSON}>
-								<FileText class="w-4 h-4 mr-2 text-amber-500" />
+								<FileText class="size-4 mr-2 text-amber-500" />
 								JSON data (.json)
 							</DropdownMenu.Item>
 						</DropdownMenu.Content>

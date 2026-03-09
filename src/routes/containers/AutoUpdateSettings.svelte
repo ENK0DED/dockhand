@@ -55,7 +55,7 @@
 	<!-- System container - show informational message instead of settings -->
 	<div class="rounded-lg border border-blue-500/30 bg-blue-500/5 p-3">
 		<div class="flex items-start gap-2">
-			<AlertTriangle class="w-4 h-4 text-blue-500 mt-0.5 shrink-0" />
+			<AlertTriangle class="size-4 text-blue-500 mt-0.5 shrink-0" />
 			<div class="space-y-2 text-xs">
 				{#if systemContainer === 'dockhand'}
 					<p class="font-medium text-blue-600 dark:text-blue-400">Auto-updates not available</p>
@@ -76,7 +76,7 @@
 						rel="noopener noreferrer"
 						class="text-primary hover:underline flex items-center gap-1"
 					>
-						<ExternalLink class="w-3 h-3" />
+						<ExternalLink class="size-3" />
 						View update instructions on GitHub
 					</a>
 				{/if}

@@ -149,11 +149,11 @@
 		<Dialog.Header class="shrink-0 pb-2">
 			<Dialog.Title class="flex items-center gap-2">
 				{#if pushStatus === 'complete'}
-					<CheckCircle2 class="w-5 h-5 text-green-500" />
+					<CheckCircle2 class="size-5 text-green-500" />
 				{:else if pushStatus === 'error'}
-					<XCircle class="w-5 h-5 text-red-500" />
+					<XCircle class="size-5 text-red-500" />
 				{:else}
-					<Upload class="w-5 h-5" />
+					<Upload class="size-5" />
 				{/if}
 				Push to registry
 				<code class="text-sm font-normal bg-muted px-1.5 py-0.5 rounded ml-1">{imageName}</code>
@@ -167,23 +167,23 @@
 				onclick={() => { if (!isProcessing && currentStep !== 'configure') currentStep = 'configure'; }}
 				disabled={isProcessing}
 			>
-				<Settings2 class="w-3.5 h-3.5 inline mr-1.5" />
+				<Settings2 class="size-4 inline mr-1.5" />
 				Configure
 			</button>
-			<ArrowBigRight class="w-3.5 h-3.5 text-muted-foreground/50 shrink-0" />
+			<ArrowBigRight class="size-4 text-muted-foreground/50 shrink-0" />
 			<button
 				class="px-4 py-2 text-sm font-medium border-b-2 transition-colors cursor-pointer {currentStep === 'push' ? 'border-primary text-foreground' : 'border-transparent text-muted-foreground hover:text-foreground'}"
 				onclick={() => { if (!isProcessing && pushStatus !== 'idle') currentStep = 'push'; }}
 				disabled={isProcessing || pushStatus === 'idle'}
 			>
-				<Upload class="w-3.5 h-3.5 inline mr-1.5" />
+				<Upload class="size-4 inline mr-1.5" />
 				Push
 				{#if pushStatus === 'complete'}
-					<CheckCircle2 class="w-3.5 h-3.5 inline ml-1 text-green-500" />
+					<CheckCircle2 class="size-4 inline ml-1 text-green-500" />
 				{:else if pushStatus === 'error'}
-					<XCircle class="w-3.5 h-3.5 inline ml-1 text-red-500" />
+					<XCircle class="size-4 inline ml-1 text-red-500" />
 				{:else}
-					<CheckCircle2 class="w-3.5 h-3.5 inline ml-1 invisible" />
+					<CheckCircle2 class="size-4 inline ml-1 invisible" />
 				{/if}
 			</button>
 		</div>
@@ -204,9 +204,9 @@
 						<Select.Trigger class="w-full h-9 justify-start">
 							{#if targetRegistry}
 								{#if isDockerHub(targetRegistry)}
-									<Icon iconNode={whale} class="w-4 h-4 mr-2 text-muted-foreground" />
+									<Icon iconNode={whale} class="size-4 mr-2 text-muted-foreground" />
 								{:else}
-									<Server class="w-4 h-4 mr-2 text-muted-foreground" />
+									<Server class="size-4 mr-2 text-muted-foreground" />
 								{/if}
 								<span class="flex-1 text-left">{targetRegistry.name}{targetRegistry.hasCredentials ? ' (auth)' : ''}</span>
 							{:else}
@@ -217,9 +217,9 @@
 							{#each pushableRegistries as registry}
 								<Select.Item value={String(registry.id)} label={registry.name}>
 									{#if isDockerHub(registry)}
-										<Icon iconNode={whale} class="w-4 h-4 mr-2 text-muted-foreground" />
+										<Icon iconNode={whale} class="size-4 mr-2 text-muted-foreground" />
 									{:else}
-										<Server class="w-4 h-4 mr-2 text-muted-foreground" />
+										<Server class="size-4 mr-2 text-muted-foreground" />
 									{/if}
 									{registry.name}
 									{#if registry.hasCredentials}
@@ -284,7 +284,7 @@
 						onclick={startPush}
 						disabled={!targetRegistryId || pushableRegistries.length === 0}
 					>
-						<Upload class="w-4 h-4" />
+						<Upload class="size-4" />
 						Push
 					</Button>
 				{/if}

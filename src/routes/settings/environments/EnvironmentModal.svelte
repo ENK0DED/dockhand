@@ -8,72 +8,53 @@
 	import { Label } from '$lib/components/ui/label';
 	import { Input } from '$lib/components/ui/input';
 	import * as Select from '$lib/components/ui/select';
-	import VulnerabilityCriteriaSelector, { type VulnerabilityCriteria } from '$lib/components/VulnerabilityCriteriaSelector.svelte';
+	import { type VulnerabilityCriteria } from '$lib/components/VulnerabilityCriteriaSelector.svelte';
 	import {
 		Plus,
 		Trash2,
-		Pencil,
 		Globe,
 		RefreshCw,
-		CircleArrowUp,
 		CircleFadingArrowUp,
 		Check,
 		ShieldCheck,
 		Activity,
 		Bell,
 		Download,
-		Play,
-		Square,
-		RotateCcw,
-		Skull,
-		Heart,
-		AlertTriangle,
-		Layers,
-		Loader2,
+		TriangleAlert,
 		Info,
-		CheckCircle2,
 		Lock,
 		LockOpen,
 		Mail,
 		Send,
-		AlertCircle,
-		GitBranch,
-		ShieldX,
-		ShieldAlert,
-		Shield,
 		Wifi,
 		WifiOff,
 		Unplug,
 		Key,
-		Image,
-		Cpu,
 		Route,
 		UndoDot,
-		HelpCircle,
+		CircleQuestionMark,
 		ExternalLink,
 		Copy,
 		Clock,
 		Icon,
 		Pipette,
 		X,
-		Tags,
 		ChevronDown,
 		ChevronRight,
-		XCircle
+		CircleX,
+    CircleAlert,
+    CircleCheck,
+    LoaderCircle
 	} from 'lucide-svelte';
 	import * as Tooltip from '$lib/components/ui/tooltip';
-	import * as Alert from '$lib/components/ui/alert';
 	import * as Popover from '$lib/components/ui/popover';
 	import IconPicker from '$lib/components/icon-picker.svelte';
-	import CronEditor from '$lib/components/cron-editor.svelte';
-	import TimezoneSelector from '$lib/components/TimezoneSelector.svelte';
 	import { whale } from '@lucide/lab';
 	import ImagePullProgressPopover from '../../images/ImagePullProgressPopover.svelte';
 	import { TogglePill, ToggleGroup } from '$lib/components/ui/toggle-pill';
-	import { ShieldOff } from 'lucide-svelte';
 	import { focusFirstInput } from '$lib/utils';
 	import { copyToClipboard } from '$lib/utils/clipboard';
-	import { authStore, canAccess } from '$lib/stores/auth';
+	import { canAccess } from '$lib/stores/auth';
 	import { licenseStore } from '$lib/stores/license';
 	import { formatDateTime, formatDate } from '$lib/stores/settings';
 	import { getLabelColor, getLabelBgColor, parseLabels, MAX_LABELS } from '$lib/utils/label-colors';
@@ -1340,23 +1321,23 @@
 		<Tabs.Root bind:value={modalTab} class="flex-1 flex flex-col overflow-hidden mt-4">
 			<Tabs.List class="flex-shrink-0 mb-0 w-full grid grid-cols-5">
 				<Tabs.Trigger value="general" class="flex items-center justify-center gap-1.5">
-					<Globe class="w-3.5 h-3.5" />
+					<Globe class="size-4" />
 					General
 				</Tabs.Trigger>
 				<Tabs.Trigger value="updates" class="flex items-center justify-center gap-1.5">
-					<CircleFadingArrowUp class="w-3.5 h-3.5" />
+					<CircleFadingArrowUp class="size-4" />
 					Updates
 				</Tabs.Trigger>
 				<Tabs.Trigger value="activity" class="flex items-center justify-center gap-1.5">
-					<Activity class="w-3.5 h-3.5" />
+					<Activity class="size-4" />
 					Activity
 				</Tabs.Trigger>
 				<Tabs.Trigger value="security" class="flex items-center justify-center gap-1.5">
-					<ShieldCheck class="w-3.5 h-3.5" />
+					<ShieldCheck class="size-4" />
 					Security
 				</Tabs.Trigger>
 				<Tabs.Trigger value="notifications" class="flex items-center justify-center gap-1.5">
-					<Bell class="w-3.5 h-3.5" />
+					<Bell class="size-4" />
 					Notifications
 				</Tabs.Trigger>
 			</Tabs.List>
@@ -1402,7 +1383,7 @@
 												onclick={() => formLabels = formLabels.filter(l => l !== label)}
 												class="ml-0.5 rounded-full hover:bg-black/10 p-0.5"
 											>
-												<X class="w-3 h-3" />
+												<X class="size-3" />
 											</button>
 										</Badge>
 									{/each}
@@ -1465,7 +1446,7 @@
 										}}
 										disabled={!newLabelInput.trim() || formLabels.includes(newLabelInput.trim().toLowerCase())}
 									>
-										<Plus class="w-4 h-4" />
+										<Plus class="size-4" />
 									</Button>
 								</div>
 							{:else}
@@ -1477,50 +1458,53 @@
 						<div class="space-y-2">
 							<div class="flex items-center gap-1.5">
 								<Label for="edit-env-connection-type">Connection type</Label>
+
 								<Popover.Root>
 									<Popover.Trigger>
 										<button type="button" class="text-muted-foreground hover:text-foreground">
-											<HelpCircle class="w-3.5 h-3.5" />
+											<CircleQuestionMark class="size-4" />
 										</button>
 									</Popover.Trigger>
-									<Popover.Content class="w-80 text-sm z-[200]" side="right">
+
+									<Popover.Content class="w-80 text-sm z-200" side="right">
 										<div class="space-y-3">
 											<div class="flex items-start gap-2">
-												<Unplug class="w-4 h-4 mt-0.5 text-cyan-500 shrink-0" />
+												<Unplug class="size-4 mt-0.5 text-cyan-500 shrink-0" />
 												<div>
 													<p class="font-medium">Unix socket</p>
 													<p class="text-xs text-muted-foreground">Connect via Docker socket on the same machine. Default path: /var/run/docker.sock. Also works with Docker Desktop and OrbStack.</p>
 												</div>
 											</div>
 											<div class="flex items-start gap-2">
-												<Icon iconNode={whale} class="w-4 h-4 mt-0.5 text-blue-500 shrink-0" />
+												<Icon iconNode={whale} class="size-4 mt-0.5 text-blue-500 shrink-0" />
 												<div>
 													<p class="font-medium">Direct connection</p>
 													<p class="text-xs text-muted-foreground">Connect directly to Docker Engine API. Requires Docker to expose its API on a TCP port (default 2375/2376). Best for LAN environments.</p>
 												</div>
 											</div>
 											<div class="flex items-start gap-2">
-												<Route class="w-4 h-4 mt-0.5 text-purple-500 shrink-0" />
+												<Route class="size-4 mt-0.5 text-purple-500 shrink-0" />
 												<div>
 													<p class="font-medium">Hawser standard</p>
 													<p class="text-xs text-muted-foreground">Hawser agent listens on a port and Dockhand connects to it. Good for LAN with static IPs.</p>
 												</div>
 											</div>
 											<div class="flex items-start gap-2">
-												<UndoDot class="w-4 h-4 mt-0.5 text-green-500 shrink-0" />
+												<UndoDot class="size-4 mt-0.5 text-green-500 shrink-0" />
 												<div>
 													<p class="font-medium">Hawser edge</p>
 													<p class="text-xs text-muted-foreground">Hawser agent initiates outbound WebSocket to Dockhand. No port forwarding needed. Perfect for VPS, NAT, or dynamic IPs.</p>
 												</div>
 											</div>
 											<a href="https://github.com/Finsys/hawser" target="_blank" class="flex items-center gap-1 text-xs text-blue-500 hover:underline">
-												<ExternalLink class="w-3 h-3" />
+												<ExternalLink class="size-3" />
 												Learn more about Hawser
 											</a>
 										</div>
 									</Popover.Content>
 								</Popover.Root>
 							</div>
+
 							<Select.Root type="single" value={formConnectionType} onValueChange={(v) => {
 								formConnectionType = v as ConnectionType;
 								// Set default port based on connection type
@@ -1533,42 +1517,43 @@
 								<Select.Trigger class="w-full">
 									<span class="flex items-center gap-2">
 										{#if formConnectionType === 'socket'}
-											<Unplug class="w-4 h-4 text-cyan-500" />
+											<Unplug class="size-4 text-cyan-500" />
 											Unix socket
 										{:else if formConnectionType === 'direct'}
-											<Icon iconNode={whale} class="w-4 h-4 text-blue-500" />
+											<Icon iconNode={whale} class="size-4 text-blue-500" />
 											Direct connection
 										{:else if formConnectionType === 'hawser-standard'}
-											<Route class="w-4 h-4 text-purple-500" />
+											<Route class="size-4 text-purple-500" />
 											Hawser agent (standard)
 										{:else}
-											<UndoDot class="w-4 h-4 text-green-500" />
+											<UndoDot class="size-4 text-green-500" />
 											Hawser agent (edge)
 										{/if}
 									</span>
 								</Select.Trigger>
+
 								<Select.Content>
 									<Select.Item value="socket">
 										<span class="flex items-center gap-2">
-											<Unplug class="w-4 h-4 text-cyan-500" />
+											<Unplug class="size-4 text-cyan-500" />
 											Unix socket
 										</span>
 									</Select.Item>
 									<Select.Item value="direct">
 										<span class="flex items-center gap-2">
-											<Icon iconNode={whale} class="w-4 h-4 text-blue-500" />
+											<Icon iconNode={whale} class="size-4 text-blue-500" />
 											Direct connection
 										</span>
 									</Select.Item>
 									<Select.Item value="hawser-standard">
 										<span class="flex items-center gap-2">
-											<Route class="w-4 h-4 text-purple-500" />
+											<Route class="size-4 text-purple-500" />
 											Hawser agent (standard)
 										</span>
 									</Select.Item>
 									<Select.Item value="hawser-edge">
 										<span class="flex items-center gap-2">
-											<UndoDot class="w-4 h-4 text-green-500" />
+											<UndoDot class="size-4 text-green-500" />
 											Hawser agent (edge)
 										</span>
 									</Select.Item>
@@ -1608,9 +1593,9 @@
 											title="Auto-detect Docker socket"
 										>
 											{#if detectingSockets}
-												<Loader2 class="w-4 h-4 animate-spin" />
+												<LoaderCircle class="size-4 animate-spin" />
 											{:else}
-												<Pipette class="w-4 h-4" />
+												<Pipette class="size-4" />
 											{/if}
 										</Button>
 									</div>
@@ -1622,13 +1607,13 @@
 														onclick={() => selectSocket(socket.path)}
 														class="w-full flex items-center gap-2 px-3 py-2 text-sm hover:bg-muted transition-colors text-left cursor-pointer"
 													>
-														<Unplug class="w-4 h-4 text-muted-foreground shrink-0" />
+														<Unplug class="size-4 text-muted-foreground shrink-0" />
 														<div class="flex-1 min-w-0">
 															<div class="font-medium truncate">{socket.name}</div>
 															<div class="text-xs text-muted-foreground truncate">{socket.path}</div>
 														</div>
 														{#if formSocketPath === socket.path}
-															<Check class="w-4 h-4 text-primary shrink-0" />
+															<Check class="size-4 text-primary shrink-0" />
 														{/if}
 													</button>
 												{/each}
@@ -1636,8 +1621,9 @@
 										</div>
 									{/if}
 								</div>
-								<p class="text-xs text-muted-foreground">
-									Click <Pipette class="w-3 h-3 inline" /> to auto-detect available Docker sockets
+
+								<p class="text-xs text-muted-foreground flex items-center gap-1 leading-0">
+									Click <Pipette class="size-3 inline" /> to auto-detect available Docker sockets
 								</p>
 							</div>
 						{/if}
@@ -1659,44 +1645,51 @@
 										<p class="text-xs text-destructive">{formErrors.host}</p>
 									{/if}
 								</div>
+
 								<div class="space-y-2">
 									<Label for="edit-env-port">Port</Label>
 									<Input id="edit-env-port" type="number" bind:value={formPort} />
 								</div>
 							</div>
+
 							<div class="space-y-2">
 								<Label for="edit-env-protocol">Protocol</Label>
+
 								<Select.Root type="single" value={formProtocol} onValueChange={(v) => formProtocol = v}>
 									<Select.Trigger class="w-full">
 										<span class="flex items-center gap-2">
 											{#if formProtocol === 'https'}
-												<Lock class="w-4 h-4 text-green-500" />
+												<Lock class="size-4 text-green-500" />
 												HTTPS (TLS)
 											{:else}
-												<LockOpen class="w-4 h-4 text-muted-foreground" />
+												<LockOpen class="size-4 text-muted-foreground" />
 												HTTP
 											{/if}
 										</span>
 									</Select.Trigger>
+
 									<Select.Content>
 										<Select.Item value="http">
 											<span class="flex items-center gap-2">
-												<LockOpen class="w-4 h-4 text-muted-foreground" />
+												<LockOpen class="size-4 text-muted-foreground" />
 												HTTP
 											</span>
 										</Select.Item>
+
 										<Select.Item value="https">
 											<span class="flex items-center gap-2">
-												<Lock class="w-4 h-4 text-green-500" />
+												<Lock class="size-4 text-green-500" />
 												HTTPS (TLS)
 											</span>
 										</Select.Item>
 									</Select.Content>
 								</Select.Root>
 							</div>
+
 							{#if formProtocol === 'https'}
 								<div class="space-y-4 pt-2 border-t">
 									<p class="text-xs text-muted-foreground">TLS certificates for mTLS authentication (RSA or ECDSA)</p>
+
 									<div class="space-y-2">
 										<Label for="edit-env-tls_ca">CA certificate</Label>
 										<textarea
@@ -1706,6 +1699,7 @@
 											class="flex min-h-[60px] w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
 										></textarea>
 									</div>
+
 									<div class="space-y-2">
 										<Label for="edit-env-tls_cert">Client certificate</Label>
 										<textarea
@@ -1715,6 +1709,7 @@
 											class="flex min-h-[60px] w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
 										></textarea>
 									</div>
+
 									<div class="space-y-2">
 										<Label for="edit-env-tls_key">Client key</Label>
 										<textarea
@@ -1745,41 +1740,47 @@
 										<p class="text-xs text-destructive">{formErrors.host}</p>
 									{/if}
 								</div>
+
 								<div class="space-y-2">
 									<Label for="edit-env-port">Agent port</Label>
 									<Input id="edit-env-port" type="number" bind:value={formPort} placeholder="2376" />
 								</div>
 							</div>
+
 							<div class="space-y-2">
 								<Label for="edit-env-protocol">Protocol</Label>
+
 								<Select.Root type="single" value={formProtocol} onValueChange={(v) => formProtocol = v}>
 									<Select.Trigger class="w-full">
 										<span class="flex items-center gap-2">
 											{#if formProtocol === 'https'}
-												<Lock class="w-4 h-4 text-green-500" />
+												<Lock class="size-4 text-green-500" />
 												HTTPS (TLS)
 											{:else}
-												<LockOpen class="w-4 h-4 text-muted-foreground" />
+												<LockOpen class="size-4 text-muted-foreground" />
 												HTTP
 											{/if}
 										</span>
 									</Select.Trigger>
+
 									<Select.Content>
 										<Select.Item value="http">
 											<span class="flex items-center gap-2">
-												<LockOpen class="w-4 h-4 text-muted-foreground" />
+												<LockOpen class="size-4 text-muted-foreground" />
 												HTTP
 											</span>
 										</Select.Item>
+
 										<Select.Item value="https">
 											<span class="flex items-center gap-2">
-												<Lock class="w-4 h-4 text-green-500" />
+												<Lock class="size-4 text-green-500" />
 												HTTPS (TLS)
 											</span>
 										</Select.Item>
 									</Select.Content>
 								</Select.Root>
 							</div>
+
 							{#if formProtocol === 'https'}
 								<div class="space-y-2">
 									<Label for="edit-env-hawser-tls-ca">CA certificate (for self-signed)</Label>
@@ -1792,6 +1793,7 @@
 									></textarea>
 									<p class="text-xs text-muted-foreground">Paste the CA certificate if agent uses self-signed TLS (RSA or ECDSA).</p>
 								</div>
+
 								<div class="flex items-center justify-between">
 									<div>
 										<Label>Skip TLS verification</Label>
@@ -1800,13 +1802,15 @@
 									<TogglePill bind:checked={formTlsSkipVerify} />
 								</div>
 							{/if}
+
 							<div class="space-y-2">
 								<Label for="edit-env-hawser-token">Agent token (optional)</Label>
 								<Input id="edit-env-hawser-token" type="password" bind:value={formHawserToken} placeholder="Token for agent authentication" />
 								<p class="text-xs text-muted-foreground">If the Hawser agent is configured with TOKEN, enter it here.</p>
-							</div>
+              </div>
+
 							<div class="text-xs text-muted-foreground bg-muted/50 rounded-md p-2 flex items-start gap-2">
-								<Info class="w-3 h-3 mt-0.5 shrink-0" />
+								<Info class="size-3 mt-0.5 shrink-0" />
 								<span>Run Hawser agent on the target host: <code class="bg-muted px-1 rounded">hawser --port {formPort}</code></span>
 							</div>
 						{/if}
@@ -1818,14 +1822,15 @@
 								{#if isEditing && environment}
 									<div class="flex items-center justify-between">
 										<Label>Connection status</Label>
+
 										{#if environment.hawserAgentId}
 											<Badge variant="outline" class="bg-green-50 text-green-700 border-green-300 dark:bg-green-900/30 dark:text-green-400 dark:border-green-700">
-												<Wifi class="w-3 h-3 mr-1" />
+												<Wifi class="size-3" />
 												Connected
 											</Badge>
 										{:else}
 											<Badge variant="outline" class="bg-slate-50 text-slate-500 border-slate-300 dark:bg-slate-900/30 dark:text-slate-400 dark:border-slate-700">
-												<WifiOff class="w-3 h-3 mr-1" />
+												<WifiOff class="size-3" />
 												Waiting for agent
 											</Badge>
 										{/if}
@@ -1835,9 +1840,11 @@
 									{#if environment.hawserAgentId}
 										<div class="text-xs bg-muted/30 rounded-md p-2 space-y-1">
 											<p><span class="text-muted-foreground">Agent:</span> {environment.hawserAgentName || environment.hawserAgentId}</p>
+
 											{#if environment.hawserVersion}
 												<p><span class="text-muted-foreground">Version:</span> {environment.hawserVersion}</p>
 											{/if}
+
 											{#if environment.hawserLastSeen}
 												<p><span class="text-muted-foreground">Last seen:</span> {formatDateTime(environment.hawserLastSeen, true)}</p>
 											{/if}
@@ -1849,6 +1856,7 @@
 								<div class="space-y-2">
 									<div class="flex items-center justify-between">
 										<Label>Connection token</Label>
+
 										{#if isEditing && hawserToken}
 											<Button
 												variant="outline"
@@ -1858,9 +1866,9 @@
 												disabled={generatingToken}
 											>
 												{#if generatingToken}
-													<Loader2 class="w-3 h-3 mr-1 animate-spin" />
+													<LoaderCircle class="size-3 animate-spin" />
 												{:else}
-													<RefreshCw class="w-3 h-3" />
+													<RefreshCw class="size-3" />
 												{/if}
 												Regenerate
 											</Button>
@@ -1873,9 +1881,9 @@
 												disabled={generatingToken}
 											>
 												{#if generatingToken}
-													<Loader2 class="w-3 h-3 mr-1 animate-spin" />
+													<LoaderCircle class="size-3 animate-spin" />
 												{:else}
-													<Plus class="w-3 h-3" />
+													<Plus class="size-3" />
 												{/if}
 												Generate
 											</Button>
@@ -1885,15 +1893,11 @@
 									<!-- Add mode: auto-generate token on first visit -->
 									{#if !isEditing}
 										{#if !pendingToken}
-											<Button
-												variant="outline"
-												size="sm"
-												class="w-full"
-												onclick={generatePendingToken}
-											>
-												<Key class="w-3.5 h-3.5 mr-1.5" />
+											<Button variant="outline" size="sm" class="w-full" onclick={generatePendingToken}>
+												<Key class="size-4 mr-1.5" />
 												Generate connection token
 											</Button>
+
 											<p class="text-xs text-muted-foreground">
 												Generate a token now. It will be saved when you add the environment.
 											</p>
@@ -1901,33 +1905,31 @@
 											<!-- Show pending token -->
 											<div class="p-3 bg-amber-50 dark:bg-amber-950/30 border border-amber-300 dark:border-amber-700 rounded-md space-y-2">
 												<p class="text-xs font-medium text-amber-700 dark:text-amber-400 flex items-center gap-1">
-													<AlertTriangle class="w-3 h-3" />
+													<TriangleAlert class="size-3" />
 													Copy this token now - you'll need it for the Hawser agent!
 												</p>
+
 												<div class="flex gap-2">
-													<Input
-														type="text"
-														value={pendingToken}
-														readonly
-														class="font-mono text-xs flex-1"
-													/>
+													<Input type="text" value={pendingToken} readonly class="font-mono text-xs flex-1" />
 													<Button variant="outline" size="sm" onclick={() => copyToken(pendingToken!)}>
 														{#if copySuccess === 'error'}
 															<Tooltip.Root open>
 																<Tooltip.Trigger>
-																	<XCircle class="w-4 h-4 text-red-500" />
+																	<CircleX class="size-4 text-red-500" />
 																</Tooltip.Trigger>
 																<Tooltip.Content>Copy requires HTTPS</Tooltip.Content>
 															</Tooltip.Root>
 														{:else if copySuccess === 'ok'}
-															<Check class="w-4 h-4 text-green-500" />
+															<Check class="size-4 text-green-500" />
 														{:else}
-															<Copy class="w-4 h-4" />
+															<Copy class="size-4" />
 														{/if}
 													</Button>
 												</div>
+
 												<div class="text-xs text-amber-600 dark:text-amber-300 space-y-1">
 													<span>Run on your host:</span>
+
 													<div class="flex items-start gap-1.5">
 														<code class="bg-amber-100 dark:bg-amber-900/50 px-1.5 py-0.5 rounded break-all flex-1">DOCKHAND_SERVER_URL={getConnectionUrl()} TOKEN={pendingToken} hawser</code>
 														<button
@@ -1938,20 +1940,21 @@
 															{#if copyCmdSuccess === 'error'}
 																<Tooltip.Root open>
 																	<Tooltip.Trigger>
-																		<XCircle class="w-3 h-3 text-red-500" />
+																		<CircleX class="size-3 text-red-500" />
 																	</Tooltip.Trigger>
 																	<Tooltip.Content>Copy requires HTTPS</Tooltip.Content>
 																</Tooltip.Root>
 															{:else if copyCmdSuccess === 'ok'}
-																<Check class="w-3 h-3 text-green-600" />
+																<Check class="size-3 text-green-600" />
 															{:else}
-																<Copy class="w-3 h-3" />
+																<Copy class="size-3" />
 															{/if}
 														</button>
 													</div>
 												</div>
+
 												<Button variant="ghost" size="sm" class="h-6 text-xs" onclick={generatePendingToken}>
-													<RefreshCw class="w-3 h-3" />
+													<RefreshCw class="size-3" />
 													Generate new token
 												</Button>
 											</div>
@@ -1962,37 +1965,35 @@
 									{#if isEditing}
 										{#if hawserTokenLoading}
 											<div class="flex items-center justify-center py-4">
-												<Loader2 class="w-5 h-5 animate-spin text-muted-foreground" />
+												<LoaderCircle class="size-5 animate-spin text-muted-foreground" />
 											</div>
 										{:else if generatedToken}
 											<!-- Just generated a new token - show full value -->
 											<div class="p-3 bg-amber-50 dark:bg-amber-950/30 border border-amber-300 dark:border-amber-700 rounded-md space-y-2">
 												<p class="text-xs font-medium text-amber-700 dark:text-amber-400 flex items-center gap-1">
-													<AlertTriangle class="w-3 h-3" />
+													<TriangleAlert class="size-3" />
 													Save this token now - it won't be shown again!
 												</p>
+
 												<div class="flex gap-2">
-													<Input
-														type="text"
-														value={generatedToken}
-														readonly
-														class="font-mono text-xs flex-1"
-													/>
+													<Input type="text" value={generatedToken} readonly class="font-mono text-xs flex-1" />
+
 													<Button variant="outline" size="sm" onclick={() => copyToken(generatedToken!)}>
 														{#if copySuccess === 'error'}
 															<Tooltip.Root open>
 																<Tooltip.Trigger>
-																	<XCircle class="w-4 h-4 text-red-500" />
+																	<CircleX class="size-4 text-red-500" />
 																</Tooltip.Trigger>
 																<Tooltip.Content>Copy requires HTTPS</Tooltip.Content>
 															</Tooltip.Root>
 														{:else if copySuccess === 'ok'}
-															<Check class="w-4 h-4 text-green-500" />
+															<Check class="size-4 text-green-500" />
 														{:else}
-															<Copy class="w-4 h-4" />
+															<Copy class="size-4" />
 														{/if}
 													</Button>
 												</div>
+
 												<div class="text-xs text-amber-600 dark:text-amber-300 space-y-1">
 													<span>Run on your host:</span>
 													<div class="flex items-start gap-1.5">
@@ -2005,14 +2006,14 @@
 															{#if copyCmdSuccess === 'error'}
 																<Tooltip.Root open>
 																	<Tooltip.Trigger>
-																		<XCircle class="w-3 h-3 text-red-500" />
+																		<CircleX class="size-3 text-red-500" />
 																	</Tooltip.Trigger>
 																	<Tooltip.Content>Copy requires HTTPS</Tooltip.Content>
 																</Tooltip.Root>
 															{:else if copyCmdSuccess === 'ok'}
-																<Check class="w-3 h-3 text-green-600" />
+																<Check class="size-3 text-green-600" />
 															{:else}
-																<Copy class="w-3 h-3" />
+																<Copy class="size-3" />
 															{/if}
 														</button>
 													</div>
@@ -2021,11 +2022,11 @@
 										{:else if hawserToken}
 											<!-- Existing token - show partial -->
 											<div class="flex items-center gap-2 p-2 bg-muted/30 rounded-md text-xs">
-												<Key class="w-3.5 h-3.5 text-muted-foreground" />
+												<Key class="size-4 text-muted-foreground" />
 												<span class="font-mono">{hawserToken.tokenPrefix}...</span>
 												{#if hawserToken.lastUsed}
 													<span class="text-muted-foreground ml-auto flex items-center gap-1">
-														<Clock class="w-3 h-3" />
+														<Clock class="size-3" />
 														Last used: {formatDate(hawserToken.lastUsed)}
 													</span>
 												{/if}
@@ -2043,21 +2044,20 @@
 							<div class="space-y-2 pt-4 border-t">
 								<div class="flex items-center gap-2">
 									<Label for="edit-env-public-ip">Public IP</Label>
+
 									<Tooltip.Root>
 										<Tooltip.Trigger>
-											<HelpCircle class="w-3.5 h-3.5 text-muted-foreground" />
+											<CircleQuestionMark class="size-4 text-muted-foreground" />
 										</Tooltip.Trigger>
+
 										<Tooltip.Content side="bottom" class="w-72">
 											<p>IP address or hostname where container ports are accessible from your browser. For local Docker, use the server's LAN IP.</p>
 										</Tooltip.Content>
 									</Tooltip.Root>
 								</div>
-								<Input
-									id="edit-env-public-ip"
-									bind:value={formPublicIp}
-									placeholder="e.g., 192.168.1.4"
-									class="w-full"
-								/>
+
+								<Input id="edit-env-public-ip" bind:value={formPublicIp} placeholder="e.g., 192.168.1.4" class="w-full" />
+
 								<p class="text-xs text-muted-foreground">
 									Used for clickable port links on the containers page
 								</p>
@@ -2101,7 +2101,7 @@
 				<Tabs.Content value="security" class="space-y-4 mt-0 h-full">
 					<div class="space-y-4">
 						<div class="flex items-center gap-2 text-sm font-medium">
-							<ShieldCheck class="w-4 h-4" />
+							<ShieldCheck class="size-4" />
 							Vulnerability scanning
 						</div>
 
@@ -2112,6 +2112,7 @@
 									<Label>Enable scanning</Label>
 									<p class="text-xs text-muted-foreground">Scan images for known security vulnerabilities</p>
 								</div>
+
 								<TogglePill bind:checked={formEnableScanner} />
 							</div>
 
@@ -2121,6 +2122,7 @@
 										<Label>Scanner</Label>
 										<p class="text-xs text-muted-foreground">Choose vulnerability scanner</p>
 									</div>
+
 									<ToggleGroup
 										value={formScannerType}
 										options={scannerOptions}
@@ -2129,13 +2131,13 @@
 								</div>
 
 								<div class="text-xs text-muted-foreground bg-muted/50 rounded-md p-2 flex items-start gap-2">
-									<Info class="w-3 h-3 mt-0.5 shrink-0" />
+									<Info class="size-3 mt-0.5 shrink-0" />
 									<span>Scanner images will be pulled automatically on first scan. Vulnerability databases are cached in Docker volumes for faster subsequent scans.</span>
 								</div>
 							{/if}
 						{:else if scannerLoading}
 							<div class="flex items-center justify-center py-4">
-								<RefreshCw class="w-5 h-5 animate-spin text-muted-foreground" />
+								<RefreshCw class="size-5 animate-spin text-muted-foreground" />
 							</div>
 						{:else}
 							<div class="flex items-start gap-3">
@@ -2143,6 +2145,7 @@
 									<Label>Enable scanning</Label>
 									<p class="text-xs text-muted-foreground">Scan images for known security vulnerabilities</p>
 								</div>
+
 								<TogglePill bind:checked={scannerEnabled} />
 							</div>
 
@@ -2152,6 +2155,7 @@
 										<Label>Scanner</Label>
 										<p class="text-xs text-muted-foreground">Choose vulnerability scanner</p>
 									</div>
+
 									<ToggleGroup
 										value={selectedScanner}
 										options={scannerOptions}
@@ -2165,10 +2169,9 @@
 									<div class="px-3 py-2 rounded-md bg-muted/30 space-y-2">
 										<div class="flex items-center gap-2">
 											<span class="text-xs font-medium w-12">Grype</span>
+
 											{#if loadingScannerVersions}
-												<Badge variant="outline" class="text-2xs px-1 py-0 h-4 flex items-center gap-0.5">
-													<Loader2 class="w-2 h-2 animate-spin text-muted-foreground" />
-												</Badge>
+												<Badge variant="outline" class="text-2xs px-1 py-0 h-4"><LoaderCircle class="size-2 animate-spin text-muted-foreground" /></Badge>
 											{:else if scannerAvailability.grype && scannerVersions.grype}
 												<Badge variant="outline" class="text-2xs px-1 py-0 h-4 bg-green-500/10 text-green-600 border-green-500/30">v{scannerVersions.grype}</Badge>
 											{:else if scannerAvailability.grype}
@@ -2176,11 +2179,12 @@
 											{:else}
 												<Badge variant="outline" class="text-2xs px-1 py-0 h-4 bg-amber-500/10 text-amber-600 border-amber-500/30">Not installed</Badge>
 											{/if}
+
 											{#if !loadingScannerVersions}
 												{#if !scannerAvailability.grype}
 													<ImagePullProgressPopover imageName="anchore/grype:latest" envId={environment?.id} onComplete={() => reloadScannerAvailability(environment?.id)}>
 														<button class="inline-flex items-center text-2xs px-1.5 py-0 h-4 rounded-full border bg-muted/50 hover:bg-muted text-muted-foreground hover:text-foreground transition-colors">
-															<Download class="w-2.5 h-2.5 mr-0.5" />
+															<Download class="size-3 mr-0.5" />
 															Pull
 														</button>
 													</ImagePullProgressPopover>
@@ -2191,15 +2195,15 @@
 														disabled={removingGrype}
 													>
 														{#if removingGrype}
-															<Loader2 class="w-2.5 h-2.5 mr-0.5 animate-spin" />
+															<LoaderCircle class="size-3 mr-0.5 animate-spin" />
 														{:else}
-															<Trash2 class="w-2.5 h-2.5 mr-0.5" />
+															<Trash2 class="size-3 mr-0.5" />
 														{/if}
 														Remove
 													</button>
 													{#if grypeUpdateStatus === 'up-to-date'}
 														<span class="inline-flex items-center text-2xs px-1.5 py-0 h-4 text-green-600">
-															<CheckCircle2 class="w-2.5 h-2.5 mr-0.5" />
+															<CircleCheck class="size-3 mr-0.5" />
 															Latest
 														</span>
 													{:else if grypeUpdateStatus === 'update-available' || pullingGrype}
@@ -2209,10 +2213,10 @@
 															disabled={pullingGrype}
 														>
 															{#if pullingGrype}
-																<Loader2 class="w-2.5 h-2.5 mr-0.5 animate-spin" />
+																<LoaderCircle class="size-3 mr-0.5 animate-spin" />
 																Pulling
 															{:else}
-																<Download class="w-2.5 h-2.5 mr-0.5" />
+																<Download class="size-3 mr-0.5" />
 																Update
 															{/if}
 														</button>
@@ -2223,10 +2227,10 @@
 															disabled={checkingGrypeUpdate}
 														>
 															{#if checkingGrypeUpdate}
-																<Loader2 class="w-2.5 h-2.5 mr-0.5 animate-spin" />
+																<LoaderCircle class="size-3 mr-0.5 animate-spin" />
 																Checking
 															{:else}
-																<RefreshCw class="w-2.5 h-2.5 mr-0.5" />
+																<RefreshCw class="size-3 mr-0.5" />
 																Check
 															{/if}
 														</button>
@@ -2242,9 +2246,10 @@
 									<div class="px-3 py-2 rounded-md bg-muted/30 space-y-2">
 										<div class="flex items-center gap-2">
 											<span class="text-xs font-medium w-12">Trivy</span>
+
 											{#if loadingScannerVersions}
 												<Badge variant="outline" class="text-2xs px-1 py-0 h-4 flex items-center gap-0.5">
-													<Loader2 class="w-2 h-2 animate-spin text-muted-foreground" />
+													<LoaderCircle class="size-2 animate-spin text-muted-foreground" />
 												</Badge>
 											{:else if scannerAvailability.trivy && scannerVersions.trivy}
 												<Badge variant="outline" class="text-2xs px-1 py-0 h-4 bg-green-500/10 text-green-600 border-green-500/30">v{scannerVersions.trivy}</Badge>
@@ -2253,11 +2258,12 @@
 											{:else}
 												<Badge variant="outline" class="text-2xs px-1 py-0 h-4 bg-amber-500/10 text-amber-600 border-amber-500/30">Not installed</Badge>
 											{/if}
+
 											{#if !loadingScannerVersions}
 												{#if !scannerAvailability.trivy}
 													<ImagePullProgressPopover imageName="aquasec/trivy:latest" envId={environment?.id} onComplete={() => reloadScannerAvailability(environment?.id)}>
 														<button class="inline-flex items-center text-2xs px-1.5 py-0 h-4 rounded-full border bg-muted/50 hover:bg-muted text-muted-foreground hover:text-foreground transition-colors">
-															<Download class="w-2.5 h-2.5 mr-0.5" />
+															<Download class="size-3" />
 															Pull
 														</button>
 													</ImagePullProgressPopover>
@@ -2268,15 +2274,16 @@
 														disabled={removingTrivy}
 													>
 														{#if removingTrivy}
-															<Loader2 class="w-2.5 h-2.5 mr-0.5 animate-spin" />
+															<LoaderCircle class="size-3 animate-spin" />
 														{:else}
-															<Trash2 class="w-2.5 h-2.5 mr-0.5" />
+															<Trash2 class="size-3" />
 														{/if}
 														Remove
 													</button>
+
 													{#if trivyUpdateStatus === 'up-to-date'}
 														<span class="inline-flex items-center text-2xs px-1.5 py-0 h-4 text-green-600">
-															<CheckCircle2 class="w-2.5 h-2.5 mr-0.5" />
+															<CircleCheck class="size-3" />
 															Latest
 														</span>
 													{:else if trivyUpdateStatus === 'update-available' || pullingTrivy}
@@ -2286,10 +2293,10 @@
 															disabled={pullingTrivy}
 														>
 															{#if pullingTrivy}
-																<Loader2 class="w-2.5 h-2.5 mr-0.5 animate-spin" />
+																<LoaderCircle class="size-3 animate-spin" />
 																Pulling
 															{:else}
-																<Download class="w-2.5 h-2.5 mr-0.5" />
+																<Download class="size-3" />
 																Update
 															{/if}
 														</button>
@@ -2300,10 +2307,10 @@
 															disabled={checkingTrivyUpdate}
 														>
 															{#if checkingTrivyUpdate}
-																<Loader2 class="w-2.5 h-2.5 mr-0.5 animate-spin" />
+																<LoaderCircle class="size-3 animate-spin" />
 																Checking
 															{:else}
-																<RefreshCw class="w-2.5 h-2.5 mr-0.5" />
+																<RefreshCw class="size-3" />
 																Check
 															{/if}
 														</button>
@@ -2317,7 +2324,7 @@
 									<!-- Info about automatic download -->
 									{#if ((selectedScanner === 'grype' || selectedScanner === 'both') && !scannerAvailability.grype) || ((selectedScanner === 'trivy' || selectedScanner === 'both') && !scannerAvailability.trivy)}
 										<div class="text-xs text-muted-foreground bg-muted/50 rounded-md p-2 flex items-start gap-2">
-											<Info class="w-3 h-3 mt-0.5 shrink-0" />
+											<Info class="size-3 mt-0.5 shrink-0" />
 											<span>Scanner images will be pulled automatically on first scan. Vulnerability databases are cached in Docker volumes for faster subsequent scans.</span>
 										</div>
 									{/if}
@@ -2330,7 +2337,7 @@
 				<!-- Notifications Tab -->
 				<Tabs.Content value="notifications" class="mt-0 h-full flex flex-col">
 					<div class="flex items-center gap-2 text-sm font-medium flex-shrink-0">
-						<Bell class="w-4 h-4" />
+						<Bell class="size-4" />
 						Notification channels
 					</div>
 
@@ -2342,7 +2349,7 @@
 
 						{#if notifications.length === 0}
 							<div class="flex-1 flex flex-col items-center justify-center py-8 text-center">
-								<Bell class="w-10 h-10 text-muted-foreground mb-3 opacity-50" />
+								<Bell class="size-10 text-muted-foreground mb-3 opacity-50" />
 								<p class="text-sm text-muted-foreground">No notification channels configured yet.</p>
 								<p class="text-xs text-muted-foreground mt-1">Create notification channels in the Notifications settings tab first.</p>
 							</div>
@@ -2355,9 +2362,9 @@
 										<div class="flex items-center justify-between gap-2">
 											<div class="flex items-center gap-1.5 min-w-0">
 												{#if channel.type === 'smtp'}
-													<Mail class="w-3.5 h-3.5 shrink-0 text-blue-500" />
+													<Mail class="size-4 shrink-0 text-blue-500" />
 												{:else}
-													<Send class="w-3.5 h-3.5 shrink-0 text-purple-500" />
+													<Send class="size-4 shrink-0 text-purple-500" />
 												{/if}
 												<span class="text-xs font-medium truncate">{channel.name} <span class="text-2xs text-muted-foreground capitalize font-normal">({channel.type})</span></span>
 											</div>
@@ -2377,7 +2384,7 @@
 										</div>
 										{#if !channel.enabled}
 											<p class="text-2xs text-amber-600 mt-1 flex items-center gap-1">
-												<AlertCircle class="w-2.5 h-2.5" />
+												<CircleAlert class="size-3" />
 												Channel disabled globally
 											</p>
 										{/if}
@@ -2393,9 +2400,9 @@
 													onkeydown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleChannelCollapse(channel.id); } }}
 												>
 													{#if isCollapsed}
-														<ChevronRight class="w-3 h-3 text-muted-foreground" />
+														<ChevronRight class="size-3 text-muted-foreground" />
 													{:else}
-														<ChevronDown class="w-3 h-3 text-muted-foreground" />
+														<ChevronDown class="size-3 text-muted-foreground" />
 													{/if}
 													<span class="text-xs text-muted-foreground">Event types ({selectedNotif.eventTypes.length})</span>
 												</div>
@@ -2425,7 +2432,7 @@
 
 						{#if envNotifLoading}
 							<div class="flex items-center justify-center py-8 flex-1">
-								<RefreshCw class="w-5 h-5 animate-spin text-muted-foreground" />
+								<RefreshCw class="size-5 animate-spin text-muted-foreground" />
 							</div>
 						{:else}
 							<!-- Configured Channels - scrollable area -->
@@ -2443,18 +2450,19 @@
 											>
 												<div class="flex items-center gap-2 min-w-0">
 													{#if collapsedChannels.has(notif.notificationId)}
-														<ChevronRight class="w-4 h-4 text-muted-foreground shrink-0" />
+														<ChevronRight class="size-4 text-muted-foreground shrink-0" />
 													{:else}
-														<ChevronDown class="w-4 h-4 text-muted-foreground shrink-0" />
+														<ChevronDown class="size-4 text-muted-foreground shrink-0" />
 													{/if}
 													{#if notif.channelType === 'smtp'}
-														<Mail class="w-4 h-4 shrink-0 text-blue-500" />
+														<Mail class="size-4 shrink-0 text-blue-500" />
 													{:else}
-														<Send class="w-4 h-4 shrink-0 text-purple-500" />
+														<Send class="size-4 shrink-0 text-purple-500" />
 													{/if}
 													<span class="text-sm font-medium truncate">{notif.channelName}</span>
 													<span class="text-xs text-muted-foreground">({notif.eventTypes.length} events)</span>
 												</div>
+
 												<div class="flex items-center gap-1 shrink-0" role="group" onclick={(e) => e.stopPropagation()} onkeydown={(e) => e.stopPropagation()}>
 													<TogglePill
 														checked={notif.enabled}
@@ -2464,21 +2472,23 @@
 													<Button
 														variant="ghost"
 														size="sm"
-														class="h-6 w-6 p-0 text-destructive hover:text-destructive"
+														class="size-6 p-0 text-destructive hover:text-destructive"
 														onclick={() => environment && deleteEnvNotification(environment.id, notif.notificationId)}
 													>
-														<Trash2 class="w-3 h-3" />
+														<Trash2 class="size-3" />
 													</Button>
 												</div>
 											</div>
+
 											{#if !notif.channelEnabled}
 												<div class="px-2 pb-2">
 													<p class="text-2xs text-amber-600 flex items-center gap-1">
-														<AlertCircle class="w-2.5 h-2.5" />
+														<CircleAlert class="size-3" />
 														Channel disabled globally
 													</p>
 												</div>
 											{/if}
+
 											<!-- Event Types - collapsible content -->
 											{#if !collapsedChannels.has(notif.notificationId)}
 												<div class="px-2 pb-2 pt-1 border-t">
@@ -2495,7 +2505,7 @@
 								</div>
 							{:else}
 								<div class="text-center py-6 text-muted-foreground">
-									<Bell class="w-8 h-8 mx-auto mb-2 opacity-50" />
+									<Bell class="size-8 mx-auto mb-2 opacity-50" />
 									<p class="text-sm">No notification channels configured</p>
 									<p class="text-xs mt-1">Add a channel below to receive alerts for this environment</p>
 								</div>
@@ -2506,6 +2516,7 @@
 							{#if availableChannels.length > 0}
 								<div class="pt-3 border-t flex-shrink-0 mt-4">
 									<Label class="text-xs text-muted-foreground mb-2 block">Add notification channel:</Label>
+
 									<div class="flex flex-wrap gap-2">
 										{#each availableChannels as channel}
 											<button
@@ -2513,19 +2524,19 @@
 												onclick={() => environment && addEnvNotification(environment.id, channel.id)}
 											>
 												{#if channel.type === 'smtp'}
-													<Mail class="w-3 h-3 text-blue-500" />
+													<Mail class="size-3 text-blue-500" />
 												{:else}
-													<Send class="w-3 h-3 text-purple-500" />
+													<Send class="size-3 text-purple-500" />
 												{/if}
 												{channel.name}
-												<Plus class="w-3 h-3 ml-1" />
+												<Plus class="size-3 ml-1" />
 											</button>
 										{/each}
 									</div>
 								</div>
 							{:else if notifications.length === 0}
 								<div class="p-3 rounded-md bg-muted/30 text-xs text-muted-foreground flex items-start gap-2 flex-shrink-0 mt-4">
-									<Info class="w-3.5 h-3.5 mt-0.5 shrink-0" />
+									<Info class="size-4 mt-0.5 shrink-0" />
 									{#if !$licenseStore.isEnterprise || $canAccess('notifications', 'create')}
 										<span>No notification channels have been created yet. <a href="/settings?tab=notifications" class="text-primary hover:underline" onclick={onClose}>Go to Settings → Notifications</a> to add channels first.</span>
 									{:else}
@@ -2539,54 +2550,37 @@
 			</div>
 		</Tabs.Root>
 
-		<Dialog.Footer class="flex-shrink-0 border-t pt-4">
+		<Dialog.Footer class="shrink-0 border-t pt-4">
 			<div class="flex items-center gap-2 w-full">
 				<!-- Test connection button (left side) -->
-				<Button
-					variant="outline"
-					onclick={testConnection}
-					disabled={testingConnection || formSaving}
-					class="mr-auto"
-				>
+				<Button variant="outline" onclick={testConnection} disabled={testingConnection || formSaving} class="mr-auto">
 					{#if testingConnection}
-						<Loader2 class="w-4 h-4 animate-spin" />
+						<LoaderCircle class="size-4 animate-spin" />
 						Testing...
-					{:else if testResult?.success}
-						<CheckCircle2 class="w-4 h-4 text-green-500" />
-						Test connection
-					{:else if testResult && !testResult.success}
-						<AlertCircle class="w-4 h-4 text-red-500" />
-						Test connection
 					{:else}
-						<Wifi class="w-4 h-4" />
-						Test connection
-					{/if}
+            {#if testResult?.success}
+              <CircleCheck class="size-4 text-green-500" />
+            {:else if testResult && !testResult.success}
+              <CircleAlert class="size-4 text-red-500" />
+            {:else}
+              <Wifi class="size-4" />
+            {/if}
+            Test connection
+          {/if}
 				</Button>
 
 				{#if !isEditing}
 					<!-- Add mode -->
-					<Button variant="outline" onclick={onClose}>
-						Cancel
-					</Button>
+					<Button variant="outline" onclick={onClose}>Cancel</Button>
 					<Button onclick={createEnvironment} disabled={formSaving}>
-						{#if formSaving}
-							<RefreshCw class="w-4 h-4 animate-spin" />
-						{:else}
-							<Plus class="w-4 h-4" />
-						{/if}
+						{#if formSaving}<RefreshCw class="size-4 animate-spin" />{:else}<Plus class="size-4" />{/if}
 						Add
 					</Button>
 				{:else}
 					<!-- Edit mode -->
-					<Button variant="outline" onclick={onClose}>
-						Cancel
-					</Button>
+					<Button variant="outline" onclick={onClose}>Cancel</Button>
 					<Button onclick={updateEnvironment} disabled={formSaving}>
-						{#if formSaving}
-							<RefreshCw class="w-4 h-4 animate-spin" />
-						{:else}
-							<Check class="w-4 h-4" />
-						{/if}
+						{#if formSaving}<RefreshCw class="size-4 animate-spin" />{:else}<Check class="size-4" />{/if}
 						Save
 					</Button>
 				{/if}

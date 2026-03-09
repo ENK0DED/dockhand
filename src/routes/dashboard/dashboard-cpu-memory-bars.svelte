@@ -50,14 +50,14 @@
 	{#if compact}
 		<div class="flex items-center gap-3">
 			<div class="flex items-center gap-1.5 flex-1">
-				<Cpu class="w-3 h-3 text-muted-foreground/50 shrink-0" />
+				<Cpu class="size-3 text-muted-foreground/50 shrink-0" />
 				<div class="h-1.5 bg-muted rounded-full overflow-hidden flex-1">
 					<div class="skeleton h-full w-1/2 rounded-full"></div>
 				</div>
 				<div class="skeleton w-8 h-3 rounded"></div>
 			</div>
 			<div class="flex items-center gap-1.5 flex-1">
-				<MemoryStick class="w-3 h-3 text-muted-foreground/50 shrink-0" />
+				<MemoryStick class="size-3 text-muted-foreground/50 shrink-0" />
 				<div class="h-1.5 bg-muted rounded-full overflow-hidden flex-1">
 					<div class="skeleton h-full w-2/3 rounded-full"></div>
 				</div>
@@ -69,7 +69,7 @@
 			<div class="space-y-1">
 				<div class="flex items-center justify-between text-xs">
 					<span class="flex items-center gap-1 text-muted-foreground/50">
-						<Cpu class="w-3 h-3" /> CPU <Loader2 class="w-3 h-3 animate-spin" />
+						<Cpu class="size-3" /> CPU <Loader2 class="size-3 animate-spin" />
 					</span>
 					<div class="skeleton w-10 h-3.5 rounded"></div>
 				</div>
@@ -80,7 +80,7 @@
 			<div class="space-y-1">
 				<div class="flex items-center justify-between text-xs">
 					<span class="flex items-center gap-1 text-muted-foreground/50">
-						<MemoryStick class="w-3 h-3" /> Memory <Loader2 class="w-3 h-3 animate-spin" />
+						<MemoryStick class="size-3" /> Memory <Loader2 class="size-3 animate-spin" />
 					</span>
 					<div class="skeleton w-16 h-3.5 rounded"></div>
 				</div>
@@ -104,7 +104,7 @@
 	<!-- Compact horizontal bars for mini tiles -->
 	<div class="flex items-center gap-3">
 		<div class="flex items-center gap-1.5 flex-1">
-			<Cpu class="w-3 h-3 text-muted-foreground shrink-0" />
+			<Cpu class="size-3 text-muted-foreground shrink-0" />
 			<div class="h-1.5 bg-muted rounded-full overflow-hidden flex-1">
 				<div
 					class="h-full rounded-full transition-all {getProgressColor(cpuPercent)}"
@@ -114,7 +114,7 @@
 			<span class="text-2xs font-medium w-8 text-right">{cpuPercent.toFixed(0)}%</span>
 		</div>
 		<div class="flex items-center gap-1.5 flex-1">
-			<MemoryStick class="w-3 h-3 text-muted-foreground shrink-0" />
+			<MemoryStick class="size-3 text-muted-foreground shrink-0" />
 			<div class="h-1.5 bg-muted rounded-full overflow-hidden flex-1">
 				<div
 					class="h-full rounded-full transition-all {getProgressColor(memoryPercent)}"
@@ -130,7 +130,7 @@
 		<div class="space-y-1">
 			<div class="flex items-center justify-between text-xs">
 				<span class="flex items-center gap-1 text-muted-foreground">
-					<Cpu class="w-3 h-3" /> CPU
+					<Cpu class="size-3" /> CPU
 				</span>
 				<span class="font-medium">{cpuPercent.toFixed(1)}%</span>
 			</div>
@@ -144,7 +144,7 @@
 		<div class="space-y-1">
 			<div class="flex items-center justify-between text-xs">
 				<span class="flex items-center gap-1 text-muted-foreground">
-					<MemoryStick class="w-3 h-3" /> Memory
+					<MemoryStick class="size-3" /> Memory
 				</span>
 				<span class="font-medium">
 					{memoryPercent.toFixed(1)}%

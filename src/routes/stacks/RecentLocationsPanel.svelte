@@ -84,7 +84,7 @@
 				class="w-full flex items-center gap-2 px-2 py-1.5 rounded text-xs hover:bg-muted text-left {currentPath === defaultBasePath ? 'bg-muted' : ''}"
 				onclick={() => onSelect(defaultBasePath!)}
 			>
-				<Home class="w-4 h-4 shrink-0 text-sky-500" />
+				<Home class="size-4 shrink-0 text-sky-500" />
 				<span class="truncate" title={defaultBasePath}>Dockhand default</span>
 			</button>
 		{/if}
@@ -97,7 +97,7 @@
 					class="flex-1 flex items-center gap-2 px-2 py-1.5 rounded text-xs hover:bg-muted text-left truncate {currentPath === location ? 'bg-muted' : ''}"
 					onclick={() => onSelect(location)}
 				>
-					<FolderOpen class="w-4 h-4 shrink-0 text-muted-foreground" />
+					<FolderOpen class="size-4 shrink-0 text-muted-foreground" />
 					<span class="truncate" title={location}>{location.split('/').pop() || location}</span>
 				</button>
 				<button
@@ -106,7 +106,7 @@
 					onclick={() => handleRemove(location)}
 					title="Remove from recent"
 				>
-					<X class="w-3 h-3 text-muted-foreground" />
+					<X class="size-3 text-muted-foreground" />
 				</button>
 			</div>
 		{/each}

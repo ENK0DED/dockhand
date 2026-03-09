@@ -966,7 +966,7 @@
 				class="p-1.5 rounded hover:bg-muted transition-colors"
 				title="Add environment"
 			>
-				<Plus class="w-4 h-4" />
+				<Plus class="size-4" />
 			</button>
 
 			<!-- Autolayout dropdown -->
@@ -978,25 +978,29 @@
 							class="p-1.5 rounded hover:bg-muted transition-colors"
 							title="Auto-layout tiles"
 						>
-							<LayoutTemplate class="w-4 h-4" />
+							<LayoutTemplate class="size-4" />
 						</button>
 					{/snippet}
 				</DropdownMenu.Trigger>
+
 				<DropdownMenu.Content align="end" class="w-36">
 					<DropdownMenu.Item onclick={() => applyAutoLayout(1, 1)} class="flex items-center gap-2 cursor-pointer">
-						<Square class="w-4 h-4" />
+						<Square class="size-4" />
 						<span>Compact</span>
 					</DropdownMenu.Item>
+
 					<DropdownMenu.Item onclick={() => applyAutoLayout(1, 2)} class="flex items-center gap-2 cursor-pointer">
-						<RectangleVertical class="w-4 h-4" />
+						<RectangleVertical class="size-4" />
 						<span>Standard</span>
 					</DropdownMenu.Item>
+
 					<DropdownMenu.Item onclick={() => applyAutoLayout(1, 4)} class="flex items-center gap-2 cursor-pointer">
-						<Rows3 class="w-4 h-4" />
+						<Rows3 class="size-4" />
 						<span>Detailed</span>
 					</DropdownMenu.Item>
+
 					<DropdownMenu.Item onclick={() => applyAutoLayout(2, 4)} class="flex items-center gap-2 cursor-pointer">
-						<Maximize2 class="w-4 h-4" />
+						<Maximize2 class="size-4" />
 						<span>Full</span>
 					</DropdownMenu.Item>
 				</DropdownMenu.Content>
@@ -1009,7 +1013,7 @@
 				title="Refresh"
 				disabled={refreshing}
 			>
-				<RefreshCw class="w-4 h-4 {refreshing ? 'animate-spin' : ''}" />
+				<RefreshCw class="size-4 {refreshing ? 'animate-spin' : ''}" />
 			</button>
 		</div>
 	</div>
@@ -1017,14 +1021,14 @@
 	<!-- Initial loading state before any tiles - show until we know whether environments exist -->
 	{#if !environmentsLoaded && tiles.length === 0}
 		<div class="flex items-center justify-center gap-2 text-muted-foreground py-8">
-			<Loader2 class="w-5 h-5 animate-spin text-primary" />
+			<Loader2 class="size-5 animate-spin text-primary" />
 			<span class="text-sm">Loading environments...</span>
 		</div>
 	{:else if tiles.length === 0 && environmentsLoaded && $environments.length === 0}
 		<!-- No environments - only shown after we've confirmed there are none -->
 		<div class="flex flex-col items-center justify-center h-64 text-muted-foreground">
-			<div class="w-16 h-16 mb-4 rounded-2xl border-2 border-dashed border-muted-foreground/30 flex items-center justify-center">
-				<Server class="w-8 h-8 opacity-40" />
+			<div class="size-16 mb-4 rounded-2xl border-2 border-dashed border-muted-foreground/30 flex items-center justify-center">
+				<Server class="size-8 opacity-40" />
 			</div>
 			<p class="text-lg font-medium text-foreground/70">No environments configured</p>
 			<p class="text-sm text-muted-foreground mb-4">Add an environment to start managing your Docker hosts</p>
@@ -1035,8 +1039,8 @@
 	{:else if filteredGridItems.length === 0}
 		<!-- Filter shows no results -->
 		<div class="flex flex-col items-center justify-center h-64 text-muted-foreground">
-			<div class="w-16 h-16 mb-4 rounded-2xl border-2 border-dashed border-muted-foreground/30 flex items-center justify-center">
-				<Tags class="w-8 h-8 opacity-40" />
+			<div class="size-16 mb-4 rounded-2xl border-2 border-dashed border-muted-foreground/30 flex items-center justify-center">
+				<Tags class="size-8 opacity-40" />
 			</div>
 			<p class="text-lg font-medium text-foreground/70">No matching environments</p>
 			<p class="text-sm text-muted-foreground mb-4">No environments match the selected label filters</p>

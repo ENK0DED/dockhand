@@ -436,17 +436,17 @@
 	{#if mode === 'create' && imageSummary}
 		<div class="p-3 rounded-lg bg-muted/50 border">
 			<div class="flex items-center gap-3">
-				<Package class="w-5 h-5 text-muted-foreground" />
+				<Package class="size-5 text-muted-foreground" />
 				<div>
 					<p class="text-sm font-medium">Image: <code class="bg-muted px-1.5 py-0.5 rounded">{image || 'Not set'}</code></p>
 					{#if imageSummary.isPulling || imageSummary.isScanning}
 						<p class="text-xs text-blue-600 flex items-center gap-1 mt-0.5">
-							<Loader2 class="w-3 h-3 animate-spin" />
+							<Loader2 class="size-3 animate-spin" />
 							{imageSummary.isScanning ? 'Scanning...' : 'Pulling...'}
 						</p>
 					{:else if imageSummary.imageReady}
 						<p class="text-xs text-muted-foreground flex items-center gap-1 mt-0.5">
-							<CheckCircle2 class="w-3 h-3" />
+							<CheckCircle2 class="size-3" />
 							Image pulled and ready
 							{#if imageSummary.scanResults && imageSummary.scanResults.length > 0}
 								• <span class="{imageSummary.hasCriticalOrHigh ? 'text-red-600' : (imageSummary.totalVulnerabilities ?? 0) > 0 ? 'text-amber-600' : 'text-green-600'}">{imageSummary.totalVulnerabilities ?? 0} vulnerabilities</span>
@@ -454,7 +454,7 @@
 						</p>
 					{:else if !image}
 						<p class="text-xs text-amber-600 flex items-center gap-1 mt-0.5">
-							<AlertTriangle class="w-3 h-3" />
+							<AlertTriangle class="size-3" />
 							Go to "Pull" tab to set the image
 						</p>
 					{/if}
@@ -467,7 +467,7 @@
 	{#if configSets.length > 0}
 		<div class="space-y-2">
 			<div class="flex items-center gap-2 pb-2 border-b">
-				<Settings2 class="w-4 h-4 text-muted-foreground" />
+				<Settings2 class="size-4 text-muted-foreground" />
 				<h3 class="text-sm font-semibold text-foreground">{mode === 'edit' ? 'Apply config set' : 'Config set'}</h3>
 			</div>
 			<div class="flex gap-2 items-end">
@@ -548,13 +548,13 @@
 					<Select.Trigger id="restartPolicy" tabindex={0} class="w-full h-9">
 						<span class="flex items-center">
 							{#if restartPolicy === 'no'}
-								<Ban class="w-3.5 h-3.5 mr-2 text-muted-foreground" />
+								<Ban class="size-4 mr-2 text-muted-foreground" />
 							{:else if restartPolicy === 'always'}
-								<RotateCw class="w-3.5 h-3.5 mr-2 text-green-500" />
+								<RotateCw class="size-4 mr-2 text-green-500" />
 							{:else if restartPolicy === 'on-failure'}
-								<AlertTriangle class="w-3.5 h-3.5 mr-2 text-amber-500" />
+								<AlertTriangle class="size-4 mr-2 text-amber-500" />
 							{:else}
-								<PauseCircle class="w-3.5 h-3.5 mr-2 text-blue-500" />
+								<PauseCircle class="size-4 mr-2 text-blue-500" />
 							{/if}
 							{restartPolicy === 'no' ? 'No' : restartPolicy === 'always' ? 'Always' : restartPolicy === 'on-failure' ? 'On failure' : 'Unless stopped'}
 						</span>
@@ -562,25 +562,25 @@
 					<Select.Content>
 						<Select.Item value="no">
 							{#snippet children()}
-								<Ban class="w-3.5 h-3.5 mr-2 text-muted-foreground" />
+								<Ban class="size-4 mr-2 text-muted-foreground" />
 								No
 							{/snippet}
 						</Select.Item>
 						<Select.Item value="always">
 							{#snippet children()}
-								<RotateCw class="w-3.5 h-3.5 mr-2 text-green-500" />
+								<RotateCw class="size-4 mr-2 text-green-500" />
 								Always
 							{/snippet}
 						</Select.Item>
 						<Select.Item value="on-failure">
 							{#snippet children()}
-								<AlertTriangle class="w-3.5 h-3.5 mr-2 text-amber-500" />
+								<AlertTriangle class="size-4 mr-2 text-amber-500" />
 								On failure
 							{/snippet}
 						</Select.Item>
 						<Select.Item value="unless-stopped">
 							{#snippet children()}
-								<PauseCircle class="w-3.5 h-3.5 mr-2 text-blue-500" />
+								<PauseCircle class="size-4 mr-2 text-blue-500" />
 								Unless stopped
 							{/snippet}
 						</Select.Item>
@@ -607,11 +607,11 @@
 					<Select.Trigger id="networkMode" tabindex={0} class="w-full h-9">
 						<span class="flex items-center">
 							{#if networkMode === 'bridge'}
-								<Share2 class="w-3.5 h-3.5 mr-2 text-emerald-500" />
+								<Share2 class="size-4 mr-2 text-emerald-500" />
 							{:else if networkMode === 'host'}
-								<Server class="w-3.5 h-3.5 mr-2 text-sky-500" />
+								<Server class="size-4 mr-2 text-sky-500" />
 							{:else}
-								<CircleOff class="w-3.5 h-3.5 mr-2 text-muted-foreground" />
+								<CircleOff class="size-4 mr-2 text-muted-foreground" />
 							{/if}
 							{networkMode === 'bridge' ? 'Bridge' : networkMode === 'host' ? 'Host' : 'None'}
 						</span>
@@ -619,19 +619,19 @@
 					<Select.Content>
 						<Select.Item value="bridge">
 							{#snippet children()}
-								<Share2 class="w-3.5 h-3.5 mr-2 text-emerald-500" />
+								<Share2 class="size-4 mr-2 text-emerald-500" />
 								Bridge
 							{/snippet}
 						</Select.Item>
 						<Select.Item value="host">
 							{#snippet children()}
-								<Server class="w-3.5 h-3.5 mr-2 text-sky-500" />
+								<Server class="size-4 mr-2 text-sky-500" />
 								Host
 							{/snippet}
 						</Select.Item>
 						<Select.Item value="none">
 							{#snippet children()}
-								<CircleOff class="w-3.5 h-3.5 mr-2 text-muted-foreground" />
+								<CircleOff class="size-4 mr-2 text-muted-foreground" />
 								None
 							{/snippet}
 						</Select.Item>
@@ -656,7 +656,7 @@
 		<div class="space-y-2">
 			<div class="flex justify-between items-center pb-2 border-b">
 				<div class="flex items-center gap-2">
-					<Network class="w-4 h-4 text-muted-foreground" />
+					<Network class="size-4 text-muted-foreground" />
 					<h3 class="text-sm font-semibold text-foreground">Networks</h3>
 				</div>
 			</div>
@@ -694,7 +694,7 @@
 									onclick={() => removeNetwork(networkName)}
 									class="ml-0.5 hover:bg-destructive/20 rounded p-0.5"
 								>
-									<X class="w-3 h-3" />
+									<X class="size-3" />
 								</button>
 							</Badge>
 						{/each}
@@ -712,7 +712,7 @@
 		<div class="flex justify-between items-center pb-2 border-b">
 			<h3 class="text-sm font-semibold text-foreground">Port mappings</h3>
 			<Button type="button" size="sm" variant="ghost" onclick={addPortMapping} class="h-7 text-xs">
-				<Plus class="w-3.5 h-3.5" />
+				<Plus class="size-4" />
 				Add
 			</Button>
 		</div>
@@ -739,9 +739,9 @@
 						variant="ghost"
 						onclick={() => removePortMapping(index)}
 						disabled={portMappings.length === 1}
-						class="h-9 w-9 text-muted-foreground hover:text-destructive"
+						class="size-9 text-muted-foreground hover:text-destructive"
 					>
-						<Trash2 class="w-4 h-4" />
+						<Trash2 class="size-4" />
 					</Button>
 				</div>
 			{/each}
@@ -753,7 +753,7 @@
 		<div class="flex justify-between items-center pb-2 border-b">
 			<h3 class="text-sm font-semibold text-foreground">Volume mappings</h3>
 			<Button type="button" size="sm" variant="ghost" onclick={addVolumeMapping} class="h-7 text-xs">
-				<Plus class="w-3.5 h-3.5" />
+				<Plus class="size-4" />
 				Add
 			</Button>
 		</div>
@@ -780,9 +780,9 @@
 						variant="ghost"
 						onclick={() => removeVolumeMapping(index)}
 						disabled={volumeMappings.length === 1}
-						class="h-9 w-9 text-muted-foreground hover:text-destructive"
+						class="size-9 text-muted-foreground hover:text-destructive"
 					>
-						<Trash2 class="w-4 h-4" />
+						<Trash2 class="size-4" />
 					</Button>
 				</div>
 			{/each}
@@ -794,7 +794,7 @@
 		<div class="flex justify-between items-center pb-2 border-b">
 			<h3 class="text-sm font-semibold text-foreground">Environment variables</h3>
 			<Button type="button" size="sm" variant="ghost" onclick={addEnvVar} class="h-7 text-xs">
-				<Plus class="w-3.5 h-3.5" />
+				<Plus class="size-4" />
 				Add
 			</Button>
 		</div>
@@ -816,9 +816,9 @@
 						variant="ghost"
 						onclick={() => removeEnvVar(index)}
 						disabled={envVars.length === 1}
-						class="h-9 w-9 text-muted-foreground hover:text-destructive"
+						class="size-9 text-muted-foreground hover:text-destructive"
 					>
-						<Trash2 class="w-4 h-4" />
+						<Trash2 class="size-4" />
 					</Button>
 				</div>
 			{/each}
@@ -830,7 +830,7 @@
 		<div class="flex justify-between items-center pb-2 border-b">
 			<h3 class="text-sm font-semibold text-foreground">Labels</h3>
 			<Button type="button" size="sm" variant="ghost" onclick={addLabel} class="h-7 text-xs">
-				<Plus class="w-3.5 h-3.5" />
+				<Plus class="size-4" />
 				Add
 			</Button>
 		</div>
@@ -852,9 +852,9 @@
 						variant="ghost"
 						onclick={() => removeLabel(index)}
 						disabled={labels.length === 1}
-						class="h-9 w-9 text-muted-foreground hover:text-destructive"
+						class="size-9 text-muted-foreground hover:text-destructive"
 					>
-						<Trash2 class="w-4 h-4" />
+						<Trash2 class="size-4" />
 					</Button>
 				</div>
 			{/each}
@@ -874,16 +874,16 @@
 			class="w-full flex items-center justify-between p-3 hover:bg-muted/50 transition-colors"
 		>
 			<div class="flex items-center gap-2">
-				<Cpu class="w-4 h-4 text-muted-foreground" />
+				<Cpu class="size-4 text-muted-foreground" />
 				<span class="text-sm font-medium">Resources</span>
 				{#if memoryLimit || nanoCpus || cpuShares}
 					<Badge variant="secondary" class="text-2xs">configured</Badge>
 				{/if}
 			</div>
 			{#if showResources}
-				<ChevronDown class="w-4 h-4 text-muted-foreground" />
+				<ChevronDown class="size-4 text-muted-foreground" />
 			{:else}
-				<ChevronRight class="w-4 h-4 text-muted-foreground" />
+				<ChevronRight class="size-4 text-muted-foreground" />
 			{/if}
 		</button>
 		{#if showResources}
@@ -933,16 +933,16 @@
 			class="w-full flex items-center justify-between p-3 hover:bg-muted/50 transition-colors"
 		>
 			<div class="flex items-center gap-2">
-				<Shield class="w-4 h-4 text-muted-foreground" />
+				<Shield class="size-4 text-muted-foreground" />
 				<span class="text-sm font-medium">Security</span>
 				{#if privilegedMode || containerUser || capAdd.length > 0 || capDrop.length > 0 || securityOptions.length > 0}
 					<Badge variant="secondary" class="text-2xs">configured</Badge>
 				{/if}
 			</div>
 			{#if showSecurity}
-				<ChevronDown class="w-4 h-4 text-muted-foreground" />
+				<ChevronDown class="size-4 text-muted-foreground" />
 			{:else}
-				<ChevronRight class="w-4 h-4 text-muted-foreground" />
+				<ChevronRight class="size-4 text-muted-foreground" />
 			{/if}
 		</button>
 		{#if showSecurity}
@@ -956,7 +956,7 @@
 						<div class="flex items-center space-x-2">
 							<Checkbox id="privilegedMode" bind:checked={privilegedMode} />
 							<Label for="privilegedMode" class="text-xs font-normal flex items-center gap-1">
-								<Lock class="w-3 h-3 text-amber-500" />
+								<Lock class="size-3 text-amber-500" />
 								Privileged mode
 							</Label>
 						</div>
@@ -981,7 +981,7 @@
 								<Badge variant="outline" class="text-2xs bg-green-50 text-green-700 dark:bg-green-900/30 dark:text-green-400">
 									+{cap}
 									<button type="button" onclick={() => removeCapability('add', cap)} class="ml-1 hover:text-destructive">
-										<X class="w-3 h-3" />
+										<X class="size-3" />
 									</button>
 								</Badge>
 							{/each}
@@ -1007,7 +1007,7 @@
 								<Badge variant="outline" class="text-2xs bg-red-50 text-red-700 dark:bg-red-900/30 dark:text-red-400">
 									-{cap}
 									<button type="button" onclick={() => removeCapability('drop', cap)} class="ml-1 hover:text-destructive">
-										<X class="w-3 h-3" />
+										<X class="size-3" />
 									</button>
 								</Badge>
 							{/each}
@@ -1025,7 +1025,7 @@
 							onkeydown={(e) => { if (e.key === 'Enter') { e.preventDefault(); addSecurityOption(); } }}
 						/>
 						<Button type="button" size="sm" variant="outline" onclick={addSecurityOption} class="h-9">
-							<Plus class="w-4 h-4" />
+							<Plus class="size-4" />
 						</Button>
 					</div>
 					{#if securityOptions.length > 0}
@@ -1034,7 +1034,7 @@
 								<Badge variant="secondary" class="text-2xs">
 									{option}
 									<button type="button" onclick={() => removeSecurityOption(option)} class="ml-1 hover:text-destructive">
-										<X class="w-3 h-3" />
+										<X class="size-3" />
 									</button>
 								</Badge>
 							{/each}
@@ -1054,16 +1054,16 @@
 			class="w-full flex items-center justify-between p-3 hover:bg-muted/50 transition-colors"
 		>
 			<div class="flex items-center gap-2">
-				<HeartPulse class="w-4 h-4 text-muted-foreground" />
+				<HeartPulse class="size-4 text-muted-foreground" />
 				<span class="text-sm font-medium">Healthcheck</span>
 				{#if healthcheckEnabled}
 					<Badge variant="secondary" class="text-2xs">enabled</Badge>
 				{/if}
 			</div>
 			{#if showHealth}
-				<ChevronDown class="w-4 h-4 text-muted-foreground" />
+				<ChevronDown class="size-4 text-muted-foreground" />
 			{:else}
-				<ChevronRight class="w-4 h-4 text-muted-foreground" />
+				<ChevronRight class="size-4 text-muted-foreground" />
 			{/if}
 		</button>
 		{#if showHealth}
@@ -1108,16 +1108,16 @@
 			class="w-full flex items-center justify-between p-3 hover:bg-muted/50 transition-colors"
 		>
 			<div class="flex items-center gap-2">
-				<Wifi class="w-4 h-4 text-muted-foreground" />
+				<Wifi class="size-4 text-muted-foreground" />
 				<span class="text-sm font-medium">DNS settings</span>
 				{#if dnsServers.length > 0 || dnsSearch.length > 0}
 					<Badge variant="secondary" class="text-2xs">configured</Badge>
 				{/if}
 			</div>
 			{#if showDns}
-				<ChevronDown class="w-4 h-4 text-muted-foreground" />
+				<ChevronDown class="size-4 text-muted-foreground" />
 			{:else}
-				<ChevronRight class="w-4 h-4 text-muted-foreground" />
+				<ChevronRight class="size-4 text-muted-foreground" />
 			{/if}
 		</button>
 		{#if showDns}
@@ -1132,7 +1132,7 @@
 							onkeydown={(e) => { if (e.key === 'Enter') { e.preventDefault(); addDnsServer(); } }}
 						/>
 						<Button type="button" size="sm" variant="outline" onclick={addDnsServer} class="h-9">
-							<Plus class="w-4 h-4" />
+							<Plus class="size-4" />
 						</Button>
 					</div>
 					{#if dnsServers.length > 0}
@@ -1141,7 +1141,7 @@
 								<Badge variant="secondary" class="text-2xs">
 									{server}
 									<button type="button" onclick={() => removeDnsServer(server)} class="ml-1 hover:text-destructive">
-										<X class="w-3 h-3" />
+										<X class="size-3" />
 									</button>
 								</Badge>
 							{/each}
@@ -1160,7 +1160,7 @@
 							onkeydown={(e) => { if (e.key === 'Enter') { e.preventDefault(); addDnsSearch(); } }}
 						/>
 						<Button type="button" size="sm" variant="outline" onclick={addDnsSearch} class="h-9">
-							<Plus class="w-4 h-4" />
+							<Plus class="size-4" />
 						</Button>
 					</div>
 					{#if dnsSearch.length > 0}
@@ -1169,7 +1169,7 @@
 								<Badge variant="secondary" class="text-2xs">
 									{domain}
 									<button type="button" onclick={() => removeDnsSearch(domain)} class="ml-1 hover:text-destructive">
-										<X class="w-3 h-3" />
+										<X class="size-3" />
 									</button>
 								</Badge>
 							{/each}
@@ -1188,7 +1188,7 @@
 							onkeydown={(e) => { if (e.key === 'Enter') { e.preventDefault(); addDnsOption(); } }}
 						/>
 						<Button type="button" size="sm" variant="outline" onclick={addDnsOption} class="h-9">
-							<Plus class="w-4 h-4" />
+							<Plus class="size-4" />
 						</Button>
 					</div>
 					{#if dnsOptions.length > 0}
@@ -1197,7 +1197,7 @@
 								<Badge variant="secondary" class="text-2xs">
 									{option}
 									<button type="button" onclick={() => removeDnsOption(option)} class="ml-1 hover:text-destructive">
-										<X class="w-3 h-3" />
+										<X class="size-3" />
 									</button>
 								</Badge>
 							{/each}
@@ -1216,23 +1216,23 @@
 			class="w-full flex items-center justify-between p-3 hover:bg-muted/50 transition-colors"
 		>
 			<div class="flex items-center gap-2">
-				<HardDrive class="w-4 h-4 text-muted-foreground" />
+				<HardDrive class="size-4 text-muted-foreground" />
 				<span class="text-sm font-medium">Devices</span>
 				{#if deviceMappings.length > 0}
 					<Badge variant="secondary" class="text-2xs">{deviceMappings.length}</Badge>
 				{/if}
 			</div>
 			{#if showDevices}
-				<ChevronDown class="w-4 h-4 text-muted-foreground" />
+				<ChevronDown class="size-4 text-muted-foreground" />
 			{:else}
-				<ChevronRight class="w-4 h-4 text-muted-foreground" />
+				<ChevronRight class="size-4 text-muted-foreground" />
 			{/if}
 		</button>
 		{#if showDevices}
 			<div class="px-3 pb-3 space-y-3 border-t">
 				<div class="flex justify-end pt-2">
 					<Button type="button" size="sm" variant="ghost" onclick={addDeviceMapping} class="h-7 text-xs">
-						<Plus class="w-3.5 h-3.5" />
+						<Plus class="size-4" />
 						Add device
 					</Button>
 				</div>
@@ -1245,9 +1245,9 @@
 							size="icon"
 							variant="ghost"
 							onclick={() => removeDeviceMapping(index)}
-							class="h-9 w-9 text-muted-foreground hover:text-destructive"
+							class="size-9 text-muted-foreground hover:text-destructive"
 						>
-							<Trash2 class="w-4 h-4" />
+							<Trash2 class="size-4" />
 						</Button>
 					</div>
 				{/each}
@@ -1263,16 +1263,16 @@
 			class="w-full flex items-center justify-between p-3 hover:bg-muted/50 transition-colors"
 		>
 			<div class="flex items-center gap-2">
-				<Gpu class="w-4 h-4 text-muted-foreground" />
+				<Gpu class="size-4 text-muted-foreground" />
 				<span class="text-sm font-medium">GPU</span>
 				{#if gpuEnabled}
 					<Badge variant="secondary" class="text-2xs">configured</Badge>
 				{/if}
 			</div>
 			{#if showGpu}
-				<ChevronDown class="w-4 h-4 text-muted-foreground" />
+				<ChevronDown class="size-4 text-muted-foreground" />
 			{:else}
-				<ChevronRight class="w-4 h-4 text-muted-foreground" />
+				<ChevronRight class="size-4 text-muted-foreground" />
 			{/if}
 		</button>
 		{#if showGpu}
@@ -1342,7 +1342,7 @@
 									onkeydown={(e) => { if (e.key === 'Enter') { e.preventDefault(); addGpuDeviceId(); } }}
 								/>
 								<Button type="button" size="sm" variant="outline" onclick={addGpuDeviceId} class="h-9">
-									<Plus class="w-4 h-4" />
+									<Plus class="size-4" />
 								</Button>
 							</div>
 							{#if gpuDeviceIds.length > 0}
@@ -1351,7 +1351,7 @@
 										<Badge variant="secondary" class="text-2xs">
 											{id}
 											<button type="button" onclick={() => removeGpuDeviceId(id)} class="ml-1 hover:text-destructive">
-												<X class="w-3 h-3" />
+												<X class="size-3" />
 											</button>
 										</Badge>
 									{/each}
@@ -1383,7 +1383,7 @@
 									<Badge variant="outline" class="text-2xs bg-violet-50 text-violet-700 dark:bg-violet-900/30 dark:text-violet-400">
 										{cap}
 										<button type="button" onclick={() => removeGpuCapability(cap)} class="ml-1 hover:text-destructive">
-											<X class="w-3 h-3" />
+											<X class="size-3" />
 										</button>
 									</Badge>
 								{/each}
@@ -1403,23 +1403,23 @@
 			class="w-full flex items-center justify-between p-3 hover:bg-muted/50 transition-colors"
 		>
 			<div class="flex items-center gap-2">
-				<Settings2 class="w-4 h-4 text-muted-foreground" />
+				<Settings2 class="size-4 text-muted-foreground" />
 				<span class="text-sm font-medium">Ulimits</span>
 				{#if ulimits.length > 0}
 					<Badge variant="secondary" class="text-2xs">{ulimits.length}</Badge>
 				{/if}
 			</div>
 			{#if showUlimits}
-				<ChevronDown class="w-4 h-4 text-muted-foreground" />
+				<ChevronDown class="size-4 text-muted-foreground" />
 			{:else}
-				<ChevronRight class="w-4 h-4 text-muted-foreground" />
+				<ChevronRight class="size-4 text-muted-foreground" />
 			{/if}
 		</button>
 		{#if showUlimits}
 			<div class="px-3 pb-3 space-y-3 border-t">
 				<div class="flex justify-end pt-2">
 					<Button type="button" size="sm" variant="ghost" onclick={addUlimit} class="h-7 text-xs">
-						<Plus class="w-3.5 h-3.5" />
+						<Plus class="size-4" />
 						Add ulimit
 					</Button>
 				</div>
@@ -1442,9 +1442,9 @@
 							size="icon"
 							variant="ghost"
 							onclick={() => removeUlimit(index)}
-							class="h-9 w-9 text-muted-foreground hover:text-destructive"
+							class="size-9 text-muted-foreground hover:text-destructive"
 						>
-							<Trash2 class="w-4 h-4" />
+							<Trash2 class="size-4" />
 						</Button>
 					</div>
 				{/each}
@@ -1455,7 +1455,7 @@
 	<!-- Auto-update Settings -->
 	<div class="space-y-3">
 		<div class="flex items-center gap-2 pb-2 border-b">
-			<RefreshCw class="w-4 h-4 text-muted-foreground" />
+			<RefreshCw class="size-4 text-muted-foreground" />
 			<h3 class="text-sm font-semibold text-foreground">Auto-update</h3>
 		</div>
 		<AutoUpdateSettings

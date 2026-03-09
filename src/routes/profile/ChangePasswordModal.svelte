@@ -78,14 +78,14 @@
 	<Dialog.Content class="max-w-md">
 		<Dialog.Header>
 			<Dialog.Title class="flex items-center gap-2">
-				<Key class="w-5 h-5" />
+				<Key class="size-5" />
 				Change password
 			</Dialog.Title>
 		</Dialog.Header>
 		<div class="space-y-4">
 			{#if error}
 				<Alert.Root variant="destructive">
-					<TriangleAlert class="h-4 w-4" />
+					<TriangleAlert class="size-4" />
 					<Alert.Description>{error}</Alert.Description>
 				</Alert.Root>
 			{/if}
@@ -122,9 +122,9 @@
 			<Button variant="outline" onclick={onClose}>Cancel</Button>
 			<Button onclick={changePassword} disabled={saving}>
 				{#if saving}
-					<RefreshCw class="w-4 h-4 animate-spin" />
+					<RefreshCw class="size-4 animate-spin" />
 				{:else}
-					<Check class="w-4 h-4" />
+					<Check class="size-4" />
 				{/if}
 				Change password
 			</Button>

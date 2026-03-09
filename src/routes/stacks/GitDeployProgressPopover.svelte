@@ -185,13 +185,13 @@
 		<div class="px-6 py-4 border-b shrink-0">
 			<div class="flex items-center gap-2 min-w-0">
 				{#if overallStatus === 'complete'}
-					<CheckCircle2 class="w-5 h-5 text-green-500 shrink-0" />
+					<CheckCircle2 class="size-5 text-green-500 shrink-0" />
 				{:else if overallStatus === 'error'}
-					<XCircle class="w-5 h-5 text-red-500 shrink-0" />
+					<XCircle class="size-5 text-red-500 shrink-0" />
 				{:else if isDeploying}
-					<Loader2 class="w-5 h-5 text-violet-500 animate-spin shrink-0" />
+					<Loader2 class="size-5 text-violet-500 animate-spin shrink-0" />
 				{:else}
-					<Rocket class="w-5 h-5 text-violet-500 shrink-0" />
+					<Rocket class="size-5 text-violet-500 shrink-0" />
 				{/if}
 				<span class="text-base font-semibold">Git deploy</span>
 				<code class="text-sm font-normal bg-muted px-1.5 py-0.5 rounded ml-1 truncate">{stackName}</code>
@@ -220,7 +220,7 @@
 		<div class="overflow-y-auto px-4 py-3" style="max-height: 55vh; min-height: 12rem;">
 			{#if overallStatus === 'confirming'}
 				<div class="flex items-start gap-3 py-2 px-2">
-					<AlertTriangle class="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
+					<AlertTriangle class="size-5 text-amber-500 shrink-0 mt-0.5" />
 					<div class="space-y-1">
 						<p class="font-medium">Sync from git?</p>
 						<p class="text-sm text-muted-foreground">
@@ -231,7 +231,7 @@
 				</div>
 			{:else if steps.length === 0 && isDeploying}
 				<div class="flex items-center gap-3 text-muted-foreground py-2 px-2">
-					<Loader2 class="w-4 h-4 animate-spin shrink-0" />
+					<Loader2 class="size-4 animate-spin shrink-0" />
 					<span class="text-sm">Initializing...</span>
 				</div>
 			{:else}
@@ -241,7 +241,7 @@
 						{@const isCurrentStep = index === steps.length - 1 && isDeploying}
 						<div class="flex items-center gap-3 py-1.5 px-2 rounded-md text-sm hover:bg-muted/40 transition-colors">
 							<StepIcon
-								class="w-4 h-4 shrink-0 {getStepColor(step.status, isCurrentStep)} {isCurrentStep && step.status !== 'complete' && step.status !== 'error' ? 'animate-spin' : ''}"
+								class="size-4 shrink-0 {getStepColor(step.status, isCurrentStep)} {isCurrentStep && step.status !== 'complete' && step.status !== 'error' ? 'animate-spin' : ''}"
 							/>
 							<span class="{getStepColor(step.status, isCurrentStep)}">
 								{step.message || step.status}
@@ -254,7 +254,7 @@
 			{#if errorMessage}
 				<div class="mt-3 mx-2 p-3 rounded-md bg-destructive/10 border border-destructive/20">
 					<div class="flex items-start gap-2 text-sm text-destructive">
-						<AlertCircle class="w-4 h-4 shrink-0 mt-0.5" />
+						<AlertCircle class="size-4 shrink-0 mt-0.5" />
 						<span class="break-all">{errorMessage}</span>
 					</div>
 				</div>
@@ -270,10 +270,10 @@
 				{:else if steps.length > 0}
 					<Button variant="outline" size="sm" onclick={copyLogs} class="gap-1.5">
 						{#if copied}
-							<Check class="w-3.5 h-3.5" />
+							<Check class="size-4" />
 							Copied!
 						{:else}
-							<Copy class="w-3.5 h-3.5" />
+							<Copy class="size-4" />
 							Copy logs
 						{/if}
 					</Button>
@@ -284,7 +284,7 @@
 			<div class="flex gap-2">
 				{#if overallStatus === 'confirming'}
 					<Button onclick={handleConfirmDeploy}>
-						<Rocket class="w-4 h-4" />
+						<Rocket class="size-4" />
 						Deploy
 					</Button>
 				{:else}
@@ -294,7 +294,7 @@
 						disabled={isDeploying}
 					>
 						{#if isDeploying}
-							<Loader2 class="w-4 h-4 animate-spin" />
+							<Loader2 class="size-4 animate-spin" />
 							Deploying...
 						{:else}
 							Close

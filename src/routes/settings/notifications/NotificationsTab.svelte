@@ -129,14 +129,14 @@
 	<Card.Root class="border-dashed">
 		<Card.Content class="pt-4">
 			<div class="flex items-start gap-3">
-				<Bell class="w-5 h-5 text-muted-foreground mt-0.5" />
+				<Bell class="size-5 text-muted-foreground mt-0.5" />
 				<div>
 					<p class="text-sm font-medium">Notification channels</p>
 					<p class="text-xs text-muted-foreground mt-1">
 						Configure notification channels to receive alerts about Docker events. Supports SMTP email and Apprise URLs (Discord, Slack, Telegram, ntfy, and more).
 					</p>
 					<p class="text-xs text-amber-600 dark:text-amber-500 mt-2 flex items-center gap-1">
-						<Info class="w-3 h-3" />
+						<Info class="size-3" />
 						Detailed notification settings (event types, enable/disable) are configured per environment in Environment settings.
 					</p>
 				</div>
@@ -151,7 +151,7 @@
 		<div class="flex gap-2">
 			{#if $canAccess('notifications', 'create')}
 				<Button size="sm" onclick={() => openNotifModal()}>
-					<Plus class="w-4 h-4" />
+					<Plus class="size-4" />
 					Add channel
 				</Button>
 			{/if}
@@ -176,9 +176,9 @@
 						<div class="flex items-start justify-between">
 							<div class="flex items-center gap-2">
 								{#if notif.type === 'smtp'}
-									<Mail class="w-5 h-5 text-muted-foreground" />
+									<Mail class="size-5 text-muted-foreground" />
 								{:else}
-									<Link class="w-5 h-5 text-muted-foreground" />
+									<Link class="size-5 text-muted-foreground" />
 								{/if}
 								<Card.Title class="text-base">{notif.name}</Card.Title>
 							</div>
@@ -205,16 +205,16 @@
 
 						{#if testingNotif === notif.id}
 							<div class="text-xs text-muted-foreground flex items-center gap-1">
-								<RefreshCw class="w-3 h-3 animate-spin" />
+								<RefreshCw class="size-3 animate-spin" />
 								Sending test...
 							</div>
 						{:else if testResult && testedNotifId === notif.id}
 							<div class="text-xs flex items-center gap-1 {testResult.success ? 'text-green-600' : 'text-destructive'}">
 								{#if testResult.success}
-									<CheckCircle2 class="w-3 h-3" />
+									<CheckCircle2 class="size-3" />
 									Test sent successfully
 								{:else}
-									<XCircle class="w-3 h-3" />
+									<XCircle class="size-3" />
 									{testResult.error || 'Test failed'}
 								{/if}
 							</div>
@@ -227,7 +227,7 @@
 								onclick={() => testNotification(notif.id)}
 								disabled={testingNotif !== null}
 							>
-								<Send class="w-3 h-3" />
+								<Send class="size-3" />
 								Test
 							</Button>
 							{#if $canAccess('notifications', 'edit')}
@@ -236,7 +236,7 @@
 									size="sm"
 									onclick={() => openNotifModal(notif)}
 								>
-									<Pencil class="w-3 h-3" />
+									<Pencil class="size-3" />
 								</Button>
 							{/if}
 							{#if $canAccess('notifications', 'delete')}
@@ -256,7 +256,7 @@
 											size="sm"
 											class={open ? 'border-destructive text-destructive' : ''}
 										>
-											<Trash2 class="w-3 h-3" />
+											<Trash2 class="size-3" />
 										</Button>
 									{/snippet}
 								</ConfirmPopover>

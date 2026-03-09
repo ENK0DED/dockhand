@@ -4,12 +4,12 @@
 	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
 	import { Toaster } from '$lib/components/ui/sonner';
-	import AppSidebar from '$lib/components/app-sidebar.svelte';
-	import ThemeToggle from '$lib/components/theme-toggle.svelte';
-	import HostInfo from '$lib/components/host-info.svelte';
-	import MainContent from '$lib/components/main-content.svelte';
+	import AppSidebar from '$lib/components/AppSidebar.svelte';
+	import ThemeToggle from '$lib/components/ThemeToggle.svelte';
+	import HostInfo from '$lib/components/HostInfo.svelte';
+	import MainContent from '$lib/components/MainContent.svelte';
 	import CommandPalette from '$lib/components/CommandPalette.svelte';
-	import WhatsNewModal from '$lib/components/WhatsNewModal.svelte';
+	import WhatsNewModal from '$lib/components/modals/WhatsNewModal.svelte';
 	import { SidebarProvider, SidebarTrigger } from '$lib/components/ui/sidebar';
 	import { connectSSE, disconnectSSE } from '$lib/stores/events';
 	import { currentEnvironment, environments } from '$lib/stores/environment';
@@ -129,7 +129,7 @@
 	<SidebarProvider>
 		<AppSidebar />
 		<MainContent>
-			<header class="h-14 shrink-0 flex items-center justify-between gap-4 border-b bg-background px-4">
+			<header class="h-12 shrink-0 flex items-center justify-between gap-4 border-b bg-background px-3">
 				<div class="flex items-center gap-2 min-w-0">
 					<SidebarTrigger class="md:hidden shrink-0" />
 					<HostInfo />
@@ -140,7 +140,7 @@
 						onclick={() => commandPaletteOpen = true}
 						class="flex items-center gap-2 px-2.5 py-1.5 text-xs text-muted-foreground hover:text-foreground border rounded-md hover:bg-muted/50 transition-colors"
 					>
-						<Search class="w-3.5 h-3.5" />
+						<Search class="size-4" />
 						<span class="hidden sm:inline">Search...</span>
 						<kbd class="pointer-events-none hidden sm:inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-2xs font-medium text-muted-foreground">
 							{#if isMac}
@@ -159,7 +159,7 @@
 									? 'bg-red-100 text-red-800 hover:bg-red-200 dark:bg-red-900/30 dark:text-red-400 dark:hover:bg-red-900/50'
 									: 'bg-amber-100 text-amber-800 hover:bg-amber-200 dark:bg-amber-900/30 dark:text-amber-400 dark:hover:bg-amber-900/50'}"
 						>
-							<AlertTriangle class="w-3.5 h-3.5" />
+							<AlertTriangle class="size-4" />
 							{#if $daysUntilExpiry <= 0}
 								License expired
 							{:else if $daysUntilExpiry === 1}

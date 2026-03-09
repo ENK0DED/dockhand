@@ -228,7 +228,7 @@
 		<div class="relative flex-1 max-w-md min-w-[200px]">
 			<!-- Search input - always visible, shows selected container or placeholder -->
 			<div class="relative">
-				<Search class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+				<Search class="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
 				<Input
 					type="text"
 					placeholder={selectedContainer ? selectedContainer.name : "Search running containers..."}
@@ -238,7 +238,7 @@
 					onkeydown={handleInputKeydown}
 					class="pl-10 pr-10 h-9 {selectedContainer && !searchQuery ? 'text-foreground' : ''}"
 				/>
-				<ChevronDown class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+				<ChevronDown class="absolute right-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
 			</div>
 
 			<!-- Dropdown -->
@@ -269,7 +269,7 @@
 
 		{#if selectedContainer}
 			<Button size="sm" variant="ghost" onclick={clearSelection} class="h-9 px-3 text-sm text-muted-foreground hover:text-foreground">
-				<Unplug class="w-4 h-4 mr-1.5" />
+				<Unplug class="size-4 mr-1.5" />
 				Disconnect
 			</Button>
 		{/if}
@@ -279,12 +279,12 @@
 			<Label class="text-sm text-muted-foreground">Shell:</Label>
 			{#if detectingShells}
 				<div class="h-9 w-36 flex items-center justify-center border rounded-md bg-muted/50">
-					<Loader2 class="w-4 h-4 animate-spin text-muted-foreground" />
+					<Loader2 class="size-4 animate-spin text-muted-foreground" />
 				</div>
 			{:else}
 				<Select.Root type="single" bind:value={selectedShell}>
 					<Select.Trigger class="h-9 w-44" disabled={!anyShellAvailable}>
-						<Shell class="w-4 h-4 mr-2 text-muted-foreground" />
+						<Shell class="size-4 mr-2 text-muted-foreground" />
 						<span class={!selectedShellAvailable ? 'text-muted-foreground line-through' : ''}>
 							{shellDetection?.allShells.find(o => o.path === selectedShell)?.label ||
 							 (selectedShell === '/bin/bash' ? 'Bash' :
@@ -301,7 +301,7 @@
 									label={option.label}
 									disabled={!option.available}
 								>
-									<Shell class="w-4 h-4 mr-2 {option.available ? 'text-green-500' : 'text-muted-foreground/40'}" />
+									<Shell class="size-4 mr-2 {option.available ? 'text-green-500' : 'text-muted-foreground/40'}" />
 									<span class={option.available ? 'text-foreground' : 'text-muted-foreground/60'}>
 										{option.label}
 										{#if !option.available}
@@ -312,19 +312,19 @@
 							{/each}
 						{:else}
 							<Select.Item value="/bin/bash" label="Bash">
-								<Shell class="w-4 h-4 mr-2 text-muted-foreground" />
+								<Shell class="size-4 mr-2 text-muted-foreground" />
 								Bash
 							</Select.Item>
 							<Select.Item value="/bin/sh" label="Shell (sh)">
-								<Shell class="w-4 h-4 mr-2 text-muted-foreground" />
+								<Shell class="size-4 mr-2 text-muted-foreground" />
 								Shell (sh)
 							</Select.Item>
 							<Select.Item value="/bin/zsh" label="Zsh">
-								<Shell class="w-4 h-4 mr-2 text-muted-foreground" />
+								<Shell class="size-4 mr-2 text-muted-foreground" />
 								Zsh
 							</Select.Item>
 							<Select.Item value="/bin/ash" label="Ash (Alpine)">
-								<Shell class="w-4 h-4 mr-2 text-muted-foreground" />
+								<Shell class="size-4 mr-2 text-muted-foreground" />
 								Ash (Alpine)
 							</Select.Item>
 						{/if}
@@ -338,13 +338,13 @@
 			<Label class="text-sm text-muted-foreground">User:</Label>
 			<Select.Root type="single" bind:value={selectedUser}>
 				<Select.Trigger class="h-9 w-48">
-					<User class="w-4 h-4 mr-2 text-muted-foreground" />
+					<User class="size-4 mr-2 text-muted-foreground" />
 					<span>{USER_OPTIONS.find(o => o.value === selectedUser)?.label || 'Select'}</span>
 				</Select.Trigger>
 				<Select.Content>
 					{#each USER_OPTIONS as option}
 						<Select.Item value={option.value} label={option.label}>
-							<User class="w-4 h-4 mr-2 text-muted-foreground" />
+							<User class="size-4 mr-2 text-muted-foreground" />
 							{option.label}
 						</Select.Item>
 					{/each}
@@ -358,21 +358,21 @@
 		{#if !selectedContainer}
 			<div class="flex items-center justify-center h-full text-muted-foreground">
 				<div class="text-center">
-					<TerminalIcon class="w-12 h-12 mx-auto mb-3 opacity-50" />
+					<TerminalIcon class="size-12 mx-auto mb-3 opacity-50" />
 					<p>Select a container to open shell</p>
 				</div>
 			</div>
 		{:else if detectingShells}
 			<div class="flex items-center justify-center h-full text-muted-foreground">
 				<div class="text-center">
-					<Loader2 class="w-12 h-12 mx-auto mb-3 opacity-50 animate-spin" />
+					<Loader2 class="size-12 mx-auto mb-3 opacity-50 animate-spin" />
 					<p>Detecting available shells...</p>
 				</div>
 			</div>
 		{:else if !anyShellAvailable}
 			<div class="flex items-center justify-center h-full text-muted-foreground">
 				<div class="text-center">
-					<AlertCircle class="w-12 h-12 mx-auto mb-3 opacity-50 text-amber-500" />
+					<AlertCircle class="size-12 mx-auto mb-3 opacity-50 text-amber-500" />
 					<p class="font-medium text-amber-500">No shell available in this container</p>
 					<p class="text-sm mt-2">This container may not have a shell installed.</p>
 					<p class="text-xs mt-1 text-muted-foreground/70">
@@ -385,8 +385,8 @@
 			<div class="flex items-center justify-between px-3 py-1.5 border-b border-zinc-800 bg-zinc-900/50 shrink-0">
 				<div class="flex items-center gap-2">
 					{#if connected}
-						<span class="inline-flex items-center gap-1 text-xs text-green-500">
-							<span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+						<span class="inline-flex items-center gap-2 text-xs text-green-500">
+							<span class="size-2 rounded-full bg-green-500 animate-pulse"></span>
 							Connected
 						</span>
 					{:else}
@@ -409,21 +409,21 @@
 						class="p-1 rounded hover:bg-zinc-800 transition-colors"
 						title="Copy output"
 					>
-						<Copy class="w-3 h-3 text-zinc-500 hover:text-zinc-300" />
+						<Copy class="size-3 text-zinc-500 hover:text-zinc-300" />
 					</button>
 					<button
 						onclick={() => terminalComponent?.clear()}
 						class="p-1 rounded hover:bg-zinc-800 transition-colors"
 						title="Clear (Cmd+L)"
 					>
-						<Trash2 class="w-3 h-3 text-zinc-500 hover:text-zinc-300" />
+						<Trash2 class="size-3 text-zinc-500 hover:text-zinc-300" />
 					</button>
 					<button
 						onclick={() => terminalComponent?.reconnect()}
 						class="p-1 rounded hover:bg-zinc-800 transition-colors"
 						title="Reconnect"
 					>
-						<RefreshCw class="w-3 h-3 text-zinc-500 hover:text-zinc-300" />
+						<RefreshCw class="size-3 text-zinc-500 hover:text-zinc-300" />
 					</button>
 				</div>
 			</div>

@@ -6,6 +6,7 @@
 	import { focusFirstInput } from '$lib/utils';
 	import ContainerSettingsTab from './ContainerSettingsTab.svelte';
 	import type { VulnerabilityCriteria } from '$lib/components/VulnerabilityCriteriaSelector.svelte';
+	import { formatBytes } from '$lib/utils/new';
 
 	// Parse shell command respecting quotes
 	function parseShellCommand(cmd: string): string[] {
@@ -331,14 +332,6 @@
 		} catch (err) {
 			console.error('Failed to save auto-update settings:', err);
 		}
-	}
-
-	function formatBytes(bytes: number): string {
-		if (bytes === 0) return '';
-		const k = 1024;
-		const sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
-		const i = Math.floor(Math.log(bytes) / Math.log(k));
-		return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + sizes[i];
 	}
 
 	async function loadContainerData() {
@@ -1028,7 +1021,7 @@
 						title="Save"
 						class="p-0.5 rounded hover:bg-muted transition-colors"
 					>
-						<Check class="w-3 h-3 text-green-500 hover:text-green-600" />
+						<Check class="size-3 text-green-500 hover:text-green-600" />
 					</button>
 					<button
 						type="button"
@@ -1036,7 +1029,7 @@
 						title="Cancel"
 						class="p-0.5 rounded hover:bg-muted transition-colors"
 					>
-						<X class="w-3 h-3 text-muted-foreground hover:text-foreground" />
+						<X class="size-3 text-muted-foreground hover:text-foreground" />
 					</button>
 				{:else if name}
 					<span class="font-normal text-muted-foreground ml-1">- {name}</span>
@@ -1046,7 +1039,7 @@
 						title="Rename container"
 						class="p-0.5 rounded hover:bg-muted transition-colors ml-0.5"
 					>
-						<Pencil class="w-3 h-3 text-muted-foreground hover:text-foreground" />
+						<Pencil class="size-3 text-muted-foreground hover:text-foreground" />
 					</button>
 				{/if}
 			</Dialog.Title>
@@ -1054,7 +1047,7 @@
 
 		{#if loadingData}
 			<div class="flex-1 flex items-center justify-center text-muted-foreground text-sm min-h-[200px]">
-				<Loader2 class="w-5 h-5 animate-spin mr-2" />
+				<Loader2 class="size-5 animate-spin mr-2" />
 				Loading container data...
 			</div>
 		{:else}
@@ -1062,13 +1055,13 @@
 				<!-- Compose warning banners -->
 				{#if showComposeRenameWarning}
 					<div class="mb-4 px-3 py-2 text-xs text-amber-700 dark:text-amber-300 bg-amber-100/50 dark:bg-amber-900/30 rounded-md flex items-start gap-2">
-						<Layers class="w-4 h-4 shrink-0 mt-0.5" />
+						<Layers class="size-4 shrink-0 mt-0.5" />
 						<span>This container is part of the <strong>{composeStackName}</strong> compose stack. Renaming it may cause issues with stack management.</span>
 					</div>
 				{/if}
 				{#if showComposeConfigWarning}
 					<div class="mb-4 px-3 py-2 text-xs text-amber-700 dark:text-amber-300 bg-amber-100/50 dark:bg-amber-900/30 rounded-md flex items-start gap-2">
-						<Layers class="w-4 h-4 shrink-0 mt-0.5" />
+						<Layers class="size-4 shrink-0 mt-0.5" />
 						<span>This container is part of the <strong>{composeStackName}</strong> compose stack. Changes may be overwritten when the stack is redeployed.</span>
 					</div>
 				{/if}
@@ -1145,7 +1138,7 @@
 				</Button>
 				<Button type="button" variant="secondary" disabled={loading} size="sm" onclick={handleSubmit}>
 					{#if loading}
-						<Loader2 class="w-4 h-4 mr-1 animate-spin" />
+						<Loader2 class="size-4 mr-1 animate-spin" />
 						Updating...
 					{:else}
 						Update container

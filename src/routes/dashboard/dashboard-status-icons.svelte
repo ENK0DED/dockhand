@@ -23,25 +23,25 @@
 	{#if updateCheckEnabled}
 		<span title={updateCheckAutoUpdate ? "Auto-update enabled" : "Update check enabled (notify only)"}>
 			{#if updateCheckAutoUpdate}
-				<CircleArrowUp class="{compact ? 'w-3.5 h-3.5 glow-green-sm' : 'w-4 h-4 glow-green'} text-green-500" />
+				<CircleArrowUp class="{compact ? 'size-4 glow-green-sm' : 'size-4 glow-green'} text-green-500" />
 			{:else}
-				<CircleFadingArrowUp class="{compact ? 'w-3.5 h-3.5 glow-green-sm' : 'w-4 h-4 glow-green'} text-green-500" />
+				<CircleFadingArrowUp class="{compact ? 'size-4 glow-green-sm' : 'size-4 glow-green'} text-green-500" />
 			{/if}
 		</span>
 	{/if}
 	{#if scannerEnabled}
 		<span title="Vulnerability scanning enabled">
-			<ShieldCheck class="{compact ? 'w-3.5 h-3.5 glow-green-sm' : 'w-4 h-4 glow-green'} text-green-500" />
+			<ShieldCheck class="{compact ? 'size-4 glow-green-sm' : 'size-4 glow-green'} text-green-500" />
 		</span>
 	{/if}
 	{#if collectActivity}
 		<span title="Activity collection enabled">
-			<Activity class="{compact ? 'w-3.5 h-3.5 glow-amber-sm' : 'w-4 h-4 glow-amber'} text-amber-500" />
+			<Activity class="{compact ? 'size-4 glow-amber-sm' : 'size-4 glow-amber'} text-amber-500" />
 		</span>
 	{/if}
 	{#if !online && compact}
 		<span title="Offline">
-			<WifiOff class="w-3.5 h-3.5 text-red-500 shrink-0" />
+			<WifiOff class="size-4 text-red-500 shrink-0" />
 		</span>
 	{/if}
 </div>

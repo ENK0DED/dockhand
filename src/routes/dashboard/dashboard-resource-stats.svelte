@@ -30,7 +30,7 @@
 <div class="grid grid-cols-2 gap-x-4 gap-y-2 text-xs">
 	<div class="flex items-center justify-between">
 		<span class="flex items-center gap-1 text-muted-foreground">
-			<Image class="w-3 h-3" /> Images
+			<Image class="size-3" /> Images
 		</span>
 		{#if showImagesSkeleton}
 			<div class="skeleton w-4 h-3.5 rounded"></div>
@@ -40,7 +40,7 @@
 	</div>
 	<div class="flex items-center justify-between">
 		<span class="flex items-center gap-1 text-muted-foreground">
-			<Layers class="w-3 h-3" /> Stacks
+			<Layers class="size-3" /> Stacks
 		</span>
 		{#if showStacksSkeleton}
 			<div class="skeleton w-12 h-3.5 rounded"></div>
@@ -55,7 +55,7 @@
 	</div>
 	<div class="flex items-center justify-between">
 		<span class="flex items-center gap-1 text-muted-foreground">
-			<HardDrive class="w-3 h-3" /> Volumes
+			<HardDrive class="size-3" /> Volumes
 		</span>
 		{#if showVolumesSkeleton}
 			<div class="skeleton w-4 h-3.5 rounded"></div>
@@ -65,7 +65,7 @@
 	</div>
 	<div class="flex items-center justify-between">
 		<span class="flex items-center gap-1 text-muted-foreground">
-			<Network class="w-3 h-3" /> Networks
+			<Network class="size-3" /> Networks
 		</span>
 		{#if showNetworksSkeleton}
 			<div class="skeleton w-4 h-3.5 rounded"></div>

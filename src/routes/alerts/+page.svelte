@@ -7,7 +7,7 @@
 	<PageHeader icon={Bell} title="Alerts" />
 
 	<div class="flex flex-col items-center justify-center py-12 text-muted-foreground">
-		<Bell class="h-12 w-12 mb-4 opacity-50" />
+		<Bell class="size-12 mb-4 opacity-50" />
 		<p class="text-lg">No alerts configured</p>
 		<p class="text-sm">Alert configuration coming soon</p>
 	</div>

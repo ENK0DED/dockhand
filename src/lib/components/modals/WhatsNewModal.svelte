@@ -49,7 +49,7 @@
 	<Dialog.Content class="max-w-3xl">
 		<Dialog.Header>
 			<Dialog.Title class="flex items-center gap-2">
-				<ScrollText class="w-5 h-5 text-muted-foreground" />
+				<ScrollText class="size-5 text-muted-foreground" />
 				Dockhand has been updated to {version}
 			</Dialog.Title>
 		</Dialog.Header>
@@ -61,11 +61,12 @@
 						<span>v{release.version}</span>
 						<span class="text-muted-foreground font-normal">({release.date})</span>
 					</h3>
+
 					<div class="space-y-1.5 ml-1">
 						{#each release.changes as change}
 							{@const { icon: Icon, class: iconClass } = getChangeIcon(change.type)}
 							<div class="flex items-start gap-2">
-								<Icon class="w-4 h-4 mt-0.5 shrink-0 {iconClass}" />
+								<Icon class="size-4 mt-0.5 shrink-0 {iconClass}" />
 								<span class="text-sm">{change.text}</span>
 							</div>
 						{/each}

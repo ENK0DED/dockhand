@@ -203,7 +203,7 @@
 					value={item.name + ' ' + (item.keywords?.join(' ') || '')}
 					onSelect={() => handleSelect(item.href)}
 				>
-					<item.icon class="mr-2 h-4 w-4" />
+					<item.icon class="mr-2 size-4" />
 					<span>{item.name}</span>
 				</Command.Item>
 			{/each}
@@ -215,7 +215,7 @@
 					value="Audit log compliance"
 					onSelect={() => handleSelect('/audit')}
 				>
-					<ClipboardList class="mr-2 h-4 w-4" />
+					<ClipboardList class="mr-2 size-4" />
 					<span>Audit log</span>
 				</Command.Item>
 			</Command.Group>
@@ -227,16 +227,16 @@
 					value={`light theme ${theme.name}`}
 					onSelect={() => handleLightThemeSelect(theme.id)}
 				>
-					<Sun class="mr-2 h-4 w-4" />
+					<Sun class="mr-2 size-4" />
 					<div class="flex items-center gap-2">
 						<div
-							class="w-3 h-3 rounded-full border"
+							class="size-3 rounded-full border"
 							style="background-color: {theme.preview}"
 						></div>
 						<span>{theme.name}</span>
 					</div>
 					{#if $themeStore.lightTheme === theme.id}
-						<Check class="ml-auto h-4 w-4 text-green-500" />
+						<Check class="ml-auto size-4 text-green-500" />
 					{/if}
 				</Command.Item>
 			{/each}
@@ -248,16 +248,16 @@
 					value={`dark theme ${theme.name}`}
 					onSelect={() => handleDarkThemeSelect(theme.id)}
 				>
-					<Moon class="mr-2 h-4 w-4" />
+					<Moon class="mr-2 size-4" />
 					<div class="flex items-center gap-2">
 						<div
-							class="w-3 h-3 rounded-full border"
+							class="size-3 rounded-full border"
 							style="background-color: {theme.preview}"
 						></div>
 						<span>{theme.name}</span>
 					</div>
 					{#if $themeStore.darkTheme === theme.id}
-						<Check class="ml-auto h-4 w-4 text-green-500" />
+						<Check class="ml-auto size-4 text-green-500" />
 					{/if}
 				</Command.Item>
 			{/each}
@@ -269,10 +269,10 @@
 					value={`font ${font.name}`}
 					onSelect={() => handleFontSelect(font.id)}
 				>
-					<Type class="mr-2 h-4 w-4" />
+					<Type class="mr-2 size-4" />
 					<span>{font.name}</span>
 					{#if $themeStore.font === font.id}
-						<Check class="ml-auto h-4 w-4 text-green-500" />
+						<Check class="ml-auto size-4 text-green-500" />
 					{/if}
 				</Command.Item>
 			{/each}
@@ -285,10 +285,10 @@
 						value={`environment ${env.name}`}
 						onSelect={() => handleEnvSelect(env)}
 					>
-						<Server class="mr-2 h-4 w-4" />
+						<Server class="mr-2 size-4" />
 						<span>{env.name}</span>
 						{#if $currentEnvironment?.id === env.id}
-							<CircleDot class="ml-auto h-4 w-4 text-green-500" />
+							<CircleDot class="ml-auto size-4 text-green-500" />
 						{/if}
 					</Command.Item>
 				{/each}
@@ -302,7 +302,7 @@
 						value={`container ${container.name} ${container.image} ${container.envName}`}
 						onSelect={() => handleContainerAction(container.id, 'logs')}
 					>
-						<Box class="mr-2 h-4 w-4" />
+						<Box class="mr-2 size-4" />
 						<div class="flex flex-col">
 							<span>{container.name}</span>
 							<span class="text-xs text-muted-foreground">{container.envName} • {container.image}</span>
@@ -314,28 +314,28 @@
 									onclick={(e) => { e.stopPropagation(); handleContainerAction(container.id, 'logs'); }}
 									title="View logs"
 								>
-									<FileText class="h-3 w-3" />
+									<FileText class="size-3" />
 								</button>
 								<button
 									class="p-1 hover:bg-muted rounded"
 									onclick={(e) => { e.stopPropagation(); handleContainerAction(container.id, 'terminal'); }}
 									title="Open terminal"
 								>
-									<Terminal class="h-3 w-3" />
+									<Terminal class="size-3" />
 								</button>
 								<button
 									class="p-1 hover:bg-muted rounded"
 									onclick={(e) => { e.stopPropagation(); handleContainerAction(container.id, 'restart'); }}
 									title="Restart"
 								>
-									<RotateCcw class="h-3 w-3" />
+									<RotateCcw class="size-3" />
 								</button>
 								<button
 									class="p-1 hover:bg-muted rounded text-destructive"
 									onclick={(e) => { e.stopPropagation(); handleContainerAction(container.id, 'stop'); }}
 									title="Stop"
 								>
-									<Square class="h-3 w-3" />
+									<Square class="size-3" />
 								</button>
 							{:else}
 								<button
@@ -343,7 +343,7 @@
 									onclick={(e) => { e.stopPropagation(); handleContainerAction(container.id, 'start'); }}
 									title="Start"
 								>
-									<Play class="h-3 w-3" />
+									<Play class="size-3" />
 								</button>
 							{/if}
 						</div>

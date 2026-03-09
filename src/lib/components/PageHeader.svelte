@@ -46,12 +46,12 @@
 	// Page header icon size - shifted smaller (normal = what was small)
 	const headerIconClass = $derived(() => {
 		switch (fontSize) {
-			case 'small': return 'w-4 h-4';
-			case 'normal': return 'w-5 h-5';
-			case 'medium': return 'w-6 h-6';
-			case 'large': return 'w-6 h-6';
-			case 'xlarge': return 'w-7 h-7';
-			default: return 'w-5 h-5';
+			case 'small': return 'size-4';
+			case 'normal': return 'size-5';
+			case 'medium': return 'size-6';
+			case 'large': return 'size-6';
+			case 'xlarge': return 'size-7';
+			default: return 'size-5';
 		}
 	});
 
@@ -76,7 +76,7 @@
 	{/if}
 	{#if showConnection}
 		<span title={$sseConnected ? 'Live updates active - grid will auto-refresh' : 'Connecting to live updates...'}>
-			<Wifi class="w-3.5 h-3.5 {$sseConnected ? 'text-emerald-500' : 'text-muted-foreground'}" />
+			<Wifi class="size-4 {$sseConnected ? 'text-emerald-500' : 'text-muted-foreground'}" />
 		</span>
 	{/if}
 	<slot />

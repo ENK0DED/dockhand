@@ -898,7 +898,7 @@
 		<PageHeader icon={Timer} title="Schedules" count={filteredSchedules.length} />
 		<div class="flex flex-wrap items-center gap-2">
 			<div class="relative">
-				<Search class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+				<Search class="size-4 absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
 				<Input
 					type="text"
 					placeholder="Search schedules..."
@@ -942,24 +942,24 @@
 						</button>
 					{/if}
 					<Select.Item value="container_update">
-						<CircleArrowUp class="w-4 h-4 mr-2 inline text-green-500 drop-shadow-[0_0_3px_rgba(34,197,94,0.4)]" />
+						<CircleArrowUp class="size-4 mr-2 inline text-green-500 drop-shadow-[0_0_3px_rgba(34,197,94,0.4)]" />
 						Container updates
 					</Select.Item>
 					<Select.Item value="git_stack_sync">
-						<GitBranch class="w-4 h-4 mr-2 inline text-purple-500 drop-shadow-[0_0_3px_rgba(168,85,247,0.4)]" />
+						<GitBranch class="size-4 mr-2 inline text-purple-500 drop-shadow-[0_0_3px_rgba(168,85,247,0.4)]" />
 						Git stack syncs
 					</Select.Item>
 					<Select.Item value="env_update_check">
-						<CircleFadingArrowUp class="w-4 h-4 mr-2 inline text-green-500/50 drop-shadow-[0_0_3px_rgba(34,197,94,0.3)]" />
+						<CircleFadingArrowUp class="size-4 mr-2 inline text-green-500/50 drop-shadow-[0_0_3px_rgba(34,197,94,0.3)]" />
 						Env update checks
 					</Select.Item>
 					<Select.Item value="image_prune">
-						<Trash2 class="w-4 h-4 mr-2 inline text-amber-500 drop-shadow-[0_0_3px_rgba(245,158,11,0.4)]" />
+						<Trash2 class="size-4 mr-2 inline text-amber-500 drop-shadow-[0_0_3px_rgba(245,158,11,0.4)]" />
 						Image prune
 					</Select.Item>
 					{#if !hideSystemJobs}
 						<Select.Item value="system_cleanup">
-							<Wrench class="w-4 h-4 mr-2 inline text-amber-500 drop-shadow-[0_0_3px_rgba(245,158,11,0.4)]" />
+							<Wrench class="size-4 mr-2 inline text-amber-500 drop-shadow-[0_0_3px_rgba(245,158,11,0.4)]" />
 							System jobs
 						</Select.Item>
 					{/if}
@@ -969,7 +969,7 @@
 			<!-- Environment filter (multiselect) -->
 			<Select.Root type="multiple" bind:value={filterEnvironments}>
 				<Select.Trigger size="sm" class="w-40 text-sm">
-					<Server class="w-3.5 h-3.5 mr-2 shrink-0" />
+					<Server class="size-4 mr-2 shrink-0" />
 					<span class="truncate">
 						{#if filterEnvironments.length === 0}
 							All envs
@@ -993,7 +993,7 @@
 					{#each environments as env}
 						{@const EnvIcon = getIconComponent(env.icon)}
 						<Select.Item value={String(env.id)}>
-							<EnvIcon class="w-4 h-4 mr-2 inline" />
+							<EnvIcon class="size-4 mr-2 inline" />
 							{env.name}
 						</Select.Item>
 					{/each}
@@ -1034,19 +1034,19 @@
 						</button>
 					{/if}
 					<Select.Item value="success">
-						<Check class="w-4 h-4 mr-2 inline text-green-500" />
+						<Check class="size-4 mr-2 inline text-green-500" />
 						Success
 					</Select.Item>
 					<Select.Item value="failed">
-						<X class="w-4 h-4 mr-2 inline text-red-500" />
+						<X class="size-4 mr-2 inline text-red-500" />
 						Failed
 					</Select.Item>
 					<Select.Item value="skipped">
-						<CheckCheck class="w-4 h-4 mr-2 inline text-green-500" />
+						<CheckCheck class="size-4 mr-2 inline text-green-500" />
 						Up-to-date
 					</Select.Item>
 					<Select.Item value="running">
-						<Loader2 class="w-4 h-4 mr-2 inline text-sky-500 animate-spin" />
+						<Loader2 class="size-4 mr-2 inline text-sky-500 animate-spin" />
 						Running
 					</Select.Item>
 				</Select.Content>
@@ -1061,10 +1061,10 @@
 					onclick={toggleHideSystemJobs}
 				>
 					{#if hideSystemJobs}
-						<Eye class="w-3.5 h-3.5" />
+						<Eye class="size-4" />
 						Show system ({systemJobCount})
 					{:else}
-						<EyeOff class="w-3.5 h-3.5" />
+						<EyeOff class="size-4" />
 						Hide system
 					{/if}
 				</Button>
@@ -1079,17 +1079,17 @@
 				disabled={!hasActiveFilters}
 				title="Clear all filters"
 			>
-				<X class="w-3.5 h-3.5" />
+				<X class="size-4" />
 			</Button>
 
 			<Button
 				variant="outline"
 				size="sm"
-				class="h-8 w-8 p-0"
+				class="size-8 p-0"
 				onclick={() => { refreshing = true; loadSchedules(); }}
 				disabled={refreshing}
 			>
-				<RefreshCw class="w-3.5 h-3.5 {refreshing ? 'animate-spin' : ''}" />
+				<RefreshCw class="size-4 {refreshing ? 'animate-spin' : ''}" />
 			</Button>
 		</div>
 	</div>
@@ -1119,28 +1119,28 @@
 						onclick={(e) => { e.stopPropagation(); toggleScheduleExpansion(schedule); }}
 					>
 						{#if rowState.isExpanded}
-							<ChevronDown class="w-4 h-4" />
+							<ChevronDown class="size-4" />
 						{:else}
-							<ChevronRight class="w-4 h-4" />
+							<ChevronRight class="size-4" />
 						{/if}
 					</button>
 				{/if}
 			{:else if column.id === 'schedule'}
 				<div class="flex flex-wrap items-center gap-2">
 					{#if schedule.type === 'container_update'}
-						<CircleArrowUp class="w-4 h-4 text-green-500 glow-green shrink-0" />
+						<CircleArrowUp class="size-4 text-green-500 glow-green shrink-0" />
 					{:else if schedule.type === 'git_stack_sync'}
-						<GitBranch class="w-4 h-4 text-emerald-500 shrink-0" />
+						<GitBranch class="size-4 text-emerald-500 shrink-0" />
 					{:else if schedule.type === 'env_update_check'}
 						{#if schedule.autoUpdate}
-							<CircleArrowUp class="w-4 h-4 text-green-500 glow-green shrink-0" />
+							<CircleArrowUp class="size-4 text-green-500 glow-green shrink-0" />
 						{:else}
-							<CircleFadingArrowUp class="w-4 h-4 text-green-500 glow-green shrink-0" />
+							<CircleFadingArrowUp class="size-4 text-green-500 glow-green shrink-0" />
 						{/if}
 					{:else if schedule.type === 'image_prune'}
-						<Trash2 class="w-4 h-4 text-amber-500 glow-amber shrink-0" />
+						<Trash2 class="size-4 text-amber-500 glow-amber shrink-0" />
 					{:else}
-						<Wrench class="w-4 h-4 text-amber-500 shrink-0" />
+						<Wrench class="size-4 text-amber-500 shrink-0" />
 					{/if}
 					<div class="min-w-0">
 						<div class="font-medium flex items-center gap-2 truncate">
@@ -1185,7 +1185,7 @@
 			{:else if column.id === 'environment'}
 				{#if schedule.environmentName}
 					<div class="flex items-center gap-1 text-xs">
-						<Server class="w-3 h-3 shrink-0" />
+						<Server class="size-3 shrink-0" />
 						<span class="truncate">{schedule.environmentName}</span>
 					</div>
 				{:else}
@@ -1193,7 +1193,7 @@
 				{/if}
 			{:else if column.id === 'cron'}
 				<div class="flex items-center gap-1">
-					<Clock class="w-3 h-3 text-muted-foreground shrink-0" />
+					<Clock class="size-3 text-muted-foreground shrink-0" />
 					<span class="text-xs truncate">
 						{#if schedule.cronExpression}
 							{(() => {
@@ -1218,7 +1218,7 @@
 					<div class="text-xs">{formatTimestamp(schedule.lastExecution.triggeredAt)}</div>
 					{#if schedule.lastExecution.duration}
 						<div class="flex items-center gap-1 text-xs text-muted-foreground">
-							<Timer class="w-3 h-3" />
+							<Timer class="size-3" />
 							{formatDuration(schedule.lastExecution.duration)}
 						</div>
 					{/if}
@@ -1237,16 +1237,16 @@
 							{#if envUpdateStatus}
 								{@const EnvUpdateIcon = envUpdateStatus.icon}
 								<Badge variant="default" class={envUpdateStatus.class}>
-									<EnvUpdateIcon class="w-3.5 h-3.5" />
+									<EnvUpdateIcon class="size-4" />
 								</Badge>
 							{:else if isBlockedByVuln}
 								<Badge variant="default" class="bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400">
-									<Bug class="w-3.5 h-3.5" />
+									<Bug class="size-4" />
 								</Badge>
 							{:else}
 								{@const BadgeIcon = badge.icon}
 								<Badge variant={badge.variant} class={badge.class}>
-									<BadgeIcon class="w-3.5 h-3.5 {schedule.lastExecution.status === 'running' ? 'animate-spin' : ''}" />
+									<BadgeIcon class="size-4 {schedule.lastExecution.status === 'running' ? 'animate-spin' : ''}" />
 								</Badge>
 							{/if}
 						</Tooltip.Trigger>
@@ -1268,7 +1268,7 @@
 					<Tooltip.Root>
 						<Tooltip.Trigger>
 							<Badge variant="default" class="bg-slate-100 text-slate-700 dark:bg-slate-900/30 dark:text-slate-400">
-								<Minus class="w-3.5 h-3.5" />
+								<Minus class="size-4" />
 							</Badge>
 						</Tooltip.Trigger>
 						<Tooltip.Content>
@@ -1285,7 +1285,7 @@
 							title="View last execution logs"
 							class="p-0.5 rounded hover:bg-muted transition-colors opacity-70 hover:opacity-100 cursor-pointer"
 						>
-							<FileText class="w-3 h-3 text-muted-foreground hover:text-blue-500" />
+							<FileText class="size-3 text-muted-foreground hover:text-blue-500" />
 						</button>
 					{/if}
 					<button
@@ -1295,9 +1295,9 @@
 						class="p-0.5 rounded hover:bg-muted transition-colors opacity-70 hover:opacity-100 cursor-pointer"
 					>
 						{#if schedule.enabled}
-							<Pause class="w-3 h-3 text-muted-foreground hover:text-amber-500" />
+							<Pause class="size-3 text-muted-foreground hover:text-amber-500" />
 						{:else}
-							<PlayCircle class="w-3 h-3 text-muted-foreground hover:text-green-500" />
+							<PlayCircle class="size-3 text-muted-foreground hover:text-green-500" />
 						{/if}
 					</button>
 					<button
@@ -1306,7 +1306,7 @@
 						title="Run now"
 						class="p-0.5 rounded hover:bg-muted transition-colors opacity-70 hover:opacity-100 cursor-pointer"
 					>
-						<Play class="w-3 h-3 text-muted-foreground hover:text-green-500" />
+						<Play class="size-3 text-muted-foreground hover:text-green-500" />
 					</button>
 					{#if !schedule.isSystem}
 						{@const scheduleKey = getScheduleKey(schedule)}
@@ -1320,7 +1320,7 @@
 							onOpenChange={(open) => confirmDeleteId = open ? scheduleKey : null}
 						>
 							{#snippet children({ open })}
-								<Trash2 class="w-3 h-3 {open ? 'text-destructive' : 'text-muted-foreground hover:text-red-500'}" />
+								<Trash2 class="size-3 {open ? 'text-destructive' : 'text-muted-foreground hover:text-red-500'}" />
 							{/snippet}
 						</ConfirmPopover>
 					{/if}
@@ -1343,7 +1343,7 @@
 							title="Remove all executions"
 							class="text-xs text-muted-foreground hover:text-red-500 transition-colors flex items-center gap-1"
 						>
-							<Trash2 class="w-3 h-3" />
+							<Trash2 class="size-3" />
 							Remove all
 						</button>
 					{/if}
@@ -1372,7 +1372,7 @@
 												<Tooltip.Trigger>
 													{@const TriggerIcon = trigger.icon}
 													<Badge variant="default" class={trigger.class}>
-														<TriggerIcon class="w-3.5 h-3.5" />
+														<TriggerIcon class="size-4" />
 													</Badge>
 												</Tooltip.Trigger>
 												<Tooltip.Content>
@@ -1380,18 +1380,18 @@
 												</Tooltip.Content>
 											</Tooltip.Root>
 										</td>
-										<td class="px-2 py-1 text-xs"><div class="flex items-center gap-1"><Timer class="w-3 h-3 text-muted-foreground" />{formatDuration(exec.duration)}</div></td>
+										<td class="px-2 py-1 text-xs"><div class="flex items-center gap-1"><Timer class="size-3 text-muted-foreground" />{formatDuration(exec.duration)}</div></td>
 										<td class="px-2 py-1 text-center">
 											<Tooltip.Root>
 												<Tooltip.Trigger>
 													{#if exec.details?.reason === 'vulnerabilities_found'}
 														<Badge variant="default" class="bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400">
-															<Bug class="w-3.5 h-3.5" />
+															<Bug class="size-4" />
 														</Badge>
 													{:else}
 														{@const ExecBadgeIcon = badge.icon}
 														<Badge variant={badge.variant} class={badge.class}>
-															<ExecBadgeIcon class="w-3.5 h-3.5 {exec.status === 'running' ? 'animate-spin' : ''}" />
+															<ExecBadgeIcon class="size-4 {exec.status === 'running' ? 'animate-spin' : ''}" />
 														</Badge>
 													{/if}
 												</Tooltip.Trigger>
@@ -1411,7 +1411,7 @@
 													title="View logs"
 													class="p-0.5 rounded hover:bg-muted transition-colors opacity-70 hover:opacity-100 cursor-pointer"
 												>
-													<FileText class="w-3 h-3 text-muted-foreground hover:text-blue-500" />
+													<FileText class="size-3 text-muted-foreground hover:text-blue-500" />
 												</button>
 												<button
 													type="button"
@@ -1419,7 +1419,7 @@
 													title="Delete execution"
 													class="p-0.5 rounded hover:bg-muted transition-colors opacity-70 hover:opacity-100 cursor-pointer"
 												>
-													<Trash2 class="w-3 h-3 text-muted-foreground hover:text-red-500" />
+													<Trash2 class="size-3 text-muted-foreground hover:text-red-500" />
 												</button>
 											</div>
 										</td>
@@ -1436,7 +1436,7 @@
 									onclick={() => loadScheduleExecutions(schedule, executions.length)}
 								>
 									{#if isLoading}
-										<Loader2 class="w-4 h-4 mr-2 animate-spin" />
+										<Loader2 class="size-4 mr-2 animate-spin" />
 										Loading...
 									{:else}
 										Load more
@@ -1447,7 +1447,7 @@
 					</div>
 				{:else if isLoading}
 					<div class="flex justify-center py-8">
-						<Loader2 class="w-6 h-6 animate-spin text-muted-foreground" />
+						<Loader2 class="size-6 animate-spin text-muted-foreground" />
 					</div>
 				{:else}
 					<p class="text-xs text-muted-foreground py-4">No executions found</p>
@@ -1457,7 +1457,7 @@
 
 		{#snippet emptyState()}
 			<div class="flex flex-col items-center justify-center py-16 text-muted-foreground gap-2">
-				<Calendar class="w-12 h-12" />
+				<Calendar class="size-12" />
 				<p>No schedules found</p>
 				<p class="text-xs">Enable auto-update on containers or auto-sync on git stacks to see them here</p>
 			</div>
@@ -1471,17 +1471,17 @@
 		<Dialog.Header class="flex flex-row items-center justify-between gap-4">
 			<Dialog.Title class="flex items-center gap-2">
 				{#if selectedExecution?.scheduleType === 'container_update'}
-					<CircleArrowUp class="w-5 h-5 text-green-500 glow-green" />
+					<CircleArrowUp class="size-5 text-green-500 glow-green" />
 				{:else if selectedExecution?.scheduleType === 'git_stack_sync'}
-					<GitBranch class="w-5 h-5 text-emerald-500" />
+					<GitBranch class="size-5 text-emerald-500" />
 				{:else if selectedExecution?.scheduleType === 'env_update_check'}
 					{#if selectedExecution?.details?.autoUpdate}
-						<CircleArrowUp class="w-5 h-5 text-green-500 glow-green" />
+						<CircleArrowUp class="size-5 text-green-500 glow-green" />
 					{:else}
-						<CircleFadingArrowUp class="w-5 h-5 text-green-500 glow-green" />
+						<CircleFadingArrowUp class="size-5 text-green-500 glow-green" />
 					{/if}
 				{:else}
-					<Wrench class="w-5 h-5 text-amber-500 drop-shadow-[0_0_3px_rgba(245,158,11,0.4)]" />
+					<Wrench class="size-5 text-amber-500 drop-shadow-[0_0_3px_rgba(245,158,11,0.4)]" />
 				{/if}
 				Execution details
 				{#if selectedExecution}
@@ -1492,14 +1492,14 @@
 			</Dialog.Title>
 			{#if selectedExecution}
 				<span class="text-xs text-muted-foreground shrink-0 pr-6 whitespace-nowrap inline-flex items-center gap-1">
-					{formatTimestamp(selectedExecution.triggeredAt)} · <Timer class="w-3 h-3 -mt-px" /> {formatDuration(selectedExecution.duration)}
+					{formatTimestamp(selectedExecution.triggeredAt)} · <Timer class="size-3 -mt-px" /> {formatDuration(selectedExecution.duration)}
 				</span>
 			{/if}
 		</Dialog.Header>
 
 		{#if loadingExecutionDetail}
 			<div class="flex items-center justify-center py-8">
-				<Loader2 class="w-8 h-8 animate-spin" />
+				<Loader2 class="size-8 animate-spin" />
 			</div>
 		{:else if selectedExecution}
 			<div class="flex-1 flex flex-col min-h-0 space-y-4 overflow-hidden">
@@ -1522,7 +1522,7 @@
 								{#each selectedExecution.details.blockedContainers as bc}
 									<div class="flex items-center justify-between gap-3 p-2.5 text-xs">
 										<div class="flex items-center gap-2 min-w-0">
-											<ShieldX class="w-3.5 h-3.5 text-amber-500 shrink-0" />
+											<ShieldX class="size-4 text-amber-500 shrink-0" />
 											<span class="font-medium truncate">{bc.name}</span>
 											<span class="text-muted-foreground shrink-0">- {bc.reason}</span>
 										</div>
@@ -1547,18 +1547,18 @@
 							{#if envUpdateStatus}
 								{@const StatusIcon = envUpdateStatus.icon}
 								<Badge variant="default" class={envUpdateStatus.class}>
-									<StatusIcon class="w-3 h-3 mr-1" />
+									<StatusIcon class="size-3 mr-1" />
 									<span>{envUpdateStatus.label}</span>
 								</Badge>
 							{:else if isBlockedByVuln}
 								<Badge variant="default" class="bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400">
-									<Bug class="w-3 h-3 mr-1" />
+									<Bug class="size-3 mr-1" />
 									<span>Blocked</span>
 								</Badge>
 							{:else}
 								{@const SelBadgeIcon = badge.icon}
 								<Badge variant={badge.variant} class={badge.class}>
-									<SelBadgeIcon class="w-3 h-3 mr-1" />
+									<SelBadgeIcon class="size-3 mr-1" />
 									<span class="capitalize">{selectedExecution.status === 'skipped' ? 'Up-to-date' : selectedExecution.status}</span>
 								</Badge>
 							{/if}
@@ -1570,7 +1570,7 @@
 							{@const trigger = getTriggerBadge(selectedExecution.triggeredBy)}
 							{@const SelTriggerIcon = trigger.icon}
 							<Badge variant="default" class={trigger.class}>
-								<SelTriggerIcon class="w-3.5 h-3.5 mr-1" />
+								<SelTriggerIcon class="size-4 mr-1" />
 								{trigger.label}
 							</Badge>
 						{/if}
@@ -1588,7 +1588,7 @@
 					<div class="shrink-0">
 						<div class="text-xs text-muted-foreground mb-1">Block reason</div>
 						<div class="bg-amber-500/10 border border-amber-500/30 rounded p-3 text-xs text-amber-600 dark:text-amber-400 flex items-center gap-2">
-							<Bug class="w-4 h-4 shrink-0" />
+							<Bug class="size-4 shrink-0" />
 							<span>{selectedExecution.details.blockReason || 'Update blocked due to vulnerabilities'}</span>
 						</div>
 					</div>

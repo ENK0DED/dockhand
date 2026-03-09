@@ -309,13 +309,13 @@
 
 	{#if loading}
 		<div class="flex items-center justify-center py-12">
-			<RefreshCw class="w-6 h-6 animate-spin text-muted-foreground" />
+			<RefreshCw class="size-6 animate-spin text-muted-foreground" />
 		</div>
 	{:else if error}
 		<Card.Root>
 			<Card.Content class="py-6">
 				<div class="flex items-center gap-2 text-destructive">
-					<AlertTriangle class="w-5 h-5" />
+					<AlertTriangle class="size-5" />
 					<span>{error}</span>
 				</div>
 			</Card.Content>
@@ -325,7 +325,7 @@
 			<!-- Success message -->
 			{#if formSuccess}
 				<div class="bg-green-500/10 text-green-600 dark:text-green-400 p-3 rounded-md flex items-center gap-2">
-					<Check class="w-4 h-4" />
+					<Check class="size-4" />
 					{formSuccess}
 				</div>
 			{/if}
@@ -334,7 +334,7 @@
 			<Card.Root>
 				<Card.Header>
 					<Card.Title class="flex items-center gap-2">
-						<User class="w-5 h-5" />
+						<User class="size-5" />
 						Account information
 					</Card.Title>
 				</Card.Header>
@@ -371,7 +371,7 @@
 									class="absolute inset-0 rounded-full bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer"
 									disabled={avatarSaving}
 								>
-									<Camera class="w-6 h-6 text-white" />
+									<Camera class="size-6 text-white" />
 								</button>
 								{#if profile.avatar}
 									<button
@@ -381,7 +381,7 @@
 										class="absolute -bottom-1 -right-1 p-1 rounded-full bg-background border border-border text-muted-foreground hover:text-destructive hover:border-destructive transition-colors"
 										title="Remove photo"
 									>
-										<Trash2 class="w-3.5 h-3.5" />
+										<Trash2 class="size-4" />
 									</button>
 								{/if}
 							</div>
@@ -399,7 +399,7 @@
 									<div class="flex items-center gap-2">
 										{#if profile.isAdmin}
 											<Badge variant="default" class="gap-1 rounded-sm">
-												<Crown class="w-3 h-3" />
+												<Crown class="size-3" />
 												Admin
 											</Badge>
 										{:else}
@@ -413,14 +413,14 @@
 								<div>
 									<Label class="text-muted-foreground text-xs">Created</Label>
 									<p class="text-sm flex items-center gap-1">
-										<Calendar class="w-3.5 h-3.5" />
+										<Calendar class="size-4" />
 										{formatProfileDate(profile.createdAt)}
 									</p>
 								</div>
 								<div>
 									<Label class="text-muted-foreground text-xs">Last login</Label>
 									<p class="text-sm flex items-center gap-1">
-										<Clock class="w-3.5 h-3.5" />
+										<Clock class="size-4" />
 										{formatProfileDate(profile.lastLogin)}
 									</p>
 								</div>
@@ -434,14 +434,14 @@
 			<Card.Root>
 				<Card.Header>
 					<Card.Title class="flex items-center gap-2">
-						<Mail class="w-5 h-5" />
+						<Mail class="size-5" />
 						Profile details
 					</Card.Title>
 				</Card.Header>
 				<Card.Content class="space-y-4">
 					{#if formError}
 						<Alert.Root variant="destructive">
-							<TriangleAlert class="h-4 w-4" />
+							<TriangleAlert class="size-4" />
 							<Alert.Description>{formError}</Alert.Description>
 						</Alert.Root>
 					{/if}
@@ -467,9 +467,9 @@
 					<div class="flex justify-end">
 						<Button onclick={saveProfile} disabled={formSaving}>
 							{#if formSaving}
-								<RefreshCw class="w-4 h-4 mr-1 animate-spin" />
+								<RefreshCw class="size-4 mr-1 animate-spin" />
 							{:else}
-								<Check class="w-4 h-4" />
+								<Check class="size-4" />
 							{/if}
 							Save changes
 						</Button>
@@ -481,7 +481,7 @@
 			<Card.Root>
 				<Card.Header>
 					<Card.Title class="flex items-center gap-2">
-						<Shield class="w-5 h-5" />
+						<Shield class="size-5" />
 						Security
 					</Card.Title>
 				</Card.Header>
@@ -490,7 +490,7 @@
 					{#if profile.provider === 'local'}
 						<div class="flex items-center justify-between p-3 border rounded-lg">
 							<div class="flex items-center gap-3">
-								<Key class="w-5 h-5 text-muted-foreground" />
+								<Key class="size-5 text-muted-foreground" />
 								<div>
 									<p class="font-medium">Password</p>
 									<p class="text-sm text-muted-foreground">Change your password</p>
@@ -503,14 +503,14 @@
 					{:else}
 						<div class="flex items-center justify-between p-3 border rounded-lg bg-muted/50">
 							<div class="flex items-center gap-3">
-								<Key class="w-5 h-5 text-muted-foreground" />
+								<Key class="size-5 text-muted-foreground" />
 								<div>
 									<p class="font-medium">Password</p>
 									<p class="text-sm text-muted-foreground">Managed by your SSO provider</p>
 								</div>
 							</div>
 							<Badge class="gap-1 rounded-sm bg-yellow-500/20 text-yellow-600 border-yellow-500/30 hover:bg-yellow-500/30">
-								<ShieldCheck class="w-3 h-3" />
+								<ShieldCheck class="size-3" />
 								SSO
 							</Badge>
 						</div>
@@ -520,13 +520,13 @@
 					{#if profile.provider === 'local'}
 						<div class="flex items-center justify-between p-3 border rounded-lg">
 							<div class="flex items-center gap-3">
-								<Smartphone class="w-5 h-5 text-muted-foreground" />
+								<Smartphone class="size-5 text-muted-foreground" />
 								<div>
 									<div class="flex items-center gap-2">
 										<p class="font-medium">Two-factor authentication</p>
 										{#if profile.mfaEnabled}
 											<Badge variant="default" class="bg-green-500 gap-1 rounded-sm">
-												<ShieldCheck class="w-3 h-3" />
+												<ShieldCheck class="size-3" />
 												Enabled
 											</Badge>
 										{:else}
@@ -549,9 +549,9 @@
 							{:else}
 								<Button onclick={setupMfa} disabled={mfaLoading}>
 									{#if mfaLoading}
-										<RefreshCw class="w-4 h-4 mr-1 animate-spin" />
+										<RefreshCw class="size-4 mr-1 animate-spin" />
 									{:else}
-										<QrCode class="w-4 h-4" />
+										<QrCode class="size-4" />
 									{/if}
 									Setup MFA
 								</Button>
@@ -560,14 +560,14 @@
 					{:else}
 						<div class="flex items-center justify-between p-3 border rounded-lg bg-muted/50">
 							<div class="flex items-center gap-3">
-								<Smartphone class="w-5 h-5 text-muted-foreground" />
+								<Smartphone class="size-5 text-muted-foreground" />
 								<div>
 									<p class="font-medium">Two-factor authentication</p>
 									<p class="text-sm text-muted-foreground">Managed by your SSO provider</p>
 								</div>
 							</div>
 							<Badge class="gap-1 rounded-sm bg-yellow-500/20 text-yellow-600 border-yellow-500/30 hover:bg-yellow-500/30">
-								<ShieldCheck class="w-3 h-3" />
+								<ShieldCheck class="size-3" />
 								SSO
 							</Badge>
 						</div>
@@ -575,7 +575,7 @@
 
 					{#if mfaError && !showMfaSetupModal}
 						<Alert.Root variant="destructive">
-							<TriangleAlert class="h-4 w-4" />
+							<TriangleAlert class="size-4" />
 							<Alert.Description>{mfaError}</Alert.Description>
 						</Alert.Root>
 					{/if}
@@ -586,7 +586,7 @@
 			<Card.Root>
 				<Card.Header>
 					<Card.Title class="flex items-center gap-2">
-						<Palette class="w-5 h-5" />
+						<Palette class="size-5" />
 						Appearance
 					</Card.Title>
 					<Card.Description>Customize the look of the application</Card.Description>

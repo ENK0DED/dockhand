@@ -1,52 +1,15 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { Cpu, MemoryStick, Box, Globe, ChevronDown, Check, HardDrive, Clock, Wifi, WifiOff, Route, UndoDot, Icon, AlertCircle, Loader2 } from 'lucide-svelte';
+	import { Globe, ChevronDown, Check, HardDrive, Clock, Wifi, WifiOff, Route, UndoDot, Icon, Loader } from 'lucide-svelte';
 	import { whale } from '@lucide/lab';
-	import { Button } from '$lib/components/ui/button';
 	import { currentEnvironment, environments, type Environment } from '$lib/stores/environment';
 	import { sseConnected } from '$lib/stores/events';
 	import { getIconComponent } from '$lib/utils/icons';
 	import { toast } from 'svelte-sonner';
-	import { themeStore, type FontSize } from '$lib/stores/theme';
 	import { formatTime } from '$lib/stores/settings';
-
-	// Font size scaling for header
-	let fontSize = $state<FontSize>('normal');
-	themeStore.subscribe(prefs => fontSize = prefs.fontSize);
-
-	// Derive text and icon size classes based on font size
-	const textSizeClass = $derived(() => {
-		switch (fontSize) {
-			case 'small': return 'text-xs';
-			case 'normal': return 'text-xs';
-			case 'medium': return 'text-sm';
-			case 'large': return 'text-sm';
-			case 'xlarge': return 'text-base';
-			default: return 'text-xs';
-		}
-	});
-
-	const iconSizeClass = $derived(() => {
-		switch (fontSize) {
-			case 'small': return 'h-3 w-3';
-			case 'normal': return 'h-3 w-3';
-			case 'medium': return 'h-3.5 w-3.5';
-			case 'large': return 'h-4 w-4';
-			case 'xlarge': return 'h-4 w-4';
-			default: return 'h-3 w-3';
-		}
-	});
-
-	const iconSizeLargeClass = $derived(() => {
-		switch (fontSize) {
-			case 'small': return 'h-3.5 w-3.5';
-			case 'normal': return 'h-3.5 w-3.5';
-			case 'medium': return 'h-4 w-4';
-			case 'large': return 'h-5 w-5';
-			case 'xlarge': return 'h-5 w-5';
-			default: return 'h-3.5 w-3.5';
-		}
-	});
+	import { formatBytes } from '$lib/utils/new';
+  import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
+  import { Button } from '$lib/components/ui/button';
 
 	interface HostInfo {
 		hostname: string;
@@ -76,7 +39,6 @@
 	let diskUsage = $state<DiskUsageInfo | null>(null);
 	let diskUsageLoading = $state(false);
 	let envAbortController: AbortController | null = null; // Aborts ALL requests when switching envs
-	let showDropdown = $state(false);
 	let currentEnvId = $state<number | null>(null);
 	let lastUpdated = $state<Date>(new Date());
 	let isConnected = $state(false);
@@ -196,22 +158,12 @@
 	// Calculate total disk usage
 	let totalDiskUsage = $derived(() => {
 		if (!diskUsage) return 0;
-		return (diskUsage.LayersSize || 0) +
-			(diskUsage.Volumes?.reduce((sum: number, v: any) => sum + (v.UsageData?.Size || 0), 0) || 0);
+		return (diskUsage.LayersSize || 0) + (diskUsage.Volumes?.reduce((sum: number, v: any) => sum + (v.UsageData?.Size || 0), 0) || 0);
 	});
-
-	function formatBytes(bytes: number): string {
-		if (bytes === 0) return '0 B';
-		const k = 1024;
-		const sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
-		const i = Math.floor(Math.log(bytes) / Math.log(k));
-		return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
-	}
 
 	async function switchEnvironment(envId: number) {
 		// Don't switch if already on this environment
 		if (Number(envId) === Number(currentEnvId)) {
-			showDropdown = false;
 			return;
 		}
 
@@ -232,7 +184,6 @@
 
 		// Mark as switching and create new abort controller
 		switchingEnvId = envId;
-		showDropdown = false;
 		envAbortController = new AbortController();
 
 		try {
@@ -287,29 +238,10 @@
 		}
 	}
 
-	function formatMemory(bytes: number): string {
-		const gb = bytes / (1024 * 1024 * 1024);
-		return `${gb.toFixed(1)} GB`;
-	}
-
 	function formatUptime(seconds: number): string {
-		const days = Math.floor(seconds / 86400);
-		const hours = Math.floor((seconds % 86400) / 3600);
-		if (days > 0) {
-			return `${days}d ${hours}h`;
-		}
-		return `${hours}h`;
-	}
-
-	let memoryPercent = $derived(
-		hostInfo ? ((hostInfo.totalMemory - hostInfo.freeMemory) / hostInfo.totalMemory) * 100 : 0
-	);
-
-	function handleClickOutside(event: MouseEvent) {
-		const target = event.target as HTMLElement;
-		if (!target.closest('.env-dropdown')) {
-			showDropdown = false;
-		}
+		const days = Math.floor(seconds / 86_400);
+		const hours = Math.floor((seconds % 86_400) / 3600);
+		return `${days > 0 ? `${days}d ` : ''}${hours}h`;
 	}
 
 	onMount(() => {
@@ -317,147 +249,134 @@
 		envAbortController = new AbortController();
 		fetchHostInfo();
 		fetchDiskUsage();
-		// No polling - only fetch on mount and environment switch
-		document.addEventListener('click', handleClickOutside);
 		return () => {
 			abortPendingRequests(); // Abort on destroy
-			document.removeEventListener('click', handleClickOutside);
 		};
 	});
 
 </script>
 
-<div class="flex items-center gap-3 min-w-0 {textSizeClass()} text-muted-foreground">
+<div class="flex items-center min-w-0 text-xs text-muted-foreground divide-x space-x-3 *:pr-3">
 	<!-- Environment Selector - always show -->
-	<div class="relative env-dropdown">
-		<button
-			onclick={() => (showDropdown = !showDropdown)}
-			class="flex items-center gap-1.5 -ml-1 px-1 py-1 rounded-md hover:bg-muted transition-colors cursor-pointer"
-		>
-			{#if hostInfo?.environment && Number(hostInfo.environment.id) === Number(currentEnvId)}
-				{@const EnvIcon = getIconComponent(hostInfo.environment.icon || 'globe')}
-				<EnvIcon class="{iconSizeLargeClass()} text-primary" />
-				<span class="font-medium text-foreground">{hostInfo.environment.name}</span>
-			{:else if currentEnvId && envList.length > 0}
-				{@const currentEnv = envList.find(e => Number(e.id) === Number(currentEnvId))}
-				{#if currentEnv}
-					{@const EnvIcon = getIconComponent(currentEnv.icon || 'globe')}
-					<EnvIcon class="{iconSizeLargeClass()} text-primary" />
-					<span class="font-medium text-foreground">{currentEnv.name}</span>
-				{:else}
-					<Globe class="{iconSizeLargeClass()} text-muted-foreground" />
-					<span class="font-medium text-foreground">Select environment</span>
-				{/if}
-			{:else}
-				<Globe class="{iconSizeLargeClass()} text-muted-foreground" />
-				<span class="font-medium text-foreground">No environments</span>
-			{/if}
-			<ChevronDown class="{iconSizeClass()}" />
-		</button>
+  <DropdownMenu.Root>
+    <DropdownMenu.Trigger>
+      {#snippet child({ props })}
+        <Button {...props} variant="outline" size="sm" disabled={envList.length === 0}>
+          {#if hostInfo?.environment && Number(hostInfo.environment.id) === Number(currentEnvId)}
+            {@const EnvIcon = getIconComponent(hostInfo.environment.icon || 'globe')}
+            <EnvIcon class="size-4 text-primary" />
+            <span class="font-medium text-foreground">{hostInfo.environment.name}</span>
+          {:else if currentEnvId && envList.length > 0}
+            {@const currentEnv = envList.find(e => Number(e.id) === Number(currentEnvId))}
 
-		{#if showDropdown && envList.length > 0}
-			<div class="absolute top-full left-0 mt-1 min-w-56 w-max max-w-80 bg-popover border rounded-md shadow-lg z-50">
-				<div class="py-1">
-					{#each envList as env (env.id)}
-						{@const EnvIcon = getIconComponent(env.icon || 'globe')}
-						{@const isOffline = offlineEnvIds.has(env.id)}
-						{@const isSwitching = switchingEnvId === env.id}
-						<button
-							onclick={() => switchEnvironment(env.id)}
-							disabled={isSwitching}
-							class="w-full flex items-center gap-2 px-3 py-2 text-sm hover:bg-muted transition-colors text-left cursor-pointer disabled:cursor-wait disabled:opacity-70"
-							class:opacity-60={isOffline && !isSwitching}
-						>
-							{#if isSwitching}
-								<Loader2 class="{iconSizeLargeClass()} text-muted-foreground shrink-0 animate-spin" />
-							{:else if isOffline}
-								<WifiOff class="{iconSizeLargeClass()} text-destructive shrink-0" />
-							{:else}
-								<EnvIcon class="{iconSizeLargeClass()} text-muted-foreground shrink-0" />
-							{/if}
-							<span class="flex-1 whitespace-nowrap" class:text-muted-foreground={isOffline}>{env.name}</span>
-							{#if isOffline && !isSwitching}
-								<span class="text-xs text-destructive">offline</span>
-							{:else if Number(env.id) === Number(currentEnvId)}
-								<Check class="{iconSizeLargeClass()} text-primary shrink-0" />
-							{/if}
-						</button>
-					{/each}
-				</div>
-			</div>
-		{/if}
-	</div>
+            {#if currentEnv}
+              {@const EnvIcon = getIconComponent(currentEnv.icon || 'globe')}
+              <EnvIcon class="size-4 text-primary" />
+              <span class="font-medium text-foreground">{currentEnv.name}</span>
+            {:else}
+              <Globe class="size-4 text-muted-foreground" />
+              <span class="font-medium text-foreground">Select environment</span>
+            {/if}
+          {:else}
+            <Globe class="size-4 text-muted-foreground" />
+            <span class="font-medium text-foreground">No environments</span>
+          {/if}
+
+          <ChevronDown class="size-3" />
+        </Button>
+      {/snippet}
+    </DropdownMenu.Trigger>
+
+    <DropdownMenu.Content align="start" class="w-36">
+      <DropdownMenu.Group>
+        <DropdownMenu.Label>Environment</DropdownMenu.Label>
+
+        <DropdownMenu.Separator />
+
+        <DropdownMenu.RadioGroup bind:value={currentEnvId}>
+          {#each envList as env (env.id)}
+            {@const EnvIcon = getIconComponent(env.icon || 'globe')}
+            {@const isOffline = offlineEnvIds.has(env.id)}
+            {@const isSwitching = switchingEnvId === env.id}
+            <DropdownMenu.RadioItem value={env.id} disabled={isSwitching} onclick={() => switchEnvironment(env.id)}>
+              {#if isSwitching}
+                <Loader class="size-4 text-muted-foreground shrink-0 animate-spin" />
+              {:else if isOffline}
+                <WifiOff class="size-4 text-destructive shrink-0" />
+              {:else}
+                <EnvIcon class="size-4 text-muted-foreground shrink-0" />
+              {/if}
+
+              <span class="flex-1 whitespace-nowrap" class:text-muted-foreground={isOffline}>{env.name}</span>
+
+              {#if isOffline && !isSwitching}
+                <span class="text-xs text-destructive">offline</span>
+              {/if}
+            </DropdownMenu.RadioItem>
+          {/each}
+        </DropdownMenu.RadioGroup>
+      </DropdownMenu.Group>
+    </DropdownMenu.Content>
+  </DropdownMenu.Root>
 
 	{#if hostInfo}
-		<span class="text-border">|</span>
-
 		<!-- Platform/OS -->
-		<span class="hidden md:inline">{hostInfo.platform} {hostInfo.arch}</span>
-
-		<span class="hidden md:inline text-border">|</span>
+		<div class="hidden md:block">{hostInfo.platform} {hostInfo.arch}</div>
 
 		<!-- Docker version -->
-		<span class="hidden md:inline">Docker {hostInfo.dockerVersion}</span>
-
-		<span class="hidden md:inline text-border">|</span>
+		<div class="hidden md:block">Docker {hostInfo.dockerVersion}</div>
 
 		<!-- Connection type -->
 		<div class="hidden md:flex items-center gap-1">
 			{#if hostInfo.environment?.connectionType === 'hawser-standard'}
-				<Route class="{iconSizeClass()}" />
+				<Route class="size-3" />
 				<span>Hawser (standard){hostInfo.environment.hawserVersion ? ` ${hostInfo.environment.hawserVersion}` : ''}</span>
 			{:else if hostInfo.environment?.connectionType === 'hawser-edge'}
-				<UndoDot class="{iconSizeClass()}" />
+				<UndoDot class="size-3" />
 				<span>Hawser (edge){hostInfo.environment.hawserVersion ? ` ${hostInfo.environment.hawserVersion}` : ''}</span>
 			{:else}
-				<Icon iconNode={whale} class="{iconSizeClass()}" />
+				<Icon iconNode={whale} class="size-3" />
 				<span>Socket</span>
 			{/if}
 		</div>
 
-		<span class="hidden md:inline text-border">|</span>
-
 		<!-- CPU cores -->
 		{#if hostInfo.cpus > 0}
-			<span class="hidden lg:inline">{hostInfo.cpus} cores</span>
-			<span class="hidden lg:inline text-border">|</span>
+			<div class="hidden lg:block">{hostInfo.cpus} cores</div>
 		{/if}
 
 		<!-- Memory -->
 		{#if hostInfo.totalMemory > 0}
-			<span class="hidden lg:inline">{formatBytes(hostInfo.totalMemory)} RAM</span>
-			<span class="hidden lg:inline text-border">|</span>
+			<div class="hidden lg:block">{formatBytes(hostInfo.totalMemory)} RAM</div>
 		{/if}
 
 		<!-- Disk usage - only show when data is available (hide on timeout/error) -->
 		{#if diskUsage && !diskUsageLoading}
 			<div class="hidden xl:flex items-center gap-1">
-				<HardDrive class="{iconSizeClass()}" />
+				<HardDrive class="size-3" />
 				<span>{formatBytes(totalDiskUsage())}</span>
 			</div>
-			<span class="hidden xl:inline text-border">|</span>
 		{/if}
 
 		<!-- Uptime - hidden for direct remote connections without Hawser -->
 		{#if hostInfo.uptime > 0}
 			<div class="hidden xl:flex items-center gap-1">
-				<Clock class="{iconSizeClass()}" />
+				<Clock class="size-3" />
 				<span>{formatUptime(hostInfo.uptime)}</span>
 			</div>
-			<span class="hidden xl:inline text-border">|</span>
 		{/if}
 
 		<!-- Live indicator with timestamp -->
 		<div
-			class="flex items-center gap-2 {isConnected ? 'text-emerald-500' : 'text-muted-foreground'}"
+			class="flex items-center gap-1 {isConnected ? 'text-emerald-600 dark:text-emerald-400' : 'text-muted-foreground'}"
 			title={isConnected ? 'Live updates connected' : 'Live updates disconnected'}
 		>
-			<span class="text-muted-foreground">{formatTime(lastUpdated, { includeSeconds: true })}</span>
+			<span class="text-muted-foreground mr-2">{formatTime(lastUpdated, { includeSeconds: true })}</span>
 			{#if isConnected}
-				<Wifi class="{iconSizeLargeClass()}" />
+				<Wifi class="shrink-0 size-4" />
 				<span class="font-medium">Live</span>
 			{:else}
-				<WifiOff class="{iconSizeLargeClass()}" />
+				<WifiOff class="shrink-0 size-4" />
 			{/if}
 		</div>
 	{/if}

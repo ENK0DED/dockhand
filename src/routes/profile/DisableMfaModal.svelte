@@ -39,7 +39,7 @@
 	<Dialog.Content class="max-w-md">
 		<Dialog.Header>
 			<Dialog.Title class="flex items-center gap-2 text-destructive">
-				<AlertTriangle class="w-5 h-5" />
+				<AlertTriangle class="size-5" />
 				Disable two-factor authentication
 			</Dialog.Title>
 		</Dialog.Header>
@@ -52,9 +52,9 @@
 			<Button variant="outline" onclick={onClose}>Cancel</Button>
 			<Button variant="destructive" onclick={disableMfa} disabled={loading}>
 				{#if loading}
-					<RefreshCw class="w-4 h-4 animate-spin" />
+					<RefreshCw class="size-4 animate-spin" />
 				{:else}
-					<Shield class="w-4 h-4" />
+					<Shield class="size-4" />
 				{/if}
 				Disable MFA
 			</Button>

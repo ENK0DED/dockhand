@@ -398,7 +398,7 @@ const severityOrder: Record<string, number> = { critical: 0, high: 1, medium: 2,
 	<Dialog.Content class="max-w-5xl h-[70vh] overflow-hidden flex flex-col" onInteractOutside={(e) => { if (status === 'updating') e.preventDefault(); }}>
 		<Dialog.Header class="shrink-0">
 			<Dialog.Title class="flex items-center gap-2">
-				<CircleArrowUp class="w-5 h-5 text-amber-500" />
+				<CircleArrowUp class="size-5 text-amber-500" />
 				Updating containers
 				{#if vulnerabilityCriteria !== 'never'}
 					<span class="ml-2">
@@ -448,7 +448,7 @@ const severityOrder: Record<string, number> = { critical: 0, high: 1, medium: 2,
 							<!-- Container header -->
 							<div class="flex items-center gap-3 p-3">
 								<StepIcon
-									class="w-4 h-4 shrink-0 {getStepColor(item.step)} {isActive ? 'animate-spin' : ''}"
+									class="size-4 shrink-0 {getStepColor(item.step)} {isActive ? 'animate-spin' : ''}"
 								/>
 								<div class="flex-1 min-w-0">
 									<div class="font-medium truncate">{item.containerName}</div>
@@ -510,12 +510,12 @@ const severityOrder: Record<string, number> = { critical: 0, high: 1, medium: 2,
 								{/if}
 
 								{#if item.success === true}
-									<CheckCircle2 class="w-4 h-4 text-green-600 shrink-0" />
+									<CheckCircle2 class="size-4 text-green-600 shrink-0" />
 								{:else if item.step === 'failed'}
-									<XCircle class="w-4 h-4 text-red-600 shrink-0" />
+									<XCircle class="size-4 text-red-600 shrink-0" />
 								{:else if item.step === 'blocked'}
 									{#if forceUpdating.has(item.containerId)}
-										<Loader2 class="w-4 h-4 text-blue-500 shrink-0 animate-spin" />
+										<Loader2 class="size-4 text-blue-500 shrink-0 animate-spin" />
 									{:else}
 										<Button
 											variant="ghost"
@@ -535,9 +535,9 @@ const severityOrder: Record<string, number> = { critical: 0, high: 1, medium: 2,
 										title={item.showLogs ? 'Hide logs' : 'Show logs'}
 									>
 										{#if item.showLogs}
-											<ChevronDown class="w-4 h-4 text-muted-foreground" />
+											<ChevronDown class="size-4 text-muted-foreground" />
 										{:else}
-											<ChevronRight class="w-4 h-4 text-muted-foreground" />
+											<ChevronRight class="size-4 text-muted-foreground" />
 										{/if}
 									</button>
 								{/if}
@@ -586,7 +586,7 @@ const severityOrder: Record<string, number> = { critical: 0, high: 1, medium: 2,
 																{#if vuln.link}
 																	<a href={vuln.link} target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 hover:underline inline-flex items-center gap-0.5">
 																		{vuln.id}
-																		<ExternalLink class="w-2.5 h-2.5" />
+																		<ExternalLink class="size-3" />
 																	</a>
 																{:else}
 																	{vuln.id}
@@ -633,7 +633,7 @@ const severityOrder: Record<string, number> = { critical: 0, high: 1, medium: 2,
 			<!-- Error message - shrink-0 to stay visible -->
 			{#if errorMessage}
 				<div class="flex items-start gap-2 text-sm text-red-600 dark:text-red-400 p-3 bg-red-50 dark:bg-red-950/30 rounded-lg overflow-hidden shrink-0">
-					<AlertCircle class="w-4 h-4 shrink-0 mt-0.5" />
+					<AlertCircle class="size-4 shrink-0 mt-0.5" />
 					<span class="break-all">{errorMessage}</span>
 				</div>
 			{/if}
@@ -642,7 +642,7 @@ const severityOrder: Record<string, number> = { critical: 0, high: 1, medium: 2,
 		<Dialog.Footer class="shrink-0">
 			{#if status === 'updating'}
 				<Button variant="outline" disabled>
-					<Loader2 class="w-4 h-4 mr-2 animate-spin" />
+					<Loader2 class="size-4 mr-2 animate-spin" />
 					Updating...
 				</Button>
 			{:else}

@@ -532,7 +532,7 @@
 			<div class="flex items-center justify-between">
 				<div class="flex items-center gap-3">
 					<div class="p-1.5 rounded-md bg-zinc-200 dark:bg-zinc-700">
-						<GitBranch class="w-4 h-4 text-zinc-600 dark:text-zinc-300" />
+						<GitBranch class="size-4 text-zinc-600 dark:text-zinc-300" />
 					</div>
 					<div>
 						<Dialog.Title class="text-sm font-semibold text-zinc-800 dark:text-zinc-100">
@@ -549,7 +549,7 @@
 					onclick={onClose}
 					class="p-1.5 rounded-md text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors"
 				>
-					<X class="w-4 h-4" />
+					<X class="size-4" />
 				</button>
 			</div>
 		</Dialog.Header>
@@ -591,9 +591,9 @@
 									{@const repoPath = selectedRepo.url.replace(/^https?:\/\/[^/]+\//, '').replace(/\.git$/, '')}
 									<div class="flex items-center gap-2 text-left">
 										{#if selectedRepo.url.includes('github.com')}
-											<Github class="w-4 h-4 shrink-0 text-muted-foreground" />
+											<Github class="size-4 shrink-0 text-muted-foreground" />
 										{:else}
-											<FolderGit2 class="w-4 h-4 shrink-0 text-muted-foreground" />
+											<FolderGit2 class="size-4 shrink-0 text-muted-foreground" />
 										{/if}
 										<span class="truncate">{selectedRepo.name}</span>
 										<span class="text-muted-foreground text-xs truncate hidden sm:inline">({repoPath})</span>
@@ -608,14 +608,14 @@
 									<Select.Item value={repo.id.toString()} label={repo.name}>
 										<div class="flex items-center gap-2">
 											{#if repo.url.includes('github.com')}
-												<Github class="w-4 h-4 shrink-0 text-muted-foreground" />
+												<Github class="size-4 shrink-0 text-muted-foreground" />
 											{:else}
-												<FolderGit2 class="w-4 h-4 shrink-0 text-muted-foreground" />
+												<FolderGit2 class="size-4 shrink-0 text-muted-foreground" />
 											{/if}
 											<span>{repo.name}</span>
 											<span class="text-muted-foreground text-xs">- {repoPath}</span>
 											<span class="text-muted-foreground text-xs flex items-center gap-1">
-												<GitBranch class="w-3 h-3" />
+												<GitBranch class="size-3" />
 												{repo.branch}
 											</span>
 										</div>
@@ -674,22 +674,22 @@
 											{@const selectedCred = credentials.find(c => c.id === formNewRepoCredentialId)}
 											{#if selectedCred}
 												{#if selectedCred.authType === 'ssh'}
-													<KeyRound class="w-4 h-4 mr-2 text-muted-foreground" />
+													<KeyRound class="size-4 mr-2 text-muted-foreground" />
 												{:else if selectedCred.authType === 'password'}
-													<Lock class="w-4 h-4 mr-2 text-muted-foreground" />
+													<Lock class="size-4 mr-2 text-muted-foreground" />
 												{:else}
-													<Key class="w-4 h-4 mr-2 text-muted-foreground" />
+													<Key class="size-4 mr-2 text-muted-foreground" />
 												{/if}
 												<span>{selectedCred.name} ({getAuthLabel(selectedCred.authType)})</span>
 											{:else}
-												<Key class="w-4 h-4 mr-2 text-muted-foreground" />
+												<Key class="size-4 mr-2 text-muted-foreground" />
 												<span>None (public)</span>
 											{/if}
 										</Select.Trigger>
 										<Select.Content>
 											<Select.Item value="none">
 												<span class="flex items-center gap-2">
-													<Key class="w-4 h-4 text-muted-foreground" />
+													<Key class="size-4 text-muted-foreground" />
 													None (public)
 												</span>
 											</Select.Item>
@@ -697,11 +697,11 @@
 												<Select.Item value={cred.id.toString()}>
 													<span class="flex items-center gap-2">
 														{#if cred.authType === 'ssh'}
-															<KeyRound class="w-4 h-4 text-muted-foreground" />
+															<KeyRound class="size-4 text-muted-foreground" />
 														{:else if cred.authType === 'password'}
-															<Lock class="w-4 h-4 text-muted-foreground" />
+															<Lock class="size-4 text-muted-foreground" />
 														{:else}
-															<Key class="w-4 h-4 text-muted-foreground" />
+															<Key class="size-4 text-muted-foreground" />
 														{/if}
 														{cred.name} ({getAuthLabel(cred.authType)})
 													</span>
@@ -745,7 +745,7 @@
 					<Label for="env-file-path">Additional env file (optional)</Label>
 					<Tooltip.Root>
 						<Tooltip.Trigger>
-							<HelpCircle class="w-3.5 h-3.5 text-muted-foreground cursor-help" />
+							<HelpCircle class="size-4 text-muted-foreground cursor-help" />
 						</Tooltip.Trigger>
 						<Tooltip.Content>
 							<div class="w-80">
@@ -768,7 +768,7 @@
 			<div class="space-y-3 p-3 bg-muted/50 rounded-md">
 			<div class="flex items-center gap-3">
 				<div class="flex items-center gap-2 flex-1">
-					<RefreshCw class="w-4 h-4 text-muted-foreground" />
+					<RefreshCw class="size-4 text-muted-foreground" />
 					<Label class="text-sm font-normal">Enable scheduled sync</Label>
 				</div>
 				<TogglePill bind:checked={formAutoUpdate} />
@@ -788,7 +788,7 @@
 			<div class="space-y-3 p-3 bg-muted/50 rounded-md">
 			<div class="flex items-center gap-3">
 				<div class="flex items-center gap-2 flex-1">
-					<Webhook class="w-4 h-4 text-muted-foreground" />
+					<Webhook class="size-4 text-muted-foreground" />
 					<Label class="text-sm font-normal">Enable webhook</Label>
 				</div>
 				<TogglePill bind:checked={formWebhookEnabled} />
@@ -815,14 +815,14 @@
 									{#if copiedWebhookUrl === 'error'}
 										<Tooltip.Root open>
 											<Tooltip.Trigger>
-												<XCircle class="w-4 h-4 text-red-500" />
+												<XCircle class="size-4 text-red-500" />
 											</Tooltip.Trigger>
 											<Tooltip.Content>Copy requires HTTPS</Tooltip.Content>
 										</Tooltip.Root>
 									{:else if copiedWebhookUrl === 'ok'}
-										<Check class="w-4 h-4 text-green-500" />
+										<Check class="size-4 text-green-500" />
 									{:else}
-										<Copy class="w-4 h-4" />
+										<Copy class="size-4" />
 									{/if}
 								</Button>
 							</div>
@@ -847,14 +847,14 @@
 									{#if copiedWebhookSecret === 'error'}
 										<Tooltip.Root open>
 											<Tooltip.Trigger>
-												<XCircle class="w-4 h-4 text-red-500" />
+												<XCircle class="size-4 text-red-500" />
 											</Tooltip.Trigger>
 											<Tooltip.Content>Copy requires HTTPS</Tooltip.Content>
 										</Tooltip.Root>
 									{:else if copiedWebhookSecret === 'ok'}
-										<Check class="w-4 h-4 text-green-500" />
+										<Check class="size-4 text-green-500" />
 									{:else}
-										<Copy class="w-4 h-4" />
+										<Copy class="size-4" />
 									{/if}
 								</Button>
 							{/if}
@@ -864,7 +864,7 @@
 								onclick={() => formWebhookSecret = generateWebhookSecret()}
 								title="Generate new secret"
 							>
-								<RefreshCcw class="w-4 h-4" />
+								<RefreshCcw class="size-4" />
 							</Button>
 						</div>
 					</div>
@@ -885,7 +885,7 @@
 				<div class="space-y-3 p-3 bg-muted/50 rounded-md">
 					<div class="flex items-center gap-3">
 						<div class="flex items-center gap-2 flex-1">
-							<Rocket class="w-4 h-4 text-muted-foreground" />
+							<Rocket class="size-4 text-muted-foreground" />
 							<div class="flex-1">
 								<Label class="text-sm font-normal">Deploy now</Label>
 								<p class="text-xs text-muted-foreground">Clone and deploy the stack immediately</p>
@@ -911,7 +911,7 @@
 				tabindex="0"
 			>
 				<div class="w-4 h-8 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity {isDraggingSplit ? 'opacity-100' : ''}">
-					<GripVertical class="w-3 h-3 text-white" />
+					<GripVertical class="size-3 text-white" />
 				</div>
 			</div>
 
@@ -936,16 +936,16 @@
 									class="h-6 text-xs px-2"
 								>
 									{#if populatingEnvVars}
-										<Loader2 class="w-3.5 h-3.5 mr-1 animate-spin" />
+										<Loader2 class="size-4 mr-1 animate-spin" />
 										Loading...
 									{:else}
-										<Download class="w-3.5 h-3.5" />
+										<Download class="size-4" />
 										Populate
 									{/if}
 								</Button>
 								<Tooltip.Root>
 									<Tooltip.Trigger>
-										<HelpCircle class="w-3.5 h-3.5 text-muted-foreground cursor-help" />
+										<HelpCircle class="size-4 text-muted-foreground cursor-help" />
 									</Tooltip.Trigger>
 									<Tooltip.Content>
 										<div class="w-64">
@@ -965,16 +965,16 @@
 			{#if gitStack}
 				<Button variant="outline" onclick={() => saveGitStack(true)} disabled={formSaving}>
 					{#if formSaving}
-						<Loader2 class="w-4 h-4 mr-1 animate-spin" />
+						<Loader2 class="size-4 mr-1 animate-spin" />
 						Deploying...
 					{:else}
-						<Rocket class="w-4 h-4" />
+						<Rocket class="size-4" />
 						Save and deploy
 					{/if}
 				</Button>
 				<Button onclick={() => saveGitStack(false)} disabled={formSaving}>
 					{#if formSaving}
-						<Loader2 class="w-4 h-4 mr-1 animate-spin" />
+						<Loader2 class="size-4 mr-1 animate-spin" />
 						Saving...
 					{:else}
 						Save changes
@@ -983,7 +983,7 @@
 			{:else}
 				<Button onclick={() => saveGitStack(formDeployNow)} disabled={formSaving}>
 					{#if formSaving}
-						<Loader2 class="w-4 h-4 mr-1 animate-spin" />
+						<Loader2 class="size-4 mr-1 animate-spin" />
 						{formDeployNow ? 'Deploying...' : 'Creating...'}
 					{:else}
 						{formDeployNow ? 'Deploy' : 'Create'}

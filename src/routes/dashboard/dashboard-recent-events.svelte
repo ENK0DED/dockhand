@@ -109,7 +109,7 @@
 		}}
 	>
 		<div class="flex items-center gap-1.5 text-xs text-muted-foreground mb-2">
-			<Activity class="w-3 h-3" />
+			<Activity class="size-3" />
 			<span class="font-medium">Recent events</span>
 		</div>
 		<!-- Grid layout with fixed columns: timestamp, action icon, container name -->
@@ -122,7 +122,7 @@
 				{@const ActionIcon = getActionIcon(event.action)}
 				<!-- Action icon -->
 				<div class="flex items-center justify-center {getActionColor(event.action)}" title={event.action}>
-					<ActionIcon class="w-3 h-3" />
+					<ActionIcon class="size-3" />
 				</div>
 				<!-- Container name -->
 				<span class="truncate text-foreground" title={event.container_name}>

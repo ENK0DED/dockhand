@@ -4,17 +4,16 @@
 	import * as Tabs from '$lib/components/ui/tabs';
 	import { Button } from '$lib/components/ui/button';
 	import { Badge } from '$lib/components/ui/badge';
-	import { Loader2, Box, Info, Layers, Cpu, MemoryStick, HardDrive, Network, Shield, Settings2, Code, Copy, Check, XCircle, Activity, Wifi, Pencil, RefreshCw, X, FolderOpen, Moon, Tags, ExternalLink, Gpu } from 'lucide-svelte';
+	import { Loader2, Box, Info, Cpu, MemoryStick, HardDrive, Network, Settings2, Code, Copy, Check, XCircle, Wifi, Pencil, RefreshCw, X, Moon, ExternalLink, Gpu } from 'lucide-svelte';
 	import * as Tooltip from '$lib/components/ui/tooltip';
 	import { copyToClipboard } from '$lib/utils/clipboard';
-	import { Input } from '$lib/components/ui/input';
-	import { Label } from '$lib/components/ui/label';
 	import { currentEnvironment, appendEnvParam, environments } from '$lib/stores/environment';
 	import ImageLayersView from '../images/ImageLayersView.svelte';
 	import LogsPanel from '../logs/LogsPanel.svelte';
 	import FileBrowserPanel from './FileBrowserPanel.svelte';
 	import { formatDateTime } from '$lib/stores/settings';
 	import { formatHostPortUrl } from '$lib/utils/url';
+	import { formatBytes } from '$lib/utils/new';
 
 	interface Props {
 		open: boolean;
@@ -340,14 +339,6 @@
 		return formatDateTime(dateString);
 	}
 
-	function formatBytes(bytes: number): string {
-		if (!bytes || bytes === 0) return '0 B';
-		const k = 1024;
-		const sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
-		const i = Math.floor(Math.log(bytes) / Math.log(k));
-		return `${(bytes / Math.pow(k, i)).toFixed(i > 1 ? 2 : 0)} ${sizes[i]}`;
-	}
-
 	function formatMemory(bytes: number): string {
 		if (!bytes) return 'unlimited';
 		const mb = bytes / (1024 * 1024);
@@ -434,7 +425,7 @@
 	<Dialog.Content class="max-w-6xl w-full h-[calc(100vh-2rem)] flex flex-col">
 		<Dialog.Header class="shrink-0">
 			<Dialog.Title class="flex items-center gap-2">
-				<Box class="w-5 h-5" />
+				<Box class="size-5" />
 				Container details:
 				{#if isEditing}
 					<input
@@ -456,9 +447,9 @@
 						class="p-1 rounded hover:bg-muted transition-colors"
 					>
 						{#if renaming}
-							<RefreshCw class="w-3.5 h-3.5 text-muted-foreground animate-spin" />
+							<RefreshCw class="size-4 text-muted-foreground animate-spin" />
 						{:else}
-							<Check class="w-3.5 h-3.5 text-green-500 hover:text-green-600" />
+							<Check class="size-4 text-green-500 hover:text-green-600" />
 						{/if}
 					</button>
 					<button
@@ -468,7 +459,7 @@
 						disabled={renaming}
 						class="p-1 rounded hover:bg-muted transition-colors"
 					>
-						<X class="w-3.5 h-3.5 text-muted-foreground hover:text-foreground" />
+						<X class="size-4 text-muted-foreground hover:text-foreground" />
 					</button>
 				{:else}
 					<span class="text-muted-foreground font-normal">{displayName || containerId.slice(0, 12)}</span>
@@ -478,12 +469,12 @@
 						title="Rename container"
 						class="p-0.5 rounded hover:bg-muted transition-colors ml-0.5"
 					>
-						<Pencil class="w-3 h-3 text-muted-foreground hover:text-foreground" />
+						<Pencil class="size-3 text-muted-foreground hover:text-foreground" />
 					</button>
 				{/if}
 				{#if containerData?.State?.Running && !loading}
 					<span class="inline-flex items-center gap-1.5 ml-2 text-xs {isLiveConnected ? 'text-emerald-500' : 'text-muted-foreground'}" title={isLiveConnected ? 'Receiving live updates' : 'Connection lost'}>
-						<Wifi class="w-3.5 h-3.5 {isLiveConnected ? 'animate-pulse' : ''}" />
+						<Wifi class="size-4 {isLiveConnected ? 'animate-pulse' : ''}" />
 						{isLiveConnected ? 'Live' : 'Offline'}
 					</span>
 				{/if}
@@ -495,7 +486,7 @@
 						title="View raw JSON"
 						class="ml-auto mr-6"
 					>
-						<Code class="w-4 h-4 mr-1.5" />
+						<Code class="size-4 mr-1.5" />
 						JSON
 					</Button>
 				{/if}
@@ -505,7 +496,7 @@
 		<div class="flex-1 flex flex-col min-h-[400px]">
 			{#if loading}
 				<div class="flex items-center justify-center py-8">
-					<Loader2 class="w-6 h-6 animate-spin text-muted-foreground" />
+					<Loader2 class="size-6 animate-spin text-muted-foreground" />
 				</div>
 			{:else if error}
 				<div class="text-sm text-red-600 dark:text-red-400 p-3 bg-red-50 dark:bg-red-950 rounded">
@@ -536,7 +527,7 @@
 								<!-- CPU -->
 								<div class="p-3 border border-border rounded-lg">
 									<div class="flex items-center gap-2 mb-2">
-										<Cpu class="w-4 h-4 text-blue-500" />
+										<Cpu class="size-4 text-blue-500" />
 										<span class="text-xs font-medium">CPU</span>
 										<span class="ml-auto text-sm font-bold">{currentStats?.cpuPercent?.toFixed(1) ?? '—'}%</span>
 									</div>
@@ -560,7 +551,7 @@
 								<!-- Memory -->
 								<div class="p-3 border border-border rounded-lg">
 									<div class="flex items-center gap-2 mb-2">
-										<MemoryStick class="w-4 h-4 text-green-500" />
+										<MemoryStick class="size-4 text-green-500" />
 										<span class="text-xs font-medium">Memory</span>
 										<span class="ml-auto text-sm font-bold">{currentStats?.memoryPercent?.toFixed(1) ?? '—'}%</span>
 									</div>
@@ -587,7 +578,7 @@
 								<!-- Network I/O -->
 								<div class="p-3 border border-border rounded-lg">
 									<div class="flex items-center gap-2 mb-2">
-										<Network class="w-4 h-4 text-purple-500" />
+										<Network class="size-4 text-purple-500" />
 										<span class="text-xs font-medium">Network I/O</span>
 									</div>
 									<div class="space-y-1 text-xs">
@@ -604,7 +595,7 @@
 								<!-- Block I/O -->
 								<div class="p-3 border border-border rounded-lg">
 									<div class="flex items-center gap-2 mb-2">
-										<HardDrive class="w-4 h-4 text-orange-500" />
+										<HardDrive class="size-4 text-orange-500" />
 										<span class="text-xs font-medium">Disk I/O</span>
 									</div>
 									<div class="space-y-1 text-xs">
@@ -626,7 +617,7 @@
 							<!-- Status -->
 							<div class="space-y-3">
 								<h3 class="text-sm font-semibold flex items-center gap-2">
-									<Info class="w-4 h-4" />
+									<Info class="size-4" />
 									Status
 								</h3>
 								<div class="grid grid-cols-2 gap-2 text-sm">
@@ -701,12 +692,12 @@
 					<Tabs.Content value="processes" class="overflow-auto data-[state=inactive]:hidden">
 						{#if !containerData.State?.Running}
 							<div class="flex items-center gap-2 text-sm text-muted-foreground py-8 justify-center">
-								<Moon class="w-5 h-5" />
+								<Moon class="size-5" />
 								<span>Container is not running</span>
 							</div>
 						{:else if processesLoading}
 							<div class="flex items-center justify-center py-8">
-								<Loader2 class="w-6 h-6 animate-spin text-muted-foreground" />
+								<Loader2 class="size-6 animate-spin text-muted-foreground" />
 							</div>
 						{:else if processesError}
 							<div class="text-sm text-red-600 dark:text-red-400 p-3 bg-red-50 dark:bg-red-950 rounded">
@@ -892,7 +883,7 @@
 															title="Open {url}"
 														>
 															<code>{binding.HostIp || '0.0.0.0'}:{binding.HostPort}</code>
-															<ExternalLink class="w-3 h-3" />
+															<ExternalLink class="size-3" />
 														</a>
 													{:else}
 														<code>{binding.HostIp || '0.0.0.0'}:{binding.HostPort}</code>
@@ -964,12 +955,12 @@
 							/>
 						{:else if containerData.State?.Paused}
 							<div class="flex items-center gap-2 text-sm text-muted-foreground py-8 justify-center">
-								<Moon class="w-5 h-5" />
+								<Moon class="size-5" />
 								<span>Container is paused</span>
 							</div>
 						{:else}
 							<div class="flex items-center gap-2 text-sm text-muted-foreground py-8 justify-center">
-								<Moon class="w-5 h-5" />
+								<Moon class="size-5" />
 								<span>Container is not running</span>
 							</div>
 						{/if}
@@ -1012,9 +1003,9 @@
 											title={copiedLabel === key ? 'Copied!' : 'Copy label'}
 										>
 											{#if copiedLabel === key}
-												<Check class="w-3 h-3 text-green-500" />
+												<Check class="size-3 text-green-500" />
 											{:else}
-												<Copy class="w-3 h-3 text-muted-foreground" />
+												<Copy class="size-3 text-muted-foreground" />
 											{/if}
 										</button>
 									</div>
@@ -1117,7 +1108,7 @@
 						<!-- CPU & Memory Limits -->
 						<div class="space-y-2">
 							<h3 class="text-sm font-semibold flex items-center gap-2">
-								<Settings2 class="w-4 h-4" />
+								<Settings2 class="size-4" />
 								Resource limits
 							</h3>
 							<div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
@@ -1198,7 +1189,7 @@
 						{#if containerData.HostConfig?.DeviceRequests?.length > 0 || (containerData.HostConfig?.Runtime && containerData.HostConfig.Runtime !== 'runc')}
 							<div class="space-y-2">
 								<h3 class="text-sm font-semibold flex items-center gap-2">
-									<Gpu class="w-4 h-4" />
+									<Gpu class="size-4" />
 									GPU
 								</h3>
 								<div class="grid grid-cols-2 lg:grid-cols-3 gap-3">
@@ -1362,7 +1353,7 @@
 	<Dialog.Content class="max-w-4xl max-h-[90vh] sm:max-h-[80vh] flex flex-col">
 		<Dialog.Header class="shrink-0">
 			<Dialog.Title class="flex items-center gap-2">
-				<Code class="w-5 h-5" />
+				<Code class="size-5" />
 				Raw JSON
 				<Button
 					variant="outline"
@@ -1373,16 +1364,16 @@
 					{#if jsonCopied === 'error'}
 						<Tooltip.Root open>
 							<Tooltip.Trigger>
-								<XCircle class="w-4 h-4 mr-1.5 text-red-500" />
+								<XCircle class="size-4 mr-1.5 text-red-500" />
 							</Tooltip.Trigger>
 							<Tooltip.Content>Copy requires HTTPS</Tooltip.Content>
 						</Tooltip.Root>
 						<span class="text-red-500">Failed</span>
 					{:else if jsonCopied === 'ok'}
-						<Check class="w-4 h-4 mr-1.5 text-green-500" />
+						<Check class="size-4 mr-1.5 text-green-500" />
 						<span class="text-green-500">Copied!</span>
 					{:else}
-						<Copy class="w-4 h-4 mr-1.5" />
+						<Copy class="size-4 mr-1.5" />
 						Copy
 					{/if}
 				</Button>

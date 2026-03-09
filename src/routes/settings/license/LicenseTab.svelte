@@ -113,7 +113,7 @@
 	<Card.Root class="border-dashed">
 		<Card.Content class="pt-4">
 			<div class="flex items-start gap-3">
-				<Crown class="w-5 h-5 text-amber-500 mt-0.5" />
+				<Crown class="size-5 text-amber-500 mt-0.5" />
 				<div>
 					<p class="text-sm font-medium">License management</p>
 					<p class="text-xs text-muted-foreground">
@@ -127,7 +127,7 @@
 	{#if licenseLoading}
 		<Card.Root>
 			<Card.Content class="py-8 text-center">
-				<RefreshCw class="w-6 h-6 mx-auto mb-2 animate-spin text-muted-foreground" />
+				<RefreshCw class="size-6 mx-auto mb-2 animate-spin text-muted-foreground" />
 				<p class="text-sm text-muted-foreground">Loading license information...</p>
 			</Card.Content>
 		</Card.Root>
@@ -138,10 +138,10 @@
 			<Card.Header>
 				<Card.Title class="text-sm font-medium flex items-center gap-2">
 					{#if isEnterprise}
-						<Crown class="w-4 h-4 text-amber-500" />
+						<Crown class="size-4 text-amber-500" />
 						Active Enterprise license
 					{:else}
-						<Building2 class="w-4 h-4 text-blue-500" />
+						<Building2 class="size-4 text-blue-500" />
 						Active SMB license
 					{/if}
 				</Card.Title>
@@ -156,10 +156,10 @@
 						<p class="text-muted-foreground">License type</p>
 						<p class="font-medium flex items-center gap-1">
 							{#if isEnterprise}
-								<Crown class="w-3.5 h-3.5 text-amber-500" />
+								<Crown class="size-4 text-amber-500" />
 								<span class="text-amber-600 dark:text-amber-400">Enterprise</span>
 							{:else}
-								<Building2 class="w-3.5 h-3.5 text-blue-500" />
+								<Building2 class="size-4 text-blue-500" />
 								<span class="text-blue-600 dark:text-blue-400">SMB</span>
 							{/if}
 						</p>
@@ -184,7 +184,7 @@
 				{#if $canAccess('settings', 'edit')}
 				<div class="flex justify-end">
 					<Button variant="outline" size="sm" onclick={deactivateLicense}>
-						<XCircle class="w-4 h-4" />
+						<XCircle class="size-4" />
 						Deactivate license
 					</Button>
 				</div>
@@ -196,7 +196,7 @@
 		<Card.Root>
 			<Card.Header>
 				<Card.Title class="text-sm font-medium flex items-center gap-2">
-					<Key class="w-4 h-4" />
+					<Key class="size-4" />
 					Activate license
 				</Card.Title>
 			</Card.Header>
@@ -244,9 +244,9 @@
 				<div class="flex justify-end">
 					<Button onclick={activateLicense} disabled={licenseFormSaving}>
 						{#if licenseFormSaving}
-							<RefreshCw class="w-4 h-4 mr-1 animate-spin" />
+							<RefreshCw class="size-4 mr-1 animate-spin" />
 						{:else}
-							<ShieldCheck class="w-4 h-4" />
+							<ShieldCheck class="size-4" />
 						{/if}
 						Activate license
 					</Button>

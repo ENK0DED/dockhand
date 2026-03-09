@@ -308,7 +308,7 @@
 			{#if infoText}
 				<Tooltip.Root>
 					<Tooltip.Trigger>
-						<HelpCircle class="w-3.5 h-3.5 text-muted-foreground cursor-help shrink-0" />
+						<HelpCircle class="size-4 text-muted-foreground cursor-help shrink-0" />
 					</Tooltip.Trigger>
 					<Tooltip.Content>
 						<div class="w-80">
@@ -325,7 +325,7 @@
 					onclick={() => handleViewModeChange('form')}
 					title="Form view"
 				>
-					<List class="w-3 h-3" />
+					<List class="size-3" />
 				</button>
 				<button
 					type="button"
@@ -333,7 +333,7 @@
 					onclick={() => handleViewModeChange('text')}
 					title="Text view (raw .env file)"
 				>
-					<FileText class="w-3 h-3" />
+					<FileText class="size-3" />
 				</button>
 			</div>
 			<!-- Validation status pills -->
@@ -364,12 +364,12 @@
 						{@render headerActions()}
 					{/if}
 					<Button type="button" size="sm" variant="ghost" onclick={handleLoadFromFile} class="h-6 text-xs px-2">
-						<Upload class="w-3.5 h-3.5" />
+						<Upload class="size-4" />
 						Load
 					</Button>
 					{#if viewMode === 'form'}
 						<Button type="button" size="sm" variant="ghost" onclick={addEnvVariable} class="h-6 text-xs px-2">
-							<Plus class="w-3.5 h-3.5" />
+							<Plus class="size-4" />
 							Add
 						</Button>
 					{/if}
@@ -390,7 +390,7 @@
 								class="h-6 text-xs px-2 {hasContent ? 'text-destructive hover:text-destructive' : 'text-muted-foreground/50 cursor-not-allowed'}"
 								disabled={!hasContent}
 							>
-								<Trash2 class="w-3.5 h-3.5" />
+								<Trash2 class="size-4" />
 								Clear
 							</Button>
 						{/snippet}
@@ -409,7 +409,7 @@
 		{#if viewMode === 'form'}
 			{#if showInterpolationHint}
 				<div class="flex items-start gap-2 px-2.5 py-2 rounded bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800/50">
-					<Info class="w-4 h-4 text-blue-500 shrink-0 mt-0.5" />
+					<Info class="size-4 text-blue-500 shrink-0 mt-0.5" />
 					<p class="text-xs text-blue-700 dark:text-blue-300">
 						These variables are available for <strong>compose file interpolation</strong> using <code class="bg-blue-100 dark:bg-blue-800/40 px-1 rounded">${'{VAR_NAME}'}</code> syntax.
 						To pass them to containers, reference them in the compose file's <code class="bg-blue-100 dark:bg-blue-800/40 px-1 rounded">environment:</code> section.
@@ -425,14 +425,14 @@
 			<!-- Interpolation hint + secrets hint combined for text view -->
 			<div class="flex flex-col gap-1.5">
 				<div class="flex items-start gap-2 px-2.5 py-2 rounded bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800/50">
-					<Info class="w-4 h-4 text-blue-500 shrink-0 mt-0.5" />
+					<Info class="size-4 text-blue-500 shrink-0 mt-0.5" />
 					<p class="text-xs text-blue-700 dark:text-blue-300">
 						These variables are available for <strong>compose file interpolation</strong> using <code class="bg-blue-100 dark:bg-blue-800/40 px-1 rounded">${'{VAR_NAME}'}</code> syntax.
 						To pass them to containers, reference them in the compose file's <code class="bg-blue-100 dark:bg-blue-800/40 px-1 rounded">environment:</code> section.
 					</p>
 				</div>
 				<div class="flex items-start gap-2 px-2.5 py-2 rounded bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800/50">
-					<ShieldAlert class="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
+					<ShieldAlert class="size-4 text-amber-500 shrink-0 mt-0.5" />
 					<div class="text-xs text-amber-700 dark:text-amber-300">
 						<span class="font-medium">{secretCount} secret{secretCount === 1 ? '' : 's'} not shown.</span>
 						<span class="text-amber-600 dark:text-amber-400">Secrets are never written to disk and are injected via shell environment when the stack starts.</span>
@@ -442,7 +442,7 @@
 		{:else if showInterpolationHint}
 			<!-- Interpolation hint only (no secrets) -->
 			<div class="flex items-start gap-2 px-2.5 py-2 rounded bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800/50">
-				<Info class="w-4 h-4 text-blue-500 shrink-0 mt-0.5" />
+				<Info class="size-4 text-blue-500 shrink-0 mt-0.5" />
 				<p class="text-xs text-blue-700 dark:text-blue-300">
 					These variables are available for <strong>compose file interpolation</strong> using <code class="bg-blue-100 dark:bg-blue-800/40 px-1 rounded">${'{VAR_NAME}'}</code> syntax.
 					To pass them to containers, reference them in the compose file's <code class="bg-blue-100 dark:bg-blue-800/40 px-1 rounded">environment:</code> section.
@@ -451,7 +451,7 @@
 		{:else if secretCount > 0}
 			<!-- Text view hint about secrets (only shown when secrets exist) -->
 			<div class="flex items-start gap-2 px-2.5 py-2 rounded bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800/50">
-				<ShieldAlert class="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
+				<ShieldAlert class="size-4 text-amber-500 shrink-0 mt-0.5" />
 				<div class="text-xs text-amber-700 dark:text-amber-300">
 					<span class="font-medium">{secretCount} secret{secretCount === 1 ? '' : 's'} not shown.</span>
 					<span class="text-amber-600 dark:text-amber-400">Secrets are never written to disk and are injected via shell environment when the stack starts.</span>
@@ -461,7 +461,7 @@
 		<!-- Parse warnings (form mode only) -->
 		{#if viewMode === 'form' && parseWarnings.length > 0}
 			<div class="flex items-start gap-2 px-2 py-1.5 rounded bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800/50">
-				<AlertTriangle class="w-3.5 h-3.5 text-amber-500 shrink-0 mt-0.5" />
+				<AlertTriangle class="size-4 text-amber-500 shrink-0 mt-0.5" />
 				<div class="text-2xs text-amber-700 dark:text-amber-300">
 					<span class="font-medium">Some lines couldn't be parsed:</span>
 					<ul class="mt-0.5 list-disc list-inside">

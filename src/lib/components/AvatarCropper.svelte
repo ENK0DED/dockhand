@@ -236,7 +236,7 @@
 			<!-- Zoom Controls -->
 			<div class="p-4 border-t">
 				<div class="flex items-center gap-3">
-					<ZoomOut class="w-5 h-5 text-muted-foreground shrink-0" />
+					<ZoomOut class="size-5 text-muted-foreground shrink-0" />
 					<input
 						type="range"
 						min="1"
@@ -245,7 +245,7 @@
 						bind:value={zoom}
 						class="flex-1 h-2 bg-muted rounded-lg appearance-none cursor-pointer accent-primary"
 					/>
-					<ZoomIn class="w-5 h-5 text-muted-foreground shrink-0" />
+					<ZoomIn class="size-5 text-muted-foreground shrink-0" />
 				</div>
 			</div>
 
@@ -257,7 +257,7 @@
 					onclick={handleCancel}
 					disabled={saving}
 				>
-					<X class="w-4 h-4" />
+					<X class="size-4" />
 					Cancel
 				</Button>
 				<Button
@@ -265,7 +265,7 @@
 					onclick={handleSave}
 					disabled={saving || !imageLoaded}
 				>
-					<Check class="w-4 h-4" />
+					<Check class="size-4" />
 					{saving ? 'Uploading...' : !imageLoaded ? 'Loading...' : 'Save avatar'}
 				</Button>
 			</div>

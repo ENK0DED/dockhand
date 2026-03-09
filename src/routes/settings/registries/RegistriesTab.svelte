@@ -106,7 +106,7 @@
 		<div class="flex gap-2">
 			{#if $canAccess('registries', 'create')}
 				<Button size="sm" onclick={() => openRegModal()}>
-					<Plus class="w-4 h-4" />
+					<Plus class="size-4" />
 					Add registry
 				</Button>
 			{/if}
@@ -131,9 +131,9 @@
 						<div class="flex items-start justify-between">
 							<div class="flex items-center gap-2">
 								{#if isDockerHub(registry)}
-									<Icon iconNode={whale} class="w-5 h-5 text-muted-foreground" />
+									<Icon iconNode={whale} class="size-5 text-muted-foreground" />
 								{:else}
-									<Download class="w-5 h-5 text-muted-foreground" />
+									<Download class="size-5 text-muted-foreground" />
 								{/if}
 								<Card.Title class="text-base">{registry.name}</Card.Title>
 							</div>
@@ -155,7 +155,7 @@
 						<!-- Always reserve space for username row -->
 						<div class="flex items-center gap-2 text-xs text-muted-foreground h-4">
 							{#if registry.username}
-								<Key class="w-3 h-3" />
+								<Key class="size-3" />
 								<span>{registry.username}</span>
 							{/if}
 						</div>
@@ -167,7 +167,7 @@
 									size="sm"
 									onclick={() => setRegDefault(registry.id)}
 								>
-									<Star class="w-3 h-3" />
+									<Star class="size-3" />
 									Set default
 								</Button>
 							{/if}
@@ -177,7 +177,7 @@
 									size="sm"
 									onclick={() => openRegModal(registry)}
 								>
-									<Pencil class="w-3 h-3" />
+									<Pencil class="size-3" />
 								</Button>
 							{/if}
 							{#if $canAccess('registries', 'delete')}
@@ -192,7 +192,7 @@
 									onOpenChange={(open) => confirmDeleteRegistryId = open ? registry.id : null}
 								>
 									{#snippet children({ open })}
-										<Trash2 class="w-3 h-3 {open ? 'text-destructive' : 'text-muted-foreground hover:text-destructive'}" />
+										<Trash2 class="size-3 {open ? 'text-destructive' : 'text-muted-foreground hover:text-destructive'}" />
 									{/snippet}
 								</ConfirmPopover>
 							{/if}

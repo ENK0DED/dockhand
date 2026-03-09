@@ -248,11 +248,11 @@
 		<Dialog.Header class="shrink-0 pb-2">
 			<Dialog.Title class="flex items-center gap-2">
 				{#if pushStatus === 'complete'}
-					<CheckCircle2 class="w-5 h-5 text-green-500" />
+					<CheckCircle2 class="size-5 text-green-500" />
 				{:else if pullStatus === 'error' || pushStatus === 'error'}
-					<XCircle class="w-5 h-5 text-red-500" />
+					<XCircle class="size-5 text-red-500" />
 				{:else}
-					<Copy class="w-5 h-5" />
+					<Copy class="size-5" />
 				{/if}
 				Copy to registry
 				<code class="text-sm font-normal bg-muted px-1.5 py-0.5 rounded ml-1">{imageName}</code>
@@ -266,27 +266,27 @@
 				onclick={() => { if (!isProcessing && currentStep !== 'configure') currentStep = 'configure'; }}
 				disabled={isProcessing}
 			>
-				<Settings2 class="w-3.5 h-3.5 inline mr-1.5" />
+				<Settings2 class="size-4 inline mr-1.5" />
 				Configure
 			</button>
-			<ArrowBigRight class="w-3.5 h-3.5 text-muted-foreground/50 shrink-0" />
+			<ArrowBigRight class="size-4 text-muted-foreground/50 shrink-0" />
 			<button
 				class="px-4 py-2 text-sm font-medium border-b-2 transition-colors cursor-pointer {currentStep === 'pull' ? 'border-primary text-foreground' : 'border-transparent text-muted-foreground hover:text-foreground'}"
 				onclick={() => { if (!isProcessing && pullStatus !== 'idle') currentStep = 'pull'; }}
 				disabled={isProcessing || pullStatus === 'idle'}
 			>
-				<Download class="w-3.5 h-3.5 inline mr-1.5" />
+				<Download class="size-4 inline mr-1.5" />
 				Pull
 				{#if pullStatus === 'complete'}
-					<CheckCircle2 class="w-3.5 h-3.5 inline ml-1 text-green-500" />
+					<CheckCircle2 class="size-4 inline ml-1 text-green-500" />
 				{:else if pullStatus === 'error'}
-					<XCircle class="w-3.5 h-3.5 inline ml-1 text-red-500" />
+					<XCircle class="size-4 inline ml-1 text-red-500" />
 				{:else}
-					<CheckCircle2 class="w-3.5 h-3.5 inline ml-1 invisible" />
+					<CheckCircle2 class="size-4 inline ml-1 invisible" />
 				{/if}
 			</button>
 			{#if envHasScanning}
-				<ArrowBigRight class="w-3.5 h-3.5 text-muted-foreground/50 shrink-0" />
+				<ArrowBigRight class="size-4 text-muted-foreground/50 shrink-0" />
 				<button
 					class="px-4 py-2 text-sm font-medium border-b-2 transition-colors cursor-pointer {currentStep === 'scan' ? 'border-primary text-foreground' : 'border-transparent text-muted-foreground hover:text-foreground'}"
 					onclick={() => { if (!isProcessing && scanStatus !== 'idle') currentStep = 'scan'; }}
@@ -294,39 +294,39 @@
 				>
 					{#if scanStatus === 'complete' && scanResults.length > 0}
 						{#if hasCriticalOrHigh}
-							<ShieldX class="w-3.5 h-3.5 inline mr-1.5 text-red-500" />
+							<ShieldX class="size-4 inline mr-1.5 text-red-500" />
 						{:else if totalVulnerabilities > 0}
-							<ShieldAlert class="w-3.5 h-3.5 inline mr-1.5 text-yellow-500" />
+							<ShieldAlert class="size-4 inline mr-1.5 text-yellow-500" />
 						{:else}
-							<ShieldCheck class="w-3.5 h-3.5 inline mr-1.5 text-green-500" />
+							<ShieldCheck class="size-4 inline mr-1.5 text-green-500" />
 						{/if}
 					{:else}
-						<ShieldCheck class="w-3.5 h-3.5 inline mr-1.5" />
+						<ShieldCheck class="size-4 inline mr-1.5" />
 					{/if}
 					Scan
 					{#if scanStatus === 'complete'}
-						<CheckCircle2 class="w-3.5 h-3.5 inline ml-1 text-green-500" />
+						<CheckCircle2 class="size-4 inline ml-1 text-green-500" />
 					{:else if scanStatus === 'error'}
-						<XCircle class="w-3.5 h-3.5 inline ml-1 text-red-500" />
+						<XCircle class="size-4 inline ml-1 text-red-500" />
 					{:else}
-						<CheckCircle2 class="w-3.5 h-3.5 inline ml-1 invisible" />
+						<CheckCircle2 class="size-4 inline ml-1 invisible" />
 					{/if}
 				</button>
 			{/if}
-			<ArrowBigRight class="w-3.5 h-3.5 text-muted-foreground/50 shrink-0" />
+			<ArrowBigRight class="size-4 text-muted-foreground/50 shrink-0" />
 			<button
 				class="px-4 py-2 text-sm font-medium border-b-2 transition-colors cursor-pointer {currentStep === 'push' ? 'border-primary text-foreground' : 'border-transparent text-muted-foreground hover:text-foreground'}"
 				onclick={() => { if (!isProcessing && pushStatus !== 'idle') currentStep = 'push'; }}
 				disabled={isProcessing || pushStatus === 'idle'}
 			>
-				<Upload class="w-3.5 h-3.5 inline mr-1.5" />
+				<Upload class="size-4 inline mr-1.5" />
 				Push
 				{#if pushStatus === 'complete'}
-					<CheckCircle2 class="w-3.5 h-3.5 inline ml-1 text-green-500" />
+					<CheckCircle2 class="size-4 inline ml-1 text-green-500" />
 				{:else if pushStatus === 'error'}
-					<XCircle class="w-3.5 h-3.5 inline ml-1 text-red-500" />
+					<XCircle class="size-4 inline ml-1 text-red-500" />
 				{:else}
-					<CheckCircle2 class="w-3.5 h-3.5 inline ml-1 invisible" />
+					<CheckCircle2 class="size-4 inline ml-1 invisible" />
 				{/if}
 			</button>
 		</div>
@@ -347,9 +347,9 @@
 							<Select.Trigger class="w-full h-9 justify-start">
 								{#if targetRegistry}
 									{#if isDockerHub(targetRegistry)}
-										<Icon iconNode={whale} class="w-4 h-4 mr-2 text-muted-foreground" />
+										<Icon iconNode={whale} class="size-4 mr-2 text-muted-foreground" />
 									{:else}
-										<Server class="w-4 h-4 mr-2 text-muted-foreground" />
+										<Server class="size-4 mr-2 text-muted-foreground" />
 									{/if}
 									<span class="flex-1 text-left">{targetRegistry.name}{targetRegistry.hasCredentials ? ' (auth)' : ''}</span>
 								{:else}
@@ -360,9 +360,9 @@
 								{#each pushableRegistries as registry}
 									<Select.Item value={String(registry.id)} label={registry.name}>
 										{#if isDockerHub(registry)}
-											<Icon iconNode={whale} class="w-4 h-4 mr-2 text-muted-foreground" />
+											<Icon iconNode={whale} class="size-4 mr-2 text-muted-foreground" />
 										{:else}
-											<Server class="w-4 h-4 mr-2 text-muted-foreground" />
+											<Server class="size-4 mr-2 text-muted-foreground" />
 										{/if}
 										{registry.name}
 										{#if registry.hasCredentials}
@@ -395,14 +395,14 @@
 								{#if copiedToClipboard === 'error'}
 									<Tooltip.Root open>
 										<Tooltip.Trigger>
-											<XCircle class="w-3 h-3 text-red-500" />
+											<XCircle class="size-3 text-red-500" />
 										</Tooltip.Trigger>
 										<Tooltip.Content>Copy requires HTTPS</Tooltip.Content>
 									</Tooltip.Root>
 								{:else if copiedToClipboard === 'ok'}
-									<Check class="w-3 h-3 text-green-500" />
+									<Check class="size-3 text-green-500" />
 								{:else}
-									<Clipboard class="w-3 h-3 text-muted-foreground hover:text-foreground" />
+									<Clipboard class="size-3 text-muted-foreground hover:text-foreground" />
 								{/if}
 							</button>
 						</p>
@@ -484,23 +484,23 @@
 						onclick={startCopy}
 						disabled={!targetRegistryId || pushableRegistries.length === 0}
 					>
-						<Copy class="w-4 h-4" />
+						<Copy class="size-4" />
 						Start copy
 					</Button>
 				{:else if currentStep === 'scan' && scanStatus === 'complete'}
 					{#if hasCriticalOrHigh}
 						<div class="flex items-center gap-2 text-red-600 text-sm mr-2">
-							<ShieldX class="w-4 h-4" />
+							<ShieldX class="size-4" />
 							<span>Critical/high vulnerabilities found</span>
 						</div>
 					{:else if totalVulnerabilities > 0}
 						<div class="flex items-center gap-2 text-yellow-600 text-sm mr-2">
-							<ShieldAlert class="w-4 h-4" />
+							<ShieldAlert class="size-4" />
 							<span>{totalVulnerabilities} vulnerabilities found</span>
 						</div>
 					{/if}
 					<Button onclick={proceedToPush} variant={hasCriticalOrHigh ? 'destructive' : 'default'}>
-						<Upload class="w-4 h-4" />
+						<Upload class="size-4" />
 						{hasCriticalOrHigh ? 'Push anyway' : 'Continue to push'}
 					</Button>
 				{/if}

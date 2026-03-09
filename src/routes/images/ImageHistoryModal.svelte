@@ -17,7 +17,7 @@
 	<Dialog.Content class="max-w-5xl max-h-[90vh] flex flex-col min-h-[400px] !animate-none">
 		<Dialog.Header>
 			<Dialog.Title class="flex items-center gap-2">
-				<Layers class="w-5 h-5" />
+				<Layers class="size-5" />
 				Image layers: <span class="text-muted-foreground font-normal">{imageName || imageId.slice(7, 19)}</span>
 			</Dialog.Title>
 		</Dialog.Header>

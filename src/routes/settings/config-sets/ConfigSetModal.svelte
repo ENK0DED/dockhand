@@ -269,15 +269,15 @@
 				<div class="flex justify-between items-center">
 					<Label class="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Environment variables</Label>
 					<Button type="button" size="sm" variant="ghost" onclick={addEnvVar} class="h-7 text-xs">
-						<Plus class="w-3.5 h-3.5" />Add
+						<Plus class="size-4" />Add
 					</Button>
 				</div>
 				{#each formEnvVars as envVar, i}
 					<div class="flex gap-2 items-center">
 						<Input bind:value={envVar.key} placeholder="KEY" class="flex-1 h-8" />
 						<Input bind:value={envVar.value} placeholder="value" class="flex-1 h-8" />
-						<Button type="button" size="icon" variant="ghost" onclick={() => removeEnvVar(i)} disabled={formEnvVars.length === 1} class="h-8 w-8">
-							<Trash2 class="w-3 h-3 text-muted-foreground" />
+						<Button type="button" size="icon" variant="ghost" onclick={() => removeEnvVar(i)} disabled={formEnvVars.length === 1} class="size-8">
+							<Trash2 class="size-3 text-muted-foreground" />
 						</Button>
 					</div>
 				{/each}
@@ -288,15 +288,15 @@
 				<div class="flex justify-between items-center">
 					<Label class="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Labels</Label>
 					<Button type="button" size="sm" variant="ghost" onclick={addLabel} class="h-7 text-xs">
-						<Plus class="w-3.5 h-3.5" />Add
+						<Plus class="size-4" />Add
 					</Button>
 				</div>
 				{#each formLabels as label, i}
 					<div class="flex gap-2 items-center">
 						<Input bind:value={label.key} placeholder="label.key" class="flex-1 h-8" />
 						<Input bind:value={label.value} placeholder="value" class="flex-1 h-8" />
-						<Button type="button" size="icon" variant="ghost" onclick={() => removeLabel(i)} disabled={formLabels.length === 1} class="h-8 w-8">
-							<Trash2 class="w-3 h-3 text-muted-foreground" />
+						<Button type="button" size="icon" variant="ghost" onclick={() => removeLabel(i)} disabled={formLabels.length === 1} class="size-8">
+							<Trash2 class="size-3 text-muted-foreground" />
 						</Button>
 					</div>
 				{/each}
@@ -307,7 +307,7 @@
 				<div class="flex justify-between items-center">
 					<Label class="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Port mappings</Label>
 					<Button type="button" size="sm" variant="ghost" onclick={addPort} class="h-7 text-xs">
-						<Plus class="w-3.5 h-3.5" />Add
+						<Plus class="size-4" />Add
 					</Button>
 				</div>
 				{#each formPorts as port, i}
@@ -339,8 +339,8 @@
 							options={protocolOptions}
 							onchange={(v) => { formPorts[i].protocol = v; formPorts = formPorts; }}
 						/>
-						<Button type="button" size="icon" variant="ghost" onclick={() => removePort(i)} disabled={formPorts.length === 1} class="h-8 w-8">
-							<Trash2 class="w-3 h-3 text-muted-foreground" />
+						<Button type="button" size="icon" variant="ghost" onclick={() => removePort(i)} disabled={formPorts.length === 1} class="size-8">
+							<Trash2 class="size-3 text-muted-foreground" />
 						</Button>
 					</div>
 				{/each}
@@ -351,7 +351,7 @@
 				<div class="flex justify-between items-center">
 					<Label class="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Volume mappings</Label>
 					<Button type="button" size="sm" variant="ghost" onclick={addVolume} class="h-7 text-xs">
-						<Plus class="w-3.5 h-3.5" />Add
+						<Plus class="size-4" />Add
 					</Button>
 				</div>
 				{#each formVolumes as vol, i}
@@ -363,8 +363,8 @@
 							options={volumeModeOptions}
 							onchange={(v) => { formVolumes[i].mode = v; formVolumes = formVolumes; }}
 						/>
-						<Button type="button" size="icon" variant="ghost" onclick={() => removeVolume(i)} disabled={formVolumes.length === 1} class="h-8 w-8">
-							<Trash2 class="w-3 h-3 text-muted-foreground" />
+						<Button type="button" size="icon" variant="ghost" onclick={() => removeVolume(i)} disabled={formVolumes.length === 1} class="size-8">
+							<Trash2 class="size-3 text-muted-foreground" />
 						</Button>
 					</div>
 				{/each}
@@ -374,11 +374,11 @@
 			<Button variant="outline" onclick={handleClose}>Cancel</Button>
 			<Button onclick={save} disabled={formSaving}>
 				{#if formSaving}
-					<RefreshCw class="w-4 h-4 mr-1 animate-spin" />
+					<RefreshCw class="size-4 mr-1 animate-spin" />
 				{:else if isEditing}
-					<Check class="w-4 h-4" />
+					<Check class="size-4" />
 				{:else}
-					<Plus class="w-4 h-4" />
+					<Plus class="size-4" />
 				{/if}
 				{isEditing ? 'Save' : 'Add'}
 			</Button>

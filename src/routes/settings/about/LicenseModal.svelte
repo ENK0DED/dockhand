@@ -38,7 +38,7 @@
 	<Dialog.Content class="max-w-4xl h-[80vh] flex flex-col">
 		<Dialog.Header class="shrink-0">
 			<Dialog.Title class="flex items-center gap-2">
-				<ScrollText class="w-5 h-5" />
+				<ScrollText class="size-5" />
 				License terms and conditions
 			</Dialog.Title>
 		</Dialog.Header>

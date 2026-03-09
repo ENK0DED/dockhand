@@ -92,7 +92,7 @@
 		</div>
 		{#if $canAccess('settings', 'edit')}
 			<Button size="sm" onclick={() => openModal()}>
-				<Plus class="w-4 h-4" />
+				<Plus class="size-4" />
 				Add credential
 			</Button>
 		{/if}
@@ -118,11 +118,11 @@
 						<div class="flex items-center gap-2">
 							<div class="p-1.5 rounded-lg bg-muted">
 								{#if cred.authType === 'ssh'}
-									<KeyRound class="w-3.5 h-3.5" />
+									<KeyRound class="size-4" />
 								{:else if cred.authType === 'password'}
-									<Lock class="w-3.5 h-3.5" />
+									<Lock class="size-4" />
 								{:else}
-									<Key class="w-3.5 h-3.5" />
+									<Key class="size-4" />
 								{/if}
 							</div>
 							<div>
@@ -141,8 +141,8 @@
 						</div>
 						{#if $canAccess('settings', 'edit')}
 							<div class="flex items-center gap-0.5">
-								<Button variant="ghost" size="sm" onclick={() => openModal(cred)} class="h-7 w-7 p-0">
-									<Pencil class="w-3.5 h-3.5" />
+								<Button variant="ghost" size="sm" onclick={() => openModal(cred)} class="size-7 p-0">
+									<Pencil class="size-4" />
 								</Button>
 								<ConfirmPopover
 									open={confirmDeleteId === cred.id}
@@ -154,8 +154,8 @@
 									onOpenChange={(open) => confirmDeleteId = open ? cred.id : null}
 								>
 									{#snippet children({ open })}
-										<Button variant="ghost" size="sm" class="h-7 w-7 p-0">
-											<Trash2 class="w-3.5 h-3.5 {open ? 'text-destructive' : 'text-muted-foreground hover:text-destructive'}" />
+										<Button variant="ghost" size="sm" class="size-7 p-0">
+											<Trash2 class="size-4 {open ? 'text-destructive' : 'text-muted-foreground hover:text-destructive'}" />
 										</Button>
 									{/snippet}
 								</ConfirmPopover>

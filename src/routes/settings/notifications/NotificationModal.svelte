@@ -322,18 +322,18 @@
 							<Select.Trigger class="w-full">
 								<span class="flex items-center gap-2">
 									{#if formType === 'smtp'}
-										<Mail class="w-4 h-4" />SMTP (Email)
+										<Mail class="size-4" />SMTP (Email)
 									{:else}
-										<Zap class="w-4 h-4" />Apprise (Webhooks)
+										<Zap class="size-4" />Apprise (Webhooks)
 									{/if}
 								</span>
 							</Select.Trigger>
 							<Select.Content>
 								<Select.Item value="smtp">
-									<span class="flex items-center gap-2"><Mail class="w-4 h-4" />SMTP (Email)</span>
+									<span class="flex items-center gap-2"><Mail class="size-4" />SMTP (Email)</span>
 								</Select.Item>
 								<Select.Item value="apprise">
-									<span class="flex items-center gap-2"><Zap class="w-4 h-4" />Apprise (Webhooks)</span>
+									<span class="flex items-center gap-2"><Zap class="size-4" />Apprise (Webhooks)</span>
 								</Select.Item>
 							</Select.Content>
 						</Select.Root>
@@ -352,7 +352,7 @@
 						<p class="text-xs font-semibold uppercase tracking-wider text-muted-foreground">SMTP configuration</p>
 						<Tooltip.Root>
 							<Tooltip.Trigger>
-								<HelpCircle class="w-3.5 h-3.5 text-muted-foreground hover:text-foreground cursor-help" />
+								<HelpCircle class="size-4 text-muted-foreground hover:text-foreground cursor-help" />
 							</Tooltip.Trigger>
 							<Tooltip.Portal>
 								<Tooltip.Content side="right" class="w-80">
@@ -440,10 +440,10 @@ jsons://hostname/webhook/path"
 					onclick={() => showSystemEvents = !showSystemEvents}
 				>
 					<div class="flex items-center gap-2">
-						<Key class="w-4 h-4 text-muted-foreground" />
+						<Key class="size-4 text-muted-foreground" />
 						<span class="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Global system events</span>
 					</div>
-					<ChevronDown class="w-4 h-4 text-muted-foreground transition-transform {showSystemEvents ? 'rotate-180' : ''}" />
+					<ChevronDown class="size-4 text-muted-foreground transition-transform {showSystemEvents ? 'rotate-180' : ''}" />
 				</button>
 				{#if showSystemEvents}
 					<div class="mt-3 space-y-2">
@@ -469,7 +469,7 @@ jsons://hostname/webhook/path"
 			<!-- Info about per-env config -->
 			<div class="border-t pt-4">
 				<div class="text-xs text-muted-foreground bg-muted/50 rounded-md p-3 flex items-start gap-2">
-					<Info class="w-4 h-4 mt-0.5 shrink-0" />
+					<Info class="size-4 mt-0.5 shrink-0" />
 					<span>Environment-specific events (containers, stacks, auto-updates) are configured in each environment's settings.</span>
 				</div>
 			</div>
@@ -477,16 +477,16 @@ jsons://hostname/webhook/path"
 		<Dialog.Footer class="flex justify-between sm:justify-between">
 			<Button variant="outline" onclick={testConfig} disabled={formTesting || formSaving}>
 				{#if formTesting}
-					<RefreshCw class="w-4 h-4 mr-1 animate-spin" />
+					<RefreshCw class="size-4 mr-1 animate-spin" />
 					Testing...
 				{:else if testResult === 'success'}
-					<CheckCircle2 class="w-4 h-4 mr-1 text-green-500" />
+					<CheckCircle2 class="size-4 mr-1 text-green-500" />
 					Sent!
 				{:else if testResult === 'error'}
-					<XCircle class="w-4 h-4 mr-1 text-destructive" />
+					<XCircle class="size-4 mr-1 text-destructive" />
 					Failed
 				{:else}
-					<Send class="w-4 h-4" />
+					<Send class="size-4" />
 					Test
 				{/if}
 			</Button>
@@ -494,11 +494,11 @@ jsons://hostname/webhook/path"
 				<Button variant="outline" onclick={handleClose}>Cancel</Button>
 				<Button onclick={save} disabled={formSaving || formTesting}>
 					{#if formSaving}
-						<RefreshCw class="w-4 h-4 mr-1 animate-spin" />
+						<RefreshCw class="size-4 mr-1 animate-spin" />
 					{:else if isEditing}
-						<Check class="w-4 h-4" />
+						<Check class="size-4" />
 					{:else}
-						<Plus class="w-4 h-4" />
+						<Plus class="size-4" />
 					{/if}
 					{isEditing ? 'Save' : 'Add'}
 				</Button>

@@ -9,11 +9,10 @@
 	import { Button } from '$lib/components/ui/button';
 	import { Input } from '$lib/components/ui/input';
 	import MultiSelectFilter from '$lib/components/MultiSelectFilter.svelte';
-	import { Trash2, Search, Plus, Eye, Check, XCircle, RefreshCw, Icon, AlertTriangle, X, Network, Link, Copy, CopyPlus, Share2, Server, Globe, MonitorSmartphone, Cpu, CircleOff } from 'lucide-svelte';
-	import { broom } from '@lucide/lab';
+	import { Trash2, Search, Plus, Eye, Check, XCircle, RefreshCw, Icon, AlertTriangle, X, Network, Link, Copy, CopyPlus, Share2, Server, Globe, MonitorSmartphone, Cpu, CircleOff, BrushCleaning } from 'lucide-svelte';
 	import { copyToClipboard } from '$lib/utils/clipboard';
 	import ConfirmPopover from '$lib/components/ConfirmPopover.svelte';
-	import BatchOperationModal from '$lib/components/BatchOperationModal.svelte';
+	import BatchOperationModal from '$lib/components/modals/BatchOperationModal.svelte';
 	import NetworkInspectModal from './NetworkInspectModal.svelte';
 	import ConnectContainerModal from './ConnectContainerModal.svelte';
 	import type { NetworkInfo } from '$lib/types';
@@ -500,7 +499,7 @@
 		<PageHeader icon={Network} title="Networks" count={networks.length} />
 		<div class="flex flex-wrap items-center gap-2">
 			<div class="relative">
-				<Search class="absolute left-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
+				<Search class="absolute left-2 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
 				<Input
 					type="text"
 					placeholder="Search networks..."
@@ -537,13 +536,13 @@
 				{#snippet children({ open })}
 					<span class="inline-flex items-center gap-1.5 h-8 px-3 rounded-md text-sm bg-background shadow-xs border hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 {pruneStatus === 'pruning' ? 'opacity-50 pointer-events-none' : ''}">
 						{#if pruneStatus === 'pruning'}
-							<RefreshCw class="w-3.5 h-3.5 animate-spin" />
+							<RefreshCw class="size-4 animate-spin" />
 						{:else if pruneStatus === 'success'}
-							<Check class="w-3.5 h-3.5 text-green-600" />
+							<Check class="size-4 text-green-600" />
 						{:else if pruneStatus === 'error'}
-							<XCircle class="w-3.5 h-3.5 text-destructive" />
+							<XCircle class="size-4 text-destructive" />
 						{:else}
-							<Icon iconNode={broom} class="w-3.5 h-3.5" />
+							<BrushCleaning class="size-4" />
 						{/if}
 						Prune
 					</span>
@@ -551,12 +550,12 @@
 			</ConfirmPopover>
 			{/if}
 			<Button size="sm" variant="outline" onclick={fetchNetworks}>
-				<RefreshCw class="w-3.5 h-3.5" />
+				<RefreshCw class="size-4" />
 				Refresh
 			</Button>
 			{#if $canAccess('networks', 'create')}
 			<Button size="sm" variant="secondary" onclick={() => showCreateModal = true}>
-				<Plus class="w-3.5 h-3.5" />
+				<Plus class="size-4" />
 				Create
 			</Button>
 			{/if}
@@ -587,7 +586,7 @@
 			>
 				{#snippet children({ open })}
 					<span class="inline-flex items-center gap-1 px-1.5 py-0 rounded border border-border hover:text-destructive hover:border-destructive/40 hover:shadow transition-all cursor-pointer">
-						<Trash2 class="w-3 h-3" />
+						<Trash2 class="size-3" />
 						Delete
 					</span>
 				{/snippet}
@@ -646,10 +645,10 @@
 					<div class="flex items-center justify-end gap-1">
 						{#if deleteError?.id === network.id}
 							<div class="absolute bottom-full right-0 mb-1 z-50 bg-destructive text-destructive-foreground rounded-md shadow-lg p-2 text-xs flex items-start gap-2 max-w-lg w-max">
-								<AlertTriangle class="w-3 h-3 flex-shrink-0 mt-0.5" />
+								<AlertTriangle class="size-3 flex-shrink-0 mt-0.5" />
 								<span class="break-words">{deleteError.message}</span>
 								<button onclick={() => deleteError = null} class="flex-shrink-0 hover:bg-white/20 rounded p-0.5">
-									<X class="w-3 h-3" />
+									<X class="size-3" />
 								</button>
 							</div>
 						{/if}
@@ -660,7 +659,7 @@
 							title="View details"
 							class="p-1 rounded hover:bg-muted transition-colors opacity-70 hover:opacity-100 cursor-pointer"
 						>
-							<Eye class="w-3 h-3 text-muted-foreground hover:text-foreground" />
+							<Eye class="size-3 text-muted-foreground hover:text-foreground" />
 						</button>
 						{/if}
 						{#if !isProtected && $canAccess('networks', 'connect')}
@@ -670,7 +669,7 @@
 							title="Connect container"
 							class="p-1 rounded hover:bg-muted transition-colors opacity-70 hover:opacity-100 cursor-pointer"
 						>
-							<Link class="w-3 h-3 text-muted-foreground hover:text-green-600" />
+							<Link class="size-3 text-muted-foreground hover:text-green-600" />
 						</button>
 						{/if}
 						<button
@@ -679,7 +678,7 @@
 							title="Copy network ID"
 							class="p-1 rounded hover:bg-muted transition-colors opacity-70 hover:opacity-100 cursor-pointer"
 						>
-							<Copy class="w-3 h-3 text-muted-foreground hover:text-foreground" />
+							<Copy class="size-3 text-muted-foreground hover:text-foreground" />
 						</button>
 						{#if !isProtected && $canAccess('networks', 'create')}
 						<button
@@ -688,7 +687,7 @@
 							title="Duplicate network"
 							class="p-1 rounded hover:bg-muted transition-colors opacity-70 hover:opacity-100 cursor-pointer"
 						>
-							<CopyPlus class="w-3 h-3 text-muted-foreground hover:text-foreground" />
+							<CopyPlus class="size-3 text-muted-foreground hover:text-foreground" />
 						</button>
 						{/if}
 						{#if !isProtected && $canAccess('networks', 'remove')}
@@ -702,7 +701,7 @@
 							onOpenChange={(open) => confirmDeleteId = open ? network.id : null}
 						>
 							{#snippet children({ open })}
-								<Trash2 class="w-3 h-3 {open ? 'text-destructive' : 'text-muted-foreground hover:text-destructive'}" />
+								<Trash2 class="size-3 {open ? 'text-destructive' : 'text-muted-foreground hover:text-destructive'}" />
 							{/snippet}
 						</ConfirmPopover>
 						{/if}

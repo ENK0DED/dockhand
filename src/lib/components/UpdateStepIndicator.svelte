@@ -18,7 +18,7 @@
 <div class="flex items-center gap-1.5">
 	<svelte:component
 		this={Icon}
-		class="w-4 h-4 shrink-0 {colorClass} {isActive ? 'animate-spin' : ''}"
+		class="size-4 shrink-0 {colorClass} {isActive ? 'animate-spin' : ''}"
 	/>
 	{#if showLabel}
 		<span class="text-xs {colorClass}">{label}</span>

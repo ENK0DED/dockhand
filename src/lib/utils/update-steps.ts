@@ -136,11 +136,11 @@ export const vulnerabilityCriteriaIcons: Record<
 	VulnerabilityCriteria,
 	{ component: ComponentType; class: string; title: string }
 > = {
-	never: { component: ShieldOff, class: 'w-3.5 h-3.5 text-muted-foreground', title: 'No vulnerability blocking' },
-	any: { component: ShieldAlert, class: 'w-3.5 h-3.5 text-amber-500', title: 'Block on any vulnerability' },
-	critical_high: { component: ShieldX, class: 'w-3.5 h-3.5 text-orange-500', title: 'Block on critical or high' },
-	critical: { component: ShieldX, class: 'w-3.5 h-3.5 text-red-500', title: 'Block on critical only' },
-	more_than_current: { component: Shield, class: 'w-3.5 h-3.5 text-blue-500', title: 'Block if more than current' }
+	never: { component: ShieldOff, class: 'size-4 text-muted-foreground', title: 'No vulnerability blocking' },
+	any: { component: ShieldAlert, class: 'size-4 text-amber-500', title: 'Block on any vulnerability' },
+	critical_high: { component: ShieldX, class: 'size-4 text-orange-500', title: 'Block on critical or high' },
+	critical: { component: ShieldX, class: 'size-4 text-red-500', title: 'Block on critical only' },
+	more_than_current: { component: Shield, class: 'size-4 text-blue-500', title: 'Block if more than current' }
 };
 
 // Get badge variant based on criteria severity

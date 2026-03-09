@@ -52,7 +52,7 @@
 			<div class="flex items-center justify-between gap-2">
 				<!-- Header skeleton -->
 				<div class="flex items-center gap-1.5 min-w-0 flex-1">
-					<div class="skeleton w-6 h-6 rounded-md shrink-0"></div>
+					<div class="skeleton size-6 rounded-md shrink-0"></div>
 					<div class="min-w-0 flex-1">
 						{#if name}
 							<div class="font-medium text-xs truncate">{name}</div>
@@ -69,19 +69,19 @@
 				</div>
 				<!-- Status icons skeleton -->
 				<div class="flex items-center gap-1 shrink-0">
-					<div class="skeleton w-3.5 h-3.5 rounded-full"></div>
-					<div class="skeleton w-3.5 h-3.5 rounded-full"></div>
+					<div class="skeleton size-4 rounded-full"></div>
+					<div class="skeleton size-4 rounded-full"></div>
 				</div>
 			</div>
 			<!-- CPU/Memory bars skeleton -->
 			<div class="flex items-center gap-3 mt-1.5">
 				<div class="flex items-center gap-1.5 flex-1">
-					<div class="skeleton w-3 h-3 rounded"></div>
+					<div class="skeleton size-3 rounded"></div>
 					<div class="skeleton h-1.5 rounded-full flex-1"></div>
 					<div class="skeleton w-6 h-3 rounded"></div>
 				</div>
 				<div class="flex items-center gap-1.5 flex-1">
-					<div class="skeleton w-3 h-3 rounded"></div>
+					<div class="skeleton size-3 rounded"></div>
 					<div class="skeleton h-1.5 rounded-full flex-1"></div>
 					<div class="skeleton w-6 h-3 rounded"></div>
 				</div>
@@ -94,7 +94,7 @@
 			<div class="flex items-center justify-between gap-2">
 				<!-- Header skeleton -->
 				<div class="flex items-center gap-1.5 min-w-0 flex-1">
-					<div class="skeleton w-6 h-6 rounded-md shrink-0"></div>
+					<div class="skeleton size-6 rounded-md shrink-0"></div>
 					<div class="min-w-0 flex-1">
 						{#if name}
 							<div class="font-medium text-xs truncate">{name}</div>
@@ -111,19 +111,19 @@
 				</div>
 				<!-- Status icons skeleton -->
 				<div class="flex items-center gap-1 shrink-0">
-					<div class="skeleton w-3.5 h-3.5 rounded-full"></div>
-					<div class="skeleton w-3.5 h-3.5 rounded-full"></div>
+					<div class="skeleton size-4 rounded-full"></div>
+					<div class="skeleton size-4 rounded-full"></div>
 				</div>
 			</div>
 			<!-- CPU/Memory bars skeleton -->
 			<div class="flex items-center gap-3 mt-1.5">
 				<div class="flex items-center gap-1.5 flex-1">
-					<div class="skeleton w-3 h-3 rounded"></div>
+					<div class="skeleton size-3 rounded"></div>
 					<div class="skeleton h-1.5 rounded-full flex-1"></div>
 					<div class="skeleton w-6 h-3 rounded"></div>
 				</div>
 				<div class="flex items-center gap-1.5 flex-1">
-					<div class="skeleton w-3 h-3 rounded"></div>
+					<div class="skeleton size-3 rounded"></div>
 					<div class="skeleton h-1.5 rounded-full flex-1"></div>
 					<div class="skeleton w-6 h-3 rounded"></div>
 				</div>
@@ -135,14 +135,14 @@
 		<Card.Header class="pb-2">
 			<!-- Header skeleton -->
 			<div class="flex items-center gap-2 min-w-0 flex-1">
-				<div class="skeleton p-1.5 rounded-lg w-8 h-8"></div>
+				<div class="skeleton p-1.5 rounded-lg size-8"></div>
 				<div class="min-w-0 flex-1 space-y-1">
 					{#if name}
 						<div class="font-medium text-sm truncate">{name}</div>
 						<div class="text-xs text-muted-foreground truncate">{host || 'Connecting...'}</div>
 					{:else}
 						<div class="skeleton h-4 w-24 rounded"></div>
-						<div class="skeleton h-3 w-32 rounded"></div>
+						<div class="skeleton size-32 rounded"></div>
 					{/if}
 				</div>
 			</div>
@@ -193,14 +193,14 @@
 	{:else if is1x3}
 		<Card.Header class="pb-2">
 			<div class="flex items-center gap-2 min-w-0 flex-1">
-				<div class="skeleton p-1.5 rounded-lg w-8 h-8"></div>
+				<div class="skeleton p-1.5 rounded-lg size-8"></div>
 				<div class="min-w-0 flex-1 space-y-1">
 					{#if name}
 						<div class="font-medium text-sm truncate">{name}</div>
 						<div class="text-xs text-muted-foreground truncate">{host || 'Connecting...'}</div>
 					{:else}
 						<div class="skeleton h-4 w-24 rounded"></div>
-						<div class="skeleton h-3 w-32 rounded"></div>
+						<div class="skeleton size-32 rounded"></div>
 					{/if}
 				</div>
 			</div>
@@ -251,7 +251,7 @@
 				<div class="space-y-1.5">
 					{#each [1, 2, 3, 4, 5, 6, 7, 8] as _}
 						<div class="flex items-center gap-2">
-							<div class="skeleton w-3 h-3 rounded"></div>
+							<div class="skeleton size-3 rounded"></div>
 							<div class="skeleton h-3 flex-1 rounded"></div>
 							<div class="skeleton h-3 w-10 rounded"></div>
 						</div>
@@ -264,14 +264,14 @@
 	{:else if is1x4}
 		<Card.Header class="pb-2">
 			<div class="flex items-center gap-2 min-w-0 flex-1">
-				<div class="skeleton p-1.5 rounded-lg w-8 h-8"></div>
+				<div class="skeleton p-1.5 rounded-lg size-8"></div>
 				<div class="min-w-0 flex-1 space-y-1">
 					{#if name}
 						<div class="font-medium text-sm truncate">{name}</div>
 						<div class="text-xs text-muted-foreground truncate">{host || 'Connecting...'}</div>
 					{:else}
 						<div class="skeleton h-4 w-24 rounded"></div>
-						<div class="skeleton h-3 w-32 rounded"></div>
+						<div class="skeleton size-32 rounded"></div>
 					{/if}
 				</div>
 			</div>
@@ -322,7 +322,7 @@
 				<div class="space-y-1.5">
 					{#each [1, 2, 3, 4, 5, 6, 7, 8] as _}
 						<div class="flex items-center gap-2">
-							<div class="skeleton w-3 h-3 rounded"></div>
+							<div class="skeleton size-3 rounded"></div>
 							<div class="skeleton h-3 flex-1 rounded"></div>
 							<div class="skeleton h-3 w-10 rounded"></div>
 						</div>
@@ -331,7 +331,7 @@
 			</div>
 			<!-- Top containers skeleton -->
 			<div class="pt-2 border-t border-border/50">
-				<div class="skeleton h-3 w-32 rounded mb-2"></div>
+				<div class="skeleton size-32 rounded mb-2"></div>
 				<div class="space-y-1.5">
 					{#each [1, 2, 3, 4, 5, 6, 7, 8] as _}
 						<div class="grid grid-cols-[1fr_auto_auto] gap-x-3 items-center">
@@ -348,14 +348,14 @@
 	{:else if is2x2}
 		<Card.Header class="pb-2">
 			<div class="flex items-center gap-2 min-w-0 flex-1">
-				<div class="skeleton p-1.5 rounded-lg w-8 h-8"></div>
+				<div class="skeleton p-1.5 rounded-lg size-8"></div>
 				<div class="min-w-0 flex-1 space-y-1">
 					{#if name}
 						<div class="font-medium text-sm truncate">{name}</div>
 						<div class="text-xs text-muted-foreground truncate">{host || 'Connecting...'}</div>
 					{:else}
 						<div class="skeleton h-4 w-24 rounded"></div>
-						<div class="skeleton h-3 w-32 rounded"></div>
+						<div class="skeleton size-32 rounded"></div>
 					{/if}
 				</div>
 			</div>
@@ -408,7 +408,7 @@
 				<div class="space-y-3 border-l border-border/50 pl-4">
 					<!-- Top containers skeleton -->
 					<div class="pt-2 border-t border-border/50">
-						<div class="skeleton h-3 w-32 rounded mb-2"></div>
+						<div class="skeleton size-32 rounded mb-2"></div>
 						<div class="space-y-1.5">
 							{#each [1, 2, 3, 4, 5, 6, 7, 8] as _}
 								<div class="grid grid-cols-[1fr_auto_auto] gap-x-3 items-center">
@@ -427,14 +427,14 @@
 	{:else if is2x3}
 		<Card.Header class="pb-2">
 			<div class="flex items-center gap-2 min-w-0 flex-1">
-				<div class="skeleton p-1.5 rounded-lg w-8 h-8"></div>
+				<div class="skeleton p-1.5 rounded-lg size-8"></div>
 				<div class="min-w-0 flex-1 space-y-1">
 					{#if name}
 						<div class="font-medium text-sm truncate">{name}</div>
 						<div class="text-xs text-muted-foreground truncate">{host || 'Connecting...'}</div>
 					{:else}
 						<div class="skeleton h-4 w-24 rounded"></div>
-						<div class="skeleton h-3 w-32 rounded"></div>
+						<div class="skeleton size-32 rounded"></div>
 					{/if}
 				</div>
 			</div>
@@ -488,7 +488,7 @@
 						<div class="space-y-1.5">
 							{#each [1, 2, 3, 4, 5] as _}
 								<div class="flex items-center gap-2">
-									<div class="skeleton w-3 h-3 rounded"></div>
+									<div class="skeleton size-3 rounded"></div>
 									<div class="skeleton h-3 flex-1 rounded"></div>
 									<div class="skeleton h-3 w-10 rounded"></div>
 								</div>
@@ -500,7 +500,7 @@
 				<div class="space-y-3 border-l border-border/50 pl-4">
 					<!-- Top containers skeleton -->
 					<div class="pt-2 border-t border-border/50">
-						<div class="skeleton h-3 w-32 rounded mb-2"></div>
+						<div class="skeleton size-32 rounded mb-2"></div>
 						<div class="space-y-1.5">
 							{#each [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] as _}
 								<div class="grid grid-cols-[1fr_auto_auto] gap-x-3 items-center">
@@ -524,14 +524,14 @@
 	{:else if is2x4}
 		<Card.Header class="pb-2">
 			<div class="flex items-center gap-2 min-w-0 flex-1">
-				<div class="skeleton p-1.5 rounded-lg w-8 h-8"></div>
+				<div class="skeleton p-1.5 rounded-lg size-8"></div>
 				<div class="min-w-0 flex-1 space-y-1">
 					{#if name}
 						<div class="font-medium text-sm truncate">{name}</div>
 						<div class="text-xs text-muted-foreground truncate">{host || 'Connecting...'}</div>
 					{:else}
 						<div class="skeleton h-4 w-24 rounded"></div>
-						<div class="skeleton h-3 w-32 rounded"></div>
+						<div class="skeleton size-32 rounded"></div>
 					{/if}
 				</div>
 			</div>
@@ -585,7 +585,7 @@
 						<div class="space-y-1.5">
 							{#each [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] as _}
 								<div class="flex items-center gap-2">
-									<div class="skeleton w-3 h-3 rounded"></div>
+									<div class="skeleton size-3 rounded"></div>
 									<div class="skeleton h-3 flex-1 rounded"></div>
 									<div class="skeleton h-3 w-10 rounded"></div>
 								</div>
@@ -594,7 +594,7 @@
 					</div>
 					<!-- Top containers skeleton -->
 					<div class="pt-2 border-t border-border/50">
-						<div class="skeleton h-3 w-32 rounded mb-2"></div>
+						<div class="skeleton size-32 rounded mb-2"></div>
 						<div class="space-y-1.5">
 							{#each [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] as _}
 								<div class="grid grid-cols-[1fr_auto_auto] gap-x-3 items-center">
@@ -624,7 +624,7 @@
 							<div class="flex-1 space-y-1.5">
 								{#each [1, 2, 3, 4] as _}
 									<div class="flex items-center gap-1.5">
-										<div class="skeleton w-2 h-2 rounded-full"></div>
+										<div class="skeleton size-2 rounded-full"></div>
 										<div class="skeleton h-3 w-16 rounded"></div>
 										<div class="skeleton h-3 w-12 rounded ml-auto"></div>
 									</div>

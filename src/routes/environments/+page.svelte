@@ -251,7 +251,7 @@
 		</PageHeader>
 		<div class="flex gap-2">
 			<Button size="sm" onclick={openAddModal}>
-				<Plus class="w-4 h-4" />
+				<Plus class="size-4" />
 				Add environment
 			</Button>
 			<Button size="sm" variant="outline" onclick={fetchEnvironments}>Refresh</Button>
@@ -270,7 +270,7 @@
 					<Card.Header class="pb-2">
 						<div class="flex items-start justify-between">
 							<div class="flex items-center gap-2">
-								<Globe class="w-5 h-5 text-muted-foreground" />
+								<Globe class="size-5 text-muted-foreground" />
 								<Card.Title class="text-base">{env.name}</Card.Title>
 							</div>
 						</div>
@@ -290,12 +290,12 @@
 							<div class="text-sm">
 								{#if testResult === 'testing'}
 									<div class="flex items-center gap-2 text-muted-foreground">
-										<RefreshCw class="w-4 h-4 animate-spin" />
+										<RefreshCw class="size-4 animate-spin" />
 										<span>Testing connection...</span>
 									</div>
 								{:else if testResult.success}
 									<div class="flex items-center gap-2 text-green-600 dark:text-green-400">
-										<Wifi class="w-4 h-4" />
+										<Wifi class="size-4" />
 										<span>Connected</span>
 									</div>
 									{#if testResult.info}
@@ -307,7 +307,7 @@
 									{/if}
 								{:else}
 									<div class="flex items-center gap-2 text-red-600 dark:text-red-400">
-										<WifiOff class="w-4 h-4" />
+										<WifiOff class="size-4" />
 										<span>Failed</span>
 									</div>
 									{#if testResult.error}
@@ -325,9 +325,9 @@
 								disabled={testResult === 'testing'}
 							>
 								{#if testResult === 'testing'}
-									<RefreshCw class="w-3 h-3 mr-1 animate-spin" />
+									<RefreshCw class="size-3 animate-spin" />
 								{:else}
-									<Wifi class="w-3 h-3" />
+									<Wifi class="size-3" />
 								{/if}
 								Test
 							</Button>
@@ -336,14 +336,14 @@
 								size="sm"
 								onclick={() => openEditModal(env)}
 							>
-								<Pencil class="w-3 h-3" />
+								<Pencil class="size-3" />
 							</Button>
 							<Button
 									variant="outline"
 									size="sm"
 									onclick={() => deleteEnvironment(env.id)}
 								>
-									<Trash2 class="w-3 h-3 text-destructive" />
+									<Trash2 class="size-3 text-destructive" />
 								</Button>
 						</div>
 					</Card.Content>
@@ -406,19 +406,19 @@
 					<Select.Root type="single" bind:value={formProtocol}>
 						<Select.Trigger class="w-full h-9">
 							{#if formProtocol === 'https'}
-								<Lock class="w-4 h-4 mr-2 text-muted-foreground" />
+								<Lock class="size-4 mr-2 text-muted-foreground" />
 							{:else}
-								<Unlock class="w-4 h-4 mr-2 text-muted-foreground" />
+								<Unlock class="size-4 mr-2 text-muted-foreground" />
 							{/if}
 							<span>{formProtocol === 'https' ? 'HTTPS (TLS)' : 'HTTP'}</span>
 						</Select.Trigger>
 						<Select.Content>
 							<Select.Item value="http" label="HTTP">
-								<Unlock class="w-4 h-4 mr-2 text-muted-foreground" />
+								<Unlock class="size-4 mr-2 text-muted-foreground" />
 								HTTP
 							</Select.Item>
 							<Select.Item value="https" label="HTTPS (TLS)">
-								<Lock class="w-4 h-4 mr-2 text-muted-foreground" />
+								<Lock class="size-4 mr-2 text-muted-foreground" />
 								HTTPS (TLS)
 							</Select.Item>
 						</Select.Content>
@@ -462,9 +462,9 @@
 			<Button variant="outline" onclick={() => (showAddModal = false)}>Cancel</Button>
 			<Button onclick={createEnvironment} disabled={formSaving}>
 				{#if formSaving}
-					<RefreshCw class="w-4 h-4 mr-1 animate-spin" />
+					<RefreshCw class="size-4 animate-spin" />
 				{:else}
-					<Plus class="w-4 h-4" />
+					<Plus class="size-4" />
 				{/if}
 				Add
 			</Button>
@@ -525,19 +525,19 @@
 					<Select.Root type="single" bind:value={formProtocol}>
 						<Select.Trigger class="w-full h-9">
 							{#if formProtocol === 'https'}
-								<Lock class="w-4 h-4 mr-2 text-muted-foreground" />
+								<Lock class="size-4 mr-2 text-muted-foreground" />
 							{:else}
-								<Unlock class="w-4 h-4 mr-2 text-muted-foreground" />
+								<Unlock class="size-4 mr-2 text-muted-foreground" />
 							{/if}
 							<span>{formProtocol === 'https' ? 'HTTPS (TLS)' : 'HTTP'}</span>
 						</Select.Trigger>
 						<Select.Content>
 							<Select.Item value="http" label="HTTP">
-								<Unlock class="w-4 h-4 mr-2 text-muted-foreground" />
+								<Unlock class="size-4 mr-2 text-muted-foreground" />
 								HTTP
 							</Select.Item>
 							<Select.Item value="https" label="HTTPS (TLS)">
-								<Lock class="w-4 h-4 mr-2 text-muted-foreground" />
+								<Lock class="size-4 mr-2 text-muted-foreground" />
 								HTTPS (TLS)
 							</Select.Item>
 						</Select.Content>
@@ -581,9 +581,9 @@
 			<Button variant="outline" onclick={() => { showEditModal = false; editingEnv = null; }}>Cancel</Button>
 			<Button onclick={updateEnvironment} disabled={formSaving}>
 				{#if formSaving}
-					<RefreshCw class="w-4 h-4 mr-1 animate-spin" />
+					<RefreshCw class="size-4 animate-spin" />
 				{:else}
-					<Check class="w-4 h-4" />
+					<Check class="size-4" />
 				{/if}
 				Save
 			</Button>

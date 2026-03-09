@@ -162,14 +162,14 @@
 			<div class="flex items-center justify-between">
 				<div>
 					<Card.Title class="text-sm font-medium flex items-center gap-2">
-						<LogIn class="w-4 h-4" />
+						<LogIn class="size-4" />
 						SSO providers
 					</Card.Title>
 					<p class="text-xs text-muted-foreground mt-1">Enable SSO using OpenID Connect providers like Okta, Auth0, Azure AD, or Google Workspace.</p>
 				</div>
 				{#if $canAccess('settings', 'edit')}
 					<Button size="sm" onclick={() => openOidcModal(null)}>
-						<Plus class="w-4 h-4" />
+						<Plus class="size-4" />
 						Add provider
 					</Button>
 				{/if}
@@ -178,7 +178,7 @@
 		<Card.Content>
 			{#if oidcLoading}
 				<div class="flex items-center justify-center py-4">
-					<RefreshCw class="w-6 h-6 animate-spin text-muted-foreground" />
+					<RefreshCw class="size-6 animate-spin text-muted-foreground" />
 				</div>
 			{:else if oidcConfigs.length === 0}
 				<EmptyState
@@ -211,9 +211,9 @@
 									disabled={oidcTesting === config.id}
 								>
 									{#if oidcTesting === config.id}
-										<RefreshCw class="w-4 h-4 animate-spin" />
+										<RefreshCw class="size-4 animate-spin" />
 									{:else}
-										<Zap class="w-4 h-4" />
+										<Zap class="size-4" />
 									{/if}
 								</Button>
 								{#if $canAccess('settings', 'edit')}
@@ -224,9 +224,9 @@
 										onclick={() => toggleOidcEnabled(config)}
 									>
 										{#if config.enabled}
-											<Pause class="w-4 h-4" />
+											<Pause class="size-4" />
 										{:else}
-											<Play class="w-4 h-4" />
+											<Play class="size-4" />
 										{/if}
 									</Button>
 									<Button
@@ -235,7 +235,7 @@
 										title="Edit provider"
 										onclick={() => openOidcModal(config)}
 									>
-										<Pencil class="w-4 h-4" />
+										<Pencil class="size-4" />
 									</Button>
 									<ConfirmPopover
 										open={confirmDeleteOidcId === config.id}
@@ -247,7 +247,7 @@
 										onOpenChange={(open) => confirmDeleteOidcId = open ? config.id : null}
 									>
 										{#snippet children({ open })}
-											<Trash2 class="w-4 h-4 {open ? 'text-destructive' : 'text-muted-foreground hover:text-destructive'}" />
+											<Trash2 class="size-4 {open ? 'text-destructive' : 'text-muted-foreground hover:text-destructive'}" />
 										{/snippet}
 									</ConfirmPopover>
 								{/if}
@@ -261,7 +261,7 @@
 				<div class="mt-4 p-3 border rounded-md {oidcTestResult.success ? 'border-green-500 bg-green-500/10' : 'border-destructive bg-destructive/10'}">
 					{#if oidcTestResult.success}
 						<div class="flex items-center gap-2 text-green-600">
-							<Check class="w-4 h-4" />
+							<Check class="size-4" />
 							<p class="text-sm font-medium">Connection successful</p>
 						</div>
 						{#if oidcTestResult.issuer}
@@ -269,7 +269,7 @@
 						{/if}
 					{:else}
 						<div class="flex items-center gap-2 text-destructive">
-							<XCircle class="w-4 h-4" />
+							<XCircle class="size-4" />
 							<p class="text-sm">Connection failed: {oidcTestResult.error}</p>
 						</div>
 					{/if}

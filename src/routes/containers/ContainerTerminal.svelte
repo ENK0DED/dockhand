@@ -272,11 +272,11 @@
 		<Dialog.Header class="px-4 py-3 border-b flex-shrink-0">
 			<div class="flex items-center justify-between">
 				<div class="flex items-center gap-2">
-					<TerminalIcon class="w-5 h-5" />
+					<TerminalIcon class="size-5" />
 					<Dialog.Title>Terminal - {containerName}</Dialog.Title>
 					{#if connected}
 						<span class="inline-flex items-center gap-1 text-xs text-green-500">
-							<span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+							<span class="size-2 rounded-full bg-green-500 animate-pulse"></span>
 							Connected
 						</span>
 					{/if}
@@ -285,7 +285,7 @@
 					onclick={handleClose}
 					class="p-1 rounded hover:bg-muted transition-colors"
 				>
-					<X class="w-4 h-4" />
+					<X class="size-4" />
 				</button>
 			</div>
 		</Dialog.Header>
@@ -294,12 +294,12 @@
 			<div class="flex-1 flex items-center justify-center p-6">
 				{#if detectingShells}
 					<div class="text-center">
-						<Loader2 class="w-12 h-12 mx-auto mb-4 text-muted-foreground animate-spin" />
+						<Loader2 class="size-12 mx-auto mb-4 text-muted-foreground animate-spin" />
 						<h3 class="text-lg font-medium">Detecting available shells...</h3>
 					</div>
 				{:else if !anyShellAvailable}
 					<div class="text-center">
-						<AlertCircle class="w-12 h-12 mx-auto mb-4 text-amber-500" />
+						<AlertCircle class="size-12 mx-auto mb-4 text-amber-500" />
 						<h3 class="text-lg font-medium text-amber-500">No shell available</h3>
 						<p class="text-sm text-muted-foreground mt-2">
 							This container does not have any shell installed.
@@ -314,7 +314,7 @@
 				{:else}
 					<div class="w-full max-w-md space-y-6">
 						<div class="text-center">
-							<TerminalIcon class="w-12 h-12 mx-auto mb-4 text-muted-foreground" />
+							<TerminalIcon class="size-12 mx-auto mb-4 text-muted-foreground" />
 							<h3 class="text-lg font-medium">Open terminal session</h3>
 							<p class="text-sm text-muted-foreground mt-1">
 								Configure the shell and user for this session
@@ -326,7 +326,7 @@
 								<Label>Shell</Label>
 								<Select.Root type="single" bind:value={selectedShell}>
 									<Select.Trigger class="w-full h-10">
-										<Shell class="w-4 h-4 mr-2 text-muted-foreground" />
+										<Shell class="size-4 mr-2 text-muted-foreground" />
 										<span>{shellDetection?.allShells.find(o => o.path === selectedShell)?.label || 'Select shell'}</span>
 									</Select.Trigger>
 									<Select.Content>
@@ -337,7 +337,7 @@
 													label={option.label}
 													disabled={!option.available}
 												>
-													<Shell class="w-4 h-4 mr-2 {option.available ? 'text-green-500' : 'text-muted-foreground/40'}" />
+													<Shell class="size-4 mr-2 {option.available ? 'text-green-500' : 'text-muted-foreground/40'}" />
 													<span class={option.available ? 'text-foreground' : 'text-muted-foreground/60'}>
 														{option.label}
 														{#if !option.available}
@@ -355,13 +355,13 @@
 								<Label>User</Label>
 								<Select.Root type="single" bind:value={selectedUser}>
 									<Select.Trigger class="w-full h-10">
-										<User class="w-4 h-4 mr-2 text-muted-foreground" />
+										<User class="size-4 mr-2 text-muted-foreground" />
 										<span>{USER_OPTIONS.find(o => o.value === selectedUser)?.label || 'Select user'}</span>
 									</Select.Trigger>
 									<Select.Content>
 										{#each USER_OPTIONS as option}
 											<Select.Item value={option.value} label={option.label}>
-												<User class="w-4 h-4 mr-2 text-muted-foreground" />
+												<User class="size-4 mr-2 text-muted-foreground" />
 												{option.label}
 											</Select.Item>
 										{/each}
@@ -372,11 +372,11 @@
 
 						<div class="flex gap-2">
 							<Button onclick={startSession} class="flex-1" disabled={!xtermLoaded || !anyShellAvailable}>
-								<TerminalIcon class="w-4 h-4" />
+								<TerminalIcon class="size-4" />
 								{xtermLoaded ? 'Connect' : 'Loading...'}
 							</Button>
 							<Button onclick={openInNewWindow} variant="outline" disabled={!xtermLoaded} title="Open in new window">
-								<ExternalLink class="w-4 h-4" />
+								<ExternalLink class="size-4" />
 							</Button>
 						</div>
 					</div>

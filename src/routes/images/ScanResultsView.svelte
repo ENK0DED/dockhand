@@ -164,7 +164,7 @@
 				{/if}
 				{#if activeResult.vulnerabilities.length === 0}
 					<Badge variant="outline" class="bg-green-500/10 text-green-500 border-green-500/30 text-xs py-0">
-						<CheckCircle2 class="w-3 h-3 mr-1" />
+						<CheckCircle2 class="size-3 mr-1" />
 						No vulnerabilities
 					</Badge>
 				{/if}
@@ -184,9 +184,9 @@
 									<button type="button" class="flex items-center gap-1 hover:text-foreground transition-colors" onclick={() => toggleSort('id')}>
 										CVE ID
 										{#if sortBy === 'id'}
-											{#if sortDir === 'asc'}<ArrowUp class="w-3 h-3" />{:else}<ArrowDown class="w-3 h-3" />{/if}
+											{#if sortDir === 'asc'}<ArrowUp class="size-3" />{:else}<ArrowDown class="size-3" />{/if}
 										{:else}
-											<ArrowUpDown class="w-3 h-3 opacity-30" />
+											<ArrowUpDown class="size-3 opacity-30" />
 										{/if}
 									</button>
 								</th>
@@ -194,9 +194,9 @@
 									<button type="button" class="flex items-center gap-1 hover:text-foreground transition-colors" onclick={() => toggleSort('severity')}>
 										Severity
 										{#if sortBy === 'severity'}
-											{#if sortDir === 'asc'}<ArrowUp class="w-3 h-3" />{:else}<ArrowDown class="w-3 h-3" />{/if}
+											{#if sortDir === 'asc'}<ArrowUp class="size-3" />{:else}<ArrowDown class="size-3" />{/if}
 										{:else}
-											<ArrowUpDown class="w-3 h-3 opacity-30" />
+											<ArrowUpDown class="size-3 opacity-30" />
 										{/if}
 									</button>
 								</th>
@@ -204,9 +204,9 @@
 									<button type="button" class="flex items-center gap-1 hover:text-foreground transition-colors" onclick={() => toggleSort('package')}>
 										Package
 										{#if sortBy === 'package'}
-											{#if sortDir === 'asc'}<ArrowUp class="w-3 h-3" />{:else}<ArrowDown class="w-3 h-3" />{/if}
+											{#if sortDir === 'asc'}<ArrowUp class="size-3" />{:else}<ArrowDown class="size-3" />{/if}
 										{:else}
-											<ArrowUpDown class="w-3 h-3 opacity-30" />
+											<ArrowUpDown class="size-3 opacity-30" />
 										{/if}
 									</button>
 								</th>
@@ -231,7 +231,7 @@
 													onclick={(e) => e.stopPropagation()}
 													class="text-muted-foreground hover:text-foreground"
 												>
-													<ExternalLink class="w-2.5 h-2.5" />
+													<ExternalLink class="size-3" />
 												</a>
 											{/if}
 										</div>

@@ -7,15 +7,13 @@
 	import { Button } from '$lib/components/ui/button';
 	import { Input } from '$lib/components/ui/input';
 	import * as Select from '$lib/components/ui/select';
-	import { Search, Download, Star, RefreshCw, Settings2, List, Play, Copy, Clipboard, Check, Server, Icon, ChevronRight, ChevronDown, Loader2, Tag, Calendar, HardDrive, Trash2 } from 'lucide-svelte';
+	import { Search, Download, Star, RefreshCw, Settings2, List, Play, Copy, Server, Icon, ChevronRight, ChevronDown, Loader2, Tag, Trash2 } from 'lucide-svelte';
 	import ConfirmPopover from '$lib/components/ConfirmPopover.svelte';
 	import { toast } from 'svelte-sonner';
 	import { whale } from '@lucide/lab';
-	import * as Dialog from '$lib/components/ui/dialog';
-	import { Label } from '$lib/components/ui/label';
 	import { Badge } from '$lib/components/ui/badge';
 	import CreateContainerModal from '../containers/CreateContainerModal.svelte';
-	import ImagePullModal from '$lib/components/ImagePullModal.svelte';
+	import ImagePullModal from '$lib/components/modals/ImagePullModal.svelte';
 	import CopyToRegistryModal from './CopyToRegistryModal.svelte';
 	import { canAccess } from '$lib/stores/auth';
 	import { currentEnvironment, appendEnvParam } from '$lib/stores/environment';
@@ -489,7 +487,7 @@
 		<PageHeader icon={Download} title="Registry" showConnection={false} />
 		{#if $canAccess('registries', 'edit')}
 		<a href="/settings?tab=registries" class="inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-8 rounded-md px-3 text-xs">
-			<Settings2 class="w-4 h-4" />
+			<Settings2 class="size-4" />
 			Manage registries
 		</a>
 		{/if}
@@ -501,22 +499,23 @@
 			<Select.Trigger class="h-9 min-w-48 max-w-64 shrink-0">
 				{@const selected = registries.find(r => r.id === selectedRegistryId)}
 				{#if selected && isDockerHub(selected)}
-					<Icon iconNode={whale} class="w-4 h-4 mr-2 text-muted-foreground shrink-0" />
+					<Icon iconNode={whale} class="size-4 mr-2 text-muted-foreground shrink-0" />
 				{:else}
-					<Server class="w-4 h-4 mr-2 text-muted-foreground shrink-0" />
+					<Server class="size-4 mr-2 text-muted-foreground shrink-0" />
 				{/if}
 				<span class="truncate">{selected ? selected.name : 'Select registry'}</span>
 				{#if selected?.hasCredentials}
 					<Badge variant="outline" class="ml-1.5 text-xs shrink-0">auth</Badge>
 				{/if}
 			</Select.Trigger>
+
 			<Select.Content>
 				{#each registries as registry}
 					<Select.Item value={String(registry.id)} label={registry.name}>
 						{#if isDockerHub(registry)}
-							<Icon iconNode={whale} class="w-4 h-4 mr-2 text-muted-foreground" />
+							<Icon iconNode={whale} class="size-4 mr-2 text-muted-foreground" />
 						{:else}
-							<Server class="w-4 h-4 mr-2 text-muted-foreground" />
+							<Server class="size-4 mr-2 text-muted-foreground" />
 						{/if}
 						{registry.name}
 						{#if registry.hasCredentials}
@@ -526,8 +525,9 @@
 				{/each}
 			</Select.Content>
 		</Select.Root>
+
 		<div class="relative flex-1">
-			<Search class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+			<Search class="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
 			<Input
 				type="text"
 				placeholder={selectedRegistry ? `Search ${selectedRegistry.name} for images...` : 'Search for images...'}
@@ -536,20 +536,22 @@
 				class="pl-10"
 			/>
 		</div>
+
 		<Button onclick={search} disabled={loading || browsing || !searchTerm.trim()}>
 			{#if loading}
-				<RefreshCw class="w-4 h-4 mr-1 animate-spin" />
+				<RefreshCw class="size-4 mr-1 animate-spin" />
 			{:else}
-				<Search class="w-4 h-4" />
+				<Search class="size-4" />
 			{/if}
 			Search
 		</Button>
+
 		{#if supportsBrowsing()}
 			<Button variant="outline" onclick={() => browse()} disabled={loading || browsing}>
 				{#if browsing}
-					<RefreshCw class="w-4 h-4 mr-1 animate-spin" />
+					<RefreshCw class="size-4 mr-1 animate-spin" />
 				{:else}
-					<List class="w-4 h-4" />
+					<List class="size-4" />
 				{/if}
 				Browse
 			</Button>
@@ -577,7 +579,7 @@
 		{#if browseMode}
 			<div class="shrink-0 flex items-center gap-2 text-sm">
 				<div class="relative flex-1 max-w-xs">
-					<Search class="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
+					<Search class="absolute left-2.5 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
 					<Input
 						type="text"
 						placeholder="Filter results..."
@@ -585,17 +587,14 @@
 						class="h-8 pl-8 text-xs"
 					/>
 				</div>
+
 				<span class="text-muted-foreground text-xs">
-					{filteredResults.length === results.length
-						? `${results.length} images`
-						: `${filteredResults.length} of ${results.length} images`}
+					{filteredResults.length === results.length ? `${results.length} images` : `${filteredResults.length} of ${results.length} images`}
 				</span>
 			</div>
 		{/if}
-		<div
-			bind:this={scrollContainer}
-			class="flex-1 min-h-0 rounded-lg overflow-auto"
-		>
+
+		<div bind:this={scrollContainer} class="flex-1 min-h-0 rounded-lg overflow-auto">
 			<table class="w-full text-sm">
 				<thead class="bg-muted sticky top-0 z-10">
 					<tr class="border-b">
@@ -607,6 +606,7 @@
 						{/if}
 					</tr>
 				</thead>
+
 				<tbody>
 					{#each filteredResults as result (result.name)}
 						{@const isExpanded = !!expandedImages[result.name]}
@@ -619,9 +619,9 @@
 							<td class="py-1.5 px-2">
 								<div class="flex items-center gap-1.5">
 									{#if isExpanded}
-										<ChevronDown class="w-3.5 h-3.5 text-muted-foreground shrink-0" />
+										<ChevronDown class="size-4 text-muted-foreground shrink-0" />
 									{:else}
-										<ChevronRight class="w-3.5 h-3.5 text-muted-foreground shrink-0" />
+										<ChevronRight class="size-4 text-muted-foreground shrink-0" />
 									{/if}
 									<code class="text-xs">{result.name}</code>
 								</div>
@@ -634,7 +634,7 @@
 								</td>
 								<td class="py-1.5 px-2 text-center">
 									<div class="flex items-center justify-center gap-1">
-										<Star class="w-3 h-3 text-yellow-500" />
+										<Star class="size-3 text-yellow-500" />
 										<span class="text-xs">{result.star_count.toLocaleString()}</span>
 									</div>
 								</td>
@@ -655,7 +655,7 @@
 								<td colspan={browseMode ? 1 : 4} class="py-2 px-2 pl-8">
 									{#if expandState?.loading}
 										<div class="flex items-center gap-2 text-xs text-muted-foreground py-2">
-											<Loader2 class="w-3.5 h-3.5 animate-spin" />
+											<Loader2 class="size-4 animate-spin" />
 											<span>Loading tags...</span>
 										</div>
 									{:else if expandState?.error}
@@ -678,7 +678,7 @@
 														<tr class="hover:bg-muted/30 transition-colors">
 															<td class="py-1 px-2 pr-4">
 																<div class="flex items-center gap-1.5">
-																	<Tag class="w-3 h-3 text-muted-foreground shrink-0" />
+																	<Tag class="size-3 text-muted-foreground shrink-0" />
 																	<code class="font-medium">{tag.name}</code>
 																</div>
 															</td>
@@ -695,7 +695,7 @@
 																		title={envHasScanning ? "Pull and scan this tag" : "Pull this tag"}
 																		class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded hover:bg-muted transition-colors whitespace-nowrap"
 																	>
-																		<Download class="w-3 h-3 text-muted-foreground" />
+																		<Download class="size-3 text-muted-foreground" />
 																		<span class="text-muted-foreground">{envHasScanning ? 'Pull & scan' : 'Pull'}</span>
 																	</button>
 																	<button
@@ -703,7 +703,7 @@
 																		title="Run container with this tag"
 																		class="p-1 rounded hover:bg-muted transition-colors"
 																	>
-																		<Play class="w-3 h-3 text-muted-foreground hover:text-foreground" />
+																		<Play class="size-3 text-muted-foreground hover:text-foreground" />
 																	</button>
 																	{#if pushableRegistries.length > 0}
 																		<button
@@ -711,7 +711,7 @@
 																			title="Copy to another registry"
 																			class="p-1 rounded hover:bg-muted transition-colors"
 																		>
-																			<Copy class="w-3 h-3 text-muted-foreground hover:text-foreground" />
+																			<Copy class="size-3 text-muted-foreground hover:text-foreground" />
 																		</button>
 																	{/if}
 																	{#if supportsBrowsing()}
@@ -729,7 +729,7 @@
 																				class="p-1 rounded hover:bg-red-100 dark:hover:bg-red-900/30 transition-colors"
 																				disabled={deleting}
 																			>
-																				<Trash2 class="w-3 h-3 text-muted-foreground hover:text-red-600 dark:hover:text-red-400" />
+																				<Trash2 class="size-3 text-muted-foreground hover:text-red-600 dark:hover:text-red-400" />
 																			</button>
 																		</ConfirmPopover>
 																	{/if}
@@ -742,7 +742,7 @@
 											<!-- Loading more indicator -->
 											{#if expandState.loadingMore}
 												<div class="flex items-center justify-center py-2 text-xs text-muted-foreground">
-													<Loader2 class="w-3 h-3 animate-spin mr-2" />
+													<Loader2 class="size-3 animate-spin mr-2" />
 													Loading more...
 												</div>
 											{/if}
@@ -775,7 +775,7 @@
 					disabled={loadingMore}
 				>
 					{#if loadingMore}
-						<Loader2 class="w-4 h-4 mr-2 animate-spin" />
+						<Loader2 class="size-4 mr-2 animate-spin" />
 						Loading...
 					{:else}
 						Load more images
@@ -785,7 +785,7 @@
 		{/if}
 	{:else}
 		<div class="text-center py-12 text-muted-foreground">
-			<Download class="w-12 h-12 mx-auto mb-4 opacity-50" />
+			<Download class="size-12 mx-auto mb-4 opacity-50" />
 			<p class="text-sm">
 				{#if supportsBrowsing()}
 					Search or browse {selectedRegistry?.name || 'a registry'} to find images

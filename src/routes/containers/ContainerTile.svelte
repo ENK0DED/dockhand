@@ -19,7 +19,7 @@
 	onclick={onclick}
 >
 	<div class="flex items-center gap-2">
-		<Box class="w-4 h-4 text-muted-foreground shrink-0" />
+		<Box class="size-4 text-muted-foreground shrink-0" />
 		<span class="font-medium text-sm truncate" title={containerName}>{containerName}</span>
 	</div>
 	<div class="text-xs space-y-1">

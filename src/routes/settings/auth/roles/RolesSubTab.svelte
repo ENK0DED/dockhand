@@ -48,6 +48,7 @@
 	import { licenseStore } from '$lib/stores/license';
 	import RoleModal from './RoleModal.svelte';
 	import { getIconComponent } from '$lib/utils/icons';
+  import { fetchEnvironments } from '$lib/utils/new';
 
 	interface Role {
 		id: number;
@@ -172,26 +173,15 @@
 		}
 	}
 
-	async function fetchEnvironments() {
-		try {
-			const response = await fetch('/api/environments');
-			if (response.ok) {
-				environments = await response.json();
-			}
-		} catch (error) {
-			console.error('Failed to fetch environments:', error);
-		}
-	}
-
 	async function openRoleModal(role: Role | null) {
-		await fetchEnvironments(); // Re-fetch to get any newly added environments
+		environments = await fetchEnvironments(); // Re-fetch to get any newly added environments
 		editingRole = role;
 		copyingRole = null;
 		showRoleModal = true;
 	}
 
 	async function copyRole(role: Role) {
-		await fetchEnvironments(); // Re-fetch to get any newly added environments
+		environments = await fetchEnvironments(); // Re-fetch to get any newly added environments
 		editingRole = null;
 		copyingRole = role;
 		showRoleModal = true;
@@ -242,7 +232,7 @@
 	<Card.Root>
 		<Card.Content class="py-12">
 			<div class="flex justify-center">
-				<RefreshCw class="w-6 h-6 animate-spin text-muted-foreground" />
+				<RefreshCw class="size-6 animate-spin text-muted-foreground" />
 			</div>
 		</Card.Content>
 	</Card.Root>
@@ -251,7 +241,7 @@
 		<Card.Content class="py-12">
 			<div class="text-center">
 				<h3 class="text-lg font-medium mb-2 flex items-center justify-center gap-2">
-					<Crown class="w-5 h-5 text-amber-500" />
+					<Crown class="size-5 text-amber-500" />
 					Enterprise feature
 				</h3>
 				<p class="text-sm text-muted-foreground mb-4 max-w-md mx-auto">
@@ -259,7 +249,7 @@
 					roles with granular permissions and assign them to users.
 				</p>
 				<Button onclick={() => onTabChange('license')}>
-					<Key class="w-4 h-4" />
+					<Key class="size-4" />
 					Activate license
 				</Button>
 			</div>
@@ -272,7 +262,7 @@
 				<div class="flex items-center justify-between">
 					<div>
 						<Card.Title class="text-sm font-medium flex items-center gap-2">
-							<Shield class="w-4 h-4" />
+							<Shield class="size-4" />
 							Roles
 						</Card.Title>
 						<p class="text-xs text-muted-foreground mt-1">
@@ -281,7 +271,7 @@
 					</div>
 					{#if $canAccess('settings', 'edit')}
 						<Button size="sm" onclick={() => openRoleModal(null)}>
-							<Plus class="w-4 h-4" />
+							<Plus class="size-4" />
 							Add role
 						</Button>
 					{/if}
@@ -290,11 +280,11 @@
 			<Card.Content>
 				{#if rolesLoading}
 					<div class="flex items-center justify-center py-4">
-						<RefreshCw class="w-6 h-6 animate-spin text-muted-foreground" />
+						<RefreshCw class="size-6 animate-spin text-muted-foreground" />
 					</div>
 				{:else if roles.length === 0}
 					<div class="text-center py-8 text-sm text-muted-foreground">
-						<Shield class="w-8 h-8 mx-auto mb-2 opacity-50" />
+						<Shield class="size-8 mx-auto mb-2 opacity-50" />
 						<p>No roles configured</p>
 						<p class="text-xs">Create a role to define custom permissions</p>
 					</div>
@@ -325,7 +315,7 @@
 													] || 'bg-gray-500/15 text-gray-700 dark:text-gray-400 border-gray-500/30'}"
 												>
 													{#if CategoryIcon}
-														<svelte:component this={CategoryIcon} class="w-3 h-3" />
+														<svelte:component this={CategoryIcon} class="size-3" />
 													{/if}
 													<span class="capitalize">{category}</span>
 													<span class="inline-flex items-center gap-0.5 opacity-70">
@@ -333,7 +323,7 @@
 															{@const PermIcon = permissionIcons[perm]}
 															{#if PermIcon}
 																<span title={perm}>
-																	<svelte:component this={PermIcon} class="w-2.5 h-2.5" />
+																	<svelte:component this={PermIcon} class="size-3" />
 																</span>
 															{/if}
 														{/each}
@@ -348,7 +338,7 @@
 											<span class="text-2xs text-muted-foreground font-medium uppercase tracking-wide mr-1">Env</span>
 											{#if role.environmentIds === null || role.environmentIds === undefined}
 												<Badge variant="secondary" class="text-2xs gap-0.5 px-1 py-0 h-4">
-													<Globe class="w-2.5 h-2.5" />
+													<Globe class="size-3" />
 													All
 												</Badge>
 											{:else if role.environmentIds.length > 0}
@@ -358,7 +348,7 @@
 												{#each envs as env}
 													{@const EnvIcon = getIconComponent(env.icon || 'globe')}
 													<span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-xs border bg-indigo-500/15 text-indigo-700 dark:text-indigo-400 border-indigo-500/30">
-														<EnvIcon class="w-3 h-3" />
+														<EnvIcon class="size-3" />
 														{env.name}
 													</span>
 												{/each}
@@ -372,7 +362,7 @@
 													] || 'bg-gray-500/15 text-gray-700 dark:text-gray-400 border-gray-500/30'}"
 												>
 													{#if CategoryIcon}
-														<svelte:component this={CategoryIcon} class="w-3 h-3" />
+														<svelte:component this={CategoryIcon} class="size-3" />
 													{/if}
 													<span class="capitalize">{category}</span>
 													<span class="inline-flex items-center gap-0.5 opacity-70">
@@ -380,7 +370,7 @@
 															{@const PermIcon = permissionIcons[perm]}
 															{#if PermIcon}
 																<span title={perm}>
-																	<svelte:component this={PermIcon} class="w-2.5 h-2.5" />
+																	<svelte:component this={PermIcon} class="size-3" />
 																</span>
 															{/if}
 														{/each}
@@ -395,15 +385,15 @@
 										{#if role.isSystem}
 											<!-- System roles: only Copy button -->
 											<Button variant="ghost" size="sm" onclick={() => copyRole(role)} title="Copy as new role">
-												<Copy class="w-4 h-4" />
+												<Copy class="size-4" />
 											</Button>
 										{:else}
 											<!-- Custom roles: Copy, Edit and Delete -->
 											<Button variant="ghost" size="sm" onclick={() => copyRole(role)} title="Copy as new role">
-												<Copy class="w-4 h-4" />
+												<Copy class="size-4" />
 											</Button>
 											<Button variant="ghost" size="sm" onclick={() => openRoleModal(role)} title="Edit role">
-												<Pencil class="w-4 h-4" />
+												<Pencil class="size-4" />
 											</Button>
 											<ConfirmPopover
 												open={confirmDeleteRoleId === role.id}
@@ -416,7 +406,7 @@
 											>
 												{#snippet children({ open })}
 													<Trash2
-														class="w-4 h-4 {open
+														class="size-4 {open
 															? 'text-destructive'
 															: 'text-muted-foreground hover:text-destructive'}"
 													/>

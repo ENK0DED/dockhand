@@ -250,7 +250,7 @@
 						{@const selectedDriver = VOLUME_DRIVERS.find(d => d.value === driver)}
 						<span class="flex items-center">
 							{#if selectedDriver}
-								<svelte:component this={selectedDriver.icon} class="w-4 h-4 mr-2 text-muted-foreground" />
+								<svelte:component this={selectedDriver.icon} class="size-4 mr-2 text-muted-foreground" />
 								{selectedDriver.label}
 							{:else}
 								Select driver
@@ -260,7 +260,7 @@
 					<Select.Content>
 						{#each VOLUME_DRIVERS as d}
 							<Select.Item value={d.value} label={d.label}>
-								<svelte:component this={d.icon} class="w-4 h-4 mr-2 text-muted-foreground" />
+								<svelte:component this={d.icon} class="size-4 mr-2 text-muted-foreground" />
 								<div class="flex flex-col">
 									<span>{d.label}</span>
 									<span class="text-xs text-muted-foreground">{d.description}</span>
@@ -361,14 +361,14 @@
 						class="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors"
 						onclick={() => showAdditionalOpts = !showAdditionalOpts}
 					>
-						<ChevronDown class="w-3.5 h-3.5 transition-transform {showAdditionalOpts ? 'rotate-180' : ''}" />
+						<ChevronDown class="size-4 transition-transform {showAdditionalOpts ? 'rotate-180' : ''}" />
 						Additional options
 					</button>
 					{#if showAdditionalOpts}
 						<div class="space-y-2 pl-1">
 							<div class="flex items-center justify-end">
 								<Button type="button" size="sm" variant="outline" onclick={addDriverOpt} disabled={creating}>
-									<Plus class="w-3 h-3" />
+									<Plus class="size-3" />
 									Add option
 								</Button>
 							</div>
@@ -378,7 +378,7 @@
 										<Input bind:value={opt.key} placeholder="Key" disabled={creating} class="flex-1" />
 										<Input bind:value={opt.value} placeholder="Value (optional)" disabled={creating} class="flex-1" />
 										<Button type="button" size="icon" variant="ghost" onclick={() => removeDriverOpt(i)} disabled={creating}>
-											<Trash2 class="w-4 h-4" />
+											<Trash2 class="size-4" />
 										</Button>
 									</div>
 								{/each}
@@ -455,14 +455,14 @@
 						class="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors"
 						onclick={() => showAdditionalOpts = !showAdditionalOpts}
 					>
-						<ChevronDown class="w-3.5 h-3.5 transition-transform {showAdditionalOpts ? 'rotate-180' : ''}" />
+						<ChevronDown class="size-4 transition-transform {showAdditionalOpts ? 'rotate-180' : ''}" />
 						Additional options
 					</button>
 					{#if showAdditionalOpts}
 						<div class="space-y-2 pl-1">
 							<div class="flex items-center justify-end">
 								<Button type="button" size="sm" variant="outline" onclick={addDriverOpt} disabled={creating}>
-									<Plus class="w-3 h-3" />
+									<Plus class="size-3" />
 									Add option
 								</Button>
 							</div>
@@ -472,7 +472,7 @@
 										<Input bind:value={opt.key} placeholder="Key" disabled={creating} class="flex-1" />
 										<Input bind:value={opt.value} placeholder="Value (optional)" disabled={creating} class="flex-1" />
 										<Button type="button" size="icon" variant="ghost" onclick={() => removeDriverOpt(i)} disabled={creating}>
-											<Trash2 class="w-4 h-4" />
+											<Trash2 class="size-4" />
 										</Button>
 									</div>
 								{/each}
@@ -494,7 +494,7 @@
 							onclick={addDriverOpt}
 							disabled={creating}
 						>
-							<Plus class="w-3 h-3" />
+							<Plus class="size-3" />
 							Add option
 						</Button>
 					</div>
@@ -521,7 +521,7 @@
 										onclick={() => removeDriverOpt(i)}
 										disabled={creating}
 									>
-										<Trash2 class="w-4 h-4" />
+										<Trash2 class="size-4" />
 									</Button>
 								</div>
 							{/each}
@@ -543,7 +543,7 @@
 						onclick={addLabel}
 						disabled={creating}
 					>
-						<Plus class="w-3 h-3" />
+						<Plus class="size-3" />
 						Add label
 					</Button>
 				</div>
@@ -570,7 +570,7 @@
 									onclick={() => removeLabel(i)}
 									disabled={creating}
 								>
-									<Trash2 class="w-4 h-4" />
+									<Trash2 class="size-4" />
 								</Button>
 							</div>
 						{/each}

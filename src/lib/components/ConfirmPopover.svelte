@@ -1,16 +1,15 @@
 <script lang="ts">
-	import { Button } from '$lib/components/ui/button';
+	import { Button, type ButtonProps } from '$lib/components/ui/button';
 	import * as Popover from '$lib/components/ui/popover';
 	import type { Snippet } from 'svelte';
 	import { appSettings } from '$lib/stores/settings';
 
-	interface Props {
+	type Props = {
 		open: boolean;
 		action: string;
 		itemName?: string;
 		itemType: string;
 		confirmText?: string;
-		variant?: 'destructive' | 'secondary' | 'default';
 		autoHideMs?: number;
 		title?: string;
 		position?: 'left' | 'right';
@@ -19,7 +18,7 @@
 		onConfirm: () => void;
 		onOpenChange: (open: boolean) => void;
 		children: Snippet<[{ open: boolean }]>;
-	}
+	} & ButtonProps;
 
 	let {
 		open = $bindable(false),
@@ -32,16 +31,10 @@
 		title = '',
 		position = 'right',
 		unstyled = false,
-		disabled = false,
 		onConfirm,
 		onOpenChange,
 		children
 	}: Props = $props();
-
-	const triggerClass = $derived(unstyled
-		? 'inline-flex items-center cursor-pointer'
-		: 'p-1 rounded hover:bg-muted transition-colors opacity-70 hover:opacity-100 cursor-pointer inline-flex items-center'
-	);
 
 	// Get the confirmDestructive setting from the store
 	const confirmDestructive = $derived($appSettings.confirmDestructive);
@@ -86,19 +79,17 @@
 <Popover.Root bind:open onOpenChange={handleOpenChange}>
 	<Popover.Trigger asChild>
 		{#snippet child({ props })}
-			<button
-				type="button"
+			<Button
 				{title}
 				{...props}
 				onclick={handleTriggerClick}
-				class={triggerClass}
 			>
 				{@render children({ open })}
-			</button>
+			</Button>
 		{/snippet}
 	</Popover.Trigger>
 	<Popover.Content
-		class="w-auto p-2 z-[200]"
+		class="w-auto p-2 z-200"
 		side="top"
 		align={position === 'left' ? 'start' : 'end'}
 		sideOffset={8}

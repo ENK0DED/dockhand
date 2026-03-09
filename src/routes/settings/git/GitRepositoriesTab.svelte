@@ -139,7 +139,7 @@
 		</div>
 		{#if $canAccess('settings', 'edit')}
 			<Button size="sm" onclick={() => openModal()}>
-				<Plus class="w-4 h-4" />
+				<Plus class="size-4" />
 				Add repository
 			</Button>
 		{/if}
@@ -163,9 +163,9 @@
 				<div class="flex items-center justify-between py-2 px-3 rounded-md border bg-card hover:bg-muted/50 transition-colors">
 					<div class="flex items-center gap-2 min-w-0 flex-1">
 						{#if repo.url.includes('github.com')}
-							<Github class="w-4 h-4 shrink-0 text-muted-foreground" />
+							<Github class="size-4 shrink-0 text-muted-foreground" />
 						{:else}
-							<FolderGit2 class="w-4 h-4 shrink-0 text-muted-foreground" />
+							<FolderGit2 class="size-4 shrink-0 text-muted-foreground" />
 						{/if}
 						<span class="font-medium text-sm truncate">{repo.name}</span>
 						<span class="text-xs text-muted-foreground truncate hidden sm:inline">{repo.url}</span>
@@ -174,45 +174,45 @@
 						{#if testResult?.id === repo.id}
 							<span class="flex items-center gap-1 text-xs px-2 py-0.5 rounded {testResult.success ? 'text-green-600 bg-green-50 dark:bg-green-950/30' : 'text-red-600 bg-red-50 dark:bg-red-950/30'}">
 								{#if testResult.success}
-									<CheckCircle class="w-3 h-3" />
+									<CheckCircle class="size-3" />
 								{:else}
-									<XCircle class="w-3 h-3" />
+									<XCircle class="size-3" />
 								{/if}
 								<span class="hidden sm:inline">{testResult.message}</span>
 							</span>
 						{/if}
 						{#if repo.credentialName}
 							<span class="flex items-center gap-1 text-xs text-muted-foreground" title="Using credential: {repo.credentialName}">
-								<Lock class="w-3 h-3" />
+								<Lock class="size-3" />
 								<span class="hidden sm:inline">{repo.credentialName}</span>
 							</span>
 						{:else}
 							<span class="flex items-center gap-1 text-xs text-muted-foreground" title="Public repository">
-								<Globe class="w-3 h-3" />
+								<Globe class="size-3" />
 								<span class="hidden sm:inline">Public</span>
 							</span>
 						{/if}
 						<Badge variant="outline" class="text-xs flex items-center gap-1">
-							<GitBranch class="w-3 h-3" />
+							<GitBranch class="size-3" />
 							{repo.branch}
 						</Badge>
 						<Button
 							variant="ghost"
 							size="icon"
-							class="h-7 w-7"
+							class="size-7"
 							onclick={() => testRepository(repo.id)}
 							disabled={testingId === repo.id}
 							title="Test connection"
 						>
 							{#if testingId === repo.id}
-								<Loader2 class="w-3.5 h-3.5 animate-spin" />
+								<Loader2 class="size-4 animate-spin" />
 							{:else}
-								<Plug class="w-3.5 h-3.5" />
+								<Plug class="size-4" />
 							{/if}
 						</Button>
 						{#if $canAccess('settings', 'edit')}
-							<Button variant="ghost" size="icon" class="h-7 w-7" onclick={() => openModal(repo)} title="Edit repository">
-								<Pencil class="w-3.5 h-3.5" />
+							<Button variant="ghost" size="icon" class="size-7" onclick={() => openModal(repo)} title="Edit repository">
+								<Pencil class="size-4" />
 							</Button>
 							<ConfirmPopover
 								open={confirmDeleteId === repo.id}
@@ -224,7 +224,7 @@
 								onOpenChange={(open) => confirmDeleteId = open ? repo.id : null}
 							>
 								{#snippet children({ open })}
-									<Trash2 class="w-3.5 h-3.5 {open ? 'text-destructive' : 'text-muted-foreground hover:text-destructive'}" />
+									<Trash2 class="size-4 {open ? 'text-destructive' : 'text-muted-foreground hover:text-destructive'}" />
 								{/snippet}
 							</ConfirmPopover>
 						{/if}

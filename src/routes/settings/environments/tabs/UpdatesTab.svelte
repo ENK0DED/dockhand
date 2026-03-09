@@ -7,6 +7,7 @@
 	import VulnerabilityCriteriaSelector, { type VulnerabilityCriteria } from '$lib/components/VulnerabilityCriteriaSelector.svelte';
 	import { CircleFadingArrowUp, CircleArrowUp, RefreshCw, Info, Trash2 } from 'lucide-svelte';
 	import { formatDateTime } from '$lib/stores/settings';
+	import { formatBytes } from '$lib/utils/new';
 
 	interface Props {
 		// Update check settings
@@ -42,15 +43,6 @@
 		imagePruneLastResult,
 		timezone = $bindable()
 	}: Props = $props();
-
-	// Format bytes to human-readable string
-	function formatBytes(bytes: number): string {
-		if (bytes === 0) return '0 B';
-		const k = 1024;
-		const sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
-		const i = Math.floor(Math.log(bytes) / Math.log(k));
-		return `${parseFloat((bytes / Math.pow(k, i)).toFixed(2))} ${sizes[i]}`;
-	}
 </script>
 
 <!-- Scheduled Update Check Section -->
@@ -64,11 +56,11 @@
 
 	{#if updateCheckLoading}
 		<div class="flex items-center justify-center py-4">
-			<RefreshCw class="w-5 h-5 animate-spin text-muted-foreground" />
+			<RefreshCw class="size-5 animate-spin text-muted-foreground" />
 		</div>
 	{:else}
 		<div class="flex items-start gap-2">
-			<CircleFadingArrowUp class="w-4 h-4 text-green-500 glow-green mt-0.5 shrink-0" />
+			<CircleFadingArrowUp class="size-4 text-green-500 glow-green mt-0.5 shrink-0" />
 			<div class="flex-1">
 				<Label>Enable scheduled update check</Label>
 				<p class="text-xs text-muted-foreground">Automatically check for container updates on a schedule</p>
@@ -86,7 +78,7 @@
 			</div>
 
 			<div class="flex items-start gap-2">
-				<CircleArrowUp class="w-4 h-4 text-muted-foreground mt-0.5 shrink-0" />
+				<CircleArrowUp class="size-4 text-muted-foreground mt-0.5 shrink-0" />
 				<div class="flex-1">
 					<Label>Automatically update containers</Label>
 					<p class="text-xs text-muted-foreground">
@@ -114,7 +106,7 @@
 			{/if}
 
 			<div class="text-xs text-muted-foreground bg-muted/50 rounded-md p-2 flex items-start gap-2">
-				<Info class="w-3 h-3 mt-0.5 shrink-0" />
+				<Info class="size-3 mt-0.5 shrink-0" />
 				{#if updateCheckAutoUpdate}
 					{#if scannerEnabled && updateCheckVulnerabilityCriteria !== 'never'}
 						<span>New images are pulled to a temporary tag, scanned, then deployed if they pass the vulnerability check. Blocked images are deleted automatically.</span>
@@ -140,11 +132,11 @@
 
 	{#if imagePruneLoading}
 		<div class="flex items-center justify-center py-4">
-			<RefreshCw class="w-5 h-5 animate-spin text-muted-foreground" />
+			<RefreshCw class="size-5 animate-spin text-muted-foreground" />
 		</div>
 	{:else}
 		<div class="flex items-start gap-2">
-			<Trash2 class="w-4 h-4 text-amber-500 glow-amber mt-0.5 shrink-0" />
+			<Trash2 class="size-4 text-amber-500 glow-amber mt-0.5 shrink-0" />
 			<div class="flex-1">
 				<Label>Enable automatic image pruning</Label>
 				<p class="text-xs text-muted-foreground">Automatically remove unused images on a schedule</p>
@@ -199,7 +191,7 @@
 			{/if}
 
 			<div class="text-xs text-muted-foreground bg-muted/50 rounded-md p-2 flex items-start gap-2">
-				<Info class="w-3 h-3 mt-0.5 shrink-0" />
+				<Info class="size-3 mt-0.5 shrink-0" />
 				<span>Images in use by running or stopped containers will never be removed.</span>
 			</div>
 		{/if}

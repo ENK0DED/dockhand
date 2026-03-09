@@ -119,7 +119,7 @@
 						{#if source === 'file'}
 							<Tooltip.Root>
 								<Tooltip.Trigger>
-									<FileText class="w-3.5 h-3.5 text-muted-foreground" />
+									<FileText class="size-4 text-muted-foreground" />
 								</Tooltip.Trigger>
 								<Tooltip.Content side="bottom"><p class="whitespace-nowrap">From env file in repository</p></Tooltip.Content>
 							</Tooltip.Root>
@@ -137,10 +137,10 @@
 												onchange?.();
 											}}
 										>
-											<Undo2 class="w-3.5 h-3.5 text-blue-500 hover:text-orange-400" />
+											<Undo2 class="size-4 text-blue-500 hover:text-orange-400" />
 										</button>
 									{:else}
-										<Pencil class="w-3.5 h-3.5 text-blue-500" />
+										<Pencil class="size-4 text-blue-500" />
 									{/if}
 								</Tooltip.Trigger>
 								<Tooltip.Content side="bottom"><p class="whitespace-nowrap">{fileValues[variable.key] !== undefined ? 'Revert to file value' : 'Manual override (not in file)'}</p></Tooltip.Content>
@@ -156,21 +156,21 @@
 							{#if isVarRequired && !isVarMissing}
 								<Tooltip.Root>
 									<Tooltip.Trigger>
-										<CheckCircle2 class="w-4 h-4 text-green-500" />
+										<CheckCircle2 class="size-4 text-green-500" />
 									</Tooltip.Trigger>
 									<Tooltip.Content><p>Required variable defined</p></Tooltip.Content>
 								</Tooltip.Root>
 							{:else if isVarOptional}
 								<Tooltip.Root>
 									<Tooltip.Trigger>
-										<CircleDot class="w-4 h-4 text-blue-400" />
+										<CircleDot class="size-4 text-blue-400" />
 									</Tooltip.Trigger>
 									<Tooltip.Content><p>Optional variable (has default)</p></Tooltip.Content>
 								</Tooltip.Root>
 							{:else if isVarUnused}
 								<Tooltip.Root>
 									<Tooltip.Trigger>
-										<AlertCircle class="w-4 h-4 text-amber-500" />
+										<AlertCircle class="size-4 text-amber-500" />
 									</Tooltip.Trigger>
 									<Tooltip.Content><p>Unused variable</p></Tooltip.Content>
 								</Tooltip.Root>
@@ -207,8 +207,8 @@
 					{@const existingSecret = isExistingSecret(variable.key, variable.isSecret)}
 					{#if existingSecret}
 						<!-- Existing secret from DB - show locked icon, no toggle (value can still be modified) -->
-						<div class="flex items-center h-9 w-9 justify-center shrink-0" title="Secret value (cannot unhide)">
-							<Key class="w-3.5 h-3.5 text-amber-500" />
+						<div class="flex items-center size-9 justify-center shrink-0" title="Secret value (cannot unhide)">
+							<Key class="size-4 text-amber-500" />
 						</div>
 					{:else}
 						<!-- New or non-secret variable - show toggle button -->
@@ -216,14 +216,14 @@
 							type="button"
 							onclick={() => toggleSecret(index)}
 							title={variable.isSecret ? 'Marked as secret' : 'Mark as secret'}
-							class="h-9 w-9 flex items-center justify-center rounded-md shrink-0 transition-colors {variable.isSecret ? 'bg-amber-100 text-amber-700 dark:bg-amber-900/50 dark:text-amber-300' : 'text-muted-foreground hover:text-foreground hover:bg-muted'}"
+							class="size-9 flex items-center justify-center rounded-md shrink-0 transition-colors {variable.isSecret ? 'bg-amber-100 text-amber-700 dark:bg-amber-900/50 dark:text-amber-300' : 'text-muted-foreground hover:text-foreground hover:bg-muted'}"
 						>
-							<Key class="w-3.5 h-3.5" />
+							<Key class="size-4" />
 						</button>
 					{/if}
 				{:else if variable.isSecret}
-					<div class="flex items-center h-9 w-9 justify-center shrink-0">
-						<Key class="w-3.5 h-3.5 text-amber-500" />
+					<div class="flex items-center size-9 justify-center shrink-0">
+						<Key class="size-4 text-amber-500" />
 					</div>
 				{/if}
 
@@ -234,9 +234,9 @@
 						variant="ghost"
 						size="icon"
 						onclick={() => removeVariable(index)}
-						class="h-9 w-9 shrink-0 text-muted-foreground hover:text-destructive hover:bg-destructive/10"
+						class="size-9 shrink-0 text-muted-foreground hover:text-destructive hover:bg-destructive/10"
 					>
-						<Trash2 class="w-3.5 h-3.5" />
+						<Trash2 class="size-4" />
 					</Button>
 				{/if}
 			</div>
@@ -248,7 +248,7 @@
 				<p class="text-sm">No environment variables defined.</p>
 				{#if !readonly}
 					<Button type="button" variant="link" onclick={addVariable} class="mt-1 text-xs">
-						<Plus class="w-3 h-3" />
+						<Plus class="size-3" />
 						Add your first variable
 					</Button>
 				{/if}

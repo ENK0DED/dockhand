@@ -328,10 +328,10 @@
 		<Dialog.Header>
 			<Dialog.Title class="flex items-center gap-2">
 				{#if isEditing}
-					<Pencil class="w-5 h-5" />
+					<Pencil class="size-5" />
 					Edit user
 				{:else}
-					<UserPlus class="w-5 h-5" />
+					<UserPlus class="size-5" />
 					Add user
 				{/if}
 			</Dialog.Title>
@@ -340,13 +340,13 @@
 		<div class="space-y-5">
 			{#if formError}
 				<Alert.Root variant="destructive">
-					<TriangleAlert class="h-4 w-4" />
+					<TriangleAlert class="size-4" />
 					<Alert.Description>{formError}</Alert.Description>
 				</Alert.Root>
 			{/if}
 			{#if user?.isSso}
 				<div class="flex items-center gap-2 px-3 py-2 rounded-lg bg-yellow-500/10 border border-yellow-500/20">
-					<ShieldCheck class="w-4 h-4 text-yellow-600 flex-shrink-0" />
+					<ShieldCheck class="size-4 text-yellow-600 flex-shrink-0" />
 					<p class="text-sm text-yellow-700 dark:text-yellow-500">
 						SSO user - profile synced from identity provider
 					</p>
@@ -356,7 +356,7 @@
 			<!-- User Details Section -->
 			<div class="space-y-4">
 				<h3 class="text-sm font-medium flex items-center gap-2 text-muted-foreground">
-					<User class="w-4 h-4" />
+					<User class="size-4" />
 					User details
 				</h3>
 				<div class="grid grid-cols-2 gap-4">
@@ -400,7 +400,7 @@
 			{#if !user?.isSso}
 				<div class="space-y-4">
 					<h3 class="text-sm font-medium flex items-center gap-2 text-muted-foreground">
-						<KeyRound class="w-4 h-4" />
+						<KeyRound class="size-4" />
 						Password
 					</h3>
 					<div class="grid grid-cols-2 gap-4">
@@ -449,7 +449,7 @@
 			{#if isEnterprise && isEditing && user && !user.isSso}
 				<div class="space-y-3">
 					<h3 class="text-sm font-medium flex items-center gap-2 text-muted-foreground">
-						<Smartphone class="w-4 h-4" />
+						<Smartphone class="size-4" />
 						Two-factor authentication
 					</h3>
 					<div class="flex items-center justify-between p-3 border rounded-lg">
@@ -487,7 +487,7 @@
 						{#if systemRoles.length > 0}
 							<div class="p-3 bg-muted/30">
 								<p class="text-xs font-medium text-muted-foreground mb-2 flex items-center gap-1.5">
-									<Shield class="w-3.5 h-3.5" />
+									<Shield class="size-4" />
 									System roles
 								</p>
 								<div class="grid grid-cols-3 gap-2">
@@ -500,9 +500,9 @@
 											onclick={() => toggleRole(role.id, !isAssigned, role.isSystem)}
 										>
 											{#if isAssigned}
-												<Check class="w-4 h-4 flex-shrink-0" />
+												<Check class="size-4 flex-shrink-0" />
 											{:else}
-												<RoleIcon class="w-4 h-4 flex-shrink-0 opacity-50" />
+												<RoleIcon class="size-4 flex-shrink-0 opacity-50" />
 											{/if}
 											<span class="truncate">{role.name}</span>
 										</button>
@@ -515,7 +515,7 @@
 						{#if customRoles.length > 0}
 							<div class="p-3">
 								<p class="text-xs font-medium text-muted-foreground mb-2 flex items-center gap-1.5">
-									<Globe class="w-3.5 h-3.5" />
+									<Globe class="size-4" />
 									Custom roles
 								</p>
 								<div class="grid grid-cols-2 gap-2">
@@ -530,15 +530,15 @@
 											onclick={() => toggleRole(role.id, !isAssigned, role.isSystem)}
 										>
 											{#if isAssigned}
-												<Check class="w-4 h-4 flex-shrink-0" />
+												<Check class="size-4 flex-shrink-0" />
 											{:else}
-												<RoleIcon class="w-4 h-4 flex-shrink-0 opacity-50" />
+												<RoleIcon class="size-4 flex-shrink-0 opacity-50" />
 											{/if}
 											<div class="flex-1 min-w-0">
 												<span class="truncate block">{role.name}</span>
 												<span class="text-2xs opacity-70 flex items-center gap-1">
 													{#if isGlobal}
-														<Globe class="w-2.5 h-2.5" />
+														<Globe class="size-3" />
 														All environments
 													{:else}
 														{envCount} environment{envCount !== 1 ? 's' : ''}
@@ -564,7 +564,7 @@
 						All users have full access to all environments.
 					</p>
 					<p class="text-xs text-muted-foreground flex items-center gap-1">
-						<Crown class="w-3 h-3 text-amber-500" />
+						<Crown class="size-3 text-amber-500" />
 						Upgrade to Enterprise for role-based access control.
 					</p>
 				</div>
@@ -575,9 +575,9 @@
 				<Button variant="outline" type="button" onclick={handleClose}>Cancel</Button>
 				<Button type="submit" disabled={formSaving}>
 					{#if formSaving}
-						<RefreshCw class="w-4 h-4 mr-1 animate-spin" />
+						<RefreshCw class="size-4 mr-1 animate-spin" />
 					{:else}
-						<Check class="w-4 h-4" />
+						<Check class="size-4" />
 					{/if}
 					Save
 				</Button>
@@ -585,9 +585,9 @@
 				<Button variant="outline" type="button" onclick={handleClose}>Cancel</Button>
 				<Button type="submit" disabled={formSaving}>
 					{#if formSaving}
-						<RefreshCw class="w-4 h-4 mr-1 animate-spin" />
+						<RefreshCw class="size-4 mr-1 animate-spin" />
 					{:else}
-						<UserPlus class="w-4 h-4" />
+						<UserPlus class="size-4" />
 					{/if}
 					Create user
 				</Button>

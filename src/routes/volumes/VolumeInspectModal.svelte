@@ -51,7 +51,7 @@
 	<Dialog.Content class="max-w-4xl max-h-[90vh] flex flex-col">
 		<Dialog.Header class="shrink-0">
 			<Dialog.Title class="flex items-center gap-2">
-				<HardDrive class="w-5 h-5" />
+				<HardDrive class="size-5" />
 				Volume details: <span class="text-muted-foreground font-normal break-all">{volumeName}</span>
 			</Dialog.Title>
 		</Dialog.Header>
@@ -59,7 +59,7 @@
 		<div class="flex-1 overflow-auto space-y-4 min-h-0">
 			{#if loading}
 				<div class="flex items-center justify-center py-8">
-					<Loader2 class="w-6 h-6 animate-spin text-muted-foreground" />
+					<Loader2 class="size-6 animate-spin text-muted-foreground" />
 				</div>
 			{:else if error}
 				<div class="text-sm text-red-600 dark:text-red-400 p-3 bg-red-50 dark:bg-red-950 rounded">

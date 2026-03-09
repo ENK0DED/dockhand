@@ -126,12 +126,12 @@
 			<Card.Root>
 				<Card.Header>
 					<Card.Title class="text-sm font-medium flex items-center gap-2">
-						<Eye class="w-4 h-4" />
+						<Eye class="size-4" />
 						Appearance
 						<Tooltip.Provider delayDuration={100}>
 							<Tooltip.Root>
 								<Tooltip.Trigger>
-									<HelpCircle class="w-4 h-4 text-muted-foreground cursor-help" />
+									<HelpCircle class="size-4 text-muted-foreground cursor-help" />
 								</Tooltip.Trigger>
 								<Tooltip.Portal>
 									<Tooltip.Content side="right" sideOffset={8} class="!w-80">
@@ -209,7 +209,7 @@
 										disabled={!$canAccess('settings', 'edit')}
 									>
 										<Select.Trigger class="w-[180px]">
-											<Calendar class="w-4 h-4 mr-2" />
+											<Calendar class="size-4 mr-2" />
 											<span>{dateFormat}</span>
 										</Select.Trigger>
 										<Select.Content>
@@ -232,7 +232,7 @@
 							<ThemeSelector />
 							{#if $authStore.authEnabled}
 								<div class="text-xs text-muted-foreground flex items-start gap-1.5 mt-2 p-2 bg-muted/50 rounded-md">
-									<HelpCircle class="w-3.5 h-3.5 shrink-0 mt-0.5" />
+									<HelpCircle class="size-4 shrink-0 mt-0.5" />
 									<div>
 										<p>Personal theme preferences can be configured in your <a href="/profile" class="text-primary hover:underline">profile</a>.</p>
 									</div>
@@ -246,7 +246,7 @@
 			<Card.Root>
 				<Card.Header>
 					<Card.Title class="text-sm font-medium flex items-center gap-2">
-						<Globe class="w-4 h-4" />
+						<Globe class="size-4" />
 						Scheduling
 					</Card.Title>
 				</Card.Header>
@@ -269,7 +269,7 @@
 			<Card.Root>
 				<Card.Header>
 					<Card.Title class="text-sm font-medium flex items-center gap-2">
-						<Bell class="w-4 h-4" />
+						<Bell class="size-4" />
 						Confirmations
 					</Card.Title>
 				</Card.Header>
@@ -294,7 +294,7 @@
 			<Card.Root>
 				<Card.Header>
 					<Card.Title class="text-sm font-medium flex items-center gap-2">
-						<FileText class="w-4 h-4" />
+						<FileText class="size-4" />
 						Logs & files
 					</Card.Title>
 				</Card.Header>
@@ -317,7 +317,7 @@
 						<p class="text-xs text-muted-foreground">Maximum log buffer per container panel. Older logs are truncated when exceeded.</p>
 						{#if logBufferSizeKb > 1000}
 							<div class="flex items-start gap-2 p-2 rounded-md bg-amber-500/10 border border-amber-500/20">
-								<AlertTriangle class="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
+								<AlertTriangle class="size-4 text-amber-500 shrink-0 mt-0.5" />
 								<p class="text-xs text-amber-600 dark:text-amber-400">High values may degrade browser performance with verbose containers. Recommended: 250-1000 KB.</p>
 							</div>
 						{/if}
@@ -348,7 +348,7 @@
 			<Card.Root>
 				<Card.Header>
 					<Card.Title class="text-sm font-medium flex items-center gap-2">
-						<ShieldCheck class="w-4 h-4" />
+						<ShieldCheck class="size-4" />
 						Vulnerability scanners
 					</Card.Title>
 				</Card.Header>
@@ -381,7 +381,7 @@
 			<Card.Root>
 				<Card.Header>
 					<Card.Title class="text-sm font-medium flex items-center gap-2">
-						<Database class="w-4 h-4" />
+						<Database class="size-4" />
 						System jobs
 					</Card.Title>
 				</Card.Header>
@@ -392,7 +392,7 @@
 								<Label>Activity event collection mode</Label>
 								<Tooltip.Root>
 									<Tooltip.Trigger>
-										<HelpCircle class="w-3.5 h-3.5 text-muted-foreground" />
+										<HelpCircle class="size-4 text-muted-foreground" />
 									</Tooltip.Trigger>
 									<Tooltip.Content class="w-80">
 										<p class="text-xs">
@@ -411,9 +411,9 @@
 										checked={(eventCollectionMode || 'stream') === 'stream'}
 										onchange={() => handleEventCollectionModeChange('stream')}
 										disabled={!$canAccess('settings', 'edit')}
-										class="accent-primary w-4 h-4"
+										class="accent-primary size-4"
 									/>
-									<Activity class="w-3.5 h-3.5" />
+									<Activity class="size-4" />
 									<span class="text-sm">Stream</span>
 								</label>
 								<label class="flex items-center gap-2 cursor-pointer">
@@ -424,9 +424,9 @@
 										checked={(eventCollectionMode || 'stream') === 'poll'}
 										onchange={() => handleEventCollectionModeChange('poll')}
 										disabled={!$canAccess('settings', 'edit')}
-										class="accent-primary w-4 h-4"
+										class="accent-primary size-4"
 									/>
-									<Clock class="w-3.5 h-3.5" />
+									<Clock class="size-4" />
 									<span class="text-sm">Poll</span>
 								</label>
 
@@ -456,7 +456,7 @@
 							<Label for="metrics-interval">Metrics collection interval</Label>
 							<Tooltip.Root>
 								<Tooltip.Trigger>
-									<HelpCircle class="w-3.5 h-3.5 text-muted-foreground" />
+									<HelpCircle class="size-4 text-muted-foreground" />
 								</Tooltip.Trigger>
 								<Tooltip.Content class="w-80">
 									<p class="text-xs">

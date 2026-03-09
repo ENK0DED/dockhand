@@ -155,7 +155,7 @@
 <div class="flex flex-col flex-1 min-h-0">
 <!-- Auth Enable/Disable Toggle at Top -->
 <div class="flex items-start gap-3 p-3 mb-3 border rounded-md bg-muted/30 flex-shrink-0">
-	<Shield class="w-5 h-5 text-muted-foreground mt-0.5" />
+	<Shield class="size-5 text-muted-foreground mt-0.5" />
 	<div class="flex-1">
 		<div class="flex items-center gap-3">
 			<p class="text-sm font-medium">Authentication</p>
@@ -171,7 +171,7 @@
 				: 'Authentication is disabled - open access'}
 		</p>
 		<p class="text-xs text-muted-foreground mt-1 flex items-center gap-1">
-			<Crown class="w-3 h-3 text-amber-500" />
+			<Crown class="size-3 text-amber-500" />
 			{#if $licenseStore.isEnterprise}
 				{authEnabled
 					? 'Audit logging is active - all actions are recorded'
@@ -192,7 +192,7 @@
 			: 'text-muted-foreground hover:text-foreground'}"
 		onclick={() => (authSubTab = 'general')}
 	>
-		<Settings class="w-4 h-4" />
+		<Settings class="size-4" />
 		General
 	</button>
 	<button
@@ -202,7 +202,7 @@
 			: 'text-muted-foreground hover:text-foreground'}"
 		onclick={() => (authSubTab = 'local')}
 	>
-		<User class="w-4 h-4" />
+		<User class="size-4" />
 		Users
 	</button>
 	<button
@@ -212,7 +212,7 @@
 			: 'text-muted-foreground hover:text-foreground'}"
 		onclick={() => (authSubTab = 'sso')}
 	>
-		<LogIn class="w-4 h-4" />
+		<LogIn class="size-4" />
 		SSO / OIDC
 	</button>
 	<button
@@ -222,9 +222,9 @@
 			: 'text-muted-foreground hover:text-foreground'}"
 		onclick={() => (authSubTab = 'ldap')}
 	>
-		<Network class="w-4 h-4" />
+		<Network class="size-4" />
 		LDAP / AD
-		<Crown class="w-3 h-3 text-amber-500" />
+		<Crown class="size-3 text-amber-500" />
 	</button>
 	<button
 		class="flex items-center gap-2 px-3 py-1.5 text-sm font-medium rounded-md transition-all {authSubTab ===
@@ -233,9 +233,9 @@
 			: 'text-muted-foreground hover:text-foreground'}"
 		onclick={() => (authSubTab = 'roles')}
 	>
-		<Shield class="w-4 h-4" />
+		<Shield class="size-4" />
 		Roles
-		<Crown class="w-3 h-3 text-amber-500" />
+		<Crown class="size-3 text-amber-500" />
 	</button>
 </div>
 
@@ -248,7 +248,7 @@
 			<Card.Root>
 				<Card.Header>
 					<Card.Title class="text-sm font-medium flex items-center gap-2">
-						<KeyRound class="w-4 h-4" />
+						<KeyRound class="size-4" />
 						Session settings
 					</Card.Title>
 				</Card.Header>
@@ -281,9 +281,9 @@
 					{#if $canAccess('settings', 'edit')}
 						<Button size="sm" onclick={saveAuthSettings} disabled={authSaving}>
 							{#if authSaving}
-								<RefreshCw class="w-4 h-4 mr-1 animate-spin" />
+								<RefreshCw class="size-4 mr-1 animate-spin" />
 							{:else}
-								<Save class="w-4 h-4" />
+								<Save class="size-4" />
 							{/if}
 							Save settings
 						</Button>
@@ -292,7 +292,7 @@
 			</Card.Root>
 		{:else}
 			<div class="text-center py-12 text-muted-foreground">
-				<Shield class="w-12 h-12 mx-auto mb-3 opacity-30" />
+				<Shield class="size-12 mx-auto mb-3 opacity-30" />
 				<p class="text-sm">Enable authentication to configure session settings</p>
 			</div>
 		{/if}

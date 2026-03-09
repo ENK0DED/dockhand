@@ -2111,9 +2111,9 @@
 					class="h-6 px-2 text-xs gap-1"
 					onclick={() => showAddMenu = !showAddMenu}
 				>
-					<Plus class="w-3 h-3" />
+					<Plus class="size-3" />
 					Add
-					<ChevronDown class="w-2.5 h-2.5" />
+					<ChevronDown class="size-3" />
 				</Button>
 
 				{#if showAddMenu}
@@ -2122,35 +2122,35 @@
 							class="w-full px-2.5 py-1.5 text-left text-xs text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-700 flex items-center gap-2 transition-colors"
 							onclick={() => openAddDialog('service')}
 						>
-							<Box class="w-3.5 h-3.5 text-blue-500" />
+							<Box class="size-4 text-blue-500" />
 							Service
 						</button>
 						<button
 							class="w-full px-2.5 py-1.5 text-left text-xs text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-700 flex items-center gap-2 transition-colors"
 							onclick={() => openAddDialog('network')}
 						>
-							<Network class="w-3.5 h-3.5 text-violet-500" />
+							<Network class="size-4 text-violet-500" />
 							Network
 						</button>
 						<button
 							class="w-full px-2.5 py-1.5 text-left text-xs text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-700 flex items-center gap-2 transition-colors"
 							onclick={() => openAddDialog('volume')}
 						>
-							<HardDrive class="w-3.5 h-3.5 text-emerald-500" />
+							<HardDrive class="size-4 text-emerald-500" />
 							Volume
 						</button>
 						<button
 							class="w-full px-2.5 py-1.5 text-left text-xs text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-700 flex items-center gap-2 transition-colors"
 							onclick={() => openAddDialog('config')}
 						>
-							<FileText class="w-3.5 h-3.5 text-amber-500" />
+							<FileText class="size-4 text-amber-500" />
 							Config
 						</button>
 						<button
 							class="w-full px-2.5 py-1.5 text-left text-xs text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-700 flex items-center gap-2 transition-colors"
 							onclick={() => openAddDialog('secret')}
 						>
-							<Lock class="w-3.5 h-3.5 text-red-500" />
+							<Lock class="size-4 text-red-500" />
 							Secret
 						</button>
 					</div>
@@ -2164,7 +2164,7 @@
 				class="h-6 px-2 text-xs gap-1 w-[98px] justify-center"
 				onclick={toggleConnectionMode}
 			>
-				<Link class="w-3 h-3" />
+				<Link class="size-3" />
 				{connectionMode ? 'Cancel' : 'Dependency'}
 			</Button>
 
@@ -2175,14 +2175,14 @@
 				class="h-6 px-2 text-xs gap-1 w-[68px] justify-center"
 				onclick={toggleMountMode}
 			>
-				<HardDrive class="w-3 h-3" />
+				<HardDrive class="size-3" />
 				{mountMode ? 'Cancel' : 'Mount'}
 			</Button>
 
 			<!-- Hint when in connection/mount mode -->
 			{#if connectionMode || mountMode}
 				<div class="flex items-center gap-1.5 px-2 py-0.5 bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-200 rounded text-xs">
-					<Lightbulb class="w-3 h-3" />
+					<Lightbulb class="size-3" />
 					{#if connectionMode}
 						{#if connectionSource}
 							Click target service
@@ -2210,17 +2210,17 @@
 					title="Change layout"
 				>
 					{#if currentLayout === 'breadthfirst'}
-						<GitBranch class="w-3 h-3" />
+						<GitBranch class="size-3" />
 					{:else if currentLayout === 'grid'}
-						<LayoutGrid class="w-3 h-3" />
+						<LayoutGrid class="size-3" />
 					{:else if currentLayout === 'circle'}
-						<Circle class="w-3 h-3" />
+						<Circle class="size-3" />
 					{:else if currentLayout === 'concentric'}
-						<Target class="w-3 h-3" />
+						<Target class="size-3" />
 					{:else}
-						<Sparkles class="w-3 h-3" />
+						<Sparkles class="size-3" />
 					{/if}
-					<ChevronDown class="w-3 h-3" />
+					<ChevronDown class="size-3" />
 				</button>
 				{#if showLayoutMenu}
 					<!-- svelte-ignore a11y_no_static_element_interactions -->
@@ -2232,35 +2232,35 @@
 							class="w-full px-3 py-1.5 text-left text-xs flex items-center gap-2 hover:bg-zinc-100 dark:hover:bg-zinc-700 {currentLayout === 'breadthfirst' ? 'text-blue-600 dark:text-blue-400 font-medium' : 'text-zinc-700 dark:text-zinc-200'}"
 							onclick={() => applyLayout('breadthfirst')}
 						>
-							<GitBranch class="w-3.5 h-3.5" />
+							<GitBranch class="size-4" />
 							Tree
 						</button>
 						<button
 							class="w-full px-3 py-1.5 text-left text-xs flex items-center gap-2 hover:bg-zinc-100 dark:hover:bg-zinc-700 {currentLayout === 'grid' ? 'text-blue-600 dark:text-blue-400 font-medium' : 'text-zinc-700 dark:text-zinc-200'}"
 							onclick={() => applyLayout('grid')}
 						>
-							<LayoutGrid class="w-3.5 h-3.5" />
+							<LayoutGrid class="size-4" />
 							Grid
 						</button>
 						<button
 							class="w-full px-3 py-1.5 text-left text-xs flex items-center gap-2 hover:bg-zinc-100 dark:hover:bg-zinc-700 {currentLayout === 'circle' ? 'text-blue-600 dark:text-blue-400 font-medium' : 'text-zinc-700 dark:text-zinc-200'}"
 							onclick={() => applyLayout('circle')}
 						>
-							<Circle class="w-3.5 h-3.5" />
+							<Circle class="size-4" />
 							Circle
 						</button>
 						<button
 							class="w-full px-3 py-1.5 text-left text-xs flex items-center gap-2 hover:bg-zinc-100 dark:hover:bg-zinc-700 {currentLayout === 'concentric' ? 'text-blue-600 dark:text-blue-400 font-medium' : 'text-zinc-700 dark:text-zinc-200'}"
 							onclick={() => applyLayout('concentric')}
 						>
-							<Target class="w-3.5 h-3.5" />
+							<Target class="size-4" />
 							Radial
 						</button>
 						<button
 							class="w-full px-3 py-1.5 text-left text-xs flex items-center gap-2 hover:bg-zinc-100 dark:hover:bg-zinc-700 {currentLayout === 'cose' ? 'text-blue-600 dark:text-blue-400 font-medium' : 'text-zinc-700 dark:text-zinc-200'}"
 							onclick={() => applyLayout('cose')}
 						>
-							<Sparkles class="w-3.5 h-3.5" />
+							<Sparkles class="size-4" />
 							Force
 						</button>
 					</div>
@@ -2270,27 +2270,27 @@
 			<!-- Theme toggle -->
 			<button
 				onclick={toggleGraphTheme}
-				class="h-6 w-6 flex items-center justify-center rounded text-zinc-500 dark:text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors"
+				class="size-6 flex items-center justify-center rounded text-zinc-500 dark:text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors"
 				title={graphTheme === 'light' ? 'Switch to dark theme' : 'Switch to light theme'}
 			>
 				{#if graphTheme === 'light'}
-					<Moon class="w-3.5 h-3.5" />
+					<Moon class="size-4" />
 				{:else}
-					<Sun class="w-3.5 h-3.5" />
+					<Sun class="size-4" />
 				{/if}
 			</button>
 			<div class="w-px h-4 bg-zinc-300 dark:bg-zinc-600 mx-1"></div>
-			<Button variant="ghost" size="sm" onclick={zoomOut} class="h-6 w-6 p-0 text-zinc-500 dark:text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200">
-				<ZoomOut class="w-3.5 h-3.5" />
+			<Button variant="ghost" size="sm" onclick={zoomOut} class="size-6 p-0 text-zinc-500 dark:text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200">
+				<ZoomOut class="size-4" />
 			</Button>
-			<Button variant="ghost" size="sm" onclick={zoomIn} class="h-6 w-6 p-0 text-zinc-500 dark:text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200">
-				<ZoomIn class="w-3.5 h-3.5" />
+			<Button variant="ghost" size="sm" onclick={zoomIn} class="size-6 p-0 text-zinc-500 dark:text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200">
+				<ZoomIn class="size-4" />
 			</Button>
-			<Button variant="ghost" size="sm" onclick={fitToScreen} class="h-6 w-6 p-0 text-zinc-500 dark:text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200">
-				<Maximize2 class="w-3.5 h-3.5" />
+			<Button variant="ghost" size="sm" onclick={fitToScreen} class="size-6 p-0 text-zinc-500 dark:text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200">
+				<Maximize2 class="size-4" />
 			</Button>
-			<Button variant="ghost" size="sm" onclick={resetLayout} class="h-6 w-6 p-0 text-zinc-500 dark:text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200">
-				<RotateCcw class="w-3.5 h-3.5" />
+			<Button variant="ghost" size="sm" onclick={resetLayout} class="size-6 p-0 text-zinc-500 dark:text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200">
+				<RotateCcw class="size-4" />
 			</Button>
 		</div>
 	</div>
@@ -2311,23 +2311,23 @@
 			<div class="absolute bottom-2 left-2 pointer-events-none z-10">
 				<div class="flex items-center gap-2 text-xs bg-white/80 dark:bg-zinc-800/80 backdrop-blur-sm rounded px-2 py-1 shadow-sm border border-zinc-200/50 dark:border-zinc-700/50 whitespace-nowrap">
 					<div class="flex items-center gap-1 flex-shrink-0">
-						<div class="w-2 h-2 rounded-sm bg-blue-500 flex-shrink-0"></div>
+						<div class="size-2 rounded-sm bg-blue-500 flex-shrink-0"></div>
 						<span class="text-zinc-600 dark:text-zinc-300">Service</span>
 					</div>
 					<div class="flex items-center gap-1 flex-shrink-0">
-						<div class="w-2 h-2 rounded-sm bg-violet-500 flex-shrink-0"></div>
+						<div class="size-2 rounded-sm bg-violet-500 flex-shrink-0"></div>
 						<span class="text-zinc-600 dark:text-zinc-300">Network</span>
 					</div>
 					<div class="flex items-center gap-1 flex-shrink-0">
-						<div class="w-2 h-2 rounded-sm bg-emerald-500 flex-shrink-0"></div>
+						<div class="size-2 rounded-sm bg-emerald-500 flex-shrink-0"></div>
 						<span class="text-zinc-600 dark:text-zinc-300">Volume</span>
 					</div>
 					<div class="flex items-center gap-1 flex-shrink-0">
-						<div class="w-2 h-2 rounded-sm bg-amber-500 flex-shrink-0"></div>
+						<div class="size-2 rounded-sm bg-amber-500 flex-shrink-0"></div>
 						<span class="text-zinc-600 dark:text-zinc-300">Config</span>
 					</div>
 					<div class="flex items-center gap-1 flex-shrink-0">
-						<div class="w-2 h-2 rounded-sm bg-red-500 flex-shrink-0"></div>
+						<div class="size-2 rounded-sm bg-red-500 flex-shrink-0"></div>
 						<span class="text-zinc-600 dark:text-zinc-300">Secret</span>
 					</div>
 				</div>
@@ -2342,7 +2342,7 @@
 						<div class="flex items-center justify-between">
 							<div class="flex items-center gap-2">
 								<div class="p-1.5 rounded {getNodeColor(selectedNode.type)}">
-									<NodeIcon class="w-3.5 h-3.5 text-white" />
+									<NodeIcon class="size-4 text-white" />
 								</div>
 								<div>
 									<h3 class="font-semibold text-sm text-zinc-800 dark:text-zinc-100">{selectedNode.label}</h3>
@@ -2358,7 +2358,7 @@
 									<Button
 										variant="ghost"
 										size="sm"
-										class="h-6 w-6 p-0 text-emerald-500 hover:text-emerald-600 hover:bg-emerald-50 dark:hover:bg-emerald-900/30"
+										class="size-6 p-0 text-emerald-500 hover:text-emerald-600 hover:bg-emerald-50 dark:hover:bg-emerald-900/30"
 										onclick={() => {
 											if (selectedNode.type === 'service') saveServiceEdit();
 											else if (selectedNode.type === 'network') saveNetworkEdit();
@@ -2370,26 +2370,26 @@
 										}}
 										title="Save and close"
 									>
-										<Save class="w-3.5 h-3.5" />
+										<Save class="size-4" />
 									</Button>
 								{/if}
 								<Button
 									variant="ghost"
 									size="sm"
-									class="h-6 w-6 p-0 text-red-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/30"
+									class="size-6 p-0 text-red-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/30"
 									onclick={deleteSelectedNode}
 									title="Delete"
 								>
-									<Trash2 class="w-3.5 h-3.5" />
+									<Trash2 class="size-4" />
 								</Button>
 								<Button
 									variant="ghost"
 									size="sm"
-									class="h-6 w-6 p-0 text-zinc-500 hover:text-zinc-600 hover:bg-zinc-100 dark:hover:bg-zinc-700"
+									class="size-6 p-0 text-zinc-500 hover:text-zinc-600 hover:bg-zinc-100 dark:hover:bg-zinc-700"
 									onclick={() => { selectedNode = null; selectedEdge = null; }}
 									title="Close"
 								>
-									<X class="w-3.5 h-3.5" />
+									<X class="size-4" />
 								</Button>
 							</div>
 						</div>
@@ -2410,20 +2410,20 @@
 								<Button
 									variant="ghost"
 									size="sm"
-									class="h-6 w-6 p-0 text-red-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/30"
+									class="size-6 p-0 text-red-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/30"
 									onclick={deleteSelectedEdge}
 									title="Remove connection"
 								>
-									<Trash2 class="w-3.5 h-3.5" />
+									<Trash2 class="size-4" />
 								</Button>
 								<Button
 									variant="ghost"
 									size="sm"
-									class="h-6 w-6 p-0 text-zinc-500 hover:text-zinc-600 hover:bg-zinc-100 dark:hover:bg-zinc-700"
+									class="size-6 p-0 text-zinc-500 hover:text-zinc-600 hover:bg-zinc-100 dark:hover:bg-zinc-700"
 									onclick={() => { selectedNode = null; selectedEdge = null; }}
 									title="Close"
 								>
-									<X class="w-3.5 h-3.5" />
+									<X class="size-4" />
 								</Button>
 							</div>
 						</div>
@@ -2479,7 +2479,7 @@
 									<div class="flex items-center justify-between">
 										<span class="text-xs font-medium text-zinc-600 dark:text-zinc-300">Port mappings</span>
 										<button onclick={addServicePort} class="text-xs text-blue-500 hover:text-blue-600">
-											<Plus class="w-3.5 h-3.5" />
+											<Plus class="size-4" />
 										</button>
 									</div>
 									<div class="space-y-4 pt-2">
@@ -2498,7 +2498,7 @@
 													disabled={editServicePorts.length === 1}
 													class="p-1 text-zinc-400 hover:text-red-500 disabled:opacity-30"
 												>
-													<Trash2 class="w-3 h-3" />
+													<Trash2 class="size-3" />
 												</button>
 											</div>
 										{/each}
@@ -2510,7 +2510,7 @@
 									<div class="flex items-center justify-between">
 										<span class="text-xs font-medium text-zinc-600 dark:text-zinc-300">Volumes</span>
 										<button onclick={addServiceVolume} class="text-xs text-blue-500 hover:text-blue-600">
-											<Plus class="w-3.5 h-3.5" />
+											<Plus class="size-4" />
 										</button>
 									</div>
 									<div class="space-y-4 pt-2">
@@ -2529,7 +2529,7 @@
 													disabled={editServiceVolumes.length === 1}
 													class="p-1 text-zinc-400 hover:text-red-500 disabled:opacity-30"
 												>
-													<Trash2 class="w-3 h-3" />
+													<Trash2 class="size-3" />
 												</button>
 											</div>
 										{/each}
@@ -2541,7 +2541,7 @@
 									<div class="flex items-center justify-between">
 										<span class="text-xs font-medium text-zinc-600 dark:text-zinc-300">Environment</span>
 										<button onclick={addServiceEnvVar} class="text-xs text-blue-500 hover:text-blue-600">
-											<Plus class="w-3.5 h-3.5" />
+											<Plus class="size-4" />
 										</button>
 									</div>
 									<div class="space-y-4 pt-2">
@@ -2560,7 +2560,7 @@
 													disabled={editServiceEnvVars.length === 1}
 													class="p-1 text-zinc-400 hover:text-red-500 disabled:opacity-30"
 												>
-													<Trash2 class="w-3 h-3" />
+													<Trash2 class="size-3" />
 												</button>
 											</div>
 										{/each}
@@ -2572,7 +2572,7 @@
 									<div class="flex items-center justify-between">
 										<span class="text-xs font-medium text-zinc-600 dark:text-zinc-300">Labels</span>
 										<button onclick={addServiceLabel} class="text-xs text-blue-500 hover:text-blue-600">
-											<Plus class="w-3.5 h-3.5" />
+											<Plus class="size-4" />
 										</button>
 									</div>
 									<div class="space-y-4 pt-2">
@@ -2591,7 +2591,7 @@
 													disabled={editServiceLabels.length === 1}
 													class="p-1 text-zinc-400 hover:text-red-500 disabled:opacity-30"
 												>
-													<Trash2 class="w-3 h-3" />
+													<Trash2 class="size-3" />
 												</button>
 											</div>
 										{/each}
@@ -2611,7 +2611,7 @@
 														onclick={() => removeDependency(dep, selectedNode.label)}
 														title="Remove dependency"
 													>
-														<X class="w-3 h-3" />
+														<X class="size-3" />
 													</button>
 												</div>
 											{/each}
@@ -2628,17 +2628,17 @@
 										<Select.Trigger class="h-8 text-xs">
 											<span class="flex items-center gap-1.5">
 												{#if editNetworkDriver === 'bridge'}
-													<Share2 class="w-3.5 h-3.5 text-emerald-500" />
+													<Share2 class="size-4 text-emerald-500" />
 												{:else if editNetworkDriver === 'host'}
-													<Server class="w-3.5 h-3.5 text-sky-500" />
+													<Server class="size-4 text-sky-500" />
 												{:else if editNetworkDriver === 'overlay'}
-													<Globe class="w-3.5 h-3.5 text-violet-500" />
+													<Globe class="size-4 text-violet-500" />
 												{:else if editNetworkDriver === 'macvlan'}
-													<MonitorSmartphone class="w-3.5 h-3.5 text-amber-500" />
+													<MonitorSmartphone class="size-4 text-amber-500" />
 												{:else if editNetworkDriver === 'ipvlan'}
-													<Cpu class="w-3.5 h-3.5 text-orange-500" />
+													<Cpu class="size-4 text-orange-500" />
 												{:else}
-													<CircleOff class="w-3.5 h-3.5 text-muted-foreground" />
+													<CircleOff class="size-4 text-muted-foreground" />
 												{/if}
 												<span class="capitalize">{editNetworkDriver}</span>
 											</span>
@@ -2647,7 +2647,7 @@
 											<Select.Item value="bridge" label="Bridge">
 												{#snippet children()}
 													<div class="flex items-center gap-2">
-														<Share2 class="w-3.5 h-3.5 text-emerald-500" />
+														<Share2 class="size-4 text-emerald-500" />
 														<span>Bridge</span>
 													</div>
 												{/snippet}
@@ -2655,7 +2655,7 @@
 											<Select.Item value="host" label="Host">
 												{#snippet children()}
 													<div class="flex items-center gap-2">
-														<Server class="w-3.5 h-3.5 text-sky-500" />
+														<Server class="size-4 text-sky-500" />
 														<span>Host</span>
 													</div>
 												{/snippet}
@@ -2663,7 +2663,7 @@
 											<Select.Item value="overlay" label="Overlay">
 												{#snippet children()}
 													<div class="flex items-center gap-2">
-														<Globe class="w-3.5 h-3.5 text-violet-500" />
+														<Globe class="size-4 text-violet-500" />
 														<span>Overlay</span>
 													</div>
 												{/snippet}
@@ -2671,7 +2671,7 @@
 											<Select.Item value="macvlan" label="Macvlan">
 												{#snippet children()}
 													<div class="flex items-center gap-2">
-														<MonitorSmartphone class="w-3.5 h-3.5 text-amber-500" />
+														<MonitorSmartphone class="size-4 text-amber-500" />
 														<span>Macvlan</span>
 													</div>
 												{/snippet}
@@ -2679,7 +2679,7 @@
 											<Select.Item value="ipvlan" label="IPvlan">
 												{#snippet children()}
 													<div class="flex items-center gap-2">
-														<Cpu class="w-3.5 h-3.5 text-orange-500" />
+														<Cpu class="size-4 text-orange-500" />
 														<span>IPvlan</span>
 													</div>
 												{/snippet}
@@ -2687,7 +2687,7 @@
 											<Select.Item value="none" label="None">
 												{#snippet children()}
 													<div class="flex items-center gap-2">
-														<CircleOff class="w-3.5 h-3.5 text-muted-foreground" />
+														<CircleOff class="size-4 text-muted-foreground" />
 														<span>None</span>
 													</div>
 												{/snippet}
@@ -2732,7 +2732,7 @@
 									<div class="flex items-center justify-between">
 										<span class="text-xs font-medium text-zinc-600 dark:text-zinc-300">Labels</span>
 										<button onclick={addNetworkLabel} class="text-xs text-blue-500 hover:text-blue-600">
-											<Plus class="w-3.5 h-3.5" />
+											<Plus class="size-4" />
 										</button>
 									</div>
 									<div class="space-y-4 pt-2">
@@ -2747,7 +2747,7 @@
 													<Input bind:value={label.value} oninput={markNetworkDirty} class="h-9 pt-3 text-xs" />
 												</div>
 												<button onclick={() => removeNetworkLabel(index)} disabled={editNetworkLabels.length === 1} class="p-1 text-zinc-400 hover:text-red-500 disabled:opacity-30">
-													<Trash2 class="w-3 h-3" />
+													<Trash2 class="size-3" />
 												</button>
 											</div>
 										{/each}
@@ -2759,7 +2759,7 @@
 									<div class="flex items-center justify-between">
 										<span class="text-xs font-medium text-zinc-600 dark:text-zinc-300">Driver options</span>
 										<button onclick={addNetworkOption} class="text-xs text-blue-500 hover:text-blue-600">
-											<Plus class="w-3.5 h-3.5" />
+											<Plus class="size-4" />
 										</button>
 									</div>
 									<div class="space-y-4 pt-2">
@@ -2774,7 +2774,7 @@
 													<Input bind:value={opt.value} oninput={markNetworkDirty} class="h-9 pt-3 text-xs" />
 												</div>
 												<button onclick={() => removeNetworkOption(index)} disabled={editNetworkOptions.length === 1} class="p-1 text-zinc-400 hover:text-red-500 disabled:opacity-30">
-													<Trash2 class="w-3 h-3" />
+													<Trash2 class="size-3" />
 												</button>
 											</div>
 										{/each}
@@ -2801,7 +2801,7 @@
 									<div class="flex items-center justify-between">
 										<span class="text-xs font-medium text-zinc-600 dark:text-zinc-300">Labels</span>
 										<button onclick={addVolumeLabel} class="text-xs text-blue-500 hover:text-blue-600">
-											<Plus class="w-3.5 h-3.5" />
+											<Plus class="size-4" />
 										</button>
 									</div>
 									<div class="space-y-4 pt-2">
@@ -2816,7 +2816,7 @@
 													<Input bind:value={label.value} oninput={markVolumeDirty} class="h-9 pt-3 text-xs" />
 												</div>
 												<button onclick={() => removeVolumeLabel(index)} disabled={editVolumeLabels.length === 1} class="p-1 text-zinc-400 hover:text-red-500 disabled:opacity-30">
-													<Trash2 class="w-3 h-3" />
+													<Trash2 class="size-3" />
 												</button>
 											</div>
 										{/each}
@@ -2828,7 +2828,7 @@
 									<div class="flex items-center justify-between">
 										<span class="text-xs font-medium text-zinc-600 dark:text-zinc-300">Driver options</span>
 										<button onclick={addVolumeOption} class="text-xs text-blue-500 hover:text-blue-600">
-											<Plus class="w-3.5 h-3.5" />
+											<Plus class="size-4" />
 										</button>
 									</div>
 									<div class="space-y-4 pt-2">
@@ -2843,7 +2843,7 @@
 													<Input bind:value={opt.value} oninput={markVolumeDirty} class="h-9 pt-3 text-xs" />
 												</div>
 												<button onclick={() => removeVolumeOption(index)} disabled={editVolumeOptions.length === 1} class="p-1 text-zinc-400 hover:text-red-500 disabled:opacity-30">
-													<Trash2 class="w-3 h-3" />
+													<Trash2 class="size-3" />
 												</button>
 											</div>
 										{/each}
@@ -2962,7 +2962,7 @@
 		<Dialog.Header>
 			<Dialog.Title class="flex items-center gap-2">
 				{@const DialogIcon = getNodeIcon(addElementType)}
-				<DialogIcon class="w-5 h-5" />
+				<DialogIcon class="size-5" />
 				Add {getElementTypeLabel(addElementType)}
 			</Dialog.Title>
 		</Dialog.Header>
@@ -3001,7 +3001,7 @@
 		<div class="flex justify-end gap-2">
 			<Button variant="outline" size="sm" onclick={() => showAddDialog = false}>Cancel</Button>
 			<Button variant="secondary" size="sm" onclick={addElement} disabled={!newElementName.trim()}>
-				<Plus class="w-3.5 h-3.5 mr-1.5" />
+				<Plus class="size-4 mr-1.5" />
 				Add {getElementTypeLabel(addElementType)}
 			</Button>
 		</div>

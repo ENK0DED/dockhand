@@ -178,7 +178,7 @@
 		<Card.Content>
 			{#if error}
 				<Alert.Root variant="destructive" class="mb-4">
-					<TriangleAlert class="h-4 w-4" />
+					<TriangleAlert class="size-4" />
 					<Alert.Description>{error}</Alert.Description>
 				</Alert.Root>
 			{/if}
@@ -194,9 +194,9 @@
 							disabled={ssoLoading !== null}
 						>
 							{#if ssoLoading === provider.id}
-								<Loader2 class="h-5 w-5 animate-spin" />
+								<Loader2 class="size-5 animate-spin" />
 							{:else}
-								<KeyRound class="h-5 w-5" />
+								<KeyRound class="size-5" />
 							{/if}
 							<span>Continue with {provider.name}</span>
 						</Button>
@@ -232,7 +232,7 @@
 											onclick={() => selectedProvider = provider.id}
 											disabled={loading}
 										>
-											<Icon class="h-5 w-5 shrink-0" />
+											<Icon class="size-5 shrink-0" />
 											<div class="flex-1 min-w-0">
 												<div class="font-medium text-sm">{provider.name}</div>
 												<div class="text-xs text-muted-foreground">
@@ -246,7 +246,7 @@
 												</div>
 											</div>
 											{#if selectedProvider === provider.id}
-												<div class="w-2 h-2 rounded-full bg-primary"></div>
+												<div class="size-2 rounded-full bg-primary"></div>
 											{/if}
 										</button>
 									{/each}
@@ -283,7 +283,7 @@
 					{:else}
 						<div class="space-y-2">
 							<div class="flex items-center gap-2 text-sm text-muted-foreground mb-4">
-								<Shield class="h-4 w-4" />
+								<Shield class="size-4" />
 								<span>Two-factor authentication required</span>
 							</div>
 							<Label for="mfaToken">Authentication code</Label>
@@ -305,10 +305,10 @@
 
 					<Button type="submit" class="w-full" disabled={loading}>
 						{#if loading}
-							<Loader2 class="mr-2 h-4 w-4 animate-spin" />
+							<Loader2 class="mr-2 size-4 animate-spin" />
 							{requiresMfa ? 'Verifying...' : 'Signing in...'}
 						{:else}
-							<LogIn class="mr-2 h-4 w-4" />
+							<LogIn class="mr-2 size-4" />
 							{requiresMfa ? 'Verify' : 'Sign in'}
 						{/if}
 					</Button>

@@ -59,9 +59,9 @@
 				title="Toggle log theme"
 			>
 				{#if darkMode}
-					<Sun class="w-3.5 h-3.5" />
+					<Sun class="size-4" />
 				{:else}
-					<Moon class="w-3.5 h-3.5" />
+					<Moon class="size-4" />
 				{/if}
 			</button>
 		{/if}

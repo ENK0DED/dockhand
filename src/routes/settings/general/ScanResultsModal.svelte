@@ -270,7 +270,7 @@
 	<Dialog.Content class="max-w-4xl max-h-[80vh] overflow-hidden flex flex-col">
 		<Dialog.Header>
 			<Dialog.Title class="flex items-center gap-2">
-				<Search class="w-5 h-5" />
+				<Search class="size-5" />
 				External stack scan results
 			</Dialog.Title>
 			<Dialog.Description>
@@ -284,30 +284,30 @@
 				<!-- Summary -->
 				<div class="flex items-center gap-4 p-3 rounded-lg bg-muted/50">
 					<div class="flex items-center gap-2">
-						<FolderOpen class="w-4 h-4 text-muted-foreground" />
+						<FolderOpen class="size-4 text-muted-foreground" />
 						<span class="text-sm font-medium">{result.discovered.length + result.skipped.length + adoptedStacks.length} found</span>
 					</div>
 					{#if result.discovered.length > 0}
 						<div class="flex items-center gap-1.5 text-blue-600 dark:text-blue-500">
-							<Import class="w-4 h-4" />
+							<Import class="size-4" />
 							<span class="text-sm">{result.discovered.length} new</span>
 						</div>
 					{/if}
 					{#if adoptedStacks.length > 0}
 						<div class="flex items-center gap-1.5 text-green-600 dark:text-green-500">
-							<CheckCircle2 class="w-4 h-4" />
+							<CheckCircle2 class="size-4" />
 							<span class="text-sm">{adoptedStacks.length} adopted</span>
 						</div>
 					{/if}
 					{#if result.skipped.length > 0}
 						<div class="flex items-center gap-1.5 text-muted-foreground">
-							<SkipForward class="w-4 h-4" />
+							<SkipForward class="size-4" />
 							<span class="text-sm">{result.skipped.length} already adopted</span>
 						</div>
 					{/if}
 					{#if result.errors.length > 0}
 						<div class="flex items-center gap-1.5 text-destructive">
-							<AlertCircle class="w-4 h-4" />
+							<AlertCircle class="size-4" />
 							<span class="text-sm">{result.errors.length} errors</span>
 						</div>
 					{/if}
@@ -319,7 +319,7 @@
 						<div class="flex items-center gap-3 p-3 rounded-lg border bg-muted/30">
 							<Label class="text-sm font-medium shrink-0">Adopt to:</Label>
 							<div class="flex items-center gap-2 text-muted-foreground">
-								<Loader2 class="w-4 h-4 animate-spin" />
+								<Loader2 class="size-4 animate-spin" />
 								<span class="text-sm">Loading...</span>
 							</div>
 						</div>
@@ -339,7 +339,7 @@
 							>
 								<Select.Trigger class="w-[220px]">
 									{#if DefaultEnvIcon}
-										<DefaultEnvIcon class="w-4 h-4 mr-2 shrink-0" />
+										<DefaultEnvIcon class="size-4 mr-2 shrink-0" />
 									{/if}
 									<span class="truncate">{defaultEnvName}</span>
 								</Select.Trigger>
@@ -348,7 +348,7 @@
 										{@const EnvIcon = getIconComponent(env.icon || 'globe')}
 										<Select.Item value={env.id.toString()}>
 											<div class="flex items-center gap-2">
-												<EnvIcon class="w-4 h-4 shrink-0" />
+												<EnvIcon class="size-4 shrink-0" />
 												<span>{env.name}</span>
 											</div>
 										</Select.Item>
@@ -370,7 +370,7 @@
 					<div class="space-y-2">
 						<div class="flex items-center justify-between">
 							<h4 class="text-sm font-medium flex items-center gap-2 text-blue-600 dark:text-blue-500">
-								<Import class="w-4 h-4" />
+								<Import class="size-4" />
 								Available for adoption
 							</h4>
 							<button
@@ -408,11 +408,11 @@
 											<p class="text-sm font-medium">{stack.name}</p>
 											{#if stack.runningOn && stack.runningOn.length > 0}
 												<Badge variant="outline" class="text-xs text-green-600 dark:text-green-500 border-green-300 dark:border-green-600 gap-1">
-													<Play class="w-3 h-3" />
+													<Play class="size-3" />
 													Running on {stack.runningOn.map(r => r.envName).join(', ')}
 													<Tooltip.Root>
 														<Tooltip.Trigger>
-															<HelpCircle class="w-3 h-3 opacity-60" />
+															<HelpCircle class="size-3 opacity-60" />
 														</Tooltip.Trigger>
 														<Tooltip.Content class="max-w-sm">
 															<p class="text-xs">This stack is already running (detected via Docker's <code class="bg-muted px-1 rounded">com.docker.compose.project</code> label). Adopting will allow you to manage it through Dockhand.</p>
@@ -424,7 +424,7 @@
 										<code class="text-xs text-muted-foreground block truncate" title={stack.composePath}>{stack.composePath}</code>
 										{#if stack.envPath}
 											<p class="text-xs text-muted-foreground flex items-center gap-1 mt-0.5">
-												<FileText class="w-3 h-3" />
+												<FileText class="size-3" />
 												.env file detected
 											</p>
 										{/if}
@@ -438,7 +438,7 @@
 													Running elsewhere
 													<Tooltip.Root>
 														<Tooltip.Trigger>
-															<HelpCircle class="w-3 h-3 opacity-60" />
+															<HelpCircle class="size-3 opacity-60" />
 														</Tooltip.Trigger>
 														<Tooltip.Content class="max-w-sm">
 															<p class="text-xs">This stack is running on a different environment ({stack.runningOn?.map(r => r.envName).join(', ')}). You can still adopt it here, but it won't affect the running containers.</p>
@@ -456,7 +456,7 @@
 												<Select.Trigger class="h-8 w-[220px] text-xs">
 													{#if getStackEnv(stack.composePath)}
 														{@const StackIcon = getIconComponent(getStackEnv(stack.composePath)?.icon || 'globe')}
-														<StackIcon class="w-3.5 h-3.5 mr-1.5 shrink-0" />
+														<StackIcon class="size-4 mr-1.5 shrink-0" />
 													{/if}
 													<span class="truncate">{getStackEnv(stack.composePath)?.name || 'Select'}</span>
 												</Select.Trigger>
@@ -465,7 +465,7 @@
 														{@const EnvIcon = getIconComponent(env.icon || 'globe')}
 														<Select.Item value={env.id.toString()}>
 															<div class="flex items-center gap-2">
-																<EnvIcon class="w-3.5 h-3.5 shrink-0" />
+																<EnvIcon class="size-4 shrink-0" />
 																<span>{env.name}</span>
 															</div>
 														</Select.Item>
@@ -484,7 +484,7 @@
 				{#if adoptedStacks.length > 0}
 					<div class="space-y-2">
 						<h4 class="text-sm font-medium flex items-center gap-2 text-green-600 dark:text-green-500">
-							<CheckCircle2 class="w-4 h-4" />
+							<CheckCircle2 class="size-4" />
 							Adopted stacks
 						</h4>
 						<div class="space-y-1.5">
@@ -492,12 +492,12 @@
 								{@const env = environments.find(e => e.id === adopted.envId)}
 								{@const EnvIcon = env ? getIconComponent(env.icon || 'globe') : null}
 								<div class="flex items-center gap-2 p-2 rounded-md bg-green-500/10 border border-green-500/20">
-									<CheckCircle2 class="w-4 h-4 text-green-600 dark:text-green-500 shrink-0" />
+									<CheckCircle2 class="size-4 text-green-600 dark:text-green-500 shrink-0" />
 									<p class="text-sm font-medium flex-1">{adopted.name}</p>
 									{#if env}
 										<div class="flex items-center gap-1.5 text-xs text-muted-foreground shrink-0">
 											{#if EnvIcon}
-												<EnvIcon class="w-3.5 h-3.5" />
+												<EnvIcon class="size-4" />
 											{/if}
 											<span>{env.name}</span>
 										</div>
@@ -512,13 +512,13 @@
 				{#if result.skipped.length > 0}
 					<div class="space-y-2">
 						<h4 class="text-sm font-medium flex items-center gap-2 text-muted-foreground">
-							<SkipForward class="w-4 h-4" />
+							<SkipForward class="size-4" />
 							Already adopted
 						</h4>
 						<div class="space-y-1.5">
 							{#each result.skipped as stack}
 								<div class="flex items-start gap-2 p-2 rounded-md bg-muted/50">
-									<SkipForward class="w-4 h-4 text-muted-foreground shrink-0 mt-0.5" />
+									<SkipForward class="size-4 text-muted-foreground shrink-0 mt-0.5" />
 									<div class="flex-1 min-w-0">
 										<p class="text-sm font-medium">{stack.name}</p>
 										<code class="text-xs text-muted-foreground block truncate" title={stack.composePath}>{stack.composePath}</code>
@@ -533,13 +533,13 @@
 				{#if result.errors.length > 0}
 					<div class="space-y-2">
 						<h4 class="text-sm font-medium flex items-center gap-2 text-destructive">
-							<AlertCircle class="w-4 h-4" />
+							<AlertCircle class="size-4" />
 							Errors
 						</h4>
 						<div class="space-y-1.5">
 							{#each result.errors as error}
 								<div class="flex items-start gap-2 p-2 rounded-md bg-destructive/10 border border-destructive/20">
-									<AlertCircle class="w-4 h-4 text-destructive shrink-0 mt-0.5" />
+									<AlertCircle class="size-4 text-destructive shrink-0 mt-0.5" />
 									<div class="flex-1 min-w-0">
 										<code class="text-xs block truncate" title={error.path}>{error.path}</code>
 										<p class="text-xs text-destructive">{error.error}</p>
@@ -553,7 +553,7 @@
 				<!-- No results message -->
 				{#if result.discovered.length === 0 && result.skipped.length === 0 && result.adopted.length === 0 && result.errors.length === 0}
 					<div class="text-center py-8 text-muted-foreground">
-						<FolderOpen class="w-12 h-12 mx-auto mb-3 opacity-50" />
+						<FolderOpen class="size-12 mx-auto mb-3 opacity-50" />
 						<p class="text-sm">No Docker Compose files found in the configured paths.</p>
 						<p class="text-xs mt-1">Make sure your paths contain compose.yaml, compose.yml, or similar files.</p>
 					</div>
@@ -585,10 +585,10 @@
 						disabled={selectedCount === 0 || adopting}
 					>
 						{#if adopting}
-							<Loader2 class="w-4 h-4 mr-2 animate-spin" />
+							<Loader2 class="size-4 mr-2 animate-spin" />
 							Adopting...
 						{:else}
-							<Import class="w-4 h-4" />
+							<Import class="size-4" />
 							Adopt selected
 						{/if}
 					</Button>

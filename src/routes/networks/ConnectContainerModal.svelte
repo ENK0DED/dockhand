@@ -103,7 +103,7 @@
 	<Dialog.Content class="max-w-md">
 		<Dialog.Header>
 			<Dialog.Title class="flex items-center gap-2">
-				<Link class="w-4 h-4" />
+				<Link class="size-4" />
 				Connect container to {network?.name}
 			</Dialog.Title>
 			<Dialog.Description>
@@ -114,11 +114,11 @@
 		<div class="space-y-4 py-4">
 			{#if loading}
 				<div class="flex items-center justify-center py-8">
-					<Loader2 class="w-6 h-6 animate-spin text-muted-foreground" />
+					<Loader2 class="size-6 animate-spin text-muted-foreground" />
 				</div>
 			{:else if availableContainers.length === 0}
 				<div class="text-center py-8 text-muted-foreground">
-					<Box class="w-8 h-8 mx-auto mb-2 opacity-50" />
+					<Box class="size-8 mx-auto mb-2 opacity-50" />
 					<p class="text-sm">No containers available to connect.</p>
 					<p class="text-xs mt-1">All containers are already connected to this network.</p>
 				</div>
@@ -129,7 +129,7 @@
 						<Select.Trigger id="container" class="w-full">
 							{#if selectedContainerInfo}
 								<span class="flex items-center gap-2">
-									<span class="w-2 h-2 rounded-full {selectedContainerInfo.state === 'running' ? 'bg-green-500' : 'bg-gray-400'}"></span>
+									<span class="size-2 rounded-full {selectedContainerInfo.state === 'running' ? 'bg-green-500' : 'bg-gray-400'}"></span>
 									{selectedContainerInfo.name}
 								</span>
 							{:else}
@@ -140,7 +140,7 @@
 							{#each availableContainers as container}
 								<Select.Item value={container.id}>
 									<span class="flex items-center gap-2">
-										<span class="w-2 h-2 rounded-full {container.state === 'running' ? 'bg-green-500' : 'bg-gray-400'}"></span>
+										<span class="size-2 rounded-full {container.state === 'running' ? 'bg-green-500' : 'bg-gray-400'}"></span>
 										{container.name}
 										<span class="text-xs text-muted-foreground ml-auto">{container.state}</span>
 									</span>
@@ -161,9 +161,9 @@
 				disabled={!selectedContainer || submitting || availableContainers.length === 0}
 			>
 				{#if submitting}
-					<Loader2 class="w-4 h-4 mr-2 animate-spin" />
+					<Loader2 class="size-4 mr-2 animate-spin" />
 				{:else}
-					<Link class="w-4 h-4" />
+					<Link class="size-4" />
 				{/if}
 				Connect
 			</Button>

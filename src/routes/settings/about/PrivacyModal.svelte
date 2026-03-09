@@ -38,7 +38,7 @@
 	<Dialog.Content class="max-w-4xl h-[80vh] flex flex-col">
 		<Dialog.Header class="shrink-0">
 			<Dialog.Title class="flex items-center gap-2">
-				<Shield class="w-5 h-5" />
+				<Shield class="size-5" />
 				Privacy policy
 			</Dialog.Title>
 		</Dialog.Header>

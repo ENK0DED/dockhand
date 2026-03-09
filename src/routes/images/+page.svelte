@@ -11,16 +11,14 @@
 	import { Label } from '$lib/components/ui/label';
 	import * as Dialog from '$lib/components/ui/dialog';
 	import * as Select from '$lib/components/ui/select';
-	import { Trash2, Upload, RefreshCw, Play, Search, Layers, Server, ShieldCheck, CheckSquare, Square, Tag, Check, XCircle, Icon, AlertTriangle, X, Images, Copy, Download, ChevronRight, ChevronDown, Loader2, ArrowUp, ArrowDown, ArrowUpDown, CircleDashed, CircleDot, Circle, Filter } from 'lucide-svelte';
-	import { broom, whale } from '@lucide/lab';
-	import * as Tooltip from '$lib/components/ui/tooltip';
+	import { Trash2, Upload, RefreshCw, Play, Search, Layers, ShieldCheck, CheckSquare, Square, Tag, Check, XCircle, Icon, Images, Download, ChevronRight, ChevronDown, Loader2, ArrowUp, ArrowDown, ArrowUpDown, CircleDashed, CircleDot, Circle, Filter, BrushCleaning } from 'lucide-svelte';
 	import { copyToClipboard } from '$lib/utils/clipboard';
 	import ConfirmPopover from '$lib/components/ConfirmPopover.svelte';
-	import BatchOperationModal from '$lib/components/BatchOperationModal.svelte';
+	import BatchOperationModal from '$lib/components/modals/BatchOperationModal.svelte';
 	import ImageHistoryModal from './ImageHistoryModal.svelte';
 	import ImageScanModal from './ImageScanModal.svelte';
 	import PushToRegistryModal from './PushToRegistryModal.svelte';
-	import ImagePullModal from '$lib/components/ImagePullModal.svelte';
+	import ImagePullModal from '$lib/components/modals/ImagePullModal.svelte';
 	import type { ImageInfo } from '$lib/types';
 	import { currentEnvironment, environments, appendEnvParam, clearStaleEnvironment } from '$lib/stores/environment';
 	import CreateContainerModal from '../containers/CreateContainerModal.svelte';
@@ -31,9 +29,7 @@
 	import { EmptyState, NoEnvironment } from '$lib/components/ui/empty-state';
 	import PageHeader from '$lib/components/PageHeader.svelte';
 	import { DataGrid } from '$lib/components/data-grid';
-	import type { DataGridSortState } from '$lib/components/data-grid/types';
-
-	let { data } = $props();
+	import { formatBytes } from '$lib/utils/new';
 
 	type SortField = 'name' | 'size' | 'created' | 'tags';
 	type SortDirection = 'asc' | 'desc';
@@ -60,14 +56,6 @@
 		latestCreated: number;
 		imageIds: Set<string>;
 		containers: number;
-	}
-
-	// Check if a registry is Docker Hub
-	function isDockerHub(registry: Registry): boolean {
-		const url = registry.url.toLowerCase();
-		return url.includes('docker.io') ||
-			   url.includes('hub.docker.com') ||
-			   url.includes('registry.hub.docker.com');
 	}
 
 	let images = $state<ImageInfo[]>([]);
@@ -151,7 +139,6 @@
 
 	// Copy ID state
 	let copiedId = $state<string | null>(null);
-	let copyIdFailed = $state(false);
 
 	async function copyImageId(imageId: string) {
 		const ok = await copyToClipboard(imageId);
@@ -341,34 +328,12 @@
 		allFilteredImageIds.size > 0 && Array.from(allFilteredImageIds).every(id => selectedImages.has(id))
 	);
 
-	const someFilteredSelected = $derived(
-		Array.from(allFilteredImageIds).some(id => selectedImages.has(id)) && !allFilteredSelected
-	);
-
 	const selectedInFilter = $derived(
 		images.filter(img => selectedImages.has(img.id) && allFilteredImageIds.has(img.id))
 	);
 
-	function toggleSelectAll() {
-		if (allFilteredSelected) {
-			allFilteredImageIds.forEach(id => selectedImages.delete(id));
-		} else {
-			allFilteredImageIds.forEach(id => selectedImages.add(id));
-		}
-		selectedImages = new Set(selectedImages);
-	}
-
 	function selectNone() {
 		selectedImages = new Set();
-	}
-
-	function toggleImageSelection(imageId: string) {
-		if (selectedImages.has(imageId)) {
-			selectedImages.delete(imageId);
-		} else {
-			selectedImages.add(imageId);
-		}
-		selectedImages = new Set(selectedImages);
 	}
 
 	function toggleRepo(repoName: string) {
@@ -379,14 +344,6 @@
 		}
 		expandedRepos = new Set(expandedRepos);
 	}
-
-	// Filter registries to exclude Docker Hub
-	const pushableRegistries = $derived(registries.filter(r => {
-		const url = r.url.toLowerCase();
-		return !url.includes('docker.io') &&
-			   !url.includes('hub.docker.com') &&
-			   !url.includes('registry.hub.docker.com');
-	}));
 
 	async function fetchImages() {
 		// Only show loading skeleton on initial load
@@ -633,14 +590,6 @@
 		return `${(mb / 1024).toFixed(2)} GB`;
 	}
 
-	function formatBytes(bytes: number): string {
-		if (bytes === 0) return '0 B';
-		const k = 1024;
-		const sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
-		const i = Math.floor(Math.log(bytes) / Math.log(k));
-		return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
-	}
-
 	function formatImageDate(timestamp: number): string {
 		return formatDate(new Date(timestamp * 1000));
 	}
@@ -717,7 +666,7 @@
 		/>
 		<div class="flex flex-wrap items-center gap-2">
 			<div class="relative">
-				<Search class="absolute left-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
+				<Search class="absolute left-2 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
 				<Input
 					type="text"
 					placeholder="Search images..."
@@ -729,27 +678,27 @@
 			<Select.Root type="single" bind:value={usageFilter}>
 				<Select.Trigger size="sm" class="w-28 text-sm">
 					{#if usageFilter === 'all'}
-						<Filter class="w-3.5 h-3.5 mr-1.5 text-muted-foreground shrink-0" />
+						<Filter class="size-4 mr-1.5 text-muted-foreground shrink-0" />
 						<span class="text-muted-foreground">All</span>
 					{:else if usageFilter === 'in-use'}
-						<CircleDot class="w-3.5 h-3.5 mr-1.5 text-emerald-500 shrink-0" />
+						<CircleDot class="size-4 mr-1.5 text-emerald-500 shrink-0" />
 						<span>In use</span>
 					{:else}
-						<Circle class="w-3.5 h-3.5 mr-1.5 text-muted-foreground shrink-0" />
+						<Circle class="size-4 mr-1.5 text-muted-foreground shrink-0" />
 						<span>Unused</span>
 					{/if}
 				</Select.Trigger>
 				<Select.Content>
 					<Select.Item value="all">
-						<Filter class="w-4 h-4 mr-2 text-muted-foreground" />
+						<Filter class="size-4 mr-2 text-muted-foreground" />
 						All
 					</Select.Item>
 					<Select.Item value="in-use">
-						<CircleDot class="w-4 h-4 mr-2 text-emerald-500" />
+						<CircleDot class="size-4 mr-2 text-emerald-500" />
 						In use
 					</Select.Item>
 					<Select.Item value="unused">
-						<Circle class="w-4 h-4 mr-2 text-muted-foreground" />
+						<Circle class="size-4 mr-2 text-muted-foreground" />
 						Unused
 					</Select.Item>
 				</Select.Content>
@@ -771,13 +720,13 @@
 						title="Remove untagged intermediate layers (dangling images)"
 					>
 						{#if pruneStatus === 'pruning'}
-							<RefreshCw class="w-3.5 h-3.5 animate-spin" />
+							<RefreshCw class="size-4 animate-spin" />
 						{:else if pruneStatus === 'success'}
-							<Check class="w-3.5 h-3.5 text-green-600" />
+							<Check class="size-4 text-green-600" />
 						{:else if pruneStatus === 'error'}
-							<XCircle class="w-3.5 h-3.5 text-destructive" />
+							<XCircle class="size-4 text-destructive" />
 						{:else}
-							<Icon iconNode={broom} class="w-3.5 h-3.5" />
+							<Icon iconNode={broom} class="size-4" />
 						{/if}
 						Prune
 					</span>
@@ -799,13 +748,13 @@
 						title="Remove ALL images not used by any container (including tagged images)"
 					>
 						{#if pruneUnusedStatus === 'pruning'}
-							<RefreshCw class="w-3.5 h-3.5 animate-spin" />
+							<RefreshCw class="size-4 animate-spin" />
 						{:else if pruneUnusedStatus === 'success'}
-							<Check class="w-3.5 h-3.5 text-green-600" />
+							<Check class="size-4 text-green-600" />
 						{:else if pruneUnusedStatus === 'error'}
-							<XCircle class="w-3.5 h-3.5 text-destructive" />
+							<XCircle class="size-4 text-destructive" />
 						{:else}
-							<Icon iconNode={broom} class="w-3.5 h-3.5 text-amber-600" />
+							<BrushCleaning class="size-4 text-amber-600" />
 						{/if}
 						Prune unused
 					</span>
@@ -814,7 +763,7 @@
 			{/if}
 			{#if $canAccess('images', 'pull')}
 			<Button size="sm" variant="default" onclick={() => showPullModal = true}>
-				<Download class="w-3.5 h-3.5 mr-1.5" />
+				<Download class="size-4 mr-1.5" />
 				Pull
 			</Button>
 			{/if}
@@ -841,7 +790,7 @@
 				onclick={bulkRemove}
 				disabled={selectedInFilter.length === 0}
 			>
-				<Trash2 class="w-3 h-3" />
+				<Trash2 class="size-3" />
 				Delete
 			</button>
 			{/if}
@@ -894,11 +843,11 @@
 						title={allSelected ? 'Deselect all' : 'Select all'}
 					>
 						{#if allSelected}
-							<CheckSquare class="w-3.5 h-3.5 text-muted-foreground" />
+							<CheckSquare class="size-4 text-muted-foreground" />
 						{:else if someSelected}
-							<CheckSquare class="w-3.5 h-3.5 text-muted-foreground" />
+							<CheckSquare class="size-4 text-muted-foreground" />
 						{:else}
-							<Square class="w-3.5 h-3.5 text-muted-foreground" />
+							<Square class="size-4 text-muted-foreground" />
 						{/if}
 					</button>
 				{:else if column.sortable}
@@ -910,12 +859,12 @@
 						{column.label}
 						{#if sortState?.field === (column.sortField ?? column.id)}
 							{#if sortState.direction === 'asc'}
-								<ArrowUp class="w-3 h-3" />
+								<ArrowUp class="size-3" />
 							{:else}
-								<ArrowDown class="w-3 h-3" />
+								<ArrowDown class="size-3" />
 							{/if}
 						{:else}
-							<ArrowUpDown class="w-3 h-3 opacity-30" />
+							<ArrowUpDown class="size-3 opacity-30" />
 						{/if}
 					</button>
 				{:else if column.id !== 'expand' && column.id !== 'actions'}
@@ -940,20 +889,20 @@
 						class="flex items-center justify-center transition-colors cursor-pointer {Array.from(group.imageIds).some(id => selectedImages.has(id)) ? 'opacity-100' : 'opacity-0 group-hover:opacity-40 hover:!opacity-100'}"
 					>
 						{#if Array.from(group.imageIds).every(id => selectedImages.has(id))}
-							<CheckSquare class="w-3.5 h-3.5 text-muted-foreground" />
+							<CheckSquare class="size-4 text-muted-foreground" />
 						{:else if Array.from(group.imageIds).some(id => selectedImages.has(id))}
-							<CheckSquare class="w-3.5 h-3.5 text-muted-foreground opacity-50" />
+							<CheckSquare class="size-4 text-muted-foreground opacity-50" />
 						{:else}
-							<Square class="w-3.5 h-3.5 text-muted-foreground" />
+							<Square class="size-4 text-muted-foreground" />
 						{/if}
 					</button>
 				{:else if column.id === 'expand'}
 					{@const hasMultipleTags = group.tags.length > 1}
 					{#if hasMultipleTags}
 						{#if rowState.isExpanded}
-							<ChevronDown class="w-3.5 h-3.5 text-muted-foreground shrink-0" />
+							<ChevronDown class="size-4 text-muted-foreground shrink-0" />
 						{:else}
-							<ChevronRight class="w-3.5 h-3.5 text-muted-foreground shrink-0" />
+							<ChevronRight class="size-4 text-muted-foreground shrink-0" />
 						{/if}
 					{/if}
 				{:else if column.id === 'image'}
@@ -972,7 +921,7 @@
 							</Badge>
 						{:else if group.tags.length > 1 && group.tags.some(t => t.containers === 0)}
 							<Badge variant="outline" class="text-2xs px-1.5 py-0 border-amber-500/30 text-amber-600/70 dark:text-amber-400/70 shadow-[0_0_3px_rgba(245,158,11,0.25)]" title="Some tags are unused">
-								<CircleDashed class="w-2.5 h-2.5 mr-0.5" />
+								<CircleDashed class="size-3 mr-0.5" />
 								Some unused
 							</Badge>
 						{/if}
@@ -998,7 +947,7 @@
 								title="Run container"
 								class="p-1 rounded hover:bg-muted transition-colors opacity-70 hover:opacity-100 cursor-pointer"
 							>
-								<Play class="w-3.5 h-3.5 text-muted-foreground hover:text-green-600" />
+								<Play class="size-4 text-muted-foreground hover:text-green-600" />
 							</button>
 							{/if}
 							{#if scannerEnabled && $canAccess('images', 'inspect')}
@@ -1008,7 +957,7 @@
 								title="Scan for vulnerabilities"
 								class="p-1 rounded hover:bg-muted transition-colors opacity-70 hover:opacity-100 cursor-pointer"
 							>
-								<ShieldCheck class="w-3.5 h-3.5 text-muted-foreground hover:text-blue-500" />
+								<ShieldCheck class="size-4 text-muted-foreground hover:text-blue-500" />
 							</button>
 							{/if}
 							{#if $canAccess('images', 'push')}
@@ -1018,7 +967,7 @@
 								title="Push to registry"
 								class="p-1 rounded hover:bg-muted transition-colors opacity-70 hover:opacity-100 cursor-pointer"
 							>
-								<Upload class="w-3.5 h-3.5 text-muted-foreground hover:text-foreground" />
+								<Upload class="size-4 text-muted-foreground hover:text-foreground" />
 							</button>
 							{/if}
 						</div>
@@ -1039,7 +988,7 @@
 						{#snippet cell(column, tagInfo, rowState)}
 							{#if column.id === 'tag'}
 								<div class="flex items-center gap-1.5">
-									<Tag class="w-3 h-3 text-muted-foreground shrink-0" />
+									<Tag class="size-3 text-muted-foreground shrink-0" />
 									<span class="{tagInfo.tag === 'latest' ? 'text-blue-600 dark:text-blue-400' : ''}">{tagInfo.tag}</span>
 								</div>
 							{:else if column.id === 'id'}
@@ -1051,7 +1000,7 @@
 								>
 									<code class="text-2xs text-muted-foreground">{tagInfo.imageId.slice(7, 19)}</code>
 									{#if copiedId === tagInfo.imageId}
-										<Check class="w-3 h-3 text-green-500" />
+										<Check class="size-3 text-green-500" />
 									{/if}
 								</button>
 							{:else if column.id === 'size'}
@@ -1083,7 +1032,7 @@
 										title="View layers"
 										class="p-1 rounded hover:bg-muted transition-colors cursor-pointer"
 									>
-										<Layers class="w-3 h-3 text-muted-foreground hover:text-foreground" />
+										<Layers class="size-3 text-muted-foreground hover:text-foreground" />
 									</button>
 									{/if}
 									{#if $canAccess('containers', 'create')}
@@ -1093,7 +1042,7 @@
 										title="Run container"
 										class="p-1 rounded hover:bg-muted transition-colors cursor-pointer"
 									>
-										<Play class="w-3 h-3 text-muted-foreground hover:text-green-600" />
+										<Play class="size-3 text-muted-foreground hover:text-green-600" />
 									</button>
 									{/if}
 									{#if scannerEnabled && $canAccess('images', 'inspect')}
@@ -1103,7 +1052,7 @@
 										title="Scan for vulnerabilities"
 										class="p-1 rounded hover:bg-muted transition-colors cursor-pointer"
 									>
-										<ShieldCheck class="w-3 h-3 text-muted-foreground hover:text-blue-500" />
+										<ShieldCheck class="size-3 text-muted-foreground hover:text-blue-500" />
 									</button>
 									{/if}
 									{#if $canAccess('images', 'push')}
@@ -1113,7 +1062,7 @@
 										title="Push to registry"
 										class="p-1 rounded hover:bg-muted transition-colors cursor-pointer"
 									>
-										<Upload class="w-3 h-3 text-muted-foreground hover:text-foreground" />
+										<Upload class="size-3 text-muted-foreground hover:text-foreground" />
 									</button>
 									{/if}
 									{#if $canAccess('images', 'inspect')}
@@ -1124,7 +1073,7 @@
 										class="p-1 rounded hover:bg-muted transition-colors cursor-pointer {exportingId === tagInfo.fullRef ? 'animate-pulse' : ''}"
 										disabled={exportingId === tagInfo.fullRef}
 									>
-										<Download class="w-3 h-3 text-muted-foreground hover:text-foreground" />
+										<Download class="size-3 text-muted-foreground hover:text-foreground" />
 									</button>
 									{/if}
 									{#if $canAccess('images', 'build')}
@@ -1134,7 +1083,7 @@
 										title="Tag image"
 										class="p-1 rounded hover:bg-muted transition-colors cursor-pointer"
 									>
-										<Tag class="w-3 h-3 text-muted-foreground hover:text-foreground" />
+										<Tag class="size-3 text-muted-foreground hover:text-foreground" />
 									</button>
 									{/if}
 									{#if $canAccess('images', 'remove') && tagInfo.containers === 0}
@@ -1149,7 +1098,7 @@
 											onOpenChange={(open) => confirmDeleteId = open ? tagInfo.fullRef : null}
 										>
 											{#snippet children({ open })}
-												<Trash2 class="w-3 h-3 {open ? 'text-destructive' : 'text-muted-foreground hover:text-destructive'}" />
+												<Trash2 class="size-3 {open ? 'text-destructive' : 'text-muted-foreground hover:text-destructive'}" />
 											{/snippet}
 										</ConfirmPopover>
 									</div>
@@ -1229,7 +1178,7 @@
 	<Dialog.Content class="max-w-md">
 		<Dialog.Header>
 			<Dialog.Title class="flex items-center gap-2">
-				<Tag class="w-5 h-5" />
+				<Tag class="size-5" />
 				Tag image
 			</Dialog.Title>
 			<Dialog.Description>
@@ -1270,7 +1219,7 @@
 				disabled={tagging || !tagNewRepo.trim()}
 			>
 				{#if tagging}
-					<RefreshCw class="w-4 h-4 mr-2 animate-spin" />
+					<RefreshCw class="size-4 mr-2 animate-spin" />
 					Tagging...
 				{:else}
 					Tag

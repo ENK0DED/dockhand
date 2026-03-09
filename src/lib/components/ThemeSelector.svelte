@@ -147,7 +147,7 @@
 	<!-- Light Theme -->
 	<div class="flex items-center justify-between">
 		<div class="flex items-center gap-2">
-			<Sun class="w-4 h-4 text-muted-foreground" />
+			<Sun class="size-4 text-muted-foreground" />
 			<Label>Light theme</Label>
 		</div>
 		<Select.Root type="single" value={selectedLightTheme} onValueChange={handleLightThemeChange}>
@@ -156,7 +156,7 @@
 					{#each lightThemes as theme}
 						{#if theme.id === selectedLightTheme}
 							<span
-								class="w-3 h-3 rounded-full border border-border"
+								class="size-3 rounded-full border border-border"
 								style="background-color: {theme.preview}"
 							></span>
 							<span>{theme.name}</span>
@@ -169,7 +169,7 @@
 					<Select.Item value={theme.id}>
 						<div class="flex items-center gap-2">
 							<span
-								class="w-3 h-3 rounded-full border border-border"
+								class="size-3 rounded-full border border-border"
 								style="background-color: {theme.preview}"
 							></span>
 							<span>{theme.name}</span>
@@ -183,7 +183,7 @@
 	<!-- Dark Theme -->
 	<div class="flex items-center justify-between">
 		<div class="flex items-center gap-2">
-			<Moon class="w-4 h-4 text-muted-foreground" />
+			<Moon class="size-4 text-muted-foreground" />
 			<Label>Dark theme</Label>
 		</div>
 		<Select.Root type="single" value={selectedDarkTheme} onValueChange={handleDarkThemeChange}>
@@ -192,7 +192,7 @@
 					{#each darkThemes as theme}
 						{#if theme.id === selectedDarkTheme}
 							<span
-								class="w-3 h-3 rounded-full border border-border"
+								class="size-3 rounded-full border border-border"
 								style="background-color: {theme.preview}"
 							></span>
 							<span>{theme.name}</span>
@@ -205,7 +205,7 @@
 					<Select.Item value={theme.id}>
 						<div class="flex items-center gap-2">
 							<span
-								class="w-3 h-3 rounded-full border border-border"
+								class="size-3 rounded-full border border-border"
 								style="background-color: {theme.preview}"
 							></span>
 							<span>{theme.name}</span>
@@ -219,7 +219,7 @@
 	<!-- Font -->
 	<div class="flex items-center justify-between">
 		<div class="flex items-center gap-2">
-			<Type class="w-4 h-4 text-muted-foreground" />
+			<Type class="size-4 text-muted-foreground" />
 			<Label>Font</Label>
 		</div>
 		<Select.Root type="single" value={selectedFont} onValueChange={handleFontChange}>
@@ -243,7 +243,7 @@
 	<!-- Font Size -->
 	<div class="flex items-center justify-between">
 		<div class="flex items-center gap-2">
-			<AArrowUp class="w-4 h-4 text-muted-foreground" />
+			<AArrowUp class="size-4 text-muted-foreground" />
 			<Label>Font size</Label>
 		</div>
 		<Select.Root type="single" value={selectedFontSize} onValueChange={handleFontSizeChange}>
@@ -267,7 +267,7 @@
 	<!-- Grid Font Size -->
 	<div class="flex items-center justify-between">
 		<div class="flex items-center gap-2">
-			<Table class="w-4 h-4 text-muted-foreground" />
+			<Table class="size-4 text-muted-foreground" />
 			<Label>Grid font size</Label>
 		</div>
 		<Select.Root type="single" value={selectedGridFontSize} onValueChange={handleGridFontSizeChange}>
@@ -291,7 +291,7 @@
 	<!-- Terminal Font -->
 	<div class="flex items-center justify-between">
 		<div class="flex items-center gap-2">
-			<Terminal class="w-4 h-4 text-muted-foreground" />
+			<Terminal class="size-4 text-muted-foreground" />
 			<Label>Terminal font</Label>
 		</div>
 		<Select.Root type="single" value={selectedTerminalFont} onValueChange={handleTerminalFontChange}>
@@ -315,7 +315,7 @@
 	<!-- Editor Font -->
 	<div class="flex items-center justify-between">
 		<div class="flex items-center gap-2">
-			<CodeXml class="w-4 h-4 text-muted-foreground" />
+			<CodeXml class="size-4 text-muted-foreground" />
 			<Label>Editor font</Label>
 		</div>
 		<Select.Root type="single" value={selectedEditorFont} onValueChange={handleEditorFontChange}>

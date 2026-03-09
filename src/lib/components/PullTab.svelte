@@ -314,10 +314,10 @@
 					class="h-10"
 				>
 					{#if isPulling}
-						<Loader2 class="w-4 h-4 mr-2 animate-spin" />
+						<Loader2 class="size-4 mr-2 animate-spin" />
 						Pulling...
 					{:else}
-						<Download class="w-4 h-4" />
+						<Download class="size-4" />
 						Pull
 					{/if}
 				</Button>
@@ -332,13 +332,13 @@
 			<div class="flex items-center justify-between">
 				<div class="flex items-center gap-2">
 					{#if status === 'pulling'}
-						<Loader2 class="w-4 h-4 animate-spin text-blue-600" />
+						<Loader2 class="size-4 animate-spin text-blue-600" />
 						<span class="text-sm">Pulling layers...</span>
 					{:else if status === 'complete'}
-						<CheckCircle2 class="w-4 h-4 text-green-600" />
+						<CheckCircle2 class="size-4 text-green-600" />
 						<span class="text-sm text-green-600">Pull completed!</span>
 					{:else if status === 'error'}
-						<XCircle class="w-4 h-4 text-red-600" />
+						<XCircle class="size-4 text-red-600" />
 						<span class="text-sm text-red-600">Failed</span>
 					{/if}
 				</div>
@@ -374,7 +374,7 @@
 			{#if errorMessage}
 				<div class="p-3 rounded-lg bg-destructive/10 border border-destructive/30">
 					<div class="flex items-start gap-2">
-						<AlertCircle class="w-4 h-4 text-destructive mt-0.5 shrink-0" />
+						<AlertCircle class="size-4 text-destructive mt-0.5 shrink-0" />
 						<span class="text-sm text-destructive break-all">{errorMessage}</span>
 					</div>
 				</div>
@@ -406,11 +406,11 @@
 								<td class="py-1.5 px-3">
 									<div class="flex items-center gap-2">
 										{#if isComplete}
-											<CheckCircle2 class="w-3 h-3 text-green-500 shrink-0" />
+											<CheckCircle2 class="size-3 text-green-500 shrink-0" />
 										{:else if isDownloading || isExtracting}
-											<Loader2 class="w-3 h-3 text-blue-500 animate-spin shrink-0" />
+											<Loader2 class="size-3 text-blue-500 animate-spin shrink-0" />
 										{:else}
-											<Loader2 class="w-3 h-3 text-muted-foreground animate-spin shrink-0" />
+											<Loader2 class="size-3 text-muted-foreground animate-spin shrink-0" />
 										{/if}
 										<span class={isComplete ? 'text-green-600' : isDownloading ? 'text-blue-600' : isExtracting ? 'text-amber-600' : 'text-muted-foreground'}>
 											{layer.status}
@@ -445,14 +445,14 @@
 		<div class="flex-1 min-h-0 flex flex-col">
 			<div class="flex items-center justify-between text-xs text-muted-foreground mb-2 shrink-0">
 				<div class="flex items-center gap-2">
-					<Terminal class="w-3.5 h-3.5" />
+					<Terminal class="size-4" />
 					<span>Output ({outputLines.length} lines)</span>
 				</div>
 				<button type="button" onclick={toggleLogTheme} class="p-1 rounded hover:bg-muted transition-colors cursor-pointer" title="Toggle log theme">
 					{#if logDarkMode}
-						<Sun class="w-3.5 h-3.5" />
+						<Sun class="size-4" />
 					{:else}
-						<Moon class="w-3.5 h-3.5" />
+						<Moon class="size-4" />
 					{/if}
 				</button>
 			</div>

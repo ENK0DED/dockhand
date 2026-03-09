@@ -101,10 +101,10 @@
 		<Dialog.Header>
 			<Dialog.Title class="flex items-center gap-2">
 				{#if showBackupCodes}
-					<ShieldCheck class="w-5 h-5 text-green-500" />
+					<ShieldCheck class="size-5 text-green-500" />
 					MFA enabled successfully
 				{:else}
-					<QrCode class="w-5 h-5" />
+					<QrCode class="size-5" />
 					Setup two-factor authentication
 				{/if}
 			</Dialog.Title>
@@ -114,7 +114,7 @@
 			<!-- Backup codes view -->
 			<div class="space-y-4">
 				<Alert.Root>
-					<TriangleAlert class="h-4 w-4" />
+					<TriangleAlert class="size-4" />
 					<Alert.Description>
 						Save these backup codes in a safe place. Each code can only be used once to sign in if you lose access to your authenticator app.
 					</Alert.Description>
@@ -134,28 +134,28 @@
 						{#if copied === 'error'}
 							<Tooltip.Root open>
 								<Tooltip.Trigger>
-									<XCircle class="w-4 h-4 text-red-500" />
+									<XCircle class="size-4 text-red-500" />
 								</Tooltip.Trigger>
 								<Tooltip.Content>Copy requires HTTPS</Tooltip.Content>
 							</Tooltip.Root>
 							Failed
 						{:else if copied === 'ok'}
-							<Check class="w-4 h-4" />
+							<Check class="size-4" />
 							Copied!
 						{:else}
-							<Copy class="w-4 h-4" />
+							<Copy class="size-4" />
 							Copy codes
 						{/if}
 					</Button>
 					<Button variant="outline" class="flex-1" onclick={downloadBackupCodes}>
-						<Download class="w-4 h-4" />
+						<Download class="size-4" />
 						Download
 					</Button>
 				</div>
 			</div>
 			<Dialog.Footer>
 				<Button onclick={handleDone}>
-					<ShieldCheck class="w-4 h-4" />
+					<ShieldCheck class="size-4" />
 					Done
 				</Button>
 			</Dialog.Footer>
@@ -164,7 +164,7 @@
 			<div class="space-y-4">
 				{#if error}
 					<Alert.Root variant="destructive">
-						<TriangleAlert class="h-4 w-4" />
+						<TriangleAlert class="size-4" />
 						<Alert.Description>{error}</Alert.Description>
 					</Alert.Root>
 				{/if}
@@ -200,9 +200,9 @@
 				<Button variant="outline" onclick={onClose}>Cancel</Button>
 				<Button onclick={verifyAndEnableMfa} disabled={loading || !token}>
 					{#if loading}
-						<RefreshCw class="w-4 h-4 animate-spin" />
+						<RefreshCw class="size-4 animate-spin" />
 					{:else}
-						<ShieldCheck class="w-4 h-4" />
+						<ShieldCheck class="size-4" />
 					{/if}
 					Enable MFA
 				</Button>

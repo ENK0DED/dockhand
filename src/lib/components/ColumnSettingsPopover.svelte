@@ -77,7 +77,7 @@
 				{...props}
 				class="inline-flex items-center justify-center p-1 rounded hover:bg-muted/50 text-muted-foreground hover:text-foreground transition-colors"
 			>
-				<Settings2 class="w-4 h-4" />
+				<Settings2 class="size-4" />
 			</button>
 		{/snippet}
 	</Popover.Trigger>
@@ -92,7 +92,7 @@
 					onclick={resetToDefaults}
 					title="Reset to defaults"
 				>
-					<RotateCcw class="w-3 h-3" />
+					<RotateCcw class="size-3" />
 					Reset
 				</Button>
 			</div>
@@ -108,7 +108,7 @@
 							disabled={index === 0}
 							onclick={() => moveUp(index)}
 						>
-							<ChevronUp class="w-3 h-3" />
+							<ChevronUp class="size-3" />
 						</button>
 						<button
 							type="button"
@@ -116,7 +116,7 @@
 							disabled={index === columns.length - 1}
 							onclick={() => moveDown(index)}
 						>
-							<ChevronDown class="w-3 h-3" />
+							<ChevronDown class="size-3" />
 						</button>
 					</div>
 					<Checkbox

@@ -64,7 +64,7 @@
 			{@const opt = singleOption()}
 			{@const IconComponent = opt?.icon || defaultIcon}
 			{#if IconComponent}
-				<svelte:component this={IconComponent} class="w-3.5 h-3.5 mr-1.5 {opt?.color || 'text-muted-foreground'} shrink-0" />
+				<svelte:component this={IconComponent} class="size-4 mr-1.5 {opt?.color || 'text-muted-foreground'} shrink-0" />
 			{/if}
 		{/if}
 		<span class="{value.length === 0 ? 'text-muted-foreground' : ''}">
@@ -84,7 +84,7 @@
 		{#each options as option}
 			<Select.Item value={option.value}>
 				{#if option.icon}
-					<svelte:component this={option.icon} class="w-4 h-4 mr-2 {option.color || ''}" />
+					<svelte:component this={option.icon} class="size-4 mr-2 {option.color || ''}" />
 				{/if}
 				{option.label}
 			</Select.Item>

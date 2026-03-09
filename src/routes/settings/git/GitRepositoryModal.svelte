@@ -198,7 +198,7 @@
 	<Dialog.Content class="max-w-lg">
 		<Dialog.Header>
 			<Dialog.Title class="flex items-center gap-2">
-				<GitBranch class="w-5 h-5" />
+				<GitBranch class="size-5" />
 				{isEditing ? 'Edit' : 'Add'} Git repository
 			</Dialog.Title>
 			<Dialog.Description>
@@ -254,12 +254,12 @@
 						{#if selectedCred}
 							{@const Icon = getAuthIcon(selectedCred.authType)}
 							<span class="flex items-center gap-2">
-								<Icon class="w-4 h-4 text-muted-foreground" />
+								<Icon class="size-4 text-muted-foreground" />
 								{selectedCred.name} ({getAuthLabel(selectedCred.authType)})
 							</span>
 						{:else}
 							<span class="flex items-center gap-2">
-								<Globe class="w-4 h-4 text-muted-foreground" />
+								<Globe class="size-4 text-muted-foreground" />
 								None (public repository)
 							</span>
 						{/if}
@@ -267,7 +267,7 @@
 					<Select.Content>
 						<Select.Item value="none">
 							<span class="flex items-center gap-2">
-								<Globe class="w-4 h-4 text-muted-foreground" />
+								<Globe class="size-4 text-muted-foreground" />
 								None (public repository)
 							</span>
 						</Select.Item>
@@ -275,11 +275,11 @@
 							<Select.Item value={cred.id.toString()}>
 								<span class="flex items-center gap-2">
 									{#if cred.authType === 'ssh'}
-										<KeyRound class="w-4 h-4 text-muted-foreground" />
+										<KeyRound class="size-4 text-muted-foreground" />
 									{:else if cred.authType === 'password'}
-										<Lock class="w-4 h-4 text-muted-foreground" />
+										<Lock class="size-4 text-muted-foreground" />
 									{:else}
-										<Key class="w-4 h-4 text-muted-foreground" />
+										<Key class="size-4 text-muted-foreground" />
 									{/if}
 									{cred.name} ({getAuthLabel(cred.authType)})
 								</span>
@@ -308,17 +308,17 @@
 					class={testResult?.success ? 'border-green-500 text-green-600 dark:border-green-500 dark:text-green-400' : ''}
 				>
 					{#if testing}
-						<Loader2 class="w-4 h-4 mr-1.5 animate-spin" />
+						<Loader2 class="size-4 mr-1.5 animate-spin" />
 					{:else if testResult?.success}
-						<CheckCircle2 class="w-4 h-4 mr-1.5 text-green-500" />
+						<CheckCircle2 class="size-4 mr-1.5 text-green-500" />
 					{:else}
-						<Play class="w-4 h-4 mr-1.5" />
+						<Play class="size-4 mr-1.5" />
 					{/if}
 					Test
 				</Button>
 				<Button type="submit" disabled={formSaving}>
 					{#if formSaving}
-						<Loader2 class="w-4 h-4 mr-1 animate-spin" />
+						<Loader2 class="size-4 mr-1 animate-spin" />
 						Saving...
 					{:else}
 						{isEditing ? 'Save changes' : 'Add repository'}

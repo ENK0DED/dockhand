@@ -211,13 +211,13 @@
 		<Select.Trigger class="w-[140px] h-9">
 			<div class="flex items-center gap-2">
 				{#if scheduleType === 'daily'}
-					<Calendar class="w-4 h-4" />
+					<Calendar class="size-4" />
 					<span>Daily</span>
 				{:else if scheduleType === 'weekly'}
-					<CalendarDays class="w-4 h-4" />
+					<CalendarDays class="size-4" />
 					<span>Weekly</span>
 				{:else}
-					<Clock class="w-4 h-4" />
+					<Clock class="size-4" />
 					<span>Custom</span>
 				{/if}
 			</div>
@@ -225,19 +225,19 @@
 		<Select.Content>
 			<Select.Item value="daily">
 				<div class="flex items-center gap-2">
-					<Calendar class="w-4 h-4" />
+					<Calendar class="size-4" />
 					<span>Daily</span>
 				</div>
 			</Select.Item>
 			<Select.Item value="weekly">
 				<div class="flex items-center gap-2">
-					<CalendarDays class="w-4 h-4" />
+					<CalendarDays class="size-4" />
 					<span>Weekly</span>
 				</div>
 			</Select.Item>
 			<Select.Item value="custom">
 				<div class="flex items-center gap-2">
-					<Clock class="w-4 h-4" />
+					<Clock class="size-4" />
 					<span>Custom</span>
 				</div>
 			</Select.Item>
